@@ -1,0 +1,1718 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": "osm_way_38674067",
+        "target_hour": "2026-06-18 09:00:00",
+        "police_station": "Byatarayanapura",
+        "junction_name": "No Junction",
+        "road_class": "secondary",
+        "road_width_m": 9.0,
+        "predicted_total": 35.88796704259361,
+        "traffic_interruption_0_100": 99.97468799467781,
+        "eps": 90.0,
+        "priority_band": "Red Line",
+        "recommended_action": "Immediate dispatch or tow readiness",
+        "recommended_force_units": 3,
+        "map_matching_mode": "osm_overpass_nearest_road",
+        "road_name": "4th Main Road",
+        "osm_highway": "tertiary"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            77.529641,
+            12.9605538
+          ],
+          [
+            77.5293814,
+            12.9606363
+          ],
+          [
+            77.529284,
+            12.9606507
+          ],
+          [
+            77.5289935,
+            12.960694
+          ],
+          [
+            77.5286597,
+            12.9607774
+          ],
+          [
+            77.5282656,
+            12.9608577
+          ],
+          [
+            77.5279485,
+            12.9609029
+          ],
+          [
+            77.5271748,
+            12.9610368
+          ],
+          [
+            77.5266989,
+            12.9611543
+          ],
+          [
+            77.5266576,
+            12.9611677
+          ],
+          [
+            77.5263442,
+            12.9612698
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": "osm_way_1303669683",
+        "target_hour": "2026-06-18 09:00:00",
+        "police_station": "HAL Old Airport",
+        "junction_name": "No Junction",
+        "road_class": "secondary",
+        "road_width_m": 9.0,
+        "predicted_total": 21.200510675186866,
+        "traffic_interruption_0_100": 99.99989512311116,
+        "eps": 90.0,
+        "priority_band": "Red Line",
+        "recommended_action": "Immediate dispatch or tow readiness",
+        "recommended_force_units": 3,
+        "map_matching_mode": "osm_overpass_nearest_road",
+        "road_name": "Service Road",
+        "osm_highway": "tertiary"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            77.6965841,
+            12.9413547
+          ],
+          [
+            77.6964474,
+            12.9411243
+          ],
+          [
+            77.6960988,
+            12.9405105
+          ],
+          [
+            77.6958384,
+            12.9400521
+          ],
+          [
+            77.6957899,
+            12.9399666
+          ],
+          [
+            77.6956185,
+            12.939708
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": "osm_way_621789365",
+        "target_hour": "2026-06-18 09:00:00",
+        "police_station": "Vijayanagara",
+        "junction_name": "BTP020 - Hosahalli Metro Station",
+        "road_class": "secondary",
+        "road_width_m": 9.0,
+        "predicted_total": 16.393426902285082,
+        "traffic_interruption_0_100": 99.85189311067964,
+        "eps": 90.0,
+        "priority_band": "Red Line",
+        "recommended_action": "Immediate dispatch or tow readiness",
+        "recommended_force_units": 3,
+        "map_matching_mode": "osm_overpass_nearest_road",
+        "road_name": "Service Road",
+        "osm_highway": "tertiary"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            77.5383868,
+            12.9730451
+          ],
+          [
+            77.5384319,
+            12.9730762
+          ],
+          [
+            77.5388152,
+            12.9733407
+          ],
+          [
+            77.5421803,
+            12.97408
+          ],
+          [
+            77.5435595,
+            12.9743681
+          ],
+          [
+            77.5447827,
+            12.9744252
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": "osm_way_38537946",
+        "target_hour": "2026-06-18 09:00:00",
+        "police_station": "Sheshadripuram",
+        "junction_name": "No Junction",
+        "road_class": "residential",
+        "road_width_m": 6.0,
+        "predicted_total": 13.450229135047877,
+        "traffic_interruption_0_100": 94.21323629423632,
+        "eps": 90.0,
+        "priority_band": "Red Line",
+        "recommended_action": "Immediate dispatch or tow readiness",
+        "recommended_force_units": 3,
+        "map_matching_mode": "osm_overpass_nearest_road",
+        "road_name": "",
+        "osm_highway": "residential"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            77.5632035,
+            12.9964839
+          ],
+          [
+            77.5631619,
+            12.9962728
+          ],
+          [
+            77.5631127,
+            12.9960236
+          ],
+          [
+            77.5630854,
+            12.9957936
+          ],
+          [
+            77.5630646,
+            12.9956324
+          ],
+          [
+            77.5630513,
+            12.995449
+          ],
+          [
+            77.5630492,
+            12.9954203
+          ],
+          [
+            77.5630308,
+            12.995172
+          ],
+          [
+            77.56301,
+            12.9949817
+          ],
+          [
+            77.5629945,
+            12.9948398
+          ],
+          [
+            77.5629768,
+            12.9945186
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": "osm_way_38047401",
+        "target_hour": "2026-06-18 09:00:00",
+        "police_station": "Basavanagudi",
+        "junction_name": "BTP109 - Dewan Madhava Rao Junction",
+        "road_class": "primary",
+        "road_width_m": 12.0,
+        "predicted_total": 13.33108342904133,
+        "traffic_interruption_0_100": 59.04040091238032,
+        "eps": 90.0,
+        "priority_band": "Red Line",
+        "recommended_action": "Immediate dispatch or tow readiness",
+        "recommended_force_units": 3,
+        "map_matching_mode": "osm_overpass_nearest_road",
+        "road_name": "Netta Kalappa Circle",
+        "osm_highway": "primary"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            77.5729696,
+            12.9400188
+          ],
+          [
+            77.5729467,
+            12.9400466
+          ],
+          [
+            77.572945,
+            12.9400525
+          ],
+          [
+            77.5729047,
+            12.9401894
+          ],
+          [
+            77.5729154,
+            12.9403376
+          ],
+          [
+            77.5729554,
+            12.9404319
+          ],
+          [
+            77.5729646,
+            12.9404536
+          ],
+          [
+            77.5730643,
+            12.9405658
+          ],
+          [
+            77.5731678,
+            12.940627
+          ],
+          [
+            77.5733028,
+            12.9406571
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": "osm_way_1113267053",
+        "target_hour": "2026-06-18 09:00:00",
+        "police_station": "Peenya",
+        "junction_name": "No Junction",
+        "road_class": "secondary",
+        "road_width_m": 9.0,
+        "predicted_total": 12.917166921520613,
+        "traffic_interruption_0_100": 98.57715222392326,
+        "eps": 90.0,
+        "priority_band": "Red Line",
+        "recommended_action": "Immediate dispatch or tow readiness",
+        "recommended_force_units": 3,
+        "map_matching_mode": "osm_overpass_nearest_road",
+        "road_name": "Peenya Inner Ring Road",
+        "osm_highway": "secondary"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            77.5179986,
+            13.0351184
+          ],
+          [
+            77.518123,
+            13.0356217
+          ],
+          [
+            77.5181855,
+            13.0358341
+          ],
+          [
+            77.5182249,
+            13.0359678
+          ],
+          [
+            77.5182605,
+            13.0361322
+          ],
+          [
+            77.5182657,
+            13.0363572
+          ],
+          [
+            77.5182689,
+            13.0364479
+          ],
+          [
+            77.5182696,
+            13.0364673
+          ],
+          [
+            77.5182698,
+            13.0365238
+          ],
+          [
+            77.518274,
+            13.0368424
+          ],
+          [
+            77.5182719,
+            13.0370221
+          ],
+          [
+            77.5182725,
+            13.037182
+          ],
+          [
+            77.5182539,
+            13.0378513
+          ],
+          [
+            77.5182025,
+            13.0384766
+          ],
+          [
+            77.5182039,
+            13.0388037
+          ],
+          [
+            77.5182153,
+            13.0390558
+          ],
+          [
+            77.5182554,
+            13.0393772
+          ],
+          [
+            77.5182862,
+            13.0396304
+          ],
+          [
+            77.5183596,
+            13.0398882
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": "osm_way_26139254",
+        "target_hour": "2026-06-18 09:00:00",
+        "police_station": "Upparpet",
+        "junction_name": "BTP040 - Elite Junction",
+        "road_class": "residential",
+        "road_width_m": 6.0,
+        "predicted_total": 12.675902871813145,
+        "traffic_interruption_0_100": 90.8851951934692,
+        "eps": 90.0,
+        "priority_band": "Red Line",
+        "recommended_action": "Immediate dispatch or tow readiness",
+        "recommended_force_units": 3,
+        "map_matching_mode": "osm_overpass_nearest_road",
+        "road_name": "",
+        "osm_highway": "residential"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            77.5764555,
+            12.9780131
+          ],
+          [
+            77.5764653,
+            12.9778849
+          ],
+          [
+            77.5764745,
+            12.9775456
+          ],
+          [
+            77.576502,
+            12.9771196
+          ],
+          [
+            77.5765082,
+            12.9770641
+          ],
+          [
+            77.5765114,
+            12.9770102
+          ],
+          [
+            77.5765397,
+            12.9762162
+          ],
+          [
+            77.5764481,
+            12.9759669
+          ],
+          [
+            77.5761926,
+            12.9755992
+          ],
+          [
+            77.576166,
+            12.9755676
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": "osm_way_114922746",
+        "target_hour": "2026-06-18 09:00:00",
+        "police_station": "HAL Old Airport",
+        "junction_name": "No Junction",
+        "road_class": "primary",
+        "road_width_m": 12.0,
+        "predicted_total": 12.322041255750058,
+        "traffic_interruption_0_100": 48.248195246030775,
+        "eps": 90.0,
+        "priority_band": "Red Line",
+        "recommended_action": "Immediate dispatch or tow readiness",
+        "recommended_force_units": 3,
+        "map_matching_mode": "osm_overpass_nearest_road",
+        "road_name": "New Horizon College Road",
+        "osm_highway": "primary"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            77.6904811,
+            12.9346363
+          ],
+          [
+            77.6905042,
+            12.9345893
+          ],
+          [
+            77.6906181,
+            12.9343469
+          ],
+          [
+            77.6907098,
+            12.9341396
+          ],
+          [
+            77.6908001,
+            12.9339828
+          ],
+          [
+            77.6908823,
+            12.9338732
+          ],
+          [
+            77.6909145,
+            12.9338306
+          ],
+          [
+            77.6909498,
+            12.9337781
+          ],
+          [
+            77.6909746,
+            12.9337385
+          ],
+          [
+            77.6910704,
+            12.933536
+          ],
+          [
+            77.6912202,
+            12.9332556
+          ],
+          [
+            77.691629,
+            12.9324882
+          ],
+          [
+            77.6917322,
+            12.9322735
+          ],
+          [
+            77.6919062,
+            12.932136
+          ],
+          [
+            77.6925399,
+            12.9317692
+          ],
+          [
+            77.6932715,
+            12.9314364
+          ],
+          [
+            77.6933405,
+            12.9314134
+          ],
+          [
+            77.6934113,
+            12.9313985
+          ],
+          [
+            77.6935022,
+            12.9313927
+          ],
+          [
+            77.6944469,
+            12.9313453
+          ],
+          [
+            77.6949182,
+            12.9313358
+          ],
+          [
+            77.694964,
+            12.9313349
+          ],
+          [
+            77.6949933,
+            12.9313343
+          ],
+          [
+            77.6950507,
+            12.9313312
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": "osm_way_780924531",
+        "target_hour": "2026-06-18 09:00:00",
+        "police_station": "J.P. Nagar",
+        "junction_name": "BTP130 - GD Mara Junction",
+        "road_class": "secondary",
+        "road_width_m": 9.0,
+        "predicted_total": 12.205196695689928,
+        "traffic_interruption_0_100": 63.45589189296745,
+        "eps": 90.0,
+        "priority_band": "Red Line",
+        "recommended_action": "Immediate dispatch or tow readiness",
+        "recommended_force_units": 3,
+        "map_matching_mode": "osm_overpass_nearest_road",
+        "road_name": "",
+        "osm_highway": "tertiary"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            77.6002527,
+            12.9072651
+          ],
+          [
+            77.600186,
+            12.9079506
+          ],
+          [
+            77.6001384,
+            12.9084395
+          ],
+          [
+            77.6000749,
+            12.9090911
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": "osm_way_138314533",
+        "target_hour": "2026-06-18 09:00:00",
+        "police_station": "Pulikeshinagar(F.Town)",
+        "junction_name": "No Junction",
+        "road_class": "residential",
+        "road_width_m": 6.0,
+        "predicted_total": 11.97562141755357,
+        "traffic_interruption_0_100": 91.21807437905261,
+        "eps": 90.0,
+        "priority_band": "Red Line",
+        "recommended_action": "Immediate dispatch or tow readiness",
+        "recommended_force_units": 3,
+        "map_matching_mode": "osm_overpass_nearest_road",
+        "road_name": "Osbourne Road",
+        "osm_highway": "residential"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            77.6144625,
+            12.9846134
+          ],
+          [
+            77.6145279,
+            12.9845818
+          ],
+          [
+            77.614579,
+            12.9845837
+          ],
+          [
+            77.6156929,
+            12.9846248
+          ],
+          [
+            77.616094,
+            12.9846879
+          ],
+          [
+            77.6162082,
+            12.9847754
+          ],
+          [
+            77.616251,
+            12.9848247
+          ],
+          [
+            77.6169483,
+            12.9858948
+          ],
+          [
+            77.6170644,
+            12.986066
+          ],
+          [
+            77.6172949,
+            12.9864074
+          ],
+          [
+            77.6174694,
+            12.9866668
+          ],
+          [
+            77.6176755,
+            12.986964
+          ],
+          [
+            77.6178029,
+            12.9871624
+          ],
+          [
+            77.6179615,
+            12.9873981
+          ],
+          [
+            77.6181796,
+            12.9877228
+          ],
+          [
+            77.6182049,
+            12.98776
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": "osm_way_1347949977",
+        "target_hour": "2026-06-18 09:00:00",
+        "police_station": "Halasuru Gate",
+        "junction_name": "BTP080 - NR Road, SP Road Junction",
+        "road_class": "secondary",
+        "road_width_m": 9.0,
+        "predicted_total": 11.392545946431145,
+        "traffic_interruption_0_100": 67.06967160165533,
+        "eps": 90.0,
+        "priority_band": "Red Line",
+        "recommended_action": "Immediate dispatch or tow readiness",
+        "recommended_force_units": 3,
+        "map_matching_mode": "osm_overpass_nearest_road",
+        "road_name": "Pehalwan Krishnappa Road",
+        "osm_highway": "secondary"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            77.5840668,
+            12.9647596
+          ],
+          [
+            77.5841139,
+            12.9650759
+          ],
+          [
+            77.5842282,
+            12.9652673
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": "osm_way_172891303",
+        "target_hour": "2026-06-18 09:00:00",
+        "police_station": "City Market",
+        "junction_name": "BTP082 - KR Market Junction",
+        "road_class": "primary",
+        "road_width_m": 12.0,
+        "predicted_total": 11.192116544566476,
+        "traffic_interruption_0_100": 36.07280966986275,
+        "eps": 90.0,
+        "priority_band": "Red Line",
+        "recommended_action": "Immediate dispatch or tow readiness",
+        "recommended_force_units": 3,
+        "map_matching_mode": "osm_overpass_nearest_road",
+        "road_name": "Sir Mirza Ismail Chowk Flyover",
+        "osm_highway": "primary"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            77.576242,
+            12.9646321
+          ],
+          [
+            77.5764376,
+            12.9645378
+          ],
+          [
+            77.576571,
+            12.9644808
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": "osm_way_1062970360",
+        "target_hour": "2026-06-18 09:00:00",
+        "police_station": "HAL Old Airport",
+        "junction_name": "No Junction",
+        "road_class": "primary",
+        "road_width_m": 12.0,
+        "predicted_total": 10.323139124656636,
+        "traffic_interruption_0_100": 39.736229016882774,
+        "eps": 90.0,
+        "priority_band": "Red Line",
+        "recommended_action": "Immediate dispatch or tow readiness",
+        "recommended_force_units": 3,
+        "map_matching_mode": "osm_overpass_nearest_road",
+        "road_name": "New Horizon College Road",
+        "osm_highway": "primary"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            77.6950298,
+            12.9312518
+          ],
+          [
+            77.6949812,
+            12.9312563
+          ],
+          [
+            77.6949452,
+            12.9312576
+          ],
+          [
+            77.6934147,
+            12.9313108
+          ],
+          [
+            77.6931247,
+            12.9313985
+          ],
+          [
+            77.6924823,
+            12.9317062
+          ],
+          [
+            77.6918344,
+            12.9320798
+          ],
+          [
+            77.6916741,
+            12.9322054
+          ],
+          [
+            77.6912023,
+            12.9331522
+          ],
+          [
+            77.6908455,
+            12.9337979
+          ],
+          [
+            77.6908261,
+            12.9338383
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": "osm_way_726907834",
+        "target_hour": "2026-06-18 09:00:00",
+        "police_station": "HAL Old Airport",
+        "junction_name": "No Junction",
+        "road_class": "residential",
+        "road_width_m": 6.0,
+        "predicted_total": 9.813897682731035,
+        "traffic_interruption_0_100": 79.39237628392702,
+        "eps": 90.0,
+        "priority_band": "Red Line",
+        "recommended_action": "Immediate dispatch or tow readiness",
+        "recommended_force_units": 3,
+        "map_matching_mode": "osm_overpass_nearest_road",
+        "road_name": "",
+        "osm_highway": "service"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            77.6912202,
+            12.9332556
+          ],
+          [
+            77.6913637,
+            12.9332955
+          ],
+          [
+            77.6932755,
+            12.9337849
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": "osm_way_38045986",
+        "target_hour": "2026-06-18 09:00:00",
+        "police_station": "Vijayanagara",
+        "junction_name": "BTP022 - Marenahalli Junction, Vijayanagar",
+        "road_class": "secondary",
+        "road_width_m": 9.0,
+        "predicted_total": 9.284778218189437,
+        "traffic_interruption_0_100": 48.82276721246621,
+        "eps": 90.0,
+        "priority_band": "Red Line",
+        "recommended_action": "Immediate dispatch or tow readiness",
+        "recommended_force_units": 3,
+        "map_matching_mode": "osm_overpass_nearest_road",
+        "road_name": "1st Main Road",
+        "osm_highway": "tertiary"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            77.5413863,
+            12.9675676
+          ],
+          [
+            77.5411049,
+            12.9676311
+          ],
+          [
+            77.540764,
+            12.967708
+          ],
+          [
+            77.5404528,
+            12.9677782
+          ],
+          [
+            77.5401791,
+            12.9678511
+          ],
+          [
+            77.5401548,
+            12.9678576
+          ],
+          [
+            77.5396878,
+            12.967982
+          ],
+          [
+            77.5394128,
+            12.9680443
+          ],
+          [
+            77.539317,
+            12.968066
+          ],
+          [
+            77.5388303,
+            12.9681694
+          ],
+          [
+            77.5375259,
+            12.9685406
+          ],
+          [
+            77.5375154,
+            12.9685443
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": "osm_way_358326661",
+        "target_hour": "2026-06-18 09:00:00",
+        "police_station": "City Market",
+        "junction_name": "BTP082 - KR Market Junction",
+        "road_class": "residential",
+        "road_width_m": 6.0,
+        "predicted_total": 9.075651489325384,
+        "traffic_interruption_0_100": 73.41616303087469,
+        "eps": 90.0,
+        "priority_band": "Red Line",
+        "recommended_action": "Immediate dispatch or tow readiness",
+        "recommended_force_units": 3,
+        "map_matching_mode": "osm_overpass_nearest_road",
+        "road_name": "",
+        "osm_highway": "residential"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            77.5751583,
+            12.9653247
+          ],
+          [
+            77.5752691,
+            12.9652476
+          ],
+          [
+            77.5754223,
+            12.9651102
+          ],
+          [
+            77.5755492,
+            12.9650447
+          ],
+          [
+            77.5757772,
+            12.9649353
+          ],
+          [
+            77.5759548,
+            12.964847
+          ],
+          [
+            77.5760883,
+            12.9647807
+          ],
+          [
+            77.5763807,
+            12.9646422
+          ],
+          [
+            77.5764903,
+            12.9645877
+          ],
+          [
+            77.5765981,
+            12.9645388
+          ],
+          [
+            77.5769693,
+            12.9643772
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": "osm_way_1094460071",
+        "target_hour": "2026-06-18 09:00:00",
+        "police_station": "City Market",
+        "junction_name": "BTP082 - KR Market Junction",
+        "road_class": "residential",
+        "road_width_m": 6.0,
+        "predicted_total": 8.922363707846763,
+        "traffic_interruption_0_100": 74.23990265257973,
+        "eps": 90.0,
+        "priority_band": "Red Line",
+        "recommended_action": "Immediate dispatch or tow readiness",
+        "recommended_force_units": 3,
+        "map_matching_mode": "osm_overpass_nearest_road",
+        "road_name": "",
+        "osm_highway": "service"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            77.5759548,
+            12.964847
+          ],
+          [
+            77.576111,
+            12.965159
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": "osm_way_28120293",
+        "target_hour": "2026-06-18 09:00:00",
+        "police_station": "Mico Layout",
+        "junction_name": "BTP130 - GD Mara Junction",
+        "road_class": "residential",
+        "road_width_m": 6.0,
+        "predicted_total": 8.896284665645885,
+        "traffic_interruption_0_100": 74.79661636393853,
+        "eps": 90.0,
+        "priority_band": "Red Line",
+        "recommended_action": "Immediate dispatch or tow readiness",
+        "recommended_force_units": 3,
+        "map_matching_mode": "osm_overpass_nearest_road",
+        "road_name": "1st Cross Road",
+        "osm_highway": "residential"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            77.6003508,
+            12.9084874
+          ],
+          [
+            77.6006706,
+            12.9085104
+          ],
+          [
+            77.6016088,
+            12.9085781
+          ],
+          [
+            77.6017176,
+            12.9085859
+          ],
+          [
+            77.601755,
+            12.9085886
+          ],
+          [
+            77.6020485,
+            12.9086097
+          ],
+          [
+            77.6023365,
+            12.9086305
+          ],
+          [
+            77.6025507,
+            12.9086286
+          ],
+          [
+            77.6027485,
+            12.9086414
+          ],
+          [
+            77.6033619,
+            12.9086653
+          ],
+          [
+            77.6035871,
+            12.9086816
+          ],
+          [
+            77.6037078,
+            12.9086904
+          ],
+          [
+            77.6037357,
+            12.9086939
+          ],
+          [
+            77.6037853,
+            12.9086963
+          ],
+          [
+            77.6040681,
+            12.9087099
+          ],
+          [
+            77.6043226,
+            12.9087623
+          ],
+          [
+            77.6044864,
+            12.9087921
+          ],
+          [
+            77.6046694,
+            12.9089081
+          ],
+          [
+            77.6051889,
+            12.9089262
+          ],
+          [
+            77.6054771,
+            12.9089318
+          ],
+          [
+            77.6055277,
+            12.9089328
+          ],
+          [
+            77.6058553,
+            12.9088841
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": "osm_way_1157218017",
+        "target_hour": "2026-06-18 09:00:00",
+        "police_station": "Shivajinagar",
+        "junction_name": "BTP042 - Minsk Square Junction (CTO)",
+        "road_class": "residential",
+        "road_width_m": 6.0,
+        "predicted_total": 8.894012131130516,
+        "traffic_interruption_0_100": 70.69729810887895,
+        "eps": 90.0,
+        "priority_band": "Red Line",
+        "recommended_action": "Immediate dispatch or tow readiness",
+        "recommended_force_units": 3,
+        "map_matching_mode": "osm_overpass_nearest_road",
+        "road_name": "Cunningham Road",
+        "osm_highway": "residential"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            77.598434,
+            12.9807351
+          ],
+          [
+            77.5985319,
+            12.9810752
+          ],
+          [
+            77.5987234,
+            12.9817058
+          ],
+          [
+            77.5988444,
+            12.9820931
+          ],
+          [
+            77.5988597,
+            12.9821412
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": "osm_way_182650560",
+        "target_hour": "2026-06-18 09:00:00",
+        "police_station": "Vijayanagara",
+        "junction_name": "BTP028 - Vijayanagar Bus Stand Junction",
+        "road_class": "residential",
+        "road_width_m": 6.0,
+        "predicted_total": 8.776640806541407,
+        "traffic_interruption_0_100": 73.2566294102526,
+        "eps": 90.0,
+        "priority_band": "Red Line",
+        "recommended_action": "Immediate dispatch or tow readiness",
+        "recommended_force_units": 3,
+        "map_matching_mode": "osm_overpass_nearest_road",
+        "road_name": "17th Cross Road",
+        "osm_highway": "residential"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            77.5377197,
+            12.973303
+          ],
+          [
+            77.5376824,
+            12.9732604
+          ],
+          [
+            77.5374401,
+            12.9729869
+          ],
+          [
+            77.5371881,
+            12.9726681
+          ],
+          [
+            77.537055,
+            12.9724043
+          ],
+          [
+            77.5368988,
+            12.9720985
+          ],
+          [
+            77.536775,
+            12.9717625
+          ],
+          [
+            77.536653,
+            12.971423
+          ],
+          [
+            77.5365297,
+            12.9710383
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": "osm_way_36982684",
+        "target_hour": "2026-06-18 09:00:00",
+        "police_station": "R.T. Nagar",
+        "junction_name": "No Junction",
+        "road_class": "secondary",
+        "road_width_m": 9.0,
+        "predicted_total": 8.504499470822166,
+        "traffic_interruption_0_100": 85.40845187119197,
+        "eps": 90.0,
+        "priority_band": "Red Line",
+        "recommended_action": "Immediate dispatch or tow readiness",
+        "recommended_force_units": 3,
+        "map_matching_mode": "osm_overpass_nearest_road",
+        "road_name": "Taralabalu Road",
+        "osm_highway": "secondary"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            77.5879935,
+            13.0168784
+          ],
+          [
+            77.5881301,
+            13.0168692
+          ],
+          [
+            77.5882663,
+            13.0168308
+          ],
+          [
+            77.5888154,
+            13.0168457
+          ],
+          [
+            77.5893282,
+            13.0168657
+          ],
+          [
+            77.5896544,
+            13.0169415
+          ],
+          [
+            77.5898096,
+            13.0170313
+          ],
+          [
+            77.5902627,
+            13.0170106
+          ],
+          [
+            77.590657,
+            13.0168505
+          ],
+          [
+            77.5908574,
+            13.0167692
+          ],
+          [
+            77.5909754,
+            13.0166812
+          ],
+          [
+            77.5914089,
+            13.0163613
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": "osm_way_1166301538",
+        "target_hour": "2026-06-18 09:00:00",
+        "police_station": "Rajajinagar",
+        "junction_name": "BTP010 - Rajajinagar Entrance",
+        "road_class": "secondary",
+        "road_width_m": 9.0,
+        "predicted_total": 8.402735929222024,
+        "traffic_interruption_0_100": 75.84118678033657,
+        "eps": 90.0,
+        "priority_band": "Red Line",
+        "recommended_action": "Immediate dispatch or tow readiness",
+        "recommended_force_units": 3,
+        "map_matching_mode": "osm_overpass_nearest_road",
+        "road_name": "Dr. Rajkumar Road",
+        "osm_highway": "secondary"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            77.5601991,
+            12.9836177
+          ],
+          [
+            77.5601391,
+            12.9845714
+          ],
+          [
+            77.5600535,
+            12.9864877
+          ],
+          [
+            77.5599649,
+            12.9869852
+          ],
+          [
+            77.5596759,
+            12.9879385
+          ],
+          [
+            77.5591193,
+            12.9888702
+          ],
+          [
+            77.5582505,
+            12.9902986
+          ],
+          [
+            77.557888,
+            12.9908946
+          ],
+          [
+            77.5578473,
+            12.9909587
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": "osm_way_89934609",
+        "target_hour": "2026-06-18 09:00:00",
+        "police_station": "Whitefield",
+        "junction_name": "No Junction",
+        "road_class": "secondary",
+        "road_width_m": 9.0,
+        "predicted_total": 8.083793535750777,
+        "traffic_interruption_0_100": 56.668926033585464,
+        "eps": 90.0,
+        "priority_band": "Red Line",
+        "recommended_action": "Immediate dispatch or tow readiness",
+        "recommended_force_units": 3,
+        "map_matching_mode": "osm_overpass_nearest_road",
+        "road_name": "Vibgyor High School Road",
+        "osm_highway": "tertiary"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            77.7180314,
+            12.9452978
+          ],
+          [
+            77.7180538,
+            12.9461937
+          ],
+          [
+            77.7180628,
+            12.9465703
+          ],
+          [
+            77.7180641,
+            12.9466224
+          ],
+          [
+            77.7180651,
+            12.9467461
+          ],
+          [
+            77.718073,
+            12.9470066
+          ],
+          [
+            77.7180709,
+            12.9480362
+          ],
+          [
+            77.7180645,
+            12.9488073
+          ],
+          [
+            77.7180633,
+            12.9491006
+          ],
+          [
+            77.7180581,
+            12.9492012
+          ],
+          [
+            77.7180308,
+            12.9495341
+          ],
+          [
+            77.7179787,
+            12.9495753
+          ],
+          [
+            77.717899,
+            12.9495933
+          ],
+          [
+            77.7178187,
+            12.9495904
+          ],
+          [
+            77.7177667,
+            12.949617
+          ],
+          [
+            77.7177238,
+            12.9496783
+          ],
+          [
+            77.717711,
+            12.9497418
+          ],
+          [
+            77.7176705,
+            12.9500114
+          ],
+          [
+            77.7176409,
+            12.9502712
+          ],
+          [
+            77.7176352,
+            12.9503213
+          ],
+          [
+            77.7176225,
+            12.9504332
+          ],
+          [
+            77.7176002,
+            12.9505701
+          ],
+          [
+            77.7175937,
+            12.9506257
+          ],
+          [
+            77.7175629,
+            12.9510278
+          ],
+          [
+            77.7175414,
+            12.9512063
+          ],
+          [
+            77.7174943,
+            12.9516237
+          ],
+          [
+            77.7174874,
+            12.9517696
+          ],
+          [
+            77.7174816,
+            12.9518786
+          ],
+          [
+            77.7174932,
+            12.9521519
+          ],
+          [
+            77.717497,
+            12.9524159
+          ],
+          [
+            77.7175016,
+            12.9527232
+          ],
+          [
+            77.7175115,
+            12.9528712
+          ],
+          [
+            77.7175143,
+            12.9531896
+          ],
+          [
+            77.7174805,
+            12.9535764
+          ],
+          [
+            77.7174708,
+            12.9536997
+          ],
+          [
+            77.7174485,
+            12.9539161
+          ],
+          [
+            77.7174409,
+            12.9539986
+          ],
+          [
+            77.7174236,
+            12.9544196
+          ],
+          [
+            77.7173988,
+            12.9546858
+          ],
+          [
+            77.7173939,
+            12.9547501
+          ],
+          [
+            77.7173758,
+            12.954988
+          ],
+          [
+            77.7173674,
+            12.9551191
+          ],
+          [
+            77.7173517,
+            12.9553639
+          ],
+          [
+            77.7173213,
+            12.9556605
+          ],
+          [
+            77.717315,
+            12.9557329
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": "osm_way_37723452",
+        "target_hour": "2026-06-18 09:00:00",
+        "police_station": "Mahadevapura",
+        "junction_name": "No Junction",
+        "road_class": "residential",
+        "road_width_m": 6.0,
+        "predicted_total": 7.791180903777444,
+        "traffic_interruption_0_100": 67.94235146665362,
+        "eps": 90.0,
+        "priority_band": "Red Line",
+        "recommended_action": "Immediate dispatch or tow readiness",
+        "recommended_force_units": 3,
+        "map_matching_mode": "osm_overpass_nearest_road",
+        "road_name": "Transport Street",
+        "osm_highway": "residential"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            77.6765125,
+            12.9984418
+          ],
+          [
+            77.676386,
+            12.9997206
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": "osm_way_699023594",
+        "target_hour": "2026-06-18 09:00:00",
+        "police_station": "Rajajinagar",
+        "junction_name": "BTP027 - Modi Bridge Junction",
+        "road_class": "secondary",
+        "road_width_m": 9.0,
+        "predicted_total": 7.5687822992047975,
+        "traffic_interruption_0_100": 38.703612665932305,
+        "eps": 90.0,
+        "priority_band": "Red Line",
+        "recommended_action": "Immediate dispatch or tow readiness",
+        "recommended_force_units": 3,
+        "map_matching_mode": "osm_overpass_nearest_road",
+        "road_name": "",
+        "osm_highway": "tertiary"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            77.5497605,
+            12.9994506
+          ],
+          [
+            77.5497297,
+            12.9996282
+          ],
+          [
+            77.5496864,
+            12.9998781
+          ],
+          [
+            77.5496304,
+            13.000179
+          ],
+          [
+            77.5494518,
+            13.0011397
+          ],
+          [
+            77.5493361,
+            13.0017619
+          ]
+        ]
+      }
+    }
+  ]
+}

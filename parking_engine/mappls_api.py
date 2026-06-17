@@ -1,0 +1,103 @@
+"""MapmyIndia (Mappls) Live Traffic API Integration."""
+
+from __future__ import annotations
+
+import logging
+import os
+from typing import Any
+
+import pandas as pd
+import requests
+
+logger = logging.getLogger(__name__)
+
+# Fallback credentials provided by user
+DEFAULT_REST_KEY = "0e9c47fddd120c4add468dc88f565f6a"
+DEFAULT_CLIENT_ID = "96dHZVzsAuuvmtJKVY5ofcs_4Y4iiUyG8gS-_c9047n0_tqN2R_oX5f3LhN5Z_5b2d_5pU_2S_g_1F_v8"
+DEFAULT_CLIENT_SECRET = "IrFxI-iSEg8E2PgjY0lrOM71eEComxe1Py3."
+
+
+def get_auth_token(client_id: str, client_secret: str) -> str | None:
+    """Fetch OAuth2 token from MapmyIndia Outpost."""
+    url = "https://outpost.mapmyindia.com/api/security/oauth/token"
+    payload = {
+        "grant_type": "client_credentials",
+        "client_id": client_id,
+        "client_secret": client_secret,
+    }
+    try:
+        response = requests.post(url, data=payload, timeout=5)
+        response.raise_for_status()
+        return str(response.json().get("access_token"))
+    except Exception as e:
+        logger.warning(f"Failed to authenticate MapmyIndia API: {e}")
+        return None
+
+
+def fetch_live_congestion(
+    lon: float,
+    lat: float,
+    rest_key: str,
+    token: str | None = None,
+) -> float:
+    """Query MapmyIndia Advanced Routing/Distance Matrix API for real-time congestion."""
+    
+    # We query a tiny bounding route to ensure it forces a route evaluation on the segment.
+    start_point = f"{lon},{lat}"
+    end_point = f"{lon+0.0002},{lat+0.0002}"
+    url = f"https://apis.mappls.com/advancedmaps/v1/{rest_key}/distance_matrix/driving/{start_point};{end_point}"
+    
+    headers = {}
+    if token:
+        headers["Authorization"] = f"bearer {token}"
+
+    try:
+        response = requests.get(url, headers=headers, timeout=5)
+        response.raise_for_status()
+        data = response.json()
+        
+        # Mappls distance matrix returns 'durations' and 'durations_in_traffic' matrices
+        # We assume the first matrix element [0][1] represents start -> end
+        if "durations" in data and "durations_in_traffic" in data:
+            duration = data["durations"][0][1]
+            duration_in_traffic = data["durations_in_traffic"][0][1]
+            
+            if duration > 0 and duration_in_traffic > 0:
+                return float(duration_in_traffic / duration)
+    except Exception as e:
+        logger.warning(f"Failed to fetch live traffic for {lon},{lat}: {e}")
+        
+    return 1.0
+
+
+def enrich_with_live_traffic(
+    predictions: pd.DataFrame,
+    top_pct: float = 0.15,
+) -> pd.Series:
+    """Find top risk segments and fetch their live congestion multiplier."""
+    
+    client_id = os.environ.get("MAPPLS_CLIENT_ID", DEFAULT_CLIENT_ID)
+    client_secret = os.environ.get("MAPPLS_CLIENT_SECRET", DEFAULT_CLIENT_SECRET)
+    rest_key = os.environ.get("MAPPLS_REST_KEY", DEFAULT_REST_KEY)
+
+    token = get_auth_token(client_id, client_secret)
+    
+    multipliers = pd.Series(1.0, index=predictions.index, dtype=float)
+    
+    # Identify top 15% high-risk segments based on raw predicted vehicle load
+    if not predictions.empty:
+        threshold = predictions["predicted_total"].quantile(1.0 - top_pct)
+        high_risk_mask = predictions["predicted_total"] >= threshold
+        high_risk_indices = predictions.index[high_risk_mask]
+        
+        logger.info(f"Fetching MapmyIndia live traffic for {len(high_risk_indices)} top-risk segments.")
+        
+        for idx in high_risk_indices:
+            row = predictions.loc[idx]
+            lon = float(row.get("lon_center", 77.5946))
+            lat = float(row.get("lat_center", 12.9716))
+            
+            multiplier = fetch_live_congestion(lon, lat, rest_key, token)
+            multipliers.loc[idx] = multiplier
+
+    return multipliers

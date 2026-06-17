@@ -1,0 +1,58 @@
+# === FRONTEND (Next.js) ===
+# dependencies
+frontend/node_modules/
+frontend/.pnp
+frontend/.pnp.*
+frontend/.yarn/*
+!frontend/.yarn/patches
+!frontend/.yarn/plugins
+!frontend/.yarn/releases
+!frontend/.yarn/versions
+
+# testing
+frontend/coverage/
+
+# next.js
+frontend/.next/
+frontend/out/
+
+# production
+frontend/build/
+
+# debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# env files
+frontend/.env*
+.env*
+
+# vercel
+frontend/.vercel/
+
+# typescript
+frontend/*.tsbuildinfo
+frontend/next-env.d.ts
+
+# === BACKEND & DATA ===
+# Python caches
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+
+# Raw Datasets (Heavy)
+dataset/
+
+# Heavy intermediate build artifacts & OSM raw cache
+artifacts/osm/
+artifacts/parking_model/
+
+# Keep the final OSM model and predictions
+!artifacts/parking_model_osm/
+!artifacts/predictions/
+
+# OS specific files
+.DS_Store
+Thumbs.db

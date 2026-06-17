@@ -1,0 +1,551 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": "osm_way_26139254",
+        "target_hour": "2026-06-18 09:00:00",
+        "police_station": "Upparpet",
+        "junction_name": "BTP040 - Elite Junction",
+        "road_class": "residential",
+        "road_width_m": 6.0,
+        "predicted_total": 4.386972977313462,
+        "traffic_interruption_0_100": 25.675723907853097,
+        "eps": 90.0,
+        "priority_band": "Red Line",
+        "recommended_action": "Immediate dispatch or tow readiness",
+        "recommended_force_units": 3,
+        "map_matching_mode": "osm_overpass_nearest_road",
+        "road_name": "",
+        "osm_highway": "residential"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            77.5764555,
+            12.9780131
+          ],
+          [
+            77.5764653,
+            12.9778849
+          ],
+          [
+            77.5764745,
+            12.9775456
+          ],
+          [
+            77.576502,
+            12.9771196
+          ],
+          [
+            77.5765082,
+            12.9770641
+          ],
+          [
+            77.5765114,
+            12.9770102
+          ],
+          [
+            77.5765397,
+            12.9762162
+          ],
+          [
+            77.5764481,
+            12.9759669
+          ],
+          [
+            77.5761926,
+            12.9755992
+          ],
+          [
+            77.576166,
+            12.9755676
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": "osm_way_1157218017",
+        "target_hour": "2026-06-18 09:00:00",
+        "police_station": "Shivajinagar",
+        "junction_name": "BTP042 - Minsk Square Junction (CTO)",
+        "road_class": "residential",
+        "road_width_m": 6.0,
+        "predicted_total": 4.154033193614412,
+        "traffic_interruption_0_100": 24.072078799034202,
+        "eps": 90.0,
+        "priority_band": "Red Line",
+        "recommended_action": "Immediate dispatch or tow readiness",
+        "recommended_force_units": 3,
+        "map_matching_mode": "osm_overpass_nearest_road",
+        "road_name": "Cunningham Road",
+        "osm_highway": "residential"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            77.598434,
+            12.9807351
+          ],
+          [
+            77.5985319,
+            12.9810752
+          ],
+          [
+            77.5987234,
+            12.9817058
+          ],
+          [
+            77.5988444,
+            12.9820931
+          ],
+          [
+            77.5988597,
+            12.9821412
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": "osm_way_358326661",
+        "target_hour": "2026-06-18 09:00:00",
+        "police_station": "City Market",
+        "junction_name": "BTP082 - KR Market Junction",
+        "road_class": "residential",
+        "road_width_m": 6.0,
+        "predicted_total": 4.0873126922143435,
+        "traffic_interruption_0_100": 23.819873751580232,
+        "eps": 90.0,
+        "priority_band": "Red Line",
+        "recommended_action": "Immediate dispatch or tow readiness",
+        "recommended_force_units": 3,
+        "map_matching_mode": "osm_overpass_nearest_road",
+        "road_name": "",
+        "osm_highway": "residential"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            77.5751583,
+            12.9653247
+          ],
+          [
+            77.5752691,
+            12.9652476
+          ],
+          [
+            77.5754223,
+            12.9651102
+          ],
+          [
+            77.5755492,
+            12.9650447
+          ],
+          [
+            77.5757772,
+            12.9649353
+          ],
+          [
+            77.5759548,
+            12.964847
+          ],
+          [
+            77.5760883,
+            12.9647807
+          ],
+          [
+            77.5763807,
+            12.9646422
+          ],
+          [
+            77.5764903,
+            12.9645877
+          ],
+          [
+            77.5765981,
+            12.9645388
+          ],
+          [
+            77.5769693,
+            12.9643772
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": "osm_way_411092287",
+        "target_hour": "2026-06-18 09:00:00",
+        "police_station": "Upparpet",
+        "junction_name": "BTP044 - Sagar Theatre Junction",
+        "road_class": "residential",
+        "road_width_m": 6.0,
+        "predicted_total": 3.9321539638745358,
+        "traffic_interruption_0_100": 22.89258968686173,
+        "eps": 90.0,
+        "priority_band": "Red Line",
+        "recommended_action": "Immediate dispatch or tow readiness",
+        "recommended_force_units": 3,
+        "map_matching_mode": "osm_overpass_nearest_road",
+        "road_name": "6th Cross Road",
+        "osm_highway": "residential"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            77.5793892,
+            12.9738042
+          ],
+          [
+            77.5793509,
+            12.9737188
+          ],
+          [
+            77.5792103,
+            12.9734053
+          ],
+          [
+            77.5790666,
+            12.9730849
+          ],
+          [
+            77.5789153,
+            12.9727475
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": "osm_way_36970832",
+        "target_hour": "2026-06-18 09:00:00",
+        "police_station": "Shivajinagar",
+        "junction_name": "BTP042 - Minsk Square Junction (CTO)",
+        "road_class": "residential",
+        "road_width_m": 6.0,
+        "predicted_total": 3.9202692498479523,
+        "traffic_interruption_0_100": 22.412990838536338,
+        "eps": 90.0,
+        "priority_band": "Red Line",
+        "recommended_action": "Immediate dispatch or tow readiness",
+        "recommended_force_units": 3,
+        "map_matching_mode": "osm_overpass_nearest_road",
+        "road_name": "Maya Bazaar",
+        "osm_highway": "residential"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            77.5985319,
+            12.9810752
+          ],
+          [
+            77.5984815,
+            12.9810905
+          ],
+          [
+            77.5977705,
+            12.9813058
+          ],
+          [
+            77.5972499,
+            12.9814844
+          ],
+          [
+            77.5971788,
+            12.9815055
+          ],
+          [
+            77.5971096,
+            12.981515
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": "osm_way_36954518",
+        "target_hour": "2026-06-18 09:00:00",
+        "police_station": "Upparpet",
+        "junction_name": "BTP044 - Sagar Theatre Junction",
+        "road_class": "residential",
+        "road_width_m": 6.0,
+        "predicted_total": 3.832114899011003,
+        "traffic_interruption_0_100": 23.162778816530228,
+        "eps": 90.0,
+        "priority_band": "Red Line",
+        "recommended_action": "Immediate dispatch or tow readiness",
+        "recommended_force_units": 3,
+        "map_matching_mode": "osm_overpass_nearest_road",
+        "road_name": "2nd Main Road",
+        "osm_highway": "residential"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            77.5786807,
+            12.9768683
+          ],
+          [
+            77.5786723,
+            12.9768176
+          ],
+          [
+            77.5785575,
+            12.9765692
+          ],
+          [
+            77.5784149,
+            12.9762582
+          ],
+          [
+            77.5782112,
+            12.9758138
+          ],
+          [
+            77.5781773,
+            12.9757734
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": "osm_way_1096683531",
+        "target_hour": "2026-06-18 09:00:00",
+        "police_station": "Magadi Road",
+        "junction_name": "BTP070 - Cholurpalya Junction, Magadi Road",
+        "road_class": "residential",
+        "road_width_m": 6.0,
+        "predicted_total": 3.7924302773870466,
+        "traffic_interruption_0_100": 21.540761759543624,
+        "eps": 90.0,
+        "priority_band": "Red Line",
+        "recommended_action": "Immediate dispatch or tow readiness",
+        "recommended_force_units": 3,
+        "map_matching_mode": "osm_overpass_nearest_road",
+        "road_name": "",
+        "osm_highway": "service"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            77.5516571,
+            12.9740182
+          ],
+          [
+            77.5511327,
+            12.9734166
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": "osm_way_149418897",
+        "target_hour": "2026-06-18 09:00:00",
+        "police_station": "Malleshwaram",
+        "junction_name": "No Junction",
+        "road_class": "residential",
+        "road_width_m": 6.0,
+        "predicted_total": 3.5997897552848115,
+        "traffic_interruption_0_100": 21.312519826000432,
+        "eps": 90.0,
+        "priority_band": "Red Line",
+        "recommended_action": "Immediate dispatch or tow readiness",
+        "recommended_force_units": 3,
+        "map_matching_mode": "osm_overpass_nearest_road",
+        "road_name": "",
+        "osm_highway": "service"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            77.5544985,
+            13.0116833
+          ],
+          [
+            77.5545215,
+            13.0116554
+          ],
+          [
+            77.55453,
+            13.0116441
+          ],
+          [
+            77.5545595,
+            13.0116049
+          ],
+          [
+            77.5545809,
+            13.0114899
+          ],
+          [
+            77.5545881,
+            13.0110408
+          ],
+          [
+            77.5545934,
+            13.0104682
+          ],
+          [
+            77.5545974,
+            13.0100358
+          ],
+          [
+            77.5545972,
+            13.0100176
+          ],
+          [
+            77.5546025,
+            13.0100001
+          ],
+          [
+            77.5546128,
+            13.0099849
+          ],
+          [
+            77.5546313,
+            13.009971
+          ],
+          [
+            77.5546536,
+            13.0099646
+          ],
+          [
+            77.5551459,
+            13.0099685
+          ],
+          [
+            77.5551701,
+            13.0099789
+          ],
+          [
+            77.5551919,
+            13.0099936
+          ],
+          [
+            77.5552109,
+            13.0100126
+          ],
+          [
+            77.5552257,
+            13.0100348
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": "osm_way_671050558",
+        "target_hour": "2026-06-18 09:00:00",
+        "police_station": "Rajajinagar",
+        "junction_name": "BTP027 - Modi Bridge Junction",
+        "road_class": "residential",
+        "road_width_m": 6.0,
+        "predicted_total": 3.537677654094863,
+        "traffic_interruption_0_100": 20.010949031464754,
+        "eps": 90.0,
+        "priority_band": "Red Line",
+        "recommended_action": "Immediate dispatch or tow readiness",
+        "recommended_force_units": 3,
+        "map_matching_mode": "osm_overpass_nearest_road",
+        "road_name": "10th Cross Road",
+        "osm_highway": "residential"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            77.5497605,
+            12.9994506
+          ],
+          [
+            77.5495532,
+            12.9993925
+          ],
+          [
+            77.5487904,
+            12.9991786
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": "osm_way_36897692",
+        "target_hour": "2026-06-18 09:00:00",
+        "police_station": "Upparpet",
+        "junction_name": "BTP058 - Subbanna Junction",
+        "road_class": "residential",
+        "road_width_m": 6.0,
+        "predicted_total": 3.5288472574442853,
+        "traffic_interruption_0_100": 20.93637966862464,
+        "eps": 90.0,
+        "priority_band": "Red Line",
+        "recommended_action": "Immediate dispatch or tow readiness",
+        "recommended_force_units": 3,
+        "map_matching_mode": "osm_overpass_nearest_road",
+        "road_name": "Acharya Tulsi Road",
+        "osm_highway": "residential"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            77.5795785,
+            12.9790472
+          ],
+          [
+            77.5795749,
+            12.9790032
+          ],
+          [
+            77.579535,
+            12.9785249
+          ],
+          [
+            77.5795192,
+            12.9782229
+          ],
+          [
+            77.5795045,
+            12.9779931
+          ],
+          [
+            77.5794755,
+            12.9774317
+          ],
+          [
+            77.5794544,
+            12.9768793
+          ],
+          [
+            77.5794481,
+            12.9767977
+          ]
+        ]
+      }
+    }
+  ]
+}
