@@ -1,1 +1,68 @@
-{"type": "FeatureCollection", "features": []}
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "source_bottleneck": "osm_way_1196120495",
+        "segment_id": "osm_way_794634830",
+        "eps_spillover": 56.16,
+        "eps": 56.16,
+        "is_ripple": true,
+        "distance_from_bottleneck_m": 34.1,
+        "decay_factor": 0.697,
+        "road_class": "secondary",
+        "police_station": "HSR Layout"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            77.6376123,
+            12.9123223
+          ],
+          [
+            77.6367826,
+            12.912354
+          ],
+          [
+            77.636186,
+            12.91237
+          ],
+          [
+            77.63578,
+            12.9123808
+          ],
+          [
+            77.6353181,
+            12.912393
+          ],
+          [
+            77.6352259,
+            12.9123954
+          ],
+          [
+            77.6351411,
+            12.9123984
+          ],
+          [
+            77.6351305,
+            12.9123981
+          ],
+          [
+            77.6340643,
+            12.9124265
+          ],
+          [
+            77.6329377,
+            12.9124492
+          ],
+          [
+            77.6328921,
+            12.9124485
+          ]
+        ]
+      }
+    }
+  ]
+}

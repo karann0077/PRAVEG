@@ -67,7 +67,7 @@ export default function TacticalMap() {
     const hourParam = targetHour || "live";
 
     const fetchData = () => {
-      fetch(`/api/predictions?hour=${hourParam}`)
+      fetch(`/api/predictions?hour=${hourParam}&t=${Date.now()}`)
         .then((r) => r.json())
         .then((data) => { setGeoData(data); setLoading(false); })
         .catch(() => setLoading(false));
@@ -92,7 +92,8 @@ export default function TacticalMap() {
     const points: any[] = [];
     geoData.features.forEach((f: any) => {
       const eps = f.properties?.eps ?? 0;
-      if (eps <= 70) return; // Only map warning/critical roads for the blast radius
+      // Removed the hard threshold (eps < 50) so the Heatmap is always visible 
+      // and shows the natural ambient traffic density even during calm hours.
       
       const econLoss = f.properties?.economic_loss || (eps * 15000); // Derive economic bleed if missing
       const estVehicles = f.properties?.count_car || Math.floor(eps / 2);

@@ -67,7 +67,7 @@
   ],
   "calibration": {
     "count_p95": 10.0,
-    "interruption_p95": 2.0864197530864192
+    "interruption_p95": 0.1304012345679012
   },
   "training_summary": {
     "data_path": "dataset/jan to may police violation_anonymized791b166.csv",

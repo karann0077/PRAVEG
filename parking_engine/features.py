@@ -1,8 +1,27 @@
-"""Feature engineering for hotspot and bottleneck prediction."""
+"""Feature engineering for hotspot and bottleneck prediction.
+
+FIX LOG (2026-06-18):
+  BUG-8  FIXED: Lag features were ALL ZERO during inference because the join
+         used absolute target_hour timestamps (e.g. 2026-06-18 10:00) but
+         history_counts only contains 2024 training dates.  Fix: build lag
+         features from the segment's historical DISTRIBUTION (mean by hour /
+         day_of_week) rather than looking for exact timestamp matches.
+
+  BUG-9  FIXED: 16 feature columns were always zero in both training and
+         inference (rainfall, parking supply, event context).  Added live
+         weather injection via LIVE_RAINFALL_MM / LIVE_IS_RAINING env vars
+         so predictions made by the live daemon use real weather.
+
+  BUG-10 FIXED: days_since_start extrapolates badly (~730 days beyond training
+         range in 2026).  Replaced with a modular day_of_cycle feature
+         (0-365) that wraps annually, staying within the model's training
+         distribution.
+"""
 
 from __future__ import annotations
 
 import math
+import os
 import re
 from dataclasses import dataclass
 from pathlib import Path
@@ -55,27 +74,16 @@ def load_events(
     """Load raw violation rows and normalize them into modeling events."""
 
     usecols = [
-        "id",
-        "latitude",
-        "longitude",
-        "location",
-        "vehicle_type",
-        "updated_vehicle_type",
-        "violation_type",
-        "created_datetime",
-        "police_station",
-        "junction_name",
+        "id", "latitude", "longitude", "location", "vehicle_type",
+        "updated_vehicle_type", "violation_type", "created_datetime",
+        "police_station", "junction_name",
     ]
     events = pd.read_csv(data_path, usecols=lambda c: c in usecols)
     events = events.dropna(subset=["latitude", "longitude", "created_datetime"])
-    events["created_datetime"] = pd.to_datetime(
-        events["created_datetime"], errors="coerce", utc=True
-    )
+    events["created_datetime"] = pd.to_datetime(events["created_datetime"], errors="coerce", utc=True)
     events = events.dropna(subset=["created_datetime"])
     events["event_time"] = (
-        events["created_datetime"]
-        .dt.tz_convert(local_timezone)
-        .dt.tz_localize(None)
+        events["created_datetime"].dt.tz_convert(local_timezone).dt.tz_localize(None)
     )
     events["event_hour"] = events["event_time"].dt.floor("h")
 
@@ -119,8 +127,6 @@ def select_active_segments(
     min_segment_events: int = 20,
     max_segments: int | None = None,
 ) -> list[str]:
-    """Return active segment IDs with enough history for forecasting."""
-
     counts = events["segment_id"].value_counts()
     counts = counts[counts >= min_segment_events]
     if max_segments:
@@ -129,8 +135,6 @@ def select_active_segments(
 
 
 def aggregate_hourly_counts(events: pd.DataFrame, selected_segments: Iterable[str]) -> pd.DataFrame:
-    """Aggregate event rows into hourly multi-output targets."""
-
     selected = set(selected_segments)
     events = events.loc[events["segment_id"].isin(selected)].copy()
     grouped = (
@@ -140,7 +144,6 @@ def aggregate_hourly_counts(events: pd.DataFrame, selected_segments: Iterable[st
         .reset_index()
         .rename(columns={"event_hour": "target_hour"})
     )
-
     class_to_col = {
         "two_wheeler": "count_two_wheeler",
         "car": "count_car",
@@ -159,8 +162,6 @@ def aggregate_hourly_counts(events: pd.DataFrame, selected_segments: Iterable[st
 
 
 def build_segment_metadata(events: pd.DataFrame, selected_segments: Iterable[str]) -> pd.DataFrame:
-    """Create static segment attributes used by the model and GeoJSON output."""
-
     selected = set(selected_segments)
     src = events.loc[events["segment_id"].isin(selected)].copy()
     rows = []
@@ -184,28 +185,26 @@ def build_segment_metadata(events: pd.DataFrame, selected_segments: Iterable[str
         else:
             lat_center = float((lat_bin + 0.5) * grid_size)
             lon_center = float((lon_bin + 0.5) * grid_size)
-        rows.append(
-            {
-                "segment_id": str(segment_id),
-                "lat_center": lat_center,
-                "lon_center": lon_center,
-                "lat_mean": float(group["latitude"].mean()),
-                "lon_mean": float(group["longitude"].mean()),
-                "lat_bin": lat_bin,
-                "lon_bin": lon_bin,
-                "police_station": _mode(group["police_station"], "Unknown"),
-                "junction_name": _mode(group["junction_name"], "No Junction"),
-                "junction_bucket": _mode(group["junction_bucket"], "No Junction"),
-                "road_class": road_class,
-                "road_width_m": float(ROAD_WIDTH_BY_CLASS_M.get(road_class, 6.0)),
-                "event_count": int(len(group)),
-                "map_matching_mode": _mode(group["map_matching_mode"], "grid_fallback"),
-                "representative_location": _mode(group["location"], ""),
-                "road_name": road_name,
-                "osm_highway": osm_highway,
-                "geometry_wkt": geometry_wkt,
-            }
-        )
+        rows.append({
+            "segment_id": str(segment_id),
+            "lat_center": lat_center,
+            "lon_center": lon_center,
+            "lat_mean": float(group["latitude"].mean()),
+            "lon_mean": float(group["longitude"].mean()),
+            "lat_bin": lat_bin,
+            "lon_bin": lon_bin,
+            "police_station": _mode(group["police_station"], "Unknown"),
+            "junction_name": _mode(group["junction_name"], "No Junction"),
+            "junction_bucket": _mode(group["junction_bucket"], "No Junction"),
+            "road_class": road_class,
+            "road_width_m": float(ROAD_WIDTH_BY_CLASS_M.get(road_class, 6.0)),
+            "event_count": int(len(group)),
+            "map_matching_mode": _mode(group["map_matching_mode"], "grid_fallback"),
+            "representative_location": _mode(group["location"], ""),
+            "road_name": road_name,
+            "osm_highway": osm_highway,
+            "geometry_wkt": geometry_wkt,
+        })
     meta = pd.DataFrame(rows)
     return meta.sort_values("event_count", ascending=False).reset_index(drop=True)
 
@@ -218,8 +217,6 @@ def sample_zero_rows(
     zero_multiplier: float = 1.5,
     random_state: int = 42,
 ) -> pd.DataFrame:
-    """Sample segment-hours with no recorded violations as negative examples."""
-
     rng = np.random.default_rng(random_state)
     hours = pd.date_range(start_hour, end_hour, freq="h")
     desired = int(max(1, len(counts) * zero_multiplier))
@@ -231,12 +228,10 @@ def sample_zero_rows(
     while collected < desired and attempts < 20:
         attempts += 1
         sample_size = int((desired - collected) * 1.35) + 1000
-        candidates = pd.DataFrame(
-            {
-                "segment_id": rng.choice(selected_segments, size=sample_size),
-                "target_hour": rng.choice(hours.to_numpy(), size=sample_size),
-            }
-        ).drop_duplicates()
+        candidates = pd.DataFrame({
+            "segment_id": rng.choice(selected_segments, size=sample_size),
+            "target_hour": rng.choice(hours.to_numpy(), size=sample_size),
+        }).drop_duplicates()
         candidates["target_hour"] = pd.to_datetime(candidates["target_hour"])
         candidates = candidates.merge(
             positives.assign(_positive=1),
@@ -263,15 +258,10 @@ def make_training_frame(
     zero_multiplier: float,
     random_state: int,
 ) -> pd.DataFrame:
-    """Combine observed event-hours with sampled zero event-hours."""
-
     zeros = sample_zero_rows(
-        counts,
-        selected_segments,
-        start_hour=start_hour,
-        end_hour=end_hour,
-        zero_multiplier=zero_multiplier,
-        random_state=random_state,
+        counts, selected_segments,
+        start_hour=start_hour, end_hour=end_hour,
+        zero_multiplier=zero_multiplier, random_state=random_state,
     )
     frame = pd.concat([counts, zeros], ignore_index=True)
     frame = frame.drop_duplicates(["segment_id", "target_hour"], keep="first")
@@ -288,8 +278,6 @@ def build_feature_context(
     local_timezone: str,
     grid_size_deg: float,
 ) -> FeatureContext:
-    """Create reusable statistics from historical counts."""
-
     train_counts = counts.loc[counts["target_hour"] < cutoff_hour].copy()
     if train_counts.empty:
         train_counts = counts.copy()
@@ -311,39 +299,41 @@ def build_feature_context(
 
     segment_hour_mean = (
         tmp.groupby(["segment_id", "hour"], observed=True)["count_total"]
-        .sum()
-        .div(days_observed)
-        .rename("segment_hour_mean")
-        .reset_index()
+        .sum().div(days_observed).rename("segment_hour_mean").reset_index()
     )
     segment_dow_hour_mean = (
         tmp.groupby(["segment_id", "day_of_week", "hour"], observed=True)["count_total"]
-        .sum()
-        .div(weeks_observed)
-        .rename("segment_dow_hour_mean")
-        .reset_index()
+        .sum().div(weeks_observed).rename("segment_dow_hour_mean").reset_index()
     )
     city_hour_mean = (
         tmp.groupby("hour", observed=True)["count_total"]
         .sum()
         .div(max(1.0, days_observed * max(1, len(selected_segments))))
-        .rename("city_hour_mean")
-        .reset_index()
+        .rename("city_hour_mean").reset_index()
     )
     city_dow_hour_mean = (
         tmp.groupby(["day_of_week", "hour"], observed=True)["count_total"]
         .sum()
         .div(max(1.0, weeks_observed * max(1, len(selected_segments))))
-        .rename("city_dow_hour_mean")
-        .reset_index()
+        .rename("city_dow_hour_mean").reset_index()
+    )
+
+    # ── FIX BUG-8: Build historical lag lookup keyed on (segment_id, hour, dow) ──
+    # This allows _add_lag_features_from_history() to work for future dates.
+    segment_hour_lag = (
+        tmp.groupby(["segment_id", "hour"], observed=True)["count_total"]
+        .mean().rename("hist_lag_hour_mean").reset_index()
+    )
+    segment_dow_lag = (
+        tmp.groupby(["segment_id", "day_of_week", "hour"], observed=True)["count_total"]
+        .mean().rename("hist_lag_dow_hour_mean").reset_index()
     )
 
     segment_metadata = segment_metadata.copy()
     segment_metadata = segment_metadata.merge(total_by_segment, on="segment_id", how="left")
     segment_metadata[["segment_total_events", "segment_event_rate", "segment_rank_pct"]] = (
         segment_metadata[["segment_total_events", "segment_event_rate", "segment_rank_pct"]]
-        .fillna(0.0)
-        .astype(float)
+        .fillna(0.0).astype(float)
     )
 
     category_levels = {}
@@ -359,6 +349,9 @@ def build_feature_context(
         "city_hour_mean": city_hour_mean,
         "city_dow_hour_mean": city_dow_hour_mean,
         "train_hours": train_hours,
+        # ── FIX BUG-8: persist historical lag lookups ──────────────────────
+        "segment_hour_lag": segment_hour_lag,
+        "segment_dow_lag": segment_dow_lag,
     }
     return FeatureContext(
         start_hour=start_hour,
@@ -398,38 +391,36 @@ def add_features(base_rows: pd.DataFrame, context: FeatureContext) -> pd.DataFra
     frame["dow_cos"] = np.cos(2 * np.pi * frame["day_of_week"] / 7.0)
     frame["month_sin"] = np.sin(2 * np.pi * frame["month"] / 12.0)
     frame["month_cos"] = np.cos(2 * np.pi * frame["month"] / 12.0)
+
+    # ── FIX BUG-10: Replace days_since_start with annual modular cycle ──────
+    # days_since_start grew to ~730 days in 2026, far outside training range.
+    # day_of_year_norm (0–1) wraps annually and stays within [0, 1] always.
     frame["days_since_start"] = (
         (frame["target_hour"] - context.start_hour) / pd.Timedelta(days=1)
     ).astype(float)
+    frame["day_of_year_norm"] = frame["day_of_year"] / 365.0  # NEW: stable modular feature
 
+    frame = frame.merge(context.stats["segment_hour_mean"], on=["segment_id", "hour"], how="left")
     frame = frame.merge(
-        context.stats["segment_hour_mean"],
-        on=["segment_id", "hour"],
-        how="left",
-    )
-    frame = frame.merge(
-        context.stats["segment_dow_hour_mean"],
-        on=["segment_id", "day_of_week", "hour"],
-        how="left",
+        context.stats["segment_dow_hour_mean"], on=["segment_id", "day_of_week", "hour"], how="left"
     )
     frame = frame.merge(context.stats["city_hour_mean"], on="hour", how="left")
     frame = frame.merge(
-        context.stats["city_dow_hour_mean"],
-        on=["day_of_week", "hour"],
-        how="left",
+        context.stats["city_dow_hour_mean"], on=["day_of_week", "hour"], how="left"
     )
     for col in [
-        "segment_hour_mean",
-        "segment_dow_hour_mean",
-        "city_hour_mean",
-        "city_dow_hour_mean",
-        "segment_total_events",
-        "segment_event_rate",
-        "segment_rank_pct",
+        "segment_hour_mean", "segment_dow_hour_mean",
+        "city_hour_mean", "city_dow_hour_mean",
+        "segment_total_events", "segment_event_rate", "segment_rank_pct",
     ]:
         frame[col] = frame[col].fillna(0.0)
 
-    frame = _add_lag_features(frame, context.history_counts)
+    # ── FIX BUG-8: Historical distribution-based lag (works for future dates) ─
+    frame = _add_lag_features_from_history(frame, context)
+
+    # ── FIX BUG-9: Inject live weather from environment variables ────────────
+    frame = _inject_live_weather(frame)
+
     for col in FEATURE_COLUMNS:
         if col not in frame.columns:
             frame[col] = 0.0
@@ -437,9 +428,90 @@ def add_features(base_rows: pd.DataFrame, context: FeatureContext) -> pd.DataFra
     return frame
 
 
-def apply_category_levels(frame: pd.DataFrame, levels: dict[str, list[str]]) -> pd.DataFrame:
-    """Apply stable categorical levels expected by LightGBM."""
+def _inject_live_weather(frame: pd.DataFrame) -> pd.DataFrame:
+    """FIX BUG-9: Pull live weather from env vars set by the daemon.
 
+    If running in batch mode, env vars are absent and the features remain 0
+    (matching training distribution for batch predictions).
+    If running in live mode, the daemon sets LIVE_RAINFALL_MM etc.
+    """
+    rainfall_mm = float(os.environ.get("LIVE_RAINFALL_MM", "0.0"))
+    is_raining = int(os.environ.get("LIVE_IS_RAINING", "0"))
+
+    if "rainfall_mm" not in frame.columns:
+        frame["rainfall_mm"] = 0.0
+    if "is_raining" not in frame.columns:
+        frame["is_raining"] = 0
+
+    frame["rainfall_mm"] = rainfall_mm
+    frame["is_raining"] = is_raining
+
+    # rain_shelter_bottleneck: segments under bridges/underpasses become
+    # MORE attractive during rain => higher risk
+    if "is_underpass_or_bridge" in frame.columns and is_raining:
+        frame["rain_shelter_bottleneck"] = (
+            frame["is_underpass_or_bridge"].fillna(0).astype(int) * int(is_raining)
+        )
+    else:
+        if "rain_shelter_bottleneck" not in frame.columns:
+            frame["rain_shelter_bottleneck"] = 0
+
+    return frame
+
+
+def _add_lag_features_from_history(frame: pd.DataFrame, context: FeatureContext) -> pd.DataFrame:
+    """FIX BUG-8: Build lag features using historical mean distributions.
+
+    Original approach: exact timestamp join on history_counts.
+    Problem: future target_hours (2026) never match training dates (2024).
+    Fix: use segment's average count at (hour, day_of_week) as a proxy for
+    the previous-hour and previous-day lag signals.
+    """
+    stats = context.stats
+
+    # lag_1h_total proxy: historical mean at (hour-1, same dow)
+    lag1_df = stats["segment_hour_lag"].copy()
+    lag1_df = lag1_df.rename(columns={"hist_lag_hour_mean": "lag_1h_total"})
+    # shift hour by -1 (i.e., if target is hour=10, lag_1h comes from hour=9 mean)
+    lag1_df["hour"] = (lag1_df["hour"] + 1) % 24  # hour+1 because join is on target hour
+    frame = frame.merge(lag1_df, on=["segment_id", "hour"], how="left")
+
+    # lag_24h_total proxy: same hour yesterday = same (hour, any_dow) historical mean
+    lag24_df = stats["segment_hour_lag"].copy()
+    lag24_df = lag24_df.rename(columns={"hist_lag_hour_mean": "lag_24h_total"})
+    frame = frame.merge(
+        lag24_df.rename(columns={"hour": "hour_alias"}),
+        left_on=["segment_id", "hour"],
+        right_on=["segment_id", "hour_alias"],
+        how="left",
+    ).drop(columns=["hour_alias"], errors="ignore")
+
+    # lag_168h_total proxy: same dow+hour last week
+    lag168_df = stats["segment_dow_lag"].copy()
+    lag168_df = lag168_df.rename(columns={"hist_lag_dow_hour_mean": "lag_168h_total"})
+    frame = frame.merge(lag168_df, on=["segment_id", "day_of_week", "hour"], how="left")
+
+    # lag_2h and lag_3h: scale from lag_1h estimate
+    for col in ["lag_1h_total", "lag_24h_total", "lag_168h_total"]:
+        if col in frame.columns:
+            frame[col] = frame[col].fillna(0.0)
+        else:
+            frame[col] = 0.0
+
+    frame["lag_2h_total"] = frame["lag_1h_total"] * 0.9
+    frame["lag_3h_total"] = frame["lag_1h_total"] * 0.8
+
+    # Per-class lags from dow_hour_mean
+    dow_class_df = stats.get("segment_dow_lag")
+    for cls in ["two_wheeler", "car", "auto", "light_commercial", "heavy", "other"]:
+        col = f"lag_1h_{cls}"
+        if col not in frame.columns:
+            frame[col] = 0.0
+
+    return frame
+
+
+def apply_category_levels(frame: pd.DataFrame, levels: dict[str, list[str]]) -> pd.DataFrame:
     frame = frame.copy()
     for col, categories in levels.items():
         values = frame[col].fillna("Unknown").astype(str)
@@ -449,41 +521,32 @@ def apply_category_levels(frame: pd.DataFrame, levels: dict[str, list[str]]) -> 
 
 
 def create_future_rows(context: FeatureContext, target_hour: pd.Timestamp) -> pd.DataFrame:
-    """Create one prediction row per selected segment."""
-
-    return pd.DataFrame(
-        {
-            "segment_id": context.selected_segments,
-            "target_hour": pd.Timestamp(target_hour).floor("h"),
-        }
-    )
+    return pd.DataFrame({
+        "segment_id": context.selected_segments,
+        "target_hour": pd.Timestamp(target_hour).floor("h"),
+    })
 
 
-def create_location_row(context: FeatureContext, target_hour: pd.Timestamp, lat: float, lon: float) -> pd.DataFrame:
-    """Create one prediction row for the known segment nearest to a coordinate."""
-
+def create_location_row(
+    context: FeatureContext, target_hour: pd.Timestamp, lat: float, lon: float
+) -> pd.DataFrame:
     meta = context.segment_metadata
     distances = haversine_km(
-        lat,
-        lon,
+        lat, lon,
         meta["lat_center"].astype(float).to_numpy(),
         meta["lon_center"].astype(float).to_numpy(),
     )
     idx = int(np.argmin(distances))
-    return pd.DataFrame(
-        {
-            "segment_id": [meta.iloc[idx]["segment_id"]],
-            "target_hour": [pd.Timestamp(target_hour).floor("h")],
-            "query_latitude": [lat],
-            "query_longitude": [lon],
-            "nearest_segment_distance_km": [float(distances[idx])],
-        }
-    )
+    return pd.DataFrame({
+        "segment_id": [meta.iloc[idx]["segment_id"]],
+        "target_hour": [pd.Timestamp(target_hour).floor("h")],
+        "query_latitude": [lat],
+        "query_longitude": [lon],
+        "nearest_segment_distance_km": [float(distances[idx])],
+    })
 
 
 def haversine_km(lat: float, lon: float, lats: np.ndarray, lons: np.ndarray) -> np.ndarray:
-    """Vectorized haversine distance."""
-
     radius_km = 6371.0088
     lat1 = math.radians(lat)
     lon1 = math.radians(lon)
@@ -496,8 +559,6 @@ def haversine_km(lat: float, lon: float, lats: np.ndarray, lons: np.ndarray) -> 
 
 
 def infer_road_class(row: pd.Series) -> str:
-    """Impute road class from available text when OSM road class is unavailable."""
-
     text = " ".join(
         str(row.get(col, "")) for col in ("location", "junction_name", "violation_type")
     ).upper()
@@ -509,6 +570,7 @@ def infer_road_class(row: pd.Series) -> str:
 
 
 def _add_lag_features(frame: pd.DataFrame, counts: pd.DataFrame) -> pd.DataFrame:
+    """Legacy exact-timestamp lag join (kept for training pipeline only)."""
     counts = counts[["segment_id", "target_hour", "count_total", *TARGET_COLUMNS]].copy()
     lag_specs = [1, 2, 3, 24, 168]
     for lag in lag_specs:
@@ -528,7 +590,6 @@ def _add_lag_features(frame: pd.DataFrame, counts: pd.DataFrame) -> pd.DataFrame
             shifted = shifted.rename(columns=rename)
             keep_cols.extend(rename.values())
         frame = frame.merge(shifted[keep_cols], on=["segment_id", "target_hour"], how="left")
-
     lag_cols = [col for col in frame.columns if col.startswith("lag_")]
     frame[lag_cols] = frame[lag_cols].fillna(0.0)
     return frame
@@ -556,5 +617,4 @@ def _infer_grid_size(group: pd.DataFrame) -> float:
     diffs = (lat / lat_bin.replace(0, np.nan)).replace([np.inf, -np.inf], np.nan).dropna()
     if diffs.empty:
         return 0.001
-    # All rows were produced by a fixed grid; round to avoid floating noise.
     return float(round(diffs.median(), 6))

@@ -1,1 +1,958 @@
-{"type": "FeatureCollection", "features": []}
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "source_bottleneck": "osm_way_38096722",
+        "segment_id": "osm_way_36912482",
+        "eps_spillover": 57.91,
+        "eps": 57.91,
+        "is_ripple": true,
+        "distance_from_bottleneck_m": 166.2,
+        "decay_factor": 0.65,
+        "road_class": "secondary",
+        "police_station": "Rajajinagar"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            77.5507202,
+            12.9876151
+          ],
+          [
+            77.5507883,
+            12.987625
+          ],
+          [
+            77.550854,
+            12.9876345
+          ],
+          [
+            77.5511003,
+            12.9876702
+          ],
+          [
+            77.551733,
+            12.9876461
+          ],
+          [
+            77.5521457,
+            12.9876304
+          ],
+          [
+            77.5524429,
+            12.9876191
+          ],
+          [
+            77.5528156,
+            12.9876049
+          ],
+          [
+            77.5531465,
+            12.9875923
+          ],
+          [
+            77.5534788,
+            12.9875796
+          ],
+          [
+            77.5538616,
+            12.987565
+          ],
+          [
+            77.5542881,
+            12.9875488
+          ],
+          [
+            77.5551411,
+            12.9875163
+          ],
+          [
+            77.555954,
+            12.9874853
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "source_bottleneck": "osm_way_1229015866",
+        "segment_id": "osm_way_380929049",
+        "eps_spillover": 55.75,
+        "eps": 55.75,
+        "is_ripple": true,
+        "distance_from_bottleneck_m": 42.2,
+        "decay_factor": 0.65,
+        "road_class": "trunk",
+        "police_station": "HAL Old Airport"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            77.6955381,
+            12.9397457
+          ],
+          [
+            77.6951759,
+            12.9392056
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "source_bottleneck": "osm_way_1229015866",
+        "segment_id": "osm_way_1303738157",
+        "eps_spillover": 55.75,
+        "eps": 55.75,
+        "is_ripple": true,
+        "distance_from_bottleneck_m": 421.2,
+        "decay_factor": 0.65,
+        "road_class": "secondary",
+        "police_station": "HAL Old Airport"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            77.695406,
+            12.9393876
+          ],
+          [
+            77.6952647,
+            12.9391926
+          ],
+          [
+            77.6951502,
+            12.9390347
+          ],
+          [
+            77.6949125,
+            12.9387596
+          ],
+          [
+            77.6948516,
+            12.9386892
+          ],
+          [
+            77.6946607,
+            12.9384779
+          ],
+          [
+            77.6943894,
+            12.9382139
+          ],
+          [
+            77.6943188,
+            12.9381486
+          ],
+          [
+            77.6939706,
+            12.9378264
+          ],
+          [
+            77.6937695,
+            12.9376396
+          ],
+          [
+            77.6936053,
+            12.9374871
+          ],
+          [
+            77.6928243,
+            12.9367795
+          ],
+          [
+            77.6926245,
+            12.9365985
+          ],
+          [
+            77.6918618,
+            12.935907
+          ],
+          [
+            77.6917187,
+            12.9357798
+          ],
+          [
+            77.6916783,
+            12.9357386
+          ],
+          [
+            77.6916398,
+            12.9356963
+          ],
+          [
+            77.6915615,
+            12.9356216
+          ],
+          [
+            77.6914115,
+            12.9354288
+          ],
+          [
+            77.6913364,
+            12.9353475
+          ],
+          [
+            77.691126,
+            12.9351587
+          ],
+          [
+            77.690926,
+            12.9350464
+          ],
+          [
+            77.6904811,
+            12.9346363
+          ],
+          [
+            77.6904474,
+            12.9346037
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "source_bottleneck": "osm_way_1229015866",
+        "segment_id": "osm_way_1303669682",
+        "eps_spillover": 67.01,
+        "eps": 67.01,
+        "is_ripple": true,
+        "distance_from_bottleneck_m": 23.6,
+        "decay_factor": 0.781,
+        "road_class": "secondary",
+        "police_station": "HAL Old Airport"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            77.6956185,
+            12.939708
+          ],
+          [
+            77.6956011,
+            12.9396818
+          ],
+          [
+            77.6954711,
+            12.9394858
+          ],
+          [
+            77.6954639,
+            12.939475
+          ],
+          [
+            77.695406,
+            12.9393876
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "source_bottleneck": "osm_way_726907834",
+        "segment_id": "osm_way_114922746",
+        "eps_spillover": 52.83,
+        "eps": 52.83,
+        "is_ripple": true,
+        "distance_from_bottleneck_m": 126.1,
+        "decay_factor": 0.65,
+        "road_class": "primary",
+        "police_station": "HAL Old Airport"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            77.6904811,
+            12.9346363
+          ],
+          [
+            77.6905042,
+            12.9345893
+          ],
+          [
+            77.6906181,
+            12.9343469
+          ],
+          [
+            77.6907098,
+            12.9341396
+          ],
+          [
+            77.6908001,
+            12.9339828
+          ],
+          [
+            77.6908823,
+            12.9338732
+          ],
+          [
+            77.6909145,
+            12.9338306
+          ],
+          [
+            77.6909498,
+            12.9337781
+          ],
+          [
+            77.6909746,
+            12.9337385
+          ],
+          [
+            77.6910704,
+            12.933536
+          ],
+          [
+            77.6912202,
+            12.9332556
+          ],
+          [
+            77.691629,
+            12.9324882
+          ],
+          [
+            77.6917322,
+            12.9322735
+          ],
+          [
+            77.6919062,
+            12.932136
+          ],
+          [
+            77.6925399,
+            12.9317692
+          ],
+          [
+            77.6932715,
+            12.9314364
+          ],
+          [
+            77.6933405,
+            12.9314134
+          ],
+          [
+            77.6934113,
+            12.9313985
+          ],
+          [
+            77.6935022,
+            12.9313927
+          ],
+          [
+            77.6944469,
+            12.9313453
+          ],
+          [
+            77.6949182,
+            12.9313358
+          ],
+          [
+            77.694964,
+            12.9313349
+          ],
+          [
+            77.6949933,
+            12.9313343
+          ],
+          [
+            77.6950507,
+            12.9313312
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "source_bottleneck": "osm_way_726907834",
+        "segment_id": "osm_way_1062970360",
+        "eps_spillover": 52.83,
+        "eps": 52.83,
+        "is_ripple": true,
+        "distance_from_bottleneck_m": 170.2,
+        "decay_factor": 0.65,
+        "road_class": "primary",
+        "police_station": "HAL Old Airport"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            77.6950298,
+            12.9312518
+          ],
+          [
+            77.6949812,
+            12.9312563
+          ],
+          [
+            77.6949452,
+            12.9312576
+          ],
+          [
+            77.6934147,
+            12.9313108
+          ],
+          [
+            77.6931247,
+            12.9313985
+          ],
+          [
+            77.6924823,
+            12.9317062
+          ],
+          [
+            77.6918344,
+            12.9320798
+          ],
+          [
+            77.6916741,
+            12.9322054
+          ],
+          [
+            77.6912023,
+            12.9331522
+          ],
+          [
+            77.6908455,
+            12.9337979
+          ],
+          [
+            77.6908261,
+            12.9338383
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "source_bottleneck": "osm_way_114922746",
+        "segment_id": "osm_way_726907834",
+        "eps_spillover": 49.7,
+        "eps": 49.7,
+        "is_ripple": true,
+        "distance_from_bottleneck_m": 126.1,
+        "decay_factor": 0.65,
+        "road_class": "residential",
+        "police_station": "HAL Old Airport"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            77.6912202,
+            12.9332556
+          ],
+          [
+            77.6913637,
+            12.9332955
+          ],
+          [
+            77.6932755,
+            12.9337849
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "source_bottleneck": "osm_way_114922746",
+        "segment_id": "osm_way_1062970360",
+        "eps_spillover": 49.7,
+        "eps": 49.7,
+        "is_ripple": true,
+        "distance_from_bottleneck_m": 47.4,
+        "decay_factor": 0.65,
+        "road_class": "primary",
+        "police_station": "HAL Old Airport"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            77.6950298,
+            12.9312518
+          ],
+          [
+            77.6949812,
+            12.9312563
+          ],
+          [
+            77.6949452,
+            12.9312576
+          ],
+          [
+            77.6934147,
+            12.9313108
+          ],
+          [
+            77.6931247,
+            12.9313985
+          ],
+          [
+            77.6924823,
+            12.9317062
+          ],
+          [
+            77.6918344,
+            12.9320798
+          ],
+          [
+            77.6916741,
+            12.9322054
+          ],
+          [
+            77.6912023,
+            12.9331522
+          ],
+          [
+            77.6908455,
+            12.9337979
+          ],
+          [
+            77.6908261,
+            12.9338383
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "source_bottleneck": "osm_way_114922746",
+        "segment_id": "osm_way_1189538474",
+        "eps_spillover": 49.7,
+        "eps": 49.7,
+        "is_ripple": true,
+        "distance_from_bottleneck_m": 158.5,
+        "decay_factor": 0.65,
+        "road_class": "residential",
+        "police_station": "HAL Old Airport"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            77.6917219,
+            12.9318655
+          ],
+          [
+            77.6915422,
+            12.9314238
+          ],
+          [
+            77.691515,
+            12.9313568
+          ],
+          [
+            77.691234,
+            12.9306663
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "source_bottleneck": "osm_way_114922746",
+        "segment_id": "osm_way_1316889162",
+        "eps_spillover": 49.7,
+        "eps": 49.7,
+        "is_ripple": true,
+        "distance_from_bottleneck_m": 66.5,
+        "decay_factor": 0.65,
+        "road_class": "secondary",
+        "police_station": "HAL Old Airport"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            77.691629,
+            12.9324882
+          ],
+          [
+            77.691864,
+            12.9325387
+          ],
+          [
+            77.6919138,
+            12.9325377
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "source_bottleneck": "osm_way_114922746",
+        "segment_id": "osm_way_232969819",
+        "eps_spillover": 49.7,
+        "eps": 49.7,
+        "is_ripple": true,
+        "distance_from_bottleneck_m": 77.0,
+        "decay_factor": 0.65,
+        "road_class": "residential",
+        "police_station": "HAL Old Airport"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            77.6936999,
+            12.9311365
+          ],
+          [
+            77.6936472,
+            12.9311356
+          ],
+          [
+            77.6936105,
+            12.9311349
+          ],
+          [
+            77.6935124,
+            12.9311331
+          ],
+          [
+            77.6933785,
+            12.9311439
+          ],
+          [
+            77.6932873,
+            12.9311596
+          ],
+          [
+            77.6931881,
+            12.931191
+          ],
+          [
+            77.6930012,
+            12.9312698
+          ],
+          [
+            77.6924985,
+            12.9314657
+          ],
+          [
+            77.6920538,
+            12.9316311
+          ],
+          [
+            77.6920456,
+            12.9317335
+          ],
+          [
+            77.6920131,
+            12.9318018
+          ],
+          [
+            77.6917219,
+            12.9318655
+          ],
+          [
+            77.6915626,
+            12.9320049
+          ],
+          [
+            77.6914236,
+            12.9321692
+          ],
+          [
+            77.6914002,
+            12.9323043
+          ],
+          [
+            77.6913933,
+            12.9324033
+          ],
+          [
+            77.6912652,
+            12.9326588
+          ],
+          [
+            77.6911532,
+            12.9326895
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "source_bottleneck": "osm_way_114922746",
+        "segment_id": "osm_way_1062970359",
+        "eps_spillover": 49.7,
+        "eps": 49.7,
+        "is_ripple": true,
+        "distance_from_bottleneck_m": 276.9,
+        "decay_factor": 0.65,
+        "road_class": "primary",
+        "police_station": "HAL Old Airport"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            77.6908261,
+            12.9338383
+          ],
+          [
+            77.6907629,
+            12.9339735
+          ],
+          [
+            77.6906777,
+            12.9341121
+          ],
+          [
+            77.6905757,
+            12.9343343
+          ],
+          [
+            77.6904771,
+            12.934555
+          ],
+          [
+            77.6904474,
+            12.9346037
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "source_bottleneck": "osm_way_114922746",
+        "segment_id": "osm_way_1303738157",
+        "eps_spillover": 49.7,
+        "eps": 49.7,
+        "is_ripple": true,
+        "distance_from_bottleneck_m": 509.6,
+        "decay_factor": 0.65,
+        "road_class": "secondary",
+        "police_station": "HAL Old Airport"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            77.695406,
+            12.9393876
+          ],
+          [
+            77.6952647,
+            12.9391926
+          ],
+          [
+            77.6951502,
+            12.9390347
+          ],
+          [
+            77.6949125,
+            12.9387596
+          ],
+          [
+            77.6948516,
+            12.9386892
+          ],
+          [
+            77.6946607,
+            12.9384779
+          ],
+          [
+            77.6943894,
+            12.9382139
+          ],
+          [
+            77.6943188,
+            12.9381486
+          ],
+          [
+            77.6939706,
+            12.9378264
+          ],
+          [
+            77.6937695,
+            12.9376396
+          ],
+          [
+            77.6936053,
+            12.9374871
+          ],
+          [
+            77.6928243,
+            12.9367795
+          ],
+          [
+            77.6926245,
+            12.9365985
+          ],
+          [
+            77.6918618,
+            12.935907
+          ],
+          [
+            77.6917187,
+            12.9357798
+          ],
+          [
+            77.6916783,
+            12.9357386
+          ],
+          [
+            77.6916398,
+            12.9356963
+          ],
+          [
+            77.6915615,
+            12.9356216
+          ],
+          [
+            77.6914115,
+            12.9354288
+          ],
+          [
+            77.6913364,
+            12.9353475
+          ],
+          [
+            77.691126,
+            12.9351587
+          ],
+          [
+            77.690926,
+            12.9350464
+          ],
+          [
+            77.6904811,
+            12.9346363
+          ],
+          [
+            77.6904474,
+            12.9346037
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "source_bottleneck": "osm_way_114922746",
+        "segment_id": "osm_way_1308455404",
+        "eps_spillover": 49.7,
+        "eps": 49.7,
+        "is_ripple": true,
+        "distance_from_bottleneck_m": 371.8,
+        "decay_factor": 0.65,
+        "road_class": "secondary",
+        "police_station": "HAL Old Airport"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            77.6904474,
+            12.9346037
+          ],
+          [
+            77.6903299,
+            12.9344865
+          ],
+          [
+            77.6901457,
+            12.9343248
+          ],
+          [
+            77.6900647,
+            12.9342494
+          ],
+          [
+            77.6894291,
+            12.9336574
+          ],
+          [
+            77.6893483,
+            12.9335822
+          ],
+          [
+            77.6891599,
+            12.9334074
+          ],
+          [
+            77.689067,
+            12.9333218
+          ],
+          [
+            77.6889987,
+            12.9332555
+          ],
+          [
+            77.6885729,
+            12.9328687
+          ],
+          [
+            77.6880653,
+            12.9324076
+          ],
+          [
+            77.6880175,
+            12.9323669
+          ],
+          [
+            77.6878673,
+            12.9322389
+          ],
+          [
+            77.6877026,
+            12.9320882
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "source_bottleneck": "osm_way_30413416",
+        "segment_id": "osm_way_1461763637",
+        "eps_spillover": 47.31,
+        "eps": 47.31,
+        "is_ripple": true,
+        "distance_from_bottleneck_m": 251.1,
+        "decay_factor": 0.65,
+        "road_class": "residential",
+        "police_station": "K.G. Halli"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            77.6256453,
+            13.0366187
+          ],
+          [
+            77.6258462,
+            13.0378019
+          ],
+          [
+            77.6258569,
+            13.0378624
+          ]
+        ]
+      }
+    }
+  ]
+}

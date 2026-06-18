@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState, useRef } from "react";
 import { useMapStore } from "@/store/useMapStore";
-import { AlertTriangle, Crosshair, Map, Navigation, CheckCircle, AlertCircle, XCircle } from "lucide-react";
+import { AlertTriangle, Crosshair, Map, Navigation, CheckCircle, AlertCircle, XCircle, ChevronLeft, ChevronRight } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
 function EPSPill({ eps }: { eps: number }) {
@@ -72,7 +72,13 @@ export default function DispatchQueue() {
   };
 
   return (
-    <div className="absolute top-[88px] left-0 w-[400px] bottom-0 z-30 flex flex-col bg-[#0B0F1A] border-r border-white/5 overflow-hidden">
+    <>
+      <motion.div 
+        initial={false}
+        animate={{ x: open ? 0 : -400 }}
+        transition={{ type: "spring", bounce: 0, duration: 0.4 }}
+        className="absolute top-[88px] left-0 w-[400px] bottom-0 z-30 flex flex-col bg-[#0B0F1A] border-r border-white/5 overflow-hidden shadow-[20px_0_40px_-15px_rgba(0,0,0,0.8)]"
+      >
       {/* Header */}
       <div className="flex flex-col px-6 py-5 border-b border-white/5 bg-[#0B0F1A]">
         <div className="flex items-center justify-between mb-5">
@@ -184,6 +190,22 @@ export default function DispatchQueue() {
                 </div>
               )}
             </div>
-    </div>
+      </motion.div>
+
+      {/* Toggle Button */}
+      <motion.button
+        initial={false}
+        animate={{ x: open ? 400 : 0 }}
+        transition={{ type: "spring", bounce: 0, duration: 0.4 }}
+        onClick={() => setOpen(!open)}
+        className="absolute top-[200px] left-0 z-20 h-16 w-6 bg-[#0B0F1A] border-y border-r border-white/10 rounded-r-lg flex items-center justify-center hover:bg-white/5 transition-colors cursor-pointer shadow-lg"
+      >
+        {open ? (
+          <ChevronLeft className="w-4 h-4 text-zinc-500" />
+        ) : (
+          <ChevronRight className="w-4 h-4 text-zinc-500" />
+        )}
+      </motion.button>
+    </>
   );
 }

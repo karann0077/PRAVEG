@@ -1,1 +1,2280 @@
-{"type": "FeatureCollection", "features": []}
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "source_bottleneck": "osm_way_1303669683",
+        "segment_id": "osm_way_380929046",
+        "eps_spillover": 75.33,
+        "eps": 75.33,
+        "is_ripple": true,
+        "distance_from_bottleneck_m": 16.6,
+        "decay_factor": 0.837,
+        "road_class": "trunk",
+        "police_station": "HAL Old Airport"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            77.696385,
+            12.9411823
+          ],
+          [
+            77.6962272,
+            12.9408868
+          ],
+          [
+            77.6960019,
+            12.9404921
+          ],
+          [
+            77.6955381,
+            12.9397457
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "source_bottleneck": "osm_way_1062970360",
+        "segment_id": "osm_way_232969819",
+        "eps_spillover": 58.13,
+        "eps": 58.13,
+        "is_ripple": true,
+        "distance_from_bottleneck_m": 50.9,
+        "decay_factor": 0.65,
+        "road_class": "residential",
+        "police_station": "HAL Old Airport"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            77.6936999,
+            12.9311365
+          ],
+          [
+            77.6936472,
+            12.9311356
+          ],
+          [
+            77.6936105,
+            12.9311349
+          ],
+          [
+            77.6935124,
+            12.9311331
+          ],
+          [
+            77.6933785,
+            12.9311439
+          ],
+          [
+            77.6932873,
+            12.9311596
+          ],
+          [
+            77.6931881,
+            12.931191
+          ],
+          [
+            77.6930012,
+            12.9312698
+          ],
+          [
+            77.6924985,
+            12.9314657
+          ],
+          [
+            77.6920538,
+            12.9316311
+          ],
+          [
+            77.6920456,
+            12.9317335
+          ],
+          [
+            77.6920131,
+            12.9318018
+          ],
+          [
+            77.6917219,
+            12.9318655
+          ],
+          [
+            77.6915626,
+            12.9320049
+          ],
+          [
+            77.6914236,
+            12.9321692
+          ],
+          [
+            77.6914002,
+            12.9323043
+          ],
+          [
+            77.6913933,
+            12.9324033
+          ],
+          [
+            77.6912652,
+            12.9326588
+          ],
+          [
+            77.6911532,
+            12.9326895
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "source_bottleneck": "osm_way_1062970360",
+        "segment_id": "osm_way_698621412",
+        "eps_spillover": 58.13,
+        "eps": 58.13,
+        "is_ripple": true,
+        "distance_from_bottleneck_m": 265.9,
+        "decay_factor": 0.65,
+        "road_class": "residential",
+        "police_station": "HAL Old Airport"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            77.6901457,
+            12.9343248
+          ],
+          [
+            77.6901688,
+            12.9342823
+          ],
+          [
+            77.6902142,
+            12.9342056
+          ],
+          [
+            77.6902583,
+            12.934129
+          ],
+          [
+            77.6905222,
+            12.9337975
+          ],
+          [
+            77.69056,
+            12.93375
+          ],
+          [
+            77.6909933,
+            12.9331792
+          ],
+          [
+            77.6908321,
+            12.9330311
+          ],
+          [
+            77.6903527,
+            12.9325908
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "source_bottleneck": "osm_way_1062970360",
+        "segment_id": "osm_way_114922746",
+        "eps_spillover": 58.13,
+        "eps": 58.13,
+        "is_ripple": true,
+        "distance_from_bottleneck_m": 47.4,
+        "decay_factor": 0.65,
+        "road_class": "primary",
+        "police_station": "HAL Old Airport"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            77.6904811,
+            12.9346363
+          ],
+          [
+            77.6905042,
+            12.9345893
+          ],
+          [
+            77.6906181,
+            12.9343469
+          ],
+          [
+            77.6907098,
+            12.9341396
+          ],
+          [
+            77.6908001,
+            12.9339828
+          ],
+          [
+            77.6908823,
+            12.9338732
+          ],
+          [
+            77.6909145,
+            12.9338306
+          ],
+          [
+            77.6909498,
+            12.9337781
+          ],
+          [
+            77.6909746,
+            12.9337385
+          ],
+          [
+            77.6910704,
+            12.933536
+          ],
+          [
+            77.6912202,
+            12.9332556
+          ],
+          [
+            77.691629,
+            12.9324882
+          ],
+          [
+            77.6917322,
+            12.9322735
+          ],
+          [
+            77.6919062,
+            12.932136
+          ],
+          [
+            77.6925399,
+            12.9317692
+          ],
+          [
+            77.6932715,
+            12.9314364
+          ],
+          [
+            77.6933405,
+            12.9314134
+          ],
+          [
+            77.6934113,
+            12.9313985
+          ],
+          [
+            77.6935022,
+            12.9313927
+          ],
+          [
+            77.6944469,
+            12.9313453
+          ],
+          [
+            77.6949182,
+            12.9313358
+          ],
+          [
+            77.694964,
+            12.9313349
+          ],
+          [
+            77.6949933,
+            12.9313343
+          ],
+          [
+            77.6950507,
+            12.9313312
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "source_bottleneck": "osm_way_1429939347",
+        "segment_id": "osm_way_621789367",
+        "eps_spillover": 56.43,
+        "eps": 56.43,
+        "is_ripple": true,
+        "distance_from_bottleneck_m": 96.5,
+        "decay_factor": 0.65,
+        "road_class": "primary",
+        "police_station": "Vijayanagara"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            77.5449062,
+            12.9744326
+          ],
+          [
+            77.5450517,
+            12.9744316
+          ],
+          [
+            77.5454083,
+            12.974429
+          ],
+          [
+            77.5456615,
+            12.9744272
+          ],
+          [
+            77.5458486,
+            12.9744259
+          ],
+          [
+            77.5464951,
+            12.9744271
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "source_bottleneck": "osm_way_1429939347",
+        "segment_id": "osm_way_1096483603",
+        "eps_spillover": 67.17,
+        "eps": 67.17,
+        "is_ripple": true,
+        "distance_from_bottleneck_m": 24.5,
+        "decay_factor": 0.774,
+        "road_class": "residential",
+        "police_station": "Vijayanagara"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            77.5450517,
+            12.9744316
+          ],
+          [
+            77.545058,
+            12.9744953
+          ],
+          [
+            77.5450935,
+            12.9748537
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "source_bottleneck": "osm_way_1429939347",
+        "segment_id": "osm_way_1078493925",
+        "eps_spillover": 60.25,
+        "eps": 60.25,
+        "is_ripple": true,
+        "distance_from_bottleneck_m": 34.5,
+        "decay_factor": 0.694,
+        "road_class": "primary",
+        "police_station": "Vijayanagara"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            77.5447827,
+            12.9744252
+          ],
+          [
+            77.5449062,
+            12.9744326
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "source_bottleneck": "osm_way_380929046",
+        "segment_id": "osm_way_1303669683",
+        "eps_spillover": 72.28,
+        "eps": 72.28,
+        "is_ripple": true,
+        "distance_from_bottleneck_m": 16.6,
+        "decay_factor": 0.837,
+        "road_class": "secondary",
+        "police_station": "HAL Old Airport"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            77.6965841,
+            12.9413547
+          ],
+          [
+            77.6964474,
+            12.9411243
+          ],
+          [
+            77.6960988,
+            12.9405105
+          ],
+          [
+            77.6958384,
+            12.9400521
+          ],
+          [
+            77.6957899,
+            12.9399666
+          ],
+          [
+            77.6956185,
+            12.939708
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "source_bottleneck": "osm_way_26139254",
+        "segment_id": "osm_way_23515540",
+        "eps_spillover": 55.25,
+        "eps": 55.25,
+        "is_ripple": true,
+        "distance_from_bottleneck_m": 149.3,
+        "decay_factor": 0.65,
+        "road_class": "secondary",
+        "police_station": "Upparpet"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            77.5756976,
+            12.9770902
+          ],
+          [
+            77.5757886,
+            12.9770972
+          ],
+          [
+            77.5760581,
+            12.977088
+          ],
+          [
+            77.5765082,
+            12.9770641
+          ],
+          [
+            77.577324,
+            12.9769955
+          ],
+          [
+            77.5776336,
+            12.9769647
+          ],
+          [
+            77.5779741,
+            12.9769322
+          ],
+          [
+            77.5782155,
+            12.9769092
+          ],
+          [
+            77.5786807,
+            12.9768683
+          ],
+          [
+            77.5792617,
+            12.9768129
+          ],
+          [
+            77.5794481,
+            12.9767977
+          ],
+          [
+            77.5797583,
+            12.9767729
+          ],
+          [
+            77.5799536,
+            12.9767572
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "source_bottleneck": "osm_way_26139254",
+        "segment_id": "osm_way_36957712",
+        "eps_spillover": 55.25,
+        "eps": 55.25,
+        "is_ripple": true,
+        "distance_from_bottleneck_m": 99.2,
+        "decay_factor": 0.65,
+        "road_class": "secondary",
+        "police_station": "Upparpet"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            77.5750712,
+            12.9790093
+          ],
+          [
+            77.5750959,
+            12.9789184
+          ],
+          [
+            77.5751065,
+            12.9788837
+          ],
+          [
+            77.5753273,
+            12.9781782
+          ],
+          [
+            77.5754995,
+            12.9777026
+          ],
+          [
+            77.5756652,
+            12.9772165
+          ],
+          [
+            77.5756806,
+            12.9771586
+          ],
+          [
+            77.5756976,
+            12.9770902
+          ],
+          [
+            77.5757338,
+            12.9766699
+          ],
+          [
+            77.5757767,
+            12.976155
+          ],
+          [
+            77.5757909,
+            12.9760778
+          ],
+          [
+            77.5758211,
+            12.9759617
+          ],
+          [
+            77.5758576,
+            12.9758588
+          ],
+          [
+            77.5759144,
+            12.9757236
+          ],
+          [
+            77.5759921,
+            12.9756394
+          ],
+          [
+            77.5760561,
+            12.975533
+          ],
+          [
+            77.5760632,
+            12.9755044
+          ],
+          [
+            77.5760617,
+            12.9754284
+          ],
+          [
+            77.5760653,
+            12.9753626
+          ],
+          [
+            77.5760588,
+            12.9752631
+          ],
+          [
+            77.5760832,
+            12.9751678
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "source_bottleneck": "osm_way_26139254",
+        "segment_id": "osm_way_150808468",
+        "eps_spillover": 55.25,
+        "eps": 55.25,
+        "is_ripple": true,
+        "distance_from_bottleneck_m": 155.6,
+        "decay_factor": 0.65,
+        "road_class": "primary",
+        "police_station": "Upparpet"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            77.5764607,
+            12.9751388
+          ],
+          [
+            77.5763716,
+            12.9752902
+          ],
+          [
+            77.5762965,
+            12.9753966
+          ],
+          [
+            77.5761839,
+            12.9755523
+          ],
+          [
+            77.576166,
+            12.9755676
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "source_bottleneck": "osm_way_172891308",
+        "segment_id": "osm_way_172891303",
+        "eps_spillover": 54.71,
+        "eps": 54.71,
+        "is_ripple": true,
+        "distance_from_bottleneck_m": 109.5,
+        "decay_factor": 0.65,
+        "road_class": "primary",
+        "police_station": "City Market"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            77.576242,
+            12.9646321
+          ],
+          [
+            77.5764376,
+            12.9645378
+          ],
+          [
+            77.576571,
+            12.9644808
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "source_bottleneck": "osm_way_131683873",
+        "segment_id": "osm_way_143240401",
+        "eps_spillover": 54.46,
+        "eps": 54.46,
+        "is_ripple": true,
+        "distance_from_bottleneck_m": 79.6,
+        "decay_factor": 0.65,
+        "road_class": "secondary",
+        "police_station": "Shivajinagar"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            77.6060309,
+            12.9824334
+          ],
+          [
+            77.6060485,
+            12.9824271
+          ],
+          [
+            77.6065105,
+            12.9822635
+          ],
+          [
+            77.6073012,
+            12.9819834
+          ],
+          [
+            77.6080461,
+            12.9817196
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "source_bottleneck": "osm_way_232969819",
+        "segment_id": "osm_way_1062970360",
+        "eps_spillover": 53.9,
+        "eps": 53.9,
+        "is_ripple": true,
+        "distance_from_bottleneck_m": 50.9,
+        "decay_factor": 0.65,
+        "road_class": "primary",
+        "police_station": "HAL Old Airport"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            77.6950298,
+            12.9312518
+          ],
+          [
+            77.6949812,
+            12.9312563
+          ],
+          [
+            77.6949452,
+            12.9312576
+          ],
+          [
+            77.6934147,
+            12.9313108
+          ],
+          [
+            77.6931247,
+            12.9313985
+          ],
+          [
+            77.6924823,
+            12.9317062
+          ],
+          [
+            77.6918344,
+            12.9320798
+          ],
+          [
+            77.6916741,
+            12.9322054
+          ],
+          [
+            77.6912023,
+            12.9331522
+          ],
+          [
+            77.6908455,
+            12.9337979
+          ],
+          [
+            77.6908261,
+            12.9338383
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "source_bottleneck": "osm_way_232969819",
+        "segment_id": "osm_way_114922746",
+        "eps_spillover": 53.9,
+        "eps": 53.9,
+        "is_ripple": true,
+        "distance_from_bottleneck_m": 77.0,
+        "decay_factor": 0.65,
+        "road_class": "primary",
+        "police_station": "HAL Old Airport"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            77.6904811,
+            12.9346363
+          ],
+          [
+            77.6905042,
+            12.9345893
+          ],
+          [
+            77.6906181,
+            12.9343469
+          ],
+          [
+            77.6907098,
+            12.9341396
+          ],
+          [
+            77.6908001,
+            12.9339828
+          ],
+          [
+            77.6908823,
+            12.9338732
+          ],
+          [
+            77.6909145,
+            12.9338306
+          ],
+          [
+            77.6909498,
+            12.9337781
+          ],
+          [
+            77.6909746,
+            12.9337385
+          ],
+          [
+            77.6910704,
+            12.933536
+          ],
+          [
+            77.6912202,
+            12.9332556
+          ],
+          [
+            77.691629,
+            12.9324882
+          ],
+          [
+            77.6917322,
+            12.9322735
+          ],
+          [
+            77.6919062,
+            12.932136
+          ],
+          [
+            77.6925399,
+            12.9317692
+          ],
+          [
+            77.6932715,
+            12.9314364
+          ],
+          [
+            77.6933405,
+            12.9314134
+          ],
+          [
+            77.6934113,
+            12.9313985
+          ],
+          [
+            77.6935022,
+            12.9313927
+          ],
+          [
+            77.6944469,
+            12.9313453
+          ],
+          [
+            77.6949182,
+            12.9313358
+          ],
+          [
+            77.694964,
+            12.9313349
+          ],
+          [
+            77.6949933,
+            12.9313343
+          ],
+          [
+            77.6950507,
+            12.9313312
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "source_bottleneck": "osm_way_458439807",
+        "segment_id": "osm_way_335865352",
+        "eps_spillover": 53.44,
+        "eps": 53.44,
+        "is_ripple": true,
+        "distance_from_bottleneck_m": 64.6,
+        "decay_factor": 0.65,
+        "road_class": "residential",
+        "police_station": "Malleshwaram"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            77.5505582,
+            13.0004715
+          ],
+          [
+            77.5498977,
+            13.0003287
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "source_bottleneck": "osm_way_458439807",
+        "segment_id": "osm_way_1297586955",
+        "eps_spillover": 53.44,
+        "eps": 53.44,
+        "is_ripple": true,
+        "distance_from_bottleneck_m": 312.1,
+        "decay_factor": 0.65,
+        "road_class": "secondary",
+        "police_station": "Malleshwaram"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            77.5503272,
+            13.0017081
+          ],
+          [
+            77.5502707,
+            13.0021054
+          ],
+          [
+            77.550226,
+            13.002419
+          ],
+          [
+            77.5501431,
+            13.0030019
+          ],
+          [
+            77.5500267,
+            13.0037774
+          ],
+          [
+            77.5500211,
+            13.0038081
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "source_bottleneck": "osm_way_732012742",
+        "segment_id": "osm_way_36731508",
+        "eps_spillover": 52.27,
+        "eps": 52.27,
+        "is_ripple": true,
+        "distance_from_bottleneck_m": 271.9,
+        "decay_factor": 0.65,
+        "road_class": "secondary",
+        "police_station": "Malleshwaram"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            77.5545011,
+            13.0085089
+          ],
+          [
+            77.5550809,
+            13.0087417
+          ],
+          [
+            77.5552584,
+            13.0088219
+          ],
+          [
+            77.5555068,
+            13.0089265
+          ],
+          [
+            77.5558048,
+            13.0090638
+          ],
+          [
+            77.5560801,
+            13.0091688
+          ],
+          [
+            77.5564506,
+            13.0093209
+          ],
+          [
+            77.5564941,
+            13.0093393
+          ],
+          [
+            77.5565804,
+            13.0093757
+          ],
+          [
+            77.5568258,
+            13.0094758
+          ],
+          [
+            77.5568703,
+            13.0094975
+          ],
+          [
+            77.557093,
+            13.0095883
+          ],
+          [
+            77.5574143,
+            13.0097424
+          ],
+          [
+            77.5576539,
+            13.0098471
+          ],
+          [
+            77.5577216,
+            13.0098807
+          ],
+          [
+            77.5580084,
+            13.0100371
+          ],
+          [
+            77.5580635,
+            13.0100669
+          ],
+          [
+            77.5583801,
+            13.0102652
+          ],
+          [
+            77.5587024,
+            13.0104755
+          ],
+          [
+            77.5590386,
+            13.0106691
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "source_bottleneck": "osm_way_732012742",
+        "segment_id": "osm_way_1354144821",
+        "eps_spillover": 52.27,
+        "eps": 52.27,
+        "is_ripple": true,
+        "distance_from_bottleneck_m": 77.8,
+        "decay_factor": 0.65,
+        "road_class": "secondary",
+        "police_station": "Malleshwaram"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            77.554436,
+            13.0085143
+          ],
+          [
+            77.5544345,
+            13.0084545
+          ],
+          [
+            77.5544274,
+            13.0079947
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "source_bottleneck": "osm_way_1315288638",
+        "segment_id": "osm_way_1315288640",
+        "eps_spillover": 52.01,
+        "eps": 52.01,
+        "is_ripple": true,
+        "distance_from_bottleneck_m": 203.8,
+        "decay_factor": 0.65,
+        "road_class": "secondary",
+        "police_station": "Mahadevapura"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            77.6767035,
+            12.9997769
+          ],
+          [
+            77.6765741,
+            12.9997594
+          ],
+          [
+            77.676386,
+            12.9997206
+          ],
+          [
+            77.6761874,
+            12.9996771
+          ],
+          [
+            77.6756684,
+            12.9994493
+          ],
+          [
+            77.6750799,
+            12.9993809
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "source_bottleneck": "osm_way_1303738158",
+        "segment_id": "osm_way_1308455404",
+        "eps_spillover": 51.11,
+        "eps": 51.11,
+        "is_ripple": true,
+        "distance_from_bottleneck_m": 333.2,
+        "decay_factor": 0.65,
+        "road_class": "secondary",
+        "police_station": "HAL Old Airport"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            77.6904474,
+            12.9346037
+          ],
+          [
+            77.6903299,
+            12.9344865
+          ],
+          [
+            77.6901457,
+            12.9343248
+          ],
+          [
+            77.6900647,
+            12.9342494
+          ],
+          [
+            77.6894291,
+            12.9336574
+          ],
+          [
+            77.6893483,
+            12.9335822
+          ],
+          [
+            77.6891599,
+            12.9334074
+          ],
+          [
+            77.689067,
+            12.9333218
+          ],
+          [
+            77.6889987,
+            12.9332555
+          ],
+          [
+            77.6885729,
+            12.9328687
+          ],
+          [
+            77.6880653,
+            12.9324076
+          ],
+          [
+            77.6880175,
+            12.9323669
+          ],
+          [
+            77.6878673,
+            12.9322389
+          ],
+          [
+            77.6877026,
+            12.9320882
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "source_bottleneck": "osm_way_1303738158",
+        "segment_id": "osm_way_342907585",
+        "eps_spillover": 51.11,
+        "eps": 51.11,
+        "is_ripple": true,
+        "distance_from_bottleneck_m": 80.5,
+        "decay_factor": 0.65,
+        "road_class": "residential",
+        "police_station": "HAL Old Airport"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            77.6870544,
+            12.9315218
+          ],
+          [
+            77.6871209,
+            12.9315163
+          ],
+          [
+            77.6879223,
+            12.93145
+          ],
+          [
+            77.6880328,
+            12.9314409
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "source_bottleneck": "osm_way_1303738158",
+        "segment_id": "osm_way_693004204",
+        "eps_spillover": 51.11,
+        "eps": 51.11,
+        "is_ripple": true,
+        "distance_from_bottleneck_m": 117.1,
+        "decay_factor": 0.65,
+        "road_class": "secondary",
+        "police_station": "HAL Old Airport"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            77.6850816,
+            12.9302775
+          ],
+          [
+            77.6853412,
+            12.930471
+          ],
+          [
+            77.6855706,
+            12.9306594
+          ],
+          [
+            77.6856214,
+            12.9307012
+          ],
+          [
+            77.6858208,
+            12.9308823
+          ],
+          [
+            77.685941,
+            12.9309915
+          ],
+          [
+            77.6862167,
+            12.9312485
+          ],
+          [
+            77.6863535,
+            12.931374
+          ],
+          [
+            77.6864473,
+            12.9314602
+          ],
+          [
+            77.6865467,
+            12.9315494
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "source_bottleneck": "osm_way_1303738158",
+        "segment_id": "osm_way_1453976892",
+        "eps_spillover": 51.11,
+        "eps": 51.11,
+        "is_ripple": true,
+        "distance_from_bottleneck_m": 77.4,
+        "decay_factor": 0.65,
+        "road_class": "trunk",
+        "police_station": "HAL Old Airport"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            77.6851444,
+            12.9301286
+          ],
+          [
+            77.6856772,
+            12.9305151
+          ],
+          [
+            77.6856928,
+            12.9305281
+          ],
+          [
+            77.6859505,
+            12.930737
+          ],
+          [
+            77.6868642,
+            12.9315642
+          ],
+          [
+            77.6872024,
+            12.9318734
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "source_bottleneck": "osm_way_335865352",
+        "segment_id": "osm_way_458439807",
+        "eps_spillover": 51.0,
+        "eps": 51.0,
+        "is_ripple": true,
+        "distance_from_bottleneck_m": 64.6,
+        "decay_factor": 0.65,
+        "road_class": "secondary",
+        "police_station": "Malleshwaram"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            77.5509748,
+            12.9982716
+          ],
+          [
+            77.5509378,
+            12.998467
+          ],
+          [
+            77.5509099,
+            12.9986142
+          ],
+          [
+            77.5508583,
+            12.9988869
+          ],
+          [
+            77.5508032,
+            12.9991778
+          ],
+          [
+            77.5507457,
+            12.9994815
+          ],
+          [
+            77.5506806,
+            12.9998252
+          ],
+          [
+            77.5506031,
+            13.0002344
+          ],
+          [
+            77.5505582,
+            13.0004715
+          ],
+          [
+            77.5504807,
+            13.0008811
+          ],
+          [
+            77.5503272,
+            13.0017081
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "source_bottleneck": "osm_way_36954518",
+        "segment_id": "osm_way_23515540",
+        "eps_spillover": 50.1,
+        "eps": 50.1,
+        "is_ripple": true,
+        "distance_from_bottleneck_m": 96.4,
+        "decay_factor": 0.65,
+        "road_class": "secondary",
+        "police_station": "Upparpet"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            77.5756976,
+            12.9770902
+          ],
+          [
+            77.5757886,
+            12.9770972
+          ],
+          [
+            77.5760581,
+            12.977088
+          ],
+          [
+            77.5765082,
+            12.9770641
+          ],
+          [
+            77.577324,
+            12.9769955
+          ],
+          [
+            77.5776336,
+            12.9769647
+          ],
+          [
+            77.5779741,
+            12.9769322
+          ],
+          [
+            77.5782155,
+            12.9769092
+          ],
+          [
+            77.5786807,
+            12.9768683
+          ],
+          [
+            77.5792617,
+            12.9768129
+          ],
+          [
+            77.5794481,
+            12.9767977
+          ],
+          [
+            77.5797583,
+            12.9767729
+          ],
+          [
+            77.5799536,
+            12.9767572
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "source_bottleneck": "osm_way_36954518",
+        "segment_id": "osm_way_36954516",
+        "eps_spillover": 50.1,
+        "eps": 50.1,
+        "is_ripple": true,
+        "distance_from_bottleneck_m": 66.7,
+        "decay_factor": 0.65,
+        "road_class": "residential",
+        "police_station": "Upparpet"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            77.5790056,
+            12.9754212
+          ],
+          [
+            77.5789617,
+            12.97544
+          ],
+          [
+            77.5785859,
+            12.9755995
+          ],
+          [
+            77.5785055,
+            12.9756336
+          ],
+          [
+            77.5781773,
+            12.9757734
+          ],
+          [
+            77.577855,
+            12.9759098
+          ],
+          [
+            77.577822,
+            12.9759238
+          ],
+          [
+            77.5777961,
+            12.9759349
+          ],
+          [
+            77.5774482,
+            12.976085
+          ],
+          [
+            77.5773858,
+            12.9761091
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "source_bottleneck": "osm_way_621789367",
+        "segment_id": "osm_way_1429939347",
+        "eps_spillover": 50.05,
+        "eps": 50.05,
+        "is_ripple": true,
+        "distance_from_bottleneck_m": 96.5,
+        "decay_factor": 0.65,
+        "road_class": "secondary",
+        "police_station": "Vijayanagara"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            77.5449544,
+            12.9750515
+          ],
+          [
+            77.5447827,
+            12.9744252
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "source_bottleneck": "osm_way_621789367",
+        "segment_id": "osm_way_1096483603",
+        "eps_spillover": 50.05,
+        "eps": 50.05,
+        "is_ripple": true,
+        "distance_from_bottleneck_m": 72.1,
+        "decay_factor": 0.65,
+        "road_class": "residential",
+        "police_station": "Vijayanagara"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            77.5450517,
+            12.9744316
+          ],
+          [
+            77.545058,
+            12.9744953
+          ],
+          [
+            77.5450935,
+            12.9748537
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "source_bottleneck": "osm_way_621789367",
+        "segment_id": "osm_way_1078493925",
+        "eps_spillover": 50.05,
+        "eps": 50.05,
+        "is_ripple": true,
+        "distance_from_bottleneck_m": 92.8,
+        "decay_factor": 0.65,
+        "road_class": "primary",
+        "police_station": "Vijayanagara"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            77.5447827,
+            12.9744252
+          ],
+          [
+            77.5449062,
+            12.9744326
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "source_bottleneck": "osm_way_1297586955",
+        "segment_id": "osm_way_458439807",
+        "eps_spillover": 49.61,
+        "eps": 49.61,
+        "is_ripple": true,
+        "distance_from_bottleneck_m": 312.1,
+        "decay_factor": 0.65,
+        "road_class": "secondary",
+        "police_station": "Malleshwaram"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            77.5509748,
+            12.9982716
+          ],
+          [
+            77.5509378,
+            12.998467
+          ],
+          [
+            77.5509099,
+            12.9986142
+          ],
+          [
+            77.5508583,
+            12.9988869
+          ],
+          [
+            77.5508032,
+            12.9991778
+          ],
+          [
+            77.5507457,
+            12.9994815
+          ],
+          [
+            77.5506806,
+            12.9998252
+          ],
+          [
+            77.5506031,
+            13.0002344
+          ],
+          [
+            77.5505582,
+            13.0004715
+          ],
+          [
+            77.5504807,
+            13.0008811
+          ],
+          [
+            77.5503272,
+            13.0017081
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "source_bottleneck": "osm_way_677326081",
+        "segment_id": "osm_way_1303738152",
+        "eps_spillover": 48.57,
+        "eps": 48.57,
+        "is_ripple": true,
+        "distance_from_bottleneck_m": 48.5,
+        "decay_factor": 0.65,
+        "road_class": "secondary",
+        "police_station": "Mahadevapura"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            77.6948414,
+            12.9796553
+          ],
+          [
+            77.6949366,
+            12.9795066
+          ],
+          [
+            77.6952539,
+            12.979011
+          ],
+          [
+            77.6953162,
+            12.9789137
+          ],
+          [
+            77.6954222,
+            12.9787484
+          ],
+          [
+            77.6955563,
+            12.9785321
+          ],
+          [
+            77.6956953,
+            12.9783186
+          ],
+          [
+            77.6958098,
+            12.978127
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "source_bottleneck": "osm_way_677326081",
+        "segment_id": "osm_way_1303738153",
+        "eps_spillover": 48.57,
+        "eps": 48.57,
+        "is_ripple": true,
+        "distance_from_bottleneck_m": 63.2,
+        "decay_factor": 0.65,
+        "road_class": "secondary",
+        "police_station": "Mahadevapura"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            77.6954981,
+            12.9779683
+          ],
+          [
+            77.695054,
+            12.9787207
+          ],
+          [
+            77.6950064,
+            12.978804
+          ],
+          [
+            77.6946688,
+            12.9793573
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "source_bottleneck": "osm_way_36970832",
+        "segment_id": "osm_way_1157218017",
+        "eps_spillover": 48.28,
+        "eps": 48.28,
+        "is_ripple": true,
+        "distance_from_bottleneck_m": 90.6,
+        "decay_factor": 0.65,
+        "road_class": "residential",
+        "police_station": "Shivajinagar"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            77.598434,
+            12.9807351
+          ],
+          [
+            77.5985319,
+            12.9810752
+          ],
+          [
+            77.5987234,
+            12.9817058
+          ],
+          [
+            77.5988444,
+            12.9820931
+          ],
+          [
+            77.5988597,
+            12.9821412
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "source_bottleneck": "osm_way_1146413336",
+        "segment_id": "osm_way_515732742",
+        "eps_spillover": 48.19,
+        "eps": 48.19,
+        "is_ripple": true,
+        "distance_from_bottleneck_m": 453.5,
+        "decay_factor": 0.65,
+        "road_class": "secondary",
+        "police_station": "Vijayanagara"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            77.5489903,
+            12.9975251
+          ],
+          [
+            77.5489437,
+            12.9975227
+          ],
+          [
+            77.548436,
+            12.9974964
+          ],
+          [
+            77.5484299,
+            12.9974962
+          ],
+          [
+            77.5476825,
+            12.9974667
+          ],
+          [
+            77.5465163,
+            12.9974227
+          ],
+          [
+            77.5464283,
+            12.9974194
+          ],
+          [
+            77.5463675,
+            12.9974172
+          ],
+          [
+            77.5462716,
+            12.9974204
+          ],
+          [
+            77.5459103,
+            12.9974325
+          ],
+          [
+            77.5454662,
+            12.9974488
+          ],
+          [
+            77.5450397,
+            12.9974962
+          ],
+          [
+            77.5449022,
+            12.997533
+          ],
+          [
+            77.5427821,
+            12.9983669
+          ],
+          [
+            77.5423629,
+            12.9986017
+          ],
+          [
+            77.541779,
+            12.9989724
+          ],
+          [
+            77.5416311,
+            12.9990606
+          ],
+          [
+            77.541438,
+            12.9991758
+          ],
+          [
+            77.5412835,
+            12.9992647
+          ],
+          [
+            77.5412555,
+            12.9992808
+          ],
+          [
+            77.541132,
+            12.9993701
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "source_bottleneck": "osm_way_691961205",
+        "segment_id": "osm_way_616360044",
+        "eps_spillover": 61.28,
+        "eps": 61.28,
+        "is_ripple": true,
+        "distance_from_bottleneck_m": 15.1,
+        "decay_factor": 0.849,
+        "road_class": "secondary",
+        "police_station": "Chikkajala"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            77.6810911,
+            13.194404
+          ],
+          [
+            77.6810889,
+            13.1930848
+          ],
+          [
+            77.6810887,
+            13.1929863
+          ],
+          [
+            77.6810881,
+            13.1928987
+          ],
+          [
+            77.6808027,
+            13.1905948
+          ],
+          [
+            77.6806386,
+            13.1893377
+          ],
+          [
+            77.6805308,
+            13.1884672
+          ],
+          [
+            77.6804358,
+            13.1878337
+          ],
+          [
+            77.6804108,
+            13.1876801
+          ],
+          [
+            77.6802817,
+            13.187151
+          ],
+          [
+            77.6802049,
+            13.1868364
+          ],
+          [
+            77.680089,
+            13.1863613
+          ],
+          [
+            77.6800156,
+            13.1859399
+          ],
+          [
+            77.6799699,
+            13.1856785
+          ],
+          [
+            77.6798431,
+            13.184906
+          ],
+          [
+            77.679765,
+            13.1843361
+          ],
+          [
+            77.6797578,
+            13.1842836
+          ],
+          [
+            77.6797041,
+            13.1838921
+          ],
+          [
+            77.6796809,
+            13.183733
+          ],
+          [
+            77.6797046,
+            13.1835616
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "source_bottleneck": "osm_way_691961205",
+        "segment_id": "osm_way_1453546228",
+        "eps_spillover": 46.91,
+        "eps": 46.91,
+        "is_ripple": true,
+        "distance_from_bottleneck_m": 250.4,
+        "decay_factor": 0.65,
+        "road_class": "residential",
+        "police_station": "Chikkajala"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            77.6802049,
+            13.1868364
+          ],
+          [
+            77.6804139,
+            13.1867822
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "source_bottleneck": "osm_way_36907558",
+        "segment_id": "osm_way_38540557",
+        "eps_spillover": 45.56,
+        "eps": 45.56,
+        "is_ripple": true,
+        "distance_from_bottleneck_m": 316.9,
+        "decay_factor": 0.65,
+        "road_class": "secondary",
+        "police_station": "City Market"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            77.5780029,
+            12.9667354
+          ],
+          [
+            77.5782442,
+            12.9672301
+          ],
+          [
+            77.5783238,
+            12.9673956
+          ],
+          [
+            77.5783862,
+            12.9675185
+          ],
+          [
+            77.5784993,
+            12.9677275
+          ],
+          [
+            77.578642,
+            12.9680027
+          ],
+          [
+            77.5787883,
+            12.9682515
+          ],
+          [
+            77.5789181,
+            12.9684724
+          ],
+          [
+            77.5789314,
+            12.968495
+          ],
+          [
+            77.5792711,
+            12.9690729
+          ],
+          [
+            77.5794823,
+            12.9694251
+          ],
+          [
+            77.579646,
+            12.9696979
+          ],
+          [
+            77.5797448,
+            12.9699194
+          ],
+          [
+            77.5801092,
+            12.9706928
+          ],
+          [
+            77.5801631,
+            12.9708072
+          ],
+          [
+            77.5803345,
+            12.9711532
+          ],
+          [
+            77.5804317,
+            12.9713552
+          ],
+          [
+            77.5805686,
+            12.9716766
+          ],
+          [
+            77.5806946,
+            12.971902
+          ],
+          [
+            77.580905,
+            12.9722961
+          ],
+          [
+            77.5810037,
+            12.972481
+          ],
+          [
+            77.5810308,
+            12.9727807
+          ],
+          [
+            77.5810224,
+            12.9729254
+          ],
+          [
+            77.5810205,
+            12.9729583
+          ],
+          [
+            77.5810182,
+            12.9729983
+          ],
+          [
+            77.5810143,
+            12.9730658
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "source_bottleneck": "osm_way_1096483603",
+        "segment_id": "osm_way_1429939347",
+        "eps_spillover": 54.18,
+        "eps": 54.18,
+        "is_ripple": true,
+        "distance_from_bottleneck_m": 24.5,
+        "decay_factor": 0.774,
+        "road_class": "secondary",
+        "police_station": "Vijayanagara"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            77.5449544,
+            12.9750515
+          ],
+          [
+            77.5447827,
+            12.9744252
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "source_bottleneck": "osm_way_1096483603",
+        "segment_id": "osm_way_621789367",
+        "eps_spillover": 45.52,
+        "eps": 45.52,
+        "is_ripple": true,
+        "distance_from_bottleneck_m": 72.1,
+        "decay_factor": 0.65,
+        "road_class": "primary",
+        "police_station": "Vijayanagara"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            77.5449062,
+            12.9744326
+          ],
+          [
+            77.5450517,
+            12.9744316
+          ],
+          [
+            77.5454083,
+            12.974429
+          ],
+          [
+            77.5456615,
+            12.9744272
+          ],
+          [
+            77.5458486,
+            12.9744259
+          ],
+          [
+            77.5464951,
+            12.9744271
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "source_bottleneck": "osm_way_1096483603",
+        "segment_id": "osm_way_1078493925",
+        "eps_spillover": 48.71,
+        "eps": 48.71,
+        "is_ripple": true,
+        "distance_from_bottleneck_m": 34.3,
+        "decay_factor": 0.696,
+        "road_class": "primary",
+        "police_station": "Vijayanagara"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            77.5447827,
+            12.9744252
+          ],
+          [
+            77.5449062,
+            12.9744326
+          ]
+        ]
+      }
+    }
+  ]
+}

@@ -1,47 +1,106 @@
+// frontend/src/app/api/predictions/route.ts
+//
+// FIX LOG (2026-06-18):
+//   BUG-A  FIXED: Added cache-busting headers so the browser doesn't serve
+//          stale predictions_live.geojson when the daemon updates the file.
+//
+//   FIX-NEW: Added X-Prediction-Timestamp header so TacticalMap can detect
+//            when data actually changed and trigger a re-render with animation.
+//
+//   FIX-NEW: Passes ?hour=live to include live_delta enrichment.
+
 import { NextResponse } from "next/server";
 import { promises as fs } from "fs";
 import path from "path";
+import { statSync } from "fs";
+
+export const dynamic = "force-dynamic"; // Disable Next.js static caching
 
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
   const hourParam = searchParams.get("hour");
-  const hour = hourParam ? (hourParam === "live" ? "live" : parseInt(hourParam, 10).toString().padStart(2, "0")) : "live";
+  const hour =
+    hourParam
+      ? hourParam === "live"
+        ? "live"
+        : parseInt(hourParam, 10).toString().padStart(2, "0")
+      : "live";
 
   const jsonDirectory = path.join(process.cwd(), "..", "artifacts", "predictions");
   const geojsonPath = path.join(jsonDirectory, `predictions_${hour}.geojson`);
   const ripplePath = path.join(jsonDirectory, `ripples_${hour}.geojson`);
 
   try {
-    let baseData = { type: "FeatureCollection", features: [] };
-    let rippleData = { type: "FeatureCollection", features: [] };
+    let baseData: any = { type: "FeatureCollection", features: [] };
+    let rippleData: any = { type: "FeatureCollection", features: [] };
+    let lastModified: Date | null = null;
 
+    // ── Load base predictions ─────────────────────────────────────────────
     try {
       const file = await fs.readFile(geojsonPath, "utf8");
       baseData = JSON.parse(file);
-    } catch (e) {
-      // Fallback
       try {
-        const fb = await fs.readFile(path.join(jsonDirectory, "predictions.geojson"), "utf8");
+        lastModified = statSync(geojsonPath).mtime;
+      } catch {}
+    } catch {
+      try {
+        const fb = await fs.readFile(
+          path.join(jsonDirectory, "predictions.geojson"),
+          "utf8"
+        );
         baseData = JSON.parse(fb);
-      } catch (err) {}
+      } catch {}
     }
 
+    // ── Load ripples ──────────────────────────────────────────────────────
     try {
       const file = await fs.readFile(ripplePath, "utf8");
-      rippleData = JSON.parse(file);
-    } catch (e) {}
+      const parsed = JSON.parse(file);
+      // Only include ripples with actual features (fixes the old empty-array bug)
+      if (parsed.features && parsed.features.length > 0) {
+        rippleData = parsed;
+      }
+    } catch {}
 
-    if (baseData.features && baseData.features.length > 0) {
-      baseData.features.sort((a: any, b: any) => parseFloat(b.properties.eps || 0) - parseFloat(a.properties.eps || 0));
+    // ── Sort by EPS descending ────────────────────────────────────────────
+    if (baseData.features?.length > 0) {
+      baseData.features.sort(
+        (a: any, b: any) =>
+          parseFloat(b.properties.eps || 0) - parseFloat(a.properties.eps || 0)
+      );
     }
 
-    // Combine features (ripples don't need normalization since they use eps_spillover)
-    const combinedFeatures = [...(baseData.features || []), ...(rippleData.features || [])];
+    const combinedFeatures = [
+      ...(baseData.features || []),
+      ...(rippleData.features || []),
+    ];
 
-    return NextResponse.json({
+    const response = NextResponse.json({
       type: "FeatureCollection",
-      features: combinedFeatures
+      features: combinedFeatures,
+      // FIX-NEW: metadata for frontend change detection
+      _meta: {
+        hour,
+        feature_count: combinedFeatures.length,
+        ripple_count: rippleData.features?.length ?? 0,
+        last_modified: lastModified?.toISOString() ?? null,
+      },
     });
+
+    // ── FIX BUG-A: No-cache for live mode ────────────────────────────────
+    if (hour === "live") {
+      response.headers.set("Cache-Control", "no-store, max-age=0");
+      response.headers.set("Pragma", "no-cache");
+    } else {
+      // Hourly files change only once per day (batch run)
+      response.headers.set("Cache-Control", "public, max-age=3600");
+    }
+
+    if (lastModified) {
+      response.headers.set("X-Prediction-Timestamp", lastModified.toISOString());
+    }
+
+    return response;
   } catch (error) {
     console.error("Error reading predictions:", error);
     return NextResponse.json(
