@@ -61,11 +61,23 @@ export default function PhysicsInspector() {
     }
     const vehicleWidth = VEHICLE_WIDTHS[dominantVehicle] ?? 1.9;
     
+    const roadClassVolumes: Record<string, number> = {
+      trunk: 5000,
+      primary: 3000,
+      secondary: 1500,
+      tertiary: 500,
+      residential: 200,
+    };
+    const rClass = selectedEdge.road_class?.toLowerCase() || 'tertiary';
+    const estTrafficVolume = roadClassVolumes[rClass] || 500;
+
     // THE SIMULATION LOGIC
     let totalBlockWidth = vehicleWidth;
     let chokePercent = (totalBlockWidth / roadWidth) * 100;
     let speedReductionPercent = Math.min(95, (chokePercent * 1.2) + (eps * 0.3));
-    let economicBleed = (speedReductionPercent * 250); // ₹250 per hr lost per 1% speed reduction
+    // Factor in estimated traffic volume by road class for economic bleed.
+    // Example: (speedReductionPercent / 100) * estTrafficVolume * 50 (₹50 cost per delayed vehicle)
+    let economicBleed = (speedReductionPercent / 100) * estTrafficVolume * 50; 
 
     if (isSimulationActive) {
       totalBlockWidth = 0;
@@ -82,7 +94,7 @@ export default function PhysicsInspector() {
       chokePercent, 
       speedReductionPercent,
       economicBleed,
-      dominantVehicle: selectedEdge.count_heavy > 0 ? "heavy" : selectedEdge.count_car > 0 ? "car" : "scooter",
+      dominantVehicle,
       clearance: Math.max(0, roadWidth - totalBlockWidth)
     };
   }, [selectedEdge, isSimulationActive]);

@@ -146,7 +146,11 @@ def road_class_from_highway(highway: str) -> str:
     """Map OSM highway tags to the width classes used by scoring."""
 
     highway = highway.lower()
-    if highway in {"motorway", "trunk", "primary", "motorway_link", "trunk_link", "primary_link"}:
+    if highway in {"motorway", "motorway_link"}:
+        return "motorway"
+    if highway in {"trunk", "trunk_link"}:
+        return "trunk"
+    if highway in {"primary", "primary_link"}:
         return "primary"
     if highway in {"secondary", "tertiary", "secondary_link", "tertiary_link", "unclassified"}:
         return "secondary"

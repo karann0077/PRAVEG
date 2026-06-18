@@ -39,8 +39,8 @@ def make_model(
         verbosity=-1,
     )
     # The exact strict physical exclusion order requested:
-    # 1: count_car, 0: count_two_wheeler, 4: count_heavy, 2: count_auto, 3: count_light_commercial, 5: count_other
-    return RegressorChain(base, order=[1, 0, 4, 2, 3, 5], cv=5)
+    # 0: count_two_wheeler, 1: count_car, 2: count_auto, 3: count_light_commercial, 4: count_heavy, 5: count_other
+    return RegressorChain(base, order=[0, 1, 2, 3, 4, 5], cv=5)
 
 
 def train_model(
@@ -57,9 +57,15 @@ def train_model(
     if train_mask.sum() == 0 or (~train_mask).sum() == 0:
         train_mask = np.arange(len(features)) < int(len(features) * 0.8)
 
-    X_train = features.loc[train_mask, FEATURE_COLUMNS]
+    X_train = features.loc[train_mask, FEATURE_COLUMNS].copy()
+    for col in CATEGORICAL_COLUMNS:
+        if col in X_train.columns and hasattr(X_train[col], "cat"):
+            X_train[col] = X_train[col].cat.codes
     y_train = features.loc[train_mask, TARGET_COLUMNS].astype(float)
-    X_test = features.loc[~train_mask, FEATURE_COLUMNS]
+    X_test = features.loc[~train_mask, FEATURE_COLUMNS].copy()
+    for col in CATEGORICAL_COLUMNS:
+        if col in X_test.columns and hasattr(X_test[col], "cat"):
+            X_test[col] = X_test[col].cat.codes
     y_test = features.loc[~train_mask, TARGET_COLUMNS].astype(float)
 
     model = make_model(n_estimators=n_estimators, random_state=random_state)
@@ -133,7 +139,11 @@ def predict_feature_frame(
     """Predict target columns for a prepared feature frame."""
 
     feature_frame = apply_category_levels(feature_frame, category_levels)
-    predictions = np.clip(model.predict(feature_frame[FEATURE_COLUMNS]), 0.0, None)
+    X = feature_frame[FEATURE_COLUMNS].copy()
+    for col in CATEGORICAL_COLUMNS:
+        if col in X.columns and hasattr(X[col], "cat"):
+            X[col] = X[col].cat.codes
+    predictions = np.clip(model.predict(X), 0.0, None)
     out = feature_frame.copy()
     for idx, col in enumerate(TARGET_COLUMNS):
         out[col] = predictions[:, idx]

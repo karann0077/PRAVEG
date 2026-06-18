@@ -109,6 +109,18 @@ FEATURE_COLUMNS = [
     "lag_1h_light_commercial",
     "lag_1h_heavy",
     "lag_1h_other",
+    "rainfall_mm",
+    "is_raining",
+    "is_underpass_or_bridge",
+    "rain_shelter_bottleneck",
+    "dist_to_legal_parking_m",
+    "legal_parking_capacity",
+    "overflow_risk_index",
+    "dist_to_metro_m",
+    "dist_to_commercial_m",
+    "distance_to_active_event_m",
+    "event_impact_score",
+    "active_event_count",
 ]
 
 CATEGORICAL_COLUMNS = ["segment_id", "police_station", "junction_bucket", "road_class"]

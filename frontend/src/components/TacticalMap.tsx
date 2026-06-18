@@ -65,11 +65,20 @@ export default function TacticalMap() {
     setLoading(true);
     const hourParam = targetHour || "live";
 
-    fetch(`/api/predictions?hour=${hourParam}`)
-      .then((r) => r.json())
-      .then((data) => { setGeoData(data); setLoading(false); })
-      .catch(() => setLoading(false));
-  }, [targetHour]);
+    const fetchData = () => {
+      fetch(`/api/predictions?hour=${hourParam}`)
+        .then((r) => r.json())
+        .then((data) => { setGeoData(data); setLoading(false); })
+        .catch(() => setLoading(false));
+    };
+
+    fetchData();
+
+    if (hourParam === "live") {
+      const interval = setInterval(fetchData, 60000);
+      return () => clearInterval(interval);
+    }
+  }, [targetHour, setGeoData]);
 
   const currentStyle = mapStyle === "satellite" ? MAP_STYLES.satellite : mapStyle === "light" ? MAP_STYLES.light : MAP_STYLES.dark;
 
@@ -82,7 +91,7 @@ export default function TacticalMap() {
     const points: any[] = [];
     geoData.features.forEach((f: any) => {
       const eps = f.properties?.eps ?? 0;
-      if (eps < 50) return; // Only map warning/critical roads for the blast radius
+      if (eps <= 70) return; // Only map warning/critical roads for the blast radius
       
       const econLoss = f.properties?.economic_loss || (eps * 15000); // Derive economic bleed if missing
       const estVehicles = f.properties?.count_car || Math.floor(eps / 2);
@@ -90,8 +99,8 @@ export default function TacticalMap() {
       try {
         // Some GeoJSON might have multi geometries, try standard lineString first
         const line = turf.lineString(f.geometry.coordinates);
-        // Split into dense 10-meter chunks to perfectly trace the road topology
-        const chunks = turf.lineChunk(line, 0.01, { units: 'kilometers' });
+        // Split into dense 50-meter chunks to perfectly trace the road topology
+        const chunks = turf.lineChunk(line, 0.05, { units: 'kilometers' });
         chunks.features.forEach((chunk: any) => {
            const coord = chunk.geometry.coordinates[0];
            points.push({

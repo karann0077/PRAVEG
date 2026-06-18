@@ -27,41 +27,25 @@ function EPSPill({ eps }: { eps: number }) {
 }
 
 export default function DispatchQueue() {
-  const { flyTo, setSelectedEdge, targetHour } = useMapStore();
+  const { flyTo, setSelectedEdge, targetHour, geoData } = useMapStore();
   const [queue, setQueue] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
   const [open, setOpen] = useState(true);
 
   useEffect(() => {
-    setLoading(true);
-    const hourParam = targetHour || "live";
-
-    fetch(`/api/predictions?hour=${hourParam}`)
-      .then((r) => r.json())
-      .then((data) => {
-        if (data && data.features) {
-          const loaded = data.features.filter((f: any) => !f.properties.is_ripple).map((f: any) => ({
-            id: f.properties.segment_id,
-            roadName: f.properties.road_name || "Unknown Road",
-            roadClass: f.properties.road_class,
-            width: f.properties.road_width_m,
-            eps: f.properties.eps,
-            priorityBand: f.properties.priority_band,
-            action: f.properties.recommended_action,
-            geometry: f.geometry,
-            ...f.properties, // Capture all properties for physics inspector
-          }));
-          // setSegments(loaded);
-          const features = (data.features || [])
-            .filter((f: any) => !f.properties.is_ripple)
-            .sort((a: any, b: any) => b.properties.eps - a.properties.eps)
-            .slice(0, 15);
-          setQueue(features);
-        }
-        setLoading(false);
-      })
-      .catch(() => setLoading(false));
-  }, [targetHour]);
+    if (!geoData) {
+      setLoading(true);
+      return;
+    }
+    setLoading(false);
+    if (geoData && geoData.features) {
+      const features = (geoData.features || [])
+        .filter((f: any) => !f.properties.is_ripple)
+        .sort((a: any, b: any) => b.properties.eps - a.properties.eps)
+        .slice(0, 15);
+      setQueue(features);
+    }
+  }, [geoData]);
 
   const handleClick = (feature: any) => {
     const coords = feature.geometry?.coordinates || [];

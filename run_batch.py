@@ -1,8 +1,11 @@
 import os
 import subprocess
+from datetime import datetime
+
+today = datetime.now().strftime("%Y-%m-%d")
 
 for hr in range(24):
-    dt = f"2026-06-18 {hr:02d}:00"
+    dt = f"{today} {hr:02d}:00"
     print(f"Generating sanitized base predictions for {dt}...")
     subprocess.run([
         "python3", "-m", "parking_engine.predict",

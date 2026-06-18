@@ -2,15 +2,32 @@ import json
 import pandas as pd
 from shapely import wkt
 from pathlib import Path
-from .road_graph import load_graph, get_connected_segments
+
+def get_intersecting_segments(target_wkt: str, predictions_df: pd.DataFrame, distance_m: float = 30.0) -> list:
+    """Find segments within distance_m of the target segment geometry using spatial intersection."""
+    try:
+        target_geom = wkt.loads(target_wkt)
+    except Exception:
+        return []
+    
+    # Approximate 1 degree ~ 111000 meters in latitude
+    buffer_deg = distance_m / 111000.0
+    target_buffered = target_geom.buffer(buffer_deg)
+    
+    intersecting = []
+    for _, row in predictions_df.iterrows():
+        wkt_str = row.get("geometry_wkt", "")
+        if not wkt_str or not isinstance(wkt_str, str):
+            continue
+        try:
+            geom = wkt.loads(wkt_str)
+            if target_buffered.intersects(geom):
+                intersecting.append(str(row["segment_id"]))
+        except Exception:
+            pass
+    return intersecting
 
 def generate_ripples(predictions_df: pd.DataFrame, road_graph=None) -> list:
-    if road_graph is None:
-        try:
-            road_graph = load_graph("artifacts/osm/bengaluru_roads.json")
-        except Exception:
-            return []
-
     ripples = []
     
     # Identify severe bottlenecks
@@ -19,10 +36,13 @@ def generate_ripples(predictions_df: pd.DataFrame, road_graph=None) -> list:
     for _, row in bottlenecks.iterrows():
         segment_id = str(row["segment_id"])
         eps = float(row["eps"])
+        target_wkt = str(row.get("geometry_wkt", ""))
         
-        # A simple kinematic wave spillover: 
-        # The higher the EPS, the further back the queue grows
-        queue_segments = get_connected_segments(road_graph, segment_id, max_distance=300)
+        if not target_wkt:
+            continue
+        
+        # Use spatial intersection instead of string parsing or road graph
+        queue_segments = get_intersecting_segments(target_wkt, predictions_df, distance_m=30.0)
         
         for up_seg in queue_segments:
             if up_seg == segment_id:
@@ -57,7 +77,6 @@ def generate_ripples(predictions_df: pd.DataFrame, road_graph=None) -> list:
                 })
                 
     return ripples
-
 def write_ripples_geojson(ripples: list, out_path: Path):
     out_path.parent.mkdir(parents=True, exist_ok=True)
     payload = {"type": "FeatureCollection", "features": ripples}

@@ -1,8 +1,4 @@
 import { NextResponse } from "next/server";
-import { exec } from "child_process";
-import { promisify } from "util";
-
-const execAsync = promisify(exec);
 
 // Simple LRU Cache
 class LRUCache {
@@ -37,26 +33,30 @@ const shapCache = new LRUCache(200);
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
   const segmentId = searchParams.get("segment_id");
+  const targetHour = searchParams.get("target_hour") || "live";
 
   if (!segmentId) {
     return NextResponse.json({ error: "Missing segment_id parameter" }, { status: 400 });
   }
 
+  const cacheKey = `${segmentId}_${targetHour}`;
+
   // Check LRU Cache
-  const cached = shapCache.get(segmentId);
+  const cached = shapCache.get(cacheKey);
   if (cached) {
     return NextResponse.json({ source: "cache", data: cached });
   }
 
   try {
-    // Run python script
-    const cmd = `python3 -m parking_engine.explain --segment ${segmentId}`;
-    const { stdout, stderr } = await execAsync(cmd, { cwd: "../../" }); // Assuming nextjs is in frontend/
-
-    const result = JSON.parse(stdout);
+    const response = await fetch(`http://localhost:8000/explain?segment_id=${segmentId}&target_hour=${targetHour}`);
+    if (!response.ok) {
+      const errorText = await response.text();
+      throw new Error(`FastAPI returned ${response.status}: ${errorText}`);
+    }
+    const result = await response.json();
     
     // Save to LRU Cache
-    shapCache.set(segmentId, result);
+    shapCache.set(cacheKey, result);
 
     return NextResponse.json({ source: "compute", data: result });
   } catch (err: any) {

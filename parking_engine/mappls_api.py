@@ -11,10 +11,10 @@ import requests
 
 logger = logging.getLogger(__name__)
 
-# Fallback credentials provided by user
-DEFAULT_REST_KEY = "0e9c47fddd120c4add468dc88f565f6a"
-DEFAULT_CLIENT_ID = "96dHZVzsAuuvmtJKVY5ofcs_4Y4iiUyG8gS-_c9047n0_tqN2R_oX5f3LhN5Z_5b2d_5pU_2S_g_1F_v8"
-DEFAULT_CLIENT_SECRET = "IrFxI-iSEg8E2PgjY0lrOM71eEComxe1Py3."
+# Credentials should be provided via environment variables
+DEFAULT_REST_KEY = ""
+DEFAULT_CLIENT_ID = ""
+DEFAULT_CLIENT_SECRET = ""
 
 
 def get_auth_token(client_id: str, client_secret: str) -> str | None:

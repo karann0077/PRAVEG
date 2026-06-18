@@ -1,9 +1,9 @@
 {
   "data_path": "dataset/jan to may police violation_anonymized791b166.csv",
   "raw_event_rows_after_filter": 298445,
-  "active_segments": 3127,
-  "positive_segment_hours": 96626,
-  "training_frame_rows": 217408,
+  "active_segments": 1881,
+  "positive_segment_hours": 86755,
+  "training_frame_rows": 216887,
   "start_hour": "2023-11-10 00:00:00",
   "end_hour": "2024-04-08 23:00:00",
   "cutoff_hour": "2024-03-18 23:00:00",

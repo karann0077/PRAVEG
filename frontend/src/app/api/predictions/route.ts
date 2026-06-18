@@ -31,26 +31,8 @@ export async function GET(request: Request) {
       rippleData = JSON.parse(file);
     } catch (e) {}
 
-    // Normalize EPS for base data
     if (baseData.features && baseData.features.length > 0) {
-      const allEps = baseData.features.map((f: any) => parseFloat(f.properties.eps) || 0);
-      const maxEps = Math.max(...allEps);
-      const minEps = Math.min(...allEps);
-      const range = maxEps - minEps || 1;
-
-      baseData.features = baseData.features.map((f: any) => {
-        const rawEps = parseFloat(f.properties.eps) || 0;
-        const normalized = ((rawEps - minEps) / range) * 100;
-        return {
-          ...f,
-          properties: {
-            ...f.properties,
-            raw_eps: rawEps,
-            eps: parseFloat(normalized.toFixed(2)),
-          },
-        };
-      });
-      baseData.features.sort((a: any, b: any) => b.properties.eps - a.properties.eps);
+      baseData.features.sort((a: any, b: any) => parseFloat(b.properties.eps || 0) - parseFloat(a.properties.eps || 0));
     }
 
     // Combine features (ripples don't need normalization since they use eps_spillover)

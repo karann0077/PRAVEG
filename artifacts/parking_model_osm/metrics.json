@@ -1,46 +1,46 @@
 {
-  "total_mae": 1.0643776907763198,
-  "total_rmse": 2.479170700236825,
-  "total_wape": 0.9092975472904542,
-  "hotspot_roc_auc": 0.8620354013903743,
-  "hotspot_average_precision": 0.8014482549679155,
-  "top_1pct_violation_capture": 0.050743105867529566,
-  "top_5pct_violation_capture": 0.18570487672174335,
-  "top_10pct_violation_capture": 0.31353626757538444,
+  "total_mae": 1.0259956544130737,
+  "total_rmse": 2.4180870000402375,
+  "total_wape": 0.9348461916985893,
+  "hotspot_roc_auc": 0.8561903219299395,
+  "hotspot_average_precision": 0.7606919807279061,
+  "top_1pct_violation_capture": 0.05074389759569853,
+  "top_5pct_violation_capture": 0.18977789997861486,
+  "top_10pct_violation_capture": 0.31876088351205206,
   "by_target": {
     "count_two_wheeler": {
-      "mae": 0.6010123615935802,
-      "rmse": 1.8572164432157734,
-      "wape": 1.091695188956483
+      "mae": 0.5946716406334978,
+      "rmse": 1.8293624227722893,
+      "wape": 1.135908907512109
     },
     "count_car": {
-      "mae": 0.4204749313658903,
-      "rmse": 1.1108435769015546,
-      "wape": 1.0645870005464317
+      "mae": 0.4023159801209503,
+      "rmse": 1.0615861928736228,
+      "wape": 1.103972224409545
     },
     "count_auto": {
-      "mae": 0.18640593188688592,
-      "rmse": 0.6276381397013142,
-      "wape": 1.1619406949397133
+      "mae": 0.18876891841793378,
+      "rmse": 0.6275843159030394,
+      "wape": 1.239003739395879
     },
     "count_light_commercial": {
-      "mae": 0.05812046561763354,
-      "rmse": 0.25429857787683263,
-      "wape": 1.372848654608758
+      "mae": 0.05178916063139357,
+      "rmse": 0.24305938470821992,
+      "wape": 1.352549663600099
     },
     "count_heavy": {
-      "mae": 0.02653735588773574,
-      "rmse": 0.21257409024129156,
-      "wape": 1.3840715702776578
+      "mae": 0.022618903342196548,
+      "rmse": 0.16548693494096062,
+      "wape": 1.3909459632598187
     },
     "count_other": {
-      "mae": 0.003726172746331745,
-      "rmse": 0.06106487727627109,
-      "wape": 1.1953001241001606
+      "mae": 0.003112899391837194,
+      "rmse": 0.05460191847806284,
+      "wape": 1.175218029892966
     }
   },
-  "train_rows": 187575,
-  "test_rows": 29833,
+  "train_rows": 187062,
+  "test_rows": 29825,
   "cutoff_hour": "2024-03-18 23:00:00",
   "feature_columns": [
     "segment_id",
@@ -80,7 +80,19 @@
     "lag_1h_auto",
     "lag_1h_light_commercial",
     "lag_1h_heavy",
-    "lag_1h_other"
+    "lag_1h_other",
+    "rainfall_mm",
+    "is_raining",
+    "is_underpass_or_bridge",
+    "rain_shelter_bottleneck",
+    "dist_to_legal_parking_m",
+    "legal_parking_capacity",
+    "overflow_risk_index",
+    "dist_to_metro_m",
+    "dist_to_commercial_m",
+    "distance_to_active_event_m",
+    "event_impact_score",
+    "active_event_count"
   ],
   "target_columns": [
     "count_two_wheeler",

@@ -1,14 +1,4 @@
 import { NextResponse } from "next/server";
-import sqlite3 from "sqlite3";
-import { open } from "sqlite";
-
-// Ensure short transactions by initializing connection on demand
-async function openDb() {
-  return open({
-    filename: "../../artifacts/feedback.sqlite",
-    driver: sqlite3.Database
-  });
-}
 
 export async function POST(request: Request) {
   try {
@@ -19,27 +9,23 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: "Missing required fields" }, { status: 400 });
     }
 
-    const db = await openDb();
-    
-    // Create table if not exists (In production, do this in migrations)
-    await db.exec(`
-      CREATE TABLE IF NOT EXISTS model_recalibration_logs (
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
-        edge_id TEXT,
-        predicted_eps REAL,
-        actual_accuracy TEXT,
-        officer_id TEXT,
-        timestamp DATETIME DEFAULT CURRENT_TIMESTAMP
-      )
-    `);
+    const response = await fetch("http://localhost:8000/feedback", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        edge_id,
+        predicted_eps,
+        actual_accuracy,
+        officer_id: officer_id || "unknown",
+      }),
+    });
 
-    // Extremely short transaction: Insert and close immediately to prevent DB locking
-    await db.run(
-      "INSERT INTO model_recalibration_logs (edge_id, predicted_eps, actual_accuracy, officer_id) VALUES (?, ?, ?, ?)",
-      [edge_id, predicted_eps, actual_accuracy, officer_id || "unknown"]
-    );
-
-    await db.close();
+    if (!response.ok) {
+      const errorText = await response.text();
+      throw new Error(`FastAPI returned ${response.status}: ${errorText}`);
+    }
 
     return NextResponse.json({ success: true });
   } catch (err: any) {
