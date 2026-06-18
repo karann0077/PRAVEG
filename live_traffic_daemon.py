@@ -35,8 +35,8 @@ def process_live_ripples():
             seg_id = f["properties"].get("segment_id", "")
             parts = seg_id.split("_")
             if len(parts) >= 3:
-                bottleneck_u = parts[1]
-                upstreams = upstream_map.get(bottleneck_u, [])
+                bottleneck_v = parts[2]
+                upstreams = upstream_map.get(bottleneck_v, [])
                 for up_f in upstreams:
                     ripple_feature = {
                         "type": "Feature",

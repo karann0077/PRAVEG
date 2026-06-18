@@ -3,7 +3,7 @@
 import React, { useMemo, useState } from "react";
 import { useMapStore } from "@/store/useMapStore";
 import { motion, AnimatePresence } from "framer-motion";
-import { X, Activity, Truck, AlertTriangle, ShieldAlert, Crosshair } from "lucide-react";
+import { X, Activity, Truck, AlertTriangle, ShieldAlert, Crosshair, Brain } from "lucide-react";
 
 const VEHICLE_WIDTHS: Record<string, number> = {
   heavy: 2.6,
@@ -15,12 +15,13 @@ const VEHICLE_WIDTHS: Record<string, number> = {
 };
 
 export default function PhysicsInspector() {
-  const { selectedEdge, setSelectedEdge, isSimulatingResolution, setIsSimulatingResolution, geoData } = useMapStore();
+  const { selectedEdge, setSelectedEdge, isSimulatingResolution, setIsSimulatingResolution, geoData, isSimulationActive, setIsSimulationActive } = useMapStore();
   const [shapData, setShapData] = useState<any>(null);
 
   React.useEffect(() => {
     if (selectedEdge) {
       setShapData(null);
+      setIsSimulationActive(false); // Reset simulation state when switching edges
       fetch(`/api/explain?segment_id=${selectedEdge.segment_id}`)
         .then(r => r.json())
         .then(d => {
@@ -28,21 +29,24 @@ export default function PhysicsInspector() {
         })
         .catch(console.error);
     }
-  }, [selectedEdge]);
+  }, [selectedEdge, setIsSimulationActive]);
 
   const mapFeatureToLabel = (f: string, impact: number) => {
-    if (f === "event_impact_score") return `🔴 High Event Proximity (+${(Math.abs(impact) * 100).toFixed(0)}% Risk)`;
-    if (f === "overflow_risk_index") return `🔴 Commercial Hub Overflow (+${(Math.abs(impact) * 100).toFixed(0)}% Risk)`;
-    if (f === "rain_shelter_bottleneck") return `🔴 Rain Shelter Bottleneck (+${(Math.abs(impact) * 100).toFixed(0)}% Risk)`;
-    if (f === "dist_to_commercial_m") return `🔴 Near Commercial Zone (+${(Math.abs(impact) * 100).toFixed(0)}% Risk)`;
-    if (f === "dist_to_metro_m") return `🔴 Near Transit Hub (+${(Math.abs(impact) * 100).toFixed(0)}% Risk)`;
-    if (f === "is_raining") return impact < 0 ? `🟢 Clear Weather (-${(Math.abs(impact) * 100).toFixed(0)}% Risk)` : `🔴 Rain Hazard (+${(Math.abs(impact) * 100).toFixed(0)}% Risk)`;
-    return impact > 0 ? `🔴 ${f} (+${(Math.abs(impact) * 100).toFixed(0)}% Risk)` : `🟢 ${f} (-${(Math.abs(impact) * 100).toFixed(0)}% Risk)`;
+    const risk = (Math.abs(impact) * 100).toFixed(0);
+    if (f === "event_impact_score") return `High Event Proximity (+${risk}% Risk)`;
+    if (f === "overflow_risk_index") return `Commercial Hub Overflow (+${risk}% Risk)`;
+    if (f === "rain_shelter_bottleneck") return `Rain Shelter Bottleneck (+${risk}% Risk)`;
+    if (f === "dist_to_commercial_m") return `Near Commercial Zone (+${risk}% Risk)`;
+    if (f === "dist_to_metro_m") return `Near Transit Hub (+${risk}% Risk)`;
+    if (f === "is_raining") return impact < 0 ? `Clear Weather (-${risk}% Risk)` : `Rain Hazard (+${risk}% Risk)`;
+    return impact > 0 ? `${f} (+${risk}% Risk)` : `${f} (-${risk}% Risk)`;
   };
+
+  const getShapColor = (impact: number) => impact > 0 ? "bg-rose-500" : "bg-emerald-500";
 
   const analysis = useMemo(() => {
     if (!selectedEdge) return null;
-    const eps: number = selectedEdge.eps ?? 0;
+    let eps: number = selectedEdge.eps ?? 0;
     const roadWidth: number = selectedEdge.road_width_m ?? 6.0;
     
     let dominantVehicle = "car";
@@ -56,24 +60,32 @@ export default function PhysicsInspector() {
       }
     }
     const vehicleWidth = VEHICLE_WIDTHS[dominantVehicle] ?? 1.9;
-    const totalBlockWidth = vehicleWidth;
-    const chokePercent = (totalBlockWidth / roadWidth) * 100;
+    
+    // THE SIMULATION LOGIC
+    let totalBlockWidth = vehicleWidth;
+    let chokePercent = (totalBlockWidth / roadWidth) * 100;
+    let speedReductionPercent = Math.min(95, (chokePercent * 1.2) + (eps * 0.3));
+    let economicBleed = (speedReductionPercent * 250); // ₹250 per hr lost per 1% speed reduction
 
-    // Traffic Speed Impact Mathematical Formula
-    // Speed Reduction % = min(95%, (Choke% * 1.2) + (EPS * 0.3))
-    const rawSpeedReduction = (chokePercent * 1.2) + (eps * 0.3);
-    const speedReductionPercent = Math.min(95, rawSpeedReduction);
+    if (isSimulationActive) {
+      totalBlockWidth = 0;
+      chokePercent = 0;
+      speedReductionPercent = 0;
+      economicBleed = 0;
+      eps = 0;
+    }
 
     return { 
       eps, 
       roadWidth, 
       totalBlockWidth, 
       chokePercent, 
-      speedReductionPercent, 
+      speedReductionPercent,
+      economicBleed,
       dominantVehicle: selectedEdge.count_heavy > 0 ? "heavy" : selectedEdge.count_car > 0 ? "car" : "scooter",
       clearance: Math.max(0, roadWidth - totalBlockWidth)
     };
-  }, [selectedEdge]);
+  }, [selectedEdge, isSimulationActive]);
 
   const handleDispatch = () => {
     setIsSimulatingResolution(true);
@@ -88,11 +100,6 @@ export default function PhysicsInspector() {
     
     console.log("SMART ROUTING REQUEST: Dispatching tow truck...");
     console.log(`Passing ${avoidPolygons.length} 'Red Lines' (EPS > 70) to Routing API as 'avoid_polygons'`);
-    console.log(JSON.stringify({
-      start: [77.585, 12.975], // Police Station
-      end: selectedEdge.geometry?.coordinates[0],
-      avoid_polygons: avoidPolygons
-    }));
 
     // Simulate resolution time
     setTimeout(() => {
@@ -106,43 +113,58 @@ export default function PhysicsInspector() {
       {selectedEdge && analysis && (
         <motion.div
           key="bottleneck-inspector"
-          initial={{ opacity: 0, scale: 0.95 }}
-          animate={{ opacity: 1, scale: 1 }}
-          exit={{ opacity: 0, scale: 0.95 }}
+          initial={{ opacity: 0, x: 20 }}
+          animate={{ opacity: 1, x: 0 }}
+          exit={{ opacity: 0, x: 20 }}
           transition={{ type: "spring", stiffness: 300, damping: 25 }}
-          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-50 w-[480px] rounded-2xl border border-white/20 shadow-2xl overflow-hidden"
-          style={{
-            background: "rgba(255,255,255,0.95)",
-            backdropFilter: "blur(12px)",
-            boxShadow: analysis.eps >= 90 ? "0 30px 60px rgba(131,24,67,0.4)" : "0 30px 60px rgba(0,0,0,0.3)"
-          }}
+          className="absolute top-24 right-4 w-[400px] z-30 flex flex-col rounded-2xl border border-slate-700 shadow-2xl overflow-hidden bg-slate-800/80 backdrop-blur-md"
         >
           {/* Header */}
-          <div className="flex items-center justify-between px-6 py-4 border-b border-slate-200 bg-slate-50/80">
-            <h3 className="text-slate-800 text-sm font-bold flex items-center gap-2 uppercase tracking-wider">
-              <Crosshair className="w-4 h-4 text-rose-600" />
-              Tactical Inspector
-            </h3>
+          <div className="flex items-center justify-between px-5 py-4 border-b border-slate-700/80 bg-slate-900/50">
+            <div>
+              <h3 className="text-white text-xs font-bold flex items-center gap-2 uppercase tracking-widest mb-1">
+                <Crosshair className="w-4 h-4 text-indigo-500" />
+                {selectedEdge.road_name || selectedEdge.junction_name || "Unknown Link"}
+              </h3>
+              <p className="text-slate-400 text-[10px] font-mono">EPS {analysis.eps.toFixed(1)} ± 2.5</p>
+            </div>
             <button
               onClick={() => setSelectedEdge(null)}
-              className="p-1.5 rounded-full hover:bg-slate-200 text-slate-500 hover:text-slate-800 transition-colors"
+              className="p-1.5 rounded-full hover:bg-slate-700/50 text-slate-400 hover:text-white transition-colors"
             >
               <X className="w-4 h-4" />
             </button>
           </div>
 
-          <div className="p-6">
-            {/* Top Metrics */}
-            <div className="flex items-center justify-between mb-6">
-              <div>
-                <p className="text-slate-500 text-[10px] font-mono uppercase tracking-widest mb-1">
-                  Enforcement Target
+          <div className="p-5 overflow-y-auto custom-scrollbar max-h-[70vh]">
+            {/* Economic Impact Card */}
+            <div className="mb-5 p-4 rounded-xl border border-slate-700 bg-slate-900/40 relative overflow-hidden group">
+              <div className="absolute inset-0 bg-gradient-to-r from-rose-600/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+              <div className="flex items-center justify-between mb-2 relative z-10">
+                <p className="text-[10px] text-slate-400 font-mono uppercase tracking-widest">
+                  Estimated Economic Loss
                 </p>
-                <p className="text-slate-900 text-lg font-bold capitalize flex items-center gap-2">
-                  <AlertTriangle className="w-4 h-4 text-rose-500" />
-                  {analysis.dominantVehicle.replace("_", " ")}
-                </p>
+                <button 
+                  onClick={() => setIsSimulationActive(!isSimulationActive)}
+                  className={`text-[9px] font-bold px-2 py-1 rounded-full uppercase tracking-wider transition-colors ${isSimulationActive ? 'bg-indigo-500/20 text-indigo-400 border border-indigo-500/30' : 'bg-slate-700 text-slate-300 hover:bg-slate-600'}`}
+                >
+                  {isSimulationActive ? 'Reset' : 'Simulate Enforcement'}
+                </button>
               </div>
+              <div className="relative z-10">
+                <AnimatePresence mode="popLayout">
+                  <motion.span 
+                    key={isSimulationActive ? 'green' : 'red'}
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -10 }}
+                    className={`text-3xl font-black font-mono leading-none tracking-tighter ${isSimulationActive ? 'text-emerald-500' : 'text-rose-500'}`}
+                  >
+                    ₹{analysis.economicBleed.toLocaleString()} <span className="text-base text-slate-500 font-normal">/ hr</span>
+                  </motion.span>
+                </AnimatePresence>
+              </div>
+            </div>
 
               {/* EPS Circular Gauge */}
               <div className="relative w-16 h-16 flex items-center justify-center">
@@ -165,48 +187,44 @@ export default function PhysicsInspector() {
                   <span className="text-slate-500 text-[8px] font-mono uppercase">EPS</span>
                 </div>
               </div>
-            </div>
 
             {/* Isometric 3D Visualization */}
-            <div className="relative h-48 bg-slate-100 rounded-xl overflow-hidden mb-6 flex items-center justify-center border border-slate-200 perspective-1000 shadow-inner">
+            <div className="relative h-40 bg-slate-900/60 rounded-xl overflow-hidden mb-5 flex items-center justify-center border border-slate-700 perspective-1000">
               <div
-                className="relative w-[200px] h-[300px] preserve-3d"
+                className="relative w-[180px] h-[250px] preserve-3d"
                 style={{ transform: "rotateX(60deg) rotateZ(-45deg)" }}
               >
                 {/* Road Base */}
-                <div className="absolute inset-0 bg-slate-300 border-2 border-slate-400 rounded-sm shadow-md" />
+                <div className="absolute inset-0 bg-slate-800 border-2 border-slate-600 rounded-sm" />
                 
                 {/* Center Line */}
-                <div className="absolute inset-y-0 left-1/2 w-1 -translate-x-1/2 bg-[repeating-linear-gradient(0deg,transparent,transparent_10px,rgba(255,255,255,0.8)_10px,rgba(255,255,255,0.8)_20px)]" />
+                <div className="absolute inset-y-0 left-1/2 w-1 -translate-x-1/2 bg-[repeating-linear-gradient(0deg,transparent,transparent_10px,rgba(255,255,255,0.3)_10px,rgba(255,255,255,0.3)_20px)]" />
 
                 {/* The Obstruction (Illegally Parked Vehicle) */}
                 <motion.div
                   initial={{ z: 50, opacity: 0 }}
-                  animate={{ z: 0, opacity: 1 }}
-                  className="absolute bottom-1/2 left-2 bg-rose-600 rounded shadow-2xl flex items-center justify-center"
-                  style={{
-                    width: `${analysis.chokePercent}%`, // Dynamic width relative to road
-                    height: '40px',
-                    transform: "translateZ(10px)",
-                    boxShadow: "-10px 10px 20px rgba(0,0,0,0.5)"
-                  }}
+                  animate={{ z: 0, opacity: 1, width: `${analysis.chokePercent}%` }}
+                  className="absolute bottom-1/2 left-2 bg-rose-600 rounded flex items-center justify-center shadow-[0_0_15px_rgba(225,29,72,0.5)]"
+                  style={{ height: '30px', transform: "translateZ(10px)" }}
                 >
-                  <div className="text-white text-[10px] font-bold rotate-90">{analysis.dominantVehicle.replace("_", " ")}</div>
+                  <div className="text-white text-[9px] font-bold rotate-90 opacity-80">{analysis.dominantVehicle.replace("_", " ")}</div>
                 </motion.div>
 
                 {/* Simulated Queue of Cars trapped behind */}
-                <div className="absolute bottom-4 left-2 w-[40%] flex flex-col gap-2">
-                  {[...Array(4)].map((_, i) => (
-                    <motion.div
-                      key={i}
-                      initial={{ y: 50, opacity: 0 }}
-                      animate={{ y: 0, opacity: 1 }}
-                      transition={{ delay: i * 0.2, repeat: Infinity, duration: 2 }}
-                      className="w-full h-8 bg-slate-500 rounded-sm shadow-lg"
-                      style={{ transform: "translateZ(5px)" }}
-                    />
-                  ))}
-                </div>
+                {!isSimulationActive && (
+                  <div className="absolute bottom-4 left-2 w-[40%] flex flex-col gap-2">
+                    {[...Array(3)].map((_, i) => (
+                      <motion.div
+                        key={i}
+                        initial={{ y: 50, opacity: 0 }}
+                        animate={{ y: 0, opacity: 1 }}
+                        transition={{ delay: i * 0.2, repeat: Infinity, duration: 2 }}
+                        className="w-full h-6 bg-amber-500/80 rounded-sm shadow-lg"
+                        style={{ transform: "translateZ(5px)" }}
+                      />
+                    ))}
+                  </div>
+                )}
               </div>
             </div>
 
@@ -224,44 +242,38 @@ export default function PhysicsInspector() {
             </div>
 
             {/* Explainable AI (SHAP) Metrics */}
-            <div className="mb-4">
-              <p className="text-[10px] text-slate-500 font-mono uppercase tracking-widest mb-2">
-                AI Inference Drivers (SHAP)
+            <div className="mb-5">
+              <p className="text-[10px] text-slate-400 font-mono uppercase tracking-widest mb-3 flex items-center gap-2">
+                <Brain className="w-3 h-3 text-indigo-400" /> AI Inference Drivers
               </p>
-              <div className="bg-slate-100 rounded-lg p-3 space-y-2 border border-slate-200">
+              <div className="bg-slate-900/40 rounded-xl p-4 border border-slate-700/60 space-y-3">
                 {shapData ? (
                   <>
-                    {shapData.top_positive_contributors?.map((c: any, i: number) => (
-                      <div key={i} className="text-xs font-mono text-slate-700">
-                        {mapFeatureToLabel(c.feature, c.impact)}
-                      </div>
-                    ))}
-                    {shapData.top_negative_contributors?.map((c: any, i: number) => (
-                      <div key={i} className="text-xs font-mono text-slate-700">
-                        {mapFeatureToLabel(c.feature, c.impact)}
-                      </div>
-                    ))}
+                    {[...(shapData.top_positive_contributors || []), ...(shapData.top_negative_contributors || [])]
+                      .sort((a, b) => Math.abs(b.impact) - Math.abs(a.impact))
+                      .slice(0, 4)
+                      .map((c: any, i: number) => {
+                        const width = Math.min(100, Math.max(10, Math.abs(c.impact) * 100));
+                        return (
+                          <div key={i} className="flex flex-col gap-1">
+                            <div className="flex justify-between text-[10px] font-mono text-slate-300">
+                              <span>{mapFeatureToLabel(c.feature, c.impact).split(' (')[0]}</span>
+                              <span className="font-bold">{mapFeatureToLabel(c.feature, c.impact).split('(')[1]?.replace(')', '')}</span>
+                            </div>
+                            <div className="w-full h-1.5 bg-slate-800 rounded-full overflow-hidden">
+                              <motion.div 
+                                initial={{ width: 0 }}
+                                animate={{ width: `${width}%` }}
+                                className={`h-full rounded-full ${getShapColor(c.impact)}`}
+                              />
+                            </div>
+                          </div>
+                        );
+                    })}
                   </>
                 ) : (
-                  <div className="text-xs text-slate-400 font-mono animate-pulse">Calculating SHAP values from LRU Cache...</div>
+                  <div className="text-xs text-slate-500 font-mono animate-pulse">Calculating SHAP values from LRU Cache...</div>
                 )}
-              </div>
-            </div>
-
-            {/* Speed Reduction Metric */}
-            <div className="mb-6 p-4 rounded-xl border border-rose-500/30 bg-rose-500/10 backdrop-blur-md relative overflow-hidden group">
-              <div className="absolute inset-0 bg-gradient-to-r from-rose-600/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
-              <p className="text-[10px] text-rose-600 font-mono uppercase tracking-widest mb-1 relative z-10">
-                Traffic Speed Impact
-              </p>
-              <div className="flex items-end gap-2 relative z-10">
-                <span className="text-3xl font-black text-rose-700 font-mono leading-none tracking-tighter">
-                  -{analysis.speedReductionPercent.toFixed(1)}%
-                </span>
-              </div>
-              <div className="mt-2 text-[9px] text-slate-500 font-mono leading-tight relative z-10 border-t border-rose-500/20 pt-2">
-                <span className="text-slate-700 font-bold">Mathematical Model:</span> <br/>
-                <code className="text-rose-600/90 font-bold">Speed_Reduction = min(95%, (Choke% × 1.2) + (EPS × 0.3))</code>
               </div>
             </div>
 

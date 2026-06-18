@@ -5,10 +5,16 @@ interface MapState {
   setTargetHour: (hour: string) => void;
   selectedEdge: any | null;
   setSelectedEdge: (edge: any | null) => void;
+  selectedHeatmapZone: any | null;
+  setSelectedHeatmapZone: (zone: any | null) => void;
   isSimulatingResolution: boolean;
   setIsSimulatingResolution: (val: boolean) => void;
+  activeLayerMode: 'tactical' | 'heatmap';
+  setActiveLayerMode: (mode: 'tactical' | 'heatmap') => void;
+  isSimulationActive: boolean;
+  setIsSimulationActive: (val: boolean) => void;
   mapStyle: 'dark' | 'satellite' | 'light';
-  setMapStyle: (style: 'dark' | 'satellite') => void;
+  setMapStyle: (style: 'dark' | 'satellite' | 'light') => void;
   viewState: {
     longitude: number;
     latitude: number;
@@ -27,8 +33,14 @@ export const useMapStore = create<MapState>((set) => ({
   setTargetHour: (hour) => set({ targetHour: hour }),
   selectedEdge: null,
   setSelectedEdge: (edge) => set({ selectedEdge: edge }),
+  selectedHeatmapZone: null,
+  setSelectedHeatmapZone: (zone) => set({ selectedHeatmapZone: zone }),
   isSimulatingResolution: false,
   setIsSimulatingResolution: (val) => set({ isSimulatingResolution: val }),
+  activeLayerMode: 'tactical',
+  setActiveLayerMode: (mode) => set({ activeLayerMode: mode }),
+  isSimulationActive: false,
+  setIsSimulationActive: (val) => set({ isSimulationActive: val }),
   mapStyle: 'dark',
   setMapStyle: (style) => set({ mapStyle: style }),
   viewState: {

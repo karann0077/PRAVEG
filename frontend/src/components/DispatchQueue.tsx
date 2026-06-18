@@ -89,48 +89,33 @@ export default function DispatchQueue() {
   };
 
   return (
-    <>
-      {/* Toggle tab */}
-      <button
-        onClick={() => setOpen((o) => !o)}
-        className="absolute top-1/2 -translate-y-1/2 z-30 flex items-center gap-1 px-2 py-4 rounded-r-xl bg-slate-900/90 border border-l-0 border-slate-700/60 text-slate-400 hover:text-white transition-colors"
-        style={{
-          left: open ? 320 : 0,
-          backdropFilter: "blur(20px)",
-          transition: "left 0.35s cubic-bezier(0.4, 0, 0.2, 1)",
-        }}
-      >
-        {open ? <ChevronLeft className="w-4 h-4" /> : <ChevronRight className="w-4 h-4" />}
-      </button>
-
-      {/* Drawer panel */}
-      <AnimatePresence>
-        {open && (
-          <motion.div
-            key="drawer"
-            initial={{ x: -340 }}
-            animate={{ x: 0 }}
-            exit={{ x: -340 }}
-            transition={{ type: "spring", stiffness: 300, damping: 35 }}
-            className="absolute top-16 left-0 bottom-0 w-80 z-20 flex flex-col border-r border-slate-800/60"
-            style={{ background: "rgba(6,13,26,0.93)", backdropFilter: "blur(24px)" }}
-          >
-            {/* Header */}
-            <div className="flex items-center justify-between px-4 py-3 border-b border-slate-800/80">
-              <div className="flex items-center gap-2">
-                <div className="p-1.5 rounded-lg bg-rose-500/15 border border-rose-500/30">
-                  <AlertTriangle className="w-3.5 h-3.5 text-rose-400" />
-                </div>
-                <div>
-                  <p className="text-white font-bold text-[11px] uppercase tracking-widest">Active EPS Dispatch</p>
-                  <p className="text-slate-500 text-[9px] font-mono">{queue.length} segments ranked</p>
-                </div>
-              </div>
-              <div className="flex items-center gap-1.5">
-                <div className="w-1.5 h-1.5 bg-rose-500 rounded-full animate-pulse" />
-                <span className="text-[9px] text-rose-400 font-mono font-bold">LIVE</span>
-              </div>
+    <div className="absolute top-24 left-4 w-96 bottom-8 z-30 flex flex-col rounded-2xl border border-slate-700 shadow-2xl overflow-hidden bg-slate-800/80 backdrop-blur-md">
+      {/* Header */}
+      <div className="flex flex-col px-5 py-4 border-b border-slate-700/80 bg-slate-900/50">
+        <div className="flex items-center justify-between mb-4">
+          <div className="flex items-center gap-2">
+            <div className="p-1.5 rounded-lg bg-rose-500/20 border border-rose-500/40">
+              <AlertTriangle className="w-4 h-4 text-rose-400" />
             </div>
+            <div>
+              <p className="text-white font-bold text-xs uppercase tracking-widest">Active Dispatch</p>
+              <p className="text-slate-400 text-[10px] font-mono">{queue.length} critical segments</p>
+            </div>
+          </div>
+          <div className="flex items-center gap-1.5">
+            <div className="w-2 h-2 bg-rose-500 rounded-full animate-pulse shadow-[0_0_8px_rgba(244,63,94,0.8)]" />
+            <span className="text-[10px] text-rose-400 font-mono font-bold">LIVE</span>
+          </div>
+        </div>
+
+        <button 
+          onClick={() => console.log("Optimizing TSP Route...")}
+          className="w-full py-3 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-bold text-xs uppercase tracking-widest shadow-[0_4px_14px_rgba(79,70,229,0.4)] transition-all flex items-center justify-center gap-2"
+        >
+          <Radio className="w-4 h-4" />
+          Optimize Patrol Route
+        </button>
+      </div>
 
             {/* Cards */}
             <div className="flex-1 overflow-y-auto custom-scrollbar">
@@ -202,14 +187,11 @@ export default function DispatchQueue() {
             </div>
 
             {/* Footer */}
-            <div className="px-4 py-2.5 border-t border-slate-800/80">
-              <p className="text-slate-600 text-[9px] font-mono text-center">
-                LightGBM · OSM Road-Matched · 298K events
+            <div className="px-5 py-3 border-t border-slate-700/80 bg-slate-900/50">
+              <p className="text-slate-500 text-[10px] font-mono text-center">
+                LightGBM · MapmyIndia · 298K events
               </p>
             </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </>
+    </div>
   );
 }

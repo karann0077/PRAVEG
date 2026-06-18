@@ -48,7 +48,7 @@ export default function TimeMachine() {
   };
 
   return (
-    <div className="absolute top-24 right-4 z-50">
+    <div className="relative z-50">
       <AnimatePresence>
         {!isOpen ? (
           <motion.button
@@ -65,10 +65,7 @@ export default function TimeMachine() {
         ) : (
           <motion.div
             key="panel"
-            initial={{ opacity: 0, x: 20, filter: "blur(10px)" }}
-            animate={{ opacity: 1, x: 0, filter: "blur(0px)" }}
-            exit={{ opacity: 0, x: 20, filter: "blur(10px)" }}
-            className="w-80 rounded-2xl border border-slate-700/60 overflow-hidden"
+            className="absolute top-14 left-1/2 -translate-x-1/2 w-80 rounded-2xl border border-slate-700/60 overflow-hidden"
             style={{
               background: "rgba(8,15,30,0.85)",
               backdropFilter: "blur(24px)",
