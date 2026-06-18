@@ -72,7 +72,7 @@ def fetch_live_congestion(
 
 def enrich_with_live_traffic(
     predictions: pd.DataFrame,
-    top_pct: float = 0.15,
+    max_queries: int = 15,
 ) -> pd.Series:
     """Find top risk segments and fetch their live congestion multiplier."""
     
@@ -81,14 +81,18 @@ def enrich_with_live_traffic(
     rest_key = os.environ.get("MAPPLS_REST_KEY", DEFAULT_REST_KEY)
 
     token = get_auth_token(client_id, client_secret)
-    
     multipliers = pd.Series(1.0, index=predictions.index, dtype=float)
+
+    if not token:
+        logger.warning("No MapmyIndia token available. Bypassing live traffic queries to save time.")
+        return multipliers
+
     
-    # Identify top 15% high-risk segments based on raw predicted vehicle load
+    # Identify top highest-risk segments based on raw predicted vehicle load
     if not predictions.empty:
-        threshold = predictions["predicted_total"].quantile(1.0 - top_pct)
-        high_risk_mask = predictions["predicted_total"] >= threshold
-        high_risk_indices = predictions.index[high_risk_mask]
+        # Sort by predicted_total descending and take the top N
+        sorted_preds = predictions.sort_values("predicted_total", ascending=False)
+        high_risk_indices = sorted_preds.head(max_queries).index
         
         logger.info(f"Fetching MapmyIndia live traffic for {len(high_risk_indices)} top-risk segments.")
         

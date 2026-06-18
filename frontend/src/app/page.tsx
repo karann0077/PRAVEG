@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 import TacticalMap from "@/components/TacticalMap";
 import DispatchQueue from "@/components/DispatchQueue";
 import PhysicsInspector from "@/components/PhysicsInspector";
-import TimeScrubber from "@/components/TimeScrubber";
+import TimeMachine from "@/components/TimeMachine";
 import { useMapStore } from "@/store/useMapStore";
 import { ShieldAlert, Wifi, Brain, Database, Layers, Map as MapIcon, RotateCcw } from "lucide-react";
 
@@ -62,33 +62,7 @@ function MapControls() {
   );
 }
 
-function TrafficLegend() {
-  return (
-    <div
-      className="absolute bottom-36 right-16 z-30 rounded-xl border border-slate-700/40 px-3.5 py-3 text-[10px] font-mono"
-      style={{ background: "rgba(8,15,30,0.90)", backdropFilter: "blur(20px)" }}
-    >
-      <p className="text-slate-500 uppercase tracking-widest mb-2 text-[9px]">Traffic Impact</p>
-      <div className="space-y-1.5">
-        {[
-          { color: "bg-red-600 shadow-[0_0_8px_rgba(220,38,38,0.8)]", label: "Critical (≥90)" },
-          { color: "bg-orange-500", label: "High (≥70)" },
-          { color: "bg-orange-400", label: "Medium (≥50)" },
-          { color: "bg-yellow-400", label: "Watchlist (≥30)" },
-          { color: "bg-green-500", label: "Clear (<30)" },
-        ].map(({ color, label }) => (
-          <div key={label} className="flex items-center gap-2">
-            <div className={`w-7 h-2 rounded-full ${color}`} />
-            <span className="text-slate-400">{label}</span>
-          </div>
-        ))}
-      </div>
-      <p className="text-slate-700 text-[8px] mt-2 border-t border-slate-800 pt-1.5">
-        Right-drag → Tilt map
-      </p>
-    </div>
-  );
-}
+// TrafficLegend removed as requested by user
 
 export default function Home() {
   const [time, setTime] = useState("");
@@ -158,12 +132,11 @@ export default function Home() {
       {/* BOTTOM RIGHT: Physics Inspector */}
       <PhysicsInspector />
 
-      {/* BOTTOM CENTER: Time Scrubber */}
-      <TimeScrubber />
+      {/* TIME MACHINE (Upper Left corner internally inside the component) */}
+      <TimeMachine />
 
-      {/* RIGHT: Map controls + Legend */}
+      {/* RIGHT: Map controls */}
       <MapControls />
-      <TrafficLegend />
 
       {/* Scanline overlay */}
       <div

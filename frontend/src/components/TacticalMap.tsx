@@ -2,13 +2,14 @@
 
 import React, { useEffect, useState, useMemo } from "react";
 import DeckGL from "@deck.gl/react";
-import { GeoJsonLayer } from "@deck.gl/layers";
+import { GeoJsonLayer, ScatterplotLayer, ArcLayer } from "@deck.gl/layers";
 import { useMapStore } from "@/store/useMapStore";
 import Map from "react-map-gl/maplibre";
 import "maplibre-gl/dist/maplibre-gl.css";
 
 // Map style URLs
 const MAP_STYLES = {
+  light: "https://basemaps.cartocdn.com/gl/positron-gl-style/style.json",
   dark: "https://basemaps.cartocdn.com/gl/dark-matter-gl-style/style.json",
   satellite: {
     version: 8 as const,
@@ -37,21 +38,20 @@ const MAP_STYLES = {
   },
 };
 
-// Google Maps-style traffic coloring: green=free, yellow=slow, red=congested
+// Google Maps-style traffic coloring: matte semantic colors
 function getTrafficColor(eps: number): [number, number, number, number] {
-  if (eps >= 90) return [220, 30, 30, 255];    // Google red
-  if (eps >= 70) return [255, 80, 0, 255];      // Dark orange
-  if (eps >= 50) return [255, 165, 0, 255];     // Orange
-  if (eps >= 30) return [255, 220, 0, 255];     // Yellow
-  if (eps >= 10) return [100, 200, 50, 255];    // Light green
-  return [40, 167, 69, 255];                    // Green (clear)
+  if (eps >= 90) return [131, 24, 67, 255];     // Deep Burgundy
+  if (eps >= 70) return [239, 68, 68, 255];     // Standard Red
+  if (eps >= 50) return [234, 179, 8, 255];     // Mustard Yellow
+  if (eps >= 30) return [250, 204, 21, 255];    // Light Yellow
+  return [16, 185, 129, 255];                   // Matte Emerald Green
 }
 
 function getGlowColor(eps: number): [number, number, number, number] {
-  if (eps >= 90) return [220, 30, 30, 90];
-  if (eps >= 70) return [255, 80, 0, 70];
-  if (eps >= 50) return [255, 165, 0, 60];
-  if (eps >= 30) return [255, 220, 0, 40];
+  if (eps >= 90) return [131, 24, 67, 90];
+  if (eps >= 70) return [239, 68, 68, 70];
+  if (eps >= 50) return [234, 179, 8, 60];
+  if (eps >= 30) return [250, 204, 21, 40];
   return [0, 0, 0, 0]; // No glow for green roads
 }
 
@@ -60,27 +60,50 @@ function getLineWidth(eps: number): number {
   if (eps >= 70) return 5;
   if (eps >= 50) return 4;
   if (eps >= 30) return 4;
-  if (eps >= 10) return 3;
   return 3;
 }
 
 export default function TacticalMap() {
-  const { viewState, setViewState, setSelectedEdge, mapStyle } = useMapStore();
+  const { viewState, setViewState, selectedEdge, setSelectedEdge, mapStyle, targetHour, isSimulatingResolution } = useMapStore();
   const [geoData, setGeoData] = useState<any>(null);
+  const [poiData, setPoiData] = useState<any>(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch("/api/predictions")
+    fetch("/data/pois.geojson").then(r => r.json()).then(setPoiData).catch(() => {});
+  }, []);
+
+  useEffect(() => {
+    setLoading(true);
+    const hourParam = targetHour || "live";
+
+    fetch(`/api/predictions?hour=${hourParam}`)
       .then((r) => r.json())
       .then((data) => { setGeoData(data); setLoading(false); })
       .catch(() => setLoading(false));
-  }, []);
+  }, [targetHour]);
 
-  const currentStyle = mapStyle === "satellite" ? MAP_STYLES.satellite : MAP_STYLES.dark;
+  const currentStyle = mapStyle === "satellite" ? MAP_STYLES.satellite : mapStyle === "light" ? MAP_STYLES.light : MAP_STYLES.dark;
 
-  const layers = useMemo(() => [
-    // Outer glow halo — wide, transparent, for bloom effect
-    new GeoJsonLayer({
+  const layers = useMemo(() => {
+    let dispatchRouteData = [];
+    if (isSimulatingResolution && selectedEdge && selectedEdge.geometry) {
+      const coords = selectedEdge.geometry.coordinates;
+      let targetCoord = coords[0];
+      if (Array.isArray(targetCoord) && Array.isArray(targetCoord[0])) {
+        targetCoord = targetCoord[0]; // Handle MultiLineString
+      }
+      if (targetCoord) {
+        dispatchRouteData.push({
+          source: [77.585, 12.975], // Mock Cubbon Park Traffic Police Station
+          target: targetCoord
+        });
+      }
+    }
+
+    return [
+      // Outer glow halo — wide, transparent, for bloom effect
+      new GeoJsonLayer({
       id: "traffic-glow",
       data: geoData,
       pickable: false,
@@ -92,7 +115,21 @@ export default function TacticalMap() {
         const eps = d.properties?.eps ?? 0;
         return eps >= 30 ? getLineWidth(eps) * 3 : 0;
       },
-      getLineColor: (d: any) => getGlowColor(d.properties?.eps ?? 0),
+      getLineColor: (d: any) => {
+        const color = getGlowColor(d.properties?.eps ?? 0);
+        if (selectedEdge) {
+          if (selectedEdge.segment_id === d.properties.segment_id) {
+            return isSimulatingResolution ? [16, 185, 129, 90] : color;
+          }
+          if (d.properties.is_ripple && d.properties.source_bottleneck === selectedEdge.segment_id) {
+             return isSimulatingResolution ? [16, 185, 129, 90] : [239, 68, 68, 90]; // Green vs Red Glow
+          }
+          return [color[0], color[1], color[2], 0]; // Hide glow if another edge is selected
+        } else {
+          if (d.properties.is_ripple) return [0,0,0,0];
+        }
+        return color;
+      },
       lineCapRounded: true,
       lineJointRounded: true,
       updateTriggers: { getLineWidth: geoData, getLineColor: geoData },
@@ -109,15 +146,42 @@ export default function TacticalMap() {
       lineWidthUnits: "pixels",
       lineWidthMinPixels: 2,
       getLineWidth: (d: any) => getLineWidth(d.properties?.eps ?? 0),
-      getLineColor: (d: any) => getTrafficColor(d.properties?.eps ?? 0),
+      getLineColor: (d: any) => {
+        const color = getTrafficColor(d.properties?.eps ?? 0);
+        if (selectedEdge) {
+          if (selectedEdge.segment_id === d.properties.segment_id) {
+            return isSimulatingResolution ? [16, 185, 129, 255] : color;
+          }
+          if (d.properties.is_ripple && d.properties.source_bottleneck === selectedEdge.segment_id) {
+             return isSimulatingResolution ? [16, 185, 129, 255] : [239, 68, 68, 255]; // Green vs Red Line
+          }
+          return [color[0], color[1], color[2], 25]; // Fade to 10% opacity if another edge is selected
+        } else {
+          if (d.properties.is_ripple) return [0,0,0,0];
+        }
+        return color;
+      },
       lineCapRounded: true,
       lineJointRounded: true,
       onClick: (info: any) => {
-        setSelectedEdge(info.object ? info.object.properties : null);
+        setSelectedEdge(info.object ? { ...info.object.properties, geometry: info.object.geometry } : null);
       },
-      updateTriggers: { getLineWidth: geoData, getLineColor: geoData },
+      updateTriggers: { getLineWidth: geoData, getLineColor: [geoData, selectedEdge, isSimulatingResolution] },
     }),
-  ], [geoData, setSelectedEdge]);
+    new ArcLayer({
+      id: "dispatch-arc",
+      data: dispatchRouteData,
+      getSourcePosition: (d: any) => d.source,
+      getTargetPosition: (d: any) => d.target,
+      getSourceColor: [59, 130, 246, 255], // Police Blue
+      getTargetColor: [16, 185, 129, 255], // Emerald Green
+      getWidth: 6,
+      tilt: 45,
+      getHeight: 0.5,
+      visible: isSimulatingResolution,
+    }),
+    ];
+  }, [geoData, poiData, selectedEdge, setSelectedEdge]);
 
   return (
     <div className="absolute inset-0 w-full h-full">

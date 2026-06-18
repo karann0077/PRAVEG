@@ -135,6 +135,12 @@ def write_geojson(predictions: pd.DataFrame, path: str | Path, grid_size_deg: fl
             "map_matching_mode": str(row.get("map_matching_mode", "grid_fallback")),
             "road_name": str(row.get("road_name", "")),
             "osm_highway": str(row.get("osm_highway", "")),
+            "count_two_wheeler": float(row.get("count_two_wheeler", 0.0)),
+            "count_car": float(row.get("count_car", 0.0)),
+            "count_auto": float(row.get("count_auto", 0.0)),
+            "count_light_commercial": float(row.get("count_light_commercial", 0.0)),
+            "count_heavy": float(row.get("count_heavy", 0.0)),
+            "count_other": float(row.get("count_other", 0.0)),
         }
         geometry_wkt = row.get("geometry_wkt", "")
         geometry = None

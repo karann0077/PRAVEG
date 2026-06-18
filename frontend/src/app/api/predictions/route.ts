@@ -2,46 +2,68 @@ import { NextResponse } from "next/server";
 import { promises as fs } from "fs";
 import path from "path";
 
-export async function GET() {
-  try {
-    const jsonDirectory = path.join(process.cwd(), "..", "artifacts", "predictions");
-    const filePath = path.join(jsonDirectory, "predictions.geojson");
-    const fileContents = await fs.readFile(filePath, "utf8");
-    const data = JSON.parse(fileContents);
+export async function GET(request: Request) {
+  const { searchParams } = new URL(request.url);
+  const hourParam = searchParams.get("hour");
+  const hour = hourParam ? (hourParam === "live" ? "live" : parseInt(hourParam, 10).toString().padStart(2, "0")) : "live";
 
-    if (!data.features || data.features.length === 0) {
-      return NextResponse.json(data);
+  const jsonDirectory = path.join(process.cwd(), "..", "artifacts", "predictions");
+  const geojsonPath = path.join(jsonDirectory, `predictions_${hour}.geojson`);
+  const ripplePath = path.join(jsonDirectory, `ripples_${hour}.geojson`);
+
+  try {
+    let baseData = { type: "FeatureCollection", features: [] };
+    let rippleData = { type: "FeatureCollection", features: [] };
+
+    try {
+      const file = await fs.readFile(geojsonPath, "utf8");
+      baseData = JSON.parse(file);
+    } catch (e) {
+      // Fallback
+      try {
+        const fb = await fs.readFile(path.join(jsonDirectory, "predictions.geojson"), "utf8");
+        baseData = JSON.parse(fb);
+      } catch (err) {}
     }
 
-    // Always normalize EPS to 0–100 relative to dataset's own max
-    // so the UI always has visual variation regardless of prediction scale
-    const allEps = data.features.map((f: any) => parseFloat(f.properties.eps) || 0);
-    const maxEps = Math.max(...allEps);
-    const minEps = Math.min(...allEps);
-    const range = maxEps - minEps || 1;
+    try {
+      const file = await fs.readFile(ripplePath, "utf8");
+      rippleData = JSON.parse(file);
+    } catch (e) {}
 
-    data.features = data.features.map((f: any) => {
-      const rawEps = parseFloat(f.properties.eps) || 0;
-      // Normalize to 0–100, map the top 5% to 90–100 (Red), next 15% to 60–90 (Orange)
-      const normalized = ((rawEps - minEps) / range) * 100;
-      return {
-        ...f,
-        properties: {
-          ...f.properties,
-          raw_eps: rawEps,
-          eps: parseFloat(normalized.toFixed(2)),
-        },
-      };
+    // Normalize EPS for base data
+    if (baseData.features && baseData.features.length > 0) {
+      const allEps = baseData.features.map((f: any) => parseFloat(f.properties.eps) || 0);
+      const maxEps = Math.max(...allEps);
+      const minEps = Math.min(...allEps);
+      const range = maxEps - minEps || 1;
+
+      baseData.features = baseData.features.map((f: any) => {
+        const rawEps = parseFloat(f.properties.eps) || 0;
+        const normalized = ((rawEps - minEps) / range) * 100;
+        return {
+          ...f,
+          properties: {
+            ...f.properties,
+            raw_eps: rawEps,
+            eps: parseFloat(normalized.toFixed(2)),
+          },
+        };
+      });
+      baseData.features.sort((a: any, b: any) => b.properties.eps - a.properties.eps);
+    }
+
+    // Combine features (ripples don't need normalization since they use eps_spillover)
+    const combinedFeatures = [...(baseData.features || []), ...(rippleData.features || [])];
+
+    return NextResponse.json({
+      type: "FeatureCollection",
+      features: combinedFeatures
     });
-
-    // Sort: highest EPS first
-    data.features.sort((a: any, b: any) => b.properties.eps - a.properties.eps);
-
-    return NextResponse.json(data);
   } catch (error) {
-    console.error("Error reading predictions.geojson:", error);
+    console.error("Error reading predictions:", error);
     return NextResponse.json(
-      { error: "Failed to load spatial predictions data." },
+      { error: "Failed to load spatial data." },
       { status: 500 }
     );
   }

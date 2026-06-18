@@ -5,7 +5,9 @@ interface MapState {
   setTargetHour: (hour: string) => void;
   selectedEdge: any | null;
   setSelectedEdge: (edge: any | null) => void;
-  mapStyle: 'dark' | 'satellite';
+  isSimulatingResolution: boolean;
+  setIsSimulatingResolution: (val: boolean) => void;
+  mapStyle: 'dark' | 'satellite' | 'light';
   setMapStyle: (style: 'dark' | 'satellite') => void;
   viewState: {
     longitude: number;
@@ -19,10 +21,12 @@ interface MapState {
 }
 
 export const useMapStore = create<MapState>((set) => ({
-  targetHour: null,
+  targetHour: "live",
   setTargetHour: (hour) => set({ targetHour: hour }),
   selectedEdge: null,
   setSelectedEdge: (edge) => set({ selectedEdge: edge }),
+  isSimulatingResolution: false,
+  setIsSimulatingResolution: (val) => set({ isSimulatingResolution: val }),
   mapStyle: 'dark',
   setMapStyle: (style) => set({ mapStyle: style }),
   viewState: {

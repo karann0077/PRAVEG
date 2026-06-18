@@ -1,0 +1,18 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    { "type": "Feature", "properties": { "name": "Mallya Hospital", "type": "hospital" }, "geometry": { "type": "Point", "coordinates": [ 77.5925, 12.9698 ] } },
+    { "type": "Feature", "properties": { "name": "St. Joseph's College", "type": "school" }, "geometry": { "type": "Point", "coordinates": [ 77.5971, 12.9678 ] } },
+    { "type": "Feature", "properties": { "name": "UB City Mall", "type": "mall" }, "geometry": { "type": "Point", "coordinates": [ 77.5960, 12.9719 ] } },
+    { "type": "Feature", "properties": { "name": "Cubbon Park Metro", "type": "metro" }, "geometry": { "type": "Point", "coordinates": [ 77.5977, 12.9796 ] } },
+    { "type": "Feature", "properties": { "name": "MG Road Metro", "type": "metro" }, "geometry": { "type": "Point", "coordinates": [ 77.6019, 12.9752 ] } },
+    { "type": "Feature", "properties": { "name": "Bishop Cotton School", "type": "school" }, "geometry": { "type": "Point", "coordinates": [ 77.5985, 12.9658 ] } },
+    { "type": "Feature", "properties": { "name": "Garuda Mall", "type": "mall" }, "geometry": { "type": "Point", "coordinates": [ 77.6083, 12.9702 ] } },
+    { "type": "Feature", "properties": { "name": "Bowring Hospital", "type": "hospital" }, "geometry": { "type": "Point", "coordinates": [ 77.6033, 12.9836 ] } },
+    { "type": "Feature", "properties": { "name": "Indiranagar Metro", "type": "metro" }, "geometry": { "type": "Point", "coordinates": [ 77.6387, 12.9782 ] } },
+    { "type": "Feature", "properties": { "name": "Orion Mall", "type": "mall" }, "geometry": { "type": "Point", "coordinates": [ 77.5550, 13.0110 ] } },
+    { "type": "Feature", "properties": { "name": "Fortis Hospital", "type": "hospital" }, "geometry": { "type": "Point", "coordinates": [ 77.5970, 12.8940 ] } },
+    { "type": "Feature", "properties": { "name": "National Public School", "type": "school" }, "geometry": { "type": "Point", "coordinates": [ 77.6375, 12.9680 ] } },
+    { "type": "Feature", "properties": { "name": "Trinity Metro", "type": "metro" }, "geometry": { "type": "Point", "coordinates": [ 77.6175, 12.9729 ] } }
+  ]
+}

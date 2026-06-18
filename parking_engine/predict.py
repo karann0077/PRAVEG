@@ -26,6 +26,7 @@ def parse_args() -> argparse.Namespace:
         default=1.0,
         help="Optional live traffic multiplier, duration_in_traffic / duration.",
     )
+    parser.add_argument("--skip-live-traffic", action="store_true", help="Do not fetch live Mappls traffic.")
     parser.add_argument("--out-csv", default="artifacts/predictions/predictions.csv")
     parser.add_argument("--out-geojson", default="artifacts/predictions/predictions.geojson")
     return parser.parse_args()
@@ -53,7 +54,10 @@ def main() -> None:
     predicted["predicted_total"] = predicted[target_cols].sum(axis=1)
     
     # Fetch live traffic multipliers from MapmyIndia API for top 15% segments
-    live_multipliers = enrich_with_live_traffic(predicted)
+    if args.skip_live_traffic:
+        live_multipliers = args.live_congestion_multiplier
+    else:
+        live_multipliers = enrich_with_live_traffic(predicted)
     
     scored = score_predictions(
         predicted,

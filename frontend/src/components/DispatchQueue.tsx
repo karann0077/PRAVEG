@@ -7,11 +7,11 @@ import { motion, AnimatePresence } from "framer-motion";
 
 function EPSPill({ eps }: { eps: number }) {
   const bg =
-    eps >= 90 ? "bg-red-600" :
-    eps >= 70 ? "bg-orange-600" :
-    eps >= 50 ? "bg-orange-400" :
-    eps >= 30 ? "bg-yellow-500" :
-    "bg-green-600";
+    eps >= 90 ? "bg-[#831843]" :
+    eps >= 70 ? "bg-[#ef4444]" :
+    eps >= 50 ? "bg-[#eab308]" :
+    eps >= 30 ? "bg-[#facc15]" :
+    "bg-[#10b981]";
   const label =
     eps >= 90 ? "CRITICAL" :
     eps >= 70 ? "HIGH" :
@@ -27,23 +27,41 @@ function EPSPill({ eps }: { eps: number }) {
 }
 
 export default function DispatchQueue() {
-  const { flyTo, setSelectedEdge } = useMapStore();
+  const { flyTo, setSelectedEdge, targetHour } = useMapStore();
   const [queue, setQueue] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
   const [open, setOpen] = useState(true);
 
   useEffect(() => {
-    fetch("/api/predictions")
+    setLoading(true);
+    const hourParam = targetHour || "live";
+
+    fetch(`/api/predictions?hour=${hourParam}`)
       .then((r) => r.json())
       .then((data) => {
-        const features = (data.features || [])
-          .sort((a: any, b: any) => b.properties.eps - a.properties.eps)
-          .slice(0, 15);
-        setQueue(features);
+        if (data && data.features) {
+          const loaded = data.features.filter((f: any) => !f.properties.is_ripple).map((f: any) => ({
+            id: f.properties.segment_id,
+            roadName: f.properties.road_name || "Unknown Road",
+            roadClass: f.properties.road_class,
+            width: f.properties.road_width_m,
+            eps: f.properties.eps,
+            priorityBand: f.properties.priority_band,
+            action: f.properties.recommended_action,
+            geometry: f.geometry,
+            ...f.properties, // Capture all properties for physics inspector
+          }));
+          // setSegments(loaded);
+          const features = (data.features || [])
+            .filter((f: any) => !f.properties.is_ripple)
+            .sort((a: any, b: any) => b.properties.eps - a.properties.eps)
+            .slice(0, 15);
+          setQueue(features);
+        }
         setLoading(false);
       })
       .catch(() => setLoading(false));
-  }, []);
+  }, [targetHour]);
 
   const handleClick = (feature: any) => {
     const coords = feature.geometry?.coordinates || [];
@@ -113,11 +131,11 @@ export default function DispatchQueue() {
                     const p = feature.properties;
                     const eps: number = p.eps ?? 0;
                     const lineColor =
-                      eps >= 90 ? "border-l-red-600" :
-                      eps >= 70 ? "border-l-orange-500" :
-                      eps >= 50 ? "border-l-orange-400" :
-                      eps >= 30 ? "border-l-yellow-500" :
-                      "border-l-green-600";
+                      eps >= 90 ? "border-l-[#831843]" :
+                      eps >= 70 ? "border-l-[#ef4444]" :
+                      eps >= 50 ? "border-l-[#eab308]" :
+                      eps >= 30 ? "border-l-[#facc15]" :
+                      "border-l-[#10b981]";
 
                     return (
                       <motion.div
