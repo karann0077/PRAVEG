@@ -6,6 +6,7 @@ import { GeoJsonLayer, ArcLayer, PathLayer } from "@deck.gl/layers";
 import { HeatmapLayer, HexagonLayer } from "@deck.gl/aggregation-layers";
 import * as turf from '@turf/turf';
 import { useMapStore } from "@/store/useMapStore";
+import { motion } from "framer-motion";
 import Map from "react-map-gl/maplibre";
 import "maplibre-gl/dist/maplibre-gl.css";
 
@@ -167,15 +168,15 @@ export default function TacticalMap() {
         data: heatmapPoints,
         getPosition: (d: any) => d.position,
         getWeight: (d: any) => d.economic_loss,
-        radiusPixels: 50,
-        intensity: 1,
-        threshold: 0.1,
+        radiusPixels: 20, // Tighter radius for precision KDE
+        intensity: 2,   // Higher intensity
+        threshold: 0.05,
         colorRange: [
-          [15, 23, 42, 0],       // slate-900 (transparent)
-          [34, 211, 238, 150],   // Cyan
-          [14, 165, 233, 200],   // Sky Blue
-          [236, 72, 153, 255],   // Pink
-          [225, 29, 72, 255]     // Neon Red
+          [34, 197, 94, 50],     // Clear / Low Density (Green, 20%)
+          [6, 182, 212, 100],    // Cool
+          [168, 85, 247, 150],   // Medium
+          [236, 72, 153, 200],   // High
+          [239, 68, 68, 255]     // Critical / Danger
         ]
       }),
 
@@ -211,34 +212,65 @@ export default function TacticalMap() {
         }
       }),
 
-      // Original Tactical Traffic Lines via DeckGL
+      // Neon Glow Underlying Layer
+      isTactical && new GeoJsonLayer({
+        id: "traffic-glow",
+        data: geoData,
+        pickable: false,
+        stroked: true,
+        filled: false,
+        lineWidthUnits: "pixels",
+        getLineWidth: 12,
+        getLineColor: (d: any) => {
+          const eps = d.properties?.eps ?? 0;
+          if (selectedEdge) {
+            if (selectedEdge.segment_id === d.properties.segment_id) {
+              return isSimulatingResolution ? [16, 185, 129, 100] : [255, 255, 255, 100];
+            }
+            if (d.properties.is_ripple && d.properties.source_bottleneck === selectedEdge.segment_id) {
+               return isSimulatingResolution ? [16, 185, 129, 80] : [255, 42, 95, 80]; // Crimson glow
+            }
+            return [30, 30, 30, 0]; 
+          }
+          if (d.properties?.is_ripple) return [0,0,0,0];
+          
+          if (eps >= 70) return [239, 68, 68, 120]; // #ef4444 (Critical Glow)
+          if (eps >= 50) return [249, 115, 22, 100]; // #f97316 (Warning Glow)
+          return [34, 197, 94, 60]; // #22c55e (Clear Glow)
+        },
+        lineCapRounded: true,
+        lineJointRounded: true,
+        updateTriggers: { getLineColor: [geoData, selectedEdge, isSimulatingResolution] },
+      }),
+
+      // Original Tactical Traffic Lines (Core Line)
       isTactical && new GeoJsonLayer({
         id: "traffic-core",
         data: geoData,
         pickable: true,
         autoHighlight: true,
-        highlightColor: [255, 255, 255, 120],
+        highlightColor: [255, 255, 255, 200],
         stroked: true,
         filled: false,
         lineWidthUnits: "pixels",
-        lineWidthMinPixels: 2,
-        getLineWidth: 4,
+        lineWidthMinPixels: 1,
+        getLineWidth: 2, // Very thin core for the neon effect
         getLineColor: (d: any) => {
           const eps = d.properties?.eps ?? 0;
           if (selectedEdge) {
             if (selectedEdge.segment_id === d.properties.segment_id) {
-              return isSimulatingResolution ? [50, 255, 50, 255] : [255, 255, 255, 255];
+              return isSimulatingResolution ? [16, 185, 129, 255] : [255, 255, 255, 255];
             }
             if (d.properties.is_ripple && d.properties.source_bottleneck === selectedEdge.segment_id) {
-               return isSimulatingResolution ? [50, 255, 50, 255] : [255, 50, 50, 255];
+               return isSimulatingResolution ? [16, 185, 129, 255] : [255, 100, 140, 255]; // Bright pink-red core
             }
             return [100, 100, 100, 50]; // Fade
           }
           if (d.properties?.is_ripple) return [0,0,0,0];
           
-          if (eps >= 80) return [255, 50, 50, 255]; // Red
-          if (eps >= 50) return [255, 200, 50, 255]; // Yellow
-          return [50, 255, 50, 255]; // Green
+          if (eps >= 70) return [239, 68, 68, 255]; // Critical Core
+          if (eps >= 50) return [249, 115, 22, 255]; // Warning Core
+          return [34, 197, 94, 255]; // Clear Core
         },
         lineCapRounded: true,
         lineJointRounded: true,
@@ -248,17 +280,33 @@ export default function TacticalMap() {
         updateTriggers: { getLineColor: [geoData, selectedEdge, isSimulatingResolution] },
       }),
     
-    // TSP Patrol Route
+    // TSP Patrol Route - Outer Glow
     isTactical && new PathLayer({
-      id: 'tsp-patrol-route',
+      id: 'tsp-patrol-route-glow',
       data: tspPath,
       getPath: (d: any) => d.path,
-      getColor: (d: any) => d.color,
-      getWidth: 4,
+      getColor: [255, 255, 255, 38], // Outer 6px semi-transparent white (rgba 0.15)
+      getWidth: 6,
       widthUnits: "pixels",
       dashJustified: true,
       dashGapPickable: true,
-      getDashArray: [4, 4],
+      getDashArray: [20, 8],
+      dashOffset: dashOffset,
+      extensions: [new (require('@deck.gl/extensions').PathStyleExtension)({ dash: true })],
+      updateTriggers: { dashOffset: dashOffset }
+    }),
+
+    // TSP Patrol Route - Inner Core
+    isTactical && new PathLayer({
+      id: 'tsp-patrol-route-core',
+      data: tspPath,
+      getPath: (d: any) => d.path,
+      getColor: [59, 130, 246, 255], // Inner 2px electric blue (#3b82f6)
+      getWidth: 2,
+      widthUnits: "pixels",
+      dashJustified: true,
+      dashGapPickable: true,
+      getDashArray: [20, 8],
       dashOffset: dashOffset,
       extensions: [new (require('@deck.gl/extensions').PathStyleExtension)({ dash: true })],
       updateTriggers: { dashOffset: dashOffset }
@@ -280,7 +328,12 @@ export default function TacticalMap() {
   }, [geoData, poiData, selectedEdge, setSelectedEdge, activeLayerMode, dashOffset, isSimulatingResolution, heatmapPoints, isTactical, isHeatmap]);
 
   return (
-    <div className="absolute inset-0 w-full h-full">
+    <motion.div 
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 1.2, ease: "easeOut" }}
+      className="absolute inset-0 w-full h-full"
+    >
       <DeckGL
         viewState={viewState}
         onViewStateChange={({ viewState: vs }: any) => setViewState(vs)}
@@ -307,15 +360,15 @@ export default function TacticalMap() {
       </DeckGL>
 
       {loading && (
-        <div className="absolute inset-0 flex items-center justify-center bg-black/80 z-50">
+        <div className="absolute inset-0 flex items-center justify-center bg-[#0B0F1A]/80 backdrop-blur-sm z-50">
           <div className="flex flex-col items-center gap-4">
-            <div className="w-10 h-10 border-4 border-rose-500 border-t-transparent rounded-full animate-spin" />
-            <span className="text-slate-300 font-mono text-xs tracking-widest uppercase">
+            <div className="w-10 h-10 border-4 border-[#3b82f6] border-t-transparent rounded-full animate-spin" />
+            <span className="text-zinc-400 font-mono text-xs tracking-widest uppercase">
               Loading Spatial Intelligence...
             </span>
           </div>
         </div>
       )}
-    </div>
+    </motion.div>
   );
 }

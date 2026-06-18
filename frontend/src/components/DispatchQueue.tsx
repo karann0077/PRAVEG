@@ -2,16 +2,16 @@
 
 import React, { useEffect, useState, useRef } from "react";
 import { useMapStore } from "@/store/useMapStore";
-import { AlertTriangle, MapPin, Crosshair, ChevronLeft, ChevronRight, Radio } from "lucide-react";
+import { AlertTriangle, Crosshair, Map, Navigation, CheckCircle, AlertCircle, XCircle } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
 function EPSPill({ eps }: { eps: number }) {
   const bg =
-    eps >= 90 ? "bg-[#831843]" :
-    eps >= 70 ? "bg-[#ef4444]" :
-    eps >= 50 ? "bg-[#eab308]" :
-    eps >= 30 ? "bg-[#facc15]" :
-    "bg-[#10b981]";
+    eps >= 90 ? "bg-[#ef4444]/20 text-[#ef4444] border-[#ef4444]/30" :
+    eps >= 70 ? "bg-[#f97316]/20 text-[#f97316] border-[#f97316]/30" :
+    eps >= 50 ? "bg-[#eab308]/20 text-[#eab308] border-[#eab308]/30" :
+    eps >= 30 ? "bg-[#facc15]/20 text-[#facc15] border-[#facc15]/30" :
+    "bg-[#22c55e]/20 text-[#22c55e] border-[#22c55e]/30";
   const label =
     eps >= 90 ? "CRITICAL" :
     eps >= 70 ? "HIGH" :
@@ -19,8 +19,7 @@ function EPSPill({ eps }: { eps: number }) {
     eps >= 30 ? "WATCH" :
     "CLEAR";
   return (
-    <div className={`${bg} text-white text-[9px] font-black font-mono px-2 py-0.5 rounded-full flex items-center gap-1`}>
-      <span className="w-1.5 h-1.5 rounded-full bg-white/80 animate-pulse" />
+    <div className={`${bg} border text-[10px] font-bold uppercase tracking-wider px-1.5 py-0.5 rounded-[6px] flex items-center`}>
       {label}
     </div>
   );
@@ -73,31 +72,35 @@ export default function DispatchQueue() {
   };
 
   return (
-    <div className="absolute top-24 left-4 w-96 bottom-8 z-30 flex flex-col rounded-2xl border border-slate-700 shadow-2xl overflow-hidden bg-slate-800/80 backdrop-blur-md">
+    <div className="absolute top-[88px] left-0 w-[400px] bottom-0 z-30 flex flex-col bg-[#0B0F1A] border-r border-white/5 overflow-hidden">
       {/* Header */}
-      <div className="flex flex-col px-5 py-4 border-b border-slate-700/80 bg-slate-900/50">
-        <div className="flex items-center justify-between mb-4">
-          <div className="flex items-center gap-2">
-            <div className="p-1.5 rounded-lg bg-rose-500/20 border border-rose-500/40">
-              <AlertTriangle className="w-4 h-4 text-rose-400" />
+      <div className="flex flex-col px-6 py-5 border-b border-white/5 bg-[#0B0F1A]">
+        <div className="flex items-center justify-between mb-5">
+          <div className="flex items-center gap-3">
+            <div className="p-2 rounded-lg bg-[#3b82f6]/10 border border-[#3b82f6]/20">
+              <AlertTriangle className="w-4 h-4 text-[#3b82f6]" />
             </div>
             <div>
-              <p className="text-white font-bold text-xs uppercase tracking-widest">Active Dispatch</p>
-              <p className="text-slate-400 text-[10px] font-mono">{queue.length} critical segments</p>
+              <p className="text-white font-heading font-bold text-sm tracking-widest uppercase">Active Dispatch</p>
+              <p className="text-zinc-500 text-[11px] font-mono mt-0.5">{queue.length} critical segments pending</p>
             </div>
           </div>
-          <div className="flex items-center gap-1.5">
-            <div className="w-2 h-2 bg-rose-500 rounded-full animate-pulse shadow-[0_0_8px_rgba(244,63,94,0.8)]" />
-            <span className="text-[10px] text-rose-400 font-mono font-bold">LIVE</span>
+          <div className="flex flex-col items-end gap-1">
+            <div className="flex items-center gap-2">
+              <div className="w-2 h-2 rounded-full bg-[#ef4444] animate-pulse shadow-[0_0_0_0_rgba(239,68,68,0.35)]" style={{ animation: 'pulse-ring 2s cubic-bezier(0.4, 0, 0.6, 1) infinite' }} />
+              <span className="text-[10px] text-[#ef4444] font-mono font-bold uppercase tracking-widest">LIVE</span>
+            </div>
+            <span className="text-[9px] text-zinc-600 font-mono">Updated 2s ago</span>
           </div>
         </div>
 
-        <button 
-          onClick={() => console.log("Optimizing TSP Route...")}
-          className="w-full py-3 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-bold text-xs uppercase tracking-widest shadow-[0_4px_14px_rgba(79,70,229,0.4)] transition-all flex items-center justify-center gap-2"
-        >
-          <Radio className="w-4 h-4" />
-          Optimize Patrol Route
+        {/* Action Button */}
+        <button className="w-full flex items-center justify-center gap-2 bg-[#3b82f6] hover:bg-[#2563eb] text-white py-3 px-4 rounded-[6px] transition-colors font-medium text-[13px]">
+          <span className="relative flex h-2 w-2">
+            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
+            <span className="relative inline-flex rounded-full h-2 w-2 bg-white"></span>
+          </span>
+          Optimize patrol route
         </button>
       </div>
 
@@ -105,76 +108,81 @@ export default function DispatchQueue() {
             <div className="flex-1 overflow-y-auto custom-scrollbar">
               {loading ? (
                 <div className="flex items-center justify-center h-40">
-                  <div className="w-6 h-6 border-2 border-rose-500/60 border-t-transparent rounded-full animate-spin" />
+                  <div className="w-6 h-6 border-2 border-[#3b82f6]/60 border-t-transparent rounded-full animate-spin" />
                 </div>
               ) : queue.length === 0 ? (
-                <div className="flex flex-col items-center justify-center h-40 gap-2 text-slate-600">
-                  <Radio className="w-8 h-8 opacity-30" />
+                <div className="flex flex-col items-center justify-center h-40 gap-2 text-zinc-600">
+                  <Navigation className="w-8 h-8 opacity-30" />
                   <p className="text-xs font-mono">No active hotspots</p>
                 </div>
               ) : (
-                <div className="divide-y divide-slate-800/50">
+                <div className="divide-y divide-white/5">
+                  <AnimatePresence>
                   {queue.map((feature, idx) => {
                     const p = feature.properties;
                     const eps: number = p.eps ?? 0;
-                    const lineColor =
-                      eps >= 90 ? "border-l-[#831843]" :
-                      eps >= 70 ? "border-l-[#ef4444]" :
-                      eps >= 50 ? "border-l-[#eab308]" :
-                      eps >= 30 ? "border-l-[#facc15]" :
-                      "border-l-[#10b981]";
+                    const dotColor =
+                      eps >= 90 ? "bg-[#ef4444] shadow-[0_0_8px_rgba(239,68,68,0.6)]" :
+                      eps >= 70 ? "bg-[#f97316] shadow-[0_0_8px_rgba(249,115,22,0.6)]" :
+                      eps >= 50 ? "bg-[#eab308]" :
+                      eps >= 30 ? "bg-[#facc15]" :
+                      "bg-[#22c55e]";
+                    const isCritical = eps >= 70;
 
                     return (
                       <motion.div
+                        layout
                         key={p.segment_id}
                         initial={{ opacity: 0, x: -16 }}
                         animate={{ opacity: 1, x: 0 }}
+                        exit={{ opacity: 0, scale: 0.95 }}
                         transition={{ delay: idx * 0.04 }}
-                        whileHover={{ backgroundColor: "rgba(255,255,255,0.04)" }}
+                        whileHover={{ backgroundColor: "rgba(255,255,255,0.02)" }}
                         onClick={() => handleClick(feature)}
-                        className={`cursor-pointer px-4 py-3 border-l-[3px] ${lineColor} transition-all`}
+                        className={`cursor-pointer px-6 py-4 transition-all group relative overflow-hidden`}
                       >
-                        <div className="flex items-start justify-between gap-2 mb-1.5">
-                          <div className="flex items-start gap-1.5 min-w-0">
-                            <span className="text-slate-600 text-[10px] font-mono mt-0.5 flex-shrink-0">
+                        {/* Hover Reveal Actions Background */}
+                        <div className="absolute top-0 right-0 bottom-0 w-32 bg-gradient-to-l from-[#0B0F1A] via-[#0B0F1A] to-transparent translate-x-full group-hover:translate-x-0 transition-transform duration-200 ease-out z-10 flex items-center justify-end pr-4 gap-2">
+                          <button onClick={(e) => { e.stopPropagation(); handleFeedback(feature, "Yes"); }} className="p-1.5 hover:bg-emerald-500/20 text-zinc-500 hover:text-emerald-400 rounded-full transition-colors" title="Mark Resolved">
+                            <CheckCircle className="w-4 h-4" strokeWidth={1.5} />
+                          </button>
+                          <button onClick={(e) => { e.stopPropagation(); handleFeedback(feature, "Partial"); }} className="p-1.5 hover:bg-yellow-500/20 text-zinc-500 hover:text-yellow-400 rounded-full transition-colors" title="Needs Investigation">
+                            <AlertCircle className="w-4 h-4" strokeWidth={1.5} />
+                          </button>
+                          <button onClick={(e) => { e.stopPropagation(); handleFeedback(feature, "No"); }} className="p-1.5 hover:bg-rose-500/20 text-zinc-500 hover:text-rose-400 rounded-full transition-colors" title="Inaccurate">
+                            <XCircle className="w-4 h-4" strokeWidth={1.5} />
+                          </button>
+                        </div>
+
+                        <div className="flex items-center justify-between gap-3 relative z-0">
+                          <div className="flex items-center gap-3 min-w-0">
+                            {/* Sequence Number */}
+                            <span className="text-zinc-700 text-[10px] font-mono flex-shrink-0 w-4">
                               {String(idx + 1).padStart(2, "0")}
                             </span>
-                            <p className="text-slate-200 text-xs font-semibold leading-tight line-clamp-2">
+                            
+                            {/* Severity Dot */}
+                            <div className="relative flex items-center justify-center flex-shrink-0">
+                              {isCritical && <span className={`absolute inset-0 rounded-full animate-ping opacity-50 ${dotColor}`} />}
+                              <span className={`w-2 h-2 rounded-full ${dotColor}`} />
+                            </div>
+
+                            {/* Segment Name */}
+                            <p className="text-zinc-200 text-[14px] font-medium leading-tight truncate">
                               {p.road_name || (p.junction_name !== "No Junction" ? p.junction_name : null) || p.police_station || "Unknown"}
                             </p>
                           </div>
-                          <EPSPill eps={eps} />
-                        </div>
-
-                        <div className="pl-6 mt-2 flex items-center justify-between">
-                          <div className="flex items-center gap-2">
-                            <span className="text-[9px] text-slate-500 font-mono uppercase">Mark Resolved:</span>
-                            <button onClick={(e) => { e.stopPropagation(); handleFeedback(feature, "Yes"); }} className="p-1 hover:bg-emerald-500/20 text-slate-500 hover:text-emerald-400 rounded transition-colors" title="Accurate">
-                              👍
-                            </button>
-                            <button onClick={(e) => { e.stopPropagation(); handleFeedback(feature, "Partial"); }} className="p-1 hover:bg-yellow-500/20 text-slate-500 hover:text-yellow-400 rounded transition-colors" title="Partial">
-                              🤔
-                            </button>
-                            <button onClick={(e) => { e.stopPropagation(); handleFeedback(feature, "No"); }} className="p-1 hover:bg-rose-500/20 text-slate-500 hover:text-rose-400 rounded transition-colors" title="Inaccurate">
-                              👎
-                            </button>
-                          </div>
-                          <div className="flex items-center gap-1 text-slate-600 hover:text-cyan-400 transition-colors">
-                            <Crosshair className="w-3 h-3" />
+                          
+                          <div className="flex items-center gap-3">
+                            <EPSPill eps={eps} />
                           </div>
                         </div>
                       </motion.div>
                     );
                   })}
+                  </AnimatePresence>
                 </div>
               )}
-            </div>
-
-            {/* Footer */}
-            <div className="px-5 py-3 border-t border-slate-700/80 bg-slate-900/50">
-              <p className="text-slate-500 text-[10px] font-mono text-center">
-                LightGBM · MapmyIndia · 298K events
-              </p>
             </div>
     </div>
   );

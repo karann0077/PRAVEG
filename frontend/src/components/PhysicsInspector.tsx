@@ -3,7 +3,7 @@
 import React, { useMemo, useState } from "react";
 import { useMapStore } from "@/store/useMapStore";
 import { motion, AnimatePresence } from "framer-motion";
-import { X, Activity, Truck, AlertTriangle, ShieldAlert, Crosshair, Brain } from "lucide-react";
+import { X, Activity, Truck, AlertTriangle, ShieldAlert, Crosshair, Brain, Ruler, Navigation, Timer } from "lucide-react";
 
 const VEHICLE_WIDTHS: Record<string, number> = {
   heavy: 2.6,
@@ -17,6 +17,15 @@ const VEHICLE_WIDTHS: Record<string, number> = {
 export default function PhysicsInspector() {
   const { selectedEdge, setSelectedEdge, isSimulatingResolution, setIsSimulatingResolution, geoData, isSimulationActive, setIsSimulationActive } = useMapStore();
   const [shapData, setShapData] = useState<any>(null);
+  const [dispatchConfirm, setDispatchConfirm] = useState(false);
+
+  React.useEffect(() => {
+    let timer: NodeJS.Timeout;
+    if (dispatchConfirm) {
+      timer = setTimeout(() => setDispatchConfirm(false), 3000);
+    }
+    return () => clearTimeout(timer);
+  }, [dispatchConfirm]);
 
   React.useEffect(() => {
     if (selectedEdge) {
@@ -129,136 +138,139 @@ export default function PhysicsInspector() {
           animate={{ opacity: 1, x: 0 }}
           exit={{ opacity: 0, x: 20 }}
           transition={{ type: "spring", stiffness: 300, damping: 25 }}
-          className="absolute top-24 right-4 w-[400px] z-30 flex flex-col rounded-2xl border border-slate-700 shadow-2xl overflow-hidden bg-slate-800/80 backdrop-blur-md"
+          className="absolute top-24 right-4 w-[400px] z-30 flex flex-col rounded-2xl glass-panel overflow-hidden"
         >
           {/* Header */}
-          <div className="flex items-center justify-between px-5 py-4 border-b border-slate-700/80 bg-slate-900/50">
+          <div className="flex items-center justify-between px-5 py-4 border-b border-white/5 bg-black/20">
             <div>
-              <h3 className="text-white text-xs font-bold flex items-center gap-2 uppercase tracking-widest mb-1">
-                <Crosshair className="w-4 h-4 text-indigo-500" />
+              <h3 className="text-white text-[16px] font-heading font-bold flex items-center gap-2 uppercase tracking-widest mb-1.5">
+                <Crosshair className="w-4 h-4 text-[#3b82f6] drop-shadow-[0_0_8px_rgba(59,130,246,0.8)]" />
                 {selectedEdge.road_name || selectedEdge.junction_name || "Unknown Link"}
               </h3>
-              <p className="text-slate-400 text-[10px] font-mono">EPS {analysis.eps.toFixed(1)} ± 2.5</p>
+              
+              <div className="flex items-center gap-3">
+                <div className="flex items-center gap-2 bg-black/40 px-2 py-1 rounded-md border border-white/5">
+                  <div className="w-1.5 h-1.5 rounded-full bg-rose-500 animate-pulse" />
+                  <span className="text-[10px] font-mono text-zinc-300">EPS {analysis.eps.toFixed(1)}</span>
+                  <span className="text-[9px] font-mono text-zinc-500">± 2.5</span>
+                </div>
+              </div>
             </div>
             <button
               onClick={() => setSelectedEdge(null)}
-              className="p-1.5 rounded-full hover:bg-slate-700/50 text-slate-400 hover:text-white transition-colors"
+              className="p-1.5 rounded-full hover:bg-zinc-800 text-zinc-400 hover:text-white transition-colors"
             >
               <X className="w-4 h-4" />
             </button>
           </div>
 
-          <div className="p-5 overflow-y-auto custom-scrollbar max-h-[70vh]">
+          <div className="p-5 overflow-y-auto custom-scrollbar max-h-[70vh] space-y-5">
             {/* Economic Impact Card */}
-            <div className="mb-5 p-4 rounded-xl border border-slate-700 bg-slate-900/40 relative overflow-hidden group">
+            <div className="p-4 rounded-xl border border-white/5 bg-black/40 relative overflow-hidden group shadow-inner">
               <div className="absolute inset-0 bg-gradient-to-r from-rose-600/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
-              <div className="flex items-center justify-between mb-2 relative z-10">
-                <p className="text-[10px] text-slate-400 font-mono uppercase tracking-widest">
+              <div className="flex items-center justify-between mb-4 relative z-10">
+                <p className="text-[10px] text-zinc-400 font-mono uppercase tracking-widest">
                   Estimated Economic Loss
                 </p>
-                <button 
-                  onClick={() => setIsSimulationActive(!isSimulationActive)}
-                  className={`text-[9px] font-bold px-2 py-1 rounded-full uppercase tracking-wider transition-colors ${isSimulationActive ? 'bg-indigo-500/20 text-indigo-400 border border-indigo-500/30' : 'bg-slate-700 text-slate-300 hover:bg-slate-600'}`}
-                >
-                  {isSimulationActive ? 'Reset' : 'Simulate Enforcement'}
-                </button>
               </div>
-              <div className="relative z-10">
+              <div className="relative z-10 mb-4">
                 <AnimatePresence mode="popLayout">
                   <motion.span 
                     key={isSimulationActive ? 'green' : 'red'}
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -10 }}
-                    className={`text-3xl font-black font-mono leading-none tracking-tighter ${isSimulationActive ? 'text-emerald-500' : 'text-rose-500'}`}
+                    className={`text-[28px] font-black font-mono leading-none tracking-tighter ${isSimulationActive ? 'text-emerald-500' : 'text-[#ef4444]'}`}
                   >
-                    ₹{analysis.economicBleed.toLocaleString()} <span className="text-base text-slate-500 font-normal">/ hr</span>
+                    ₹{analysis.economicBleed.toLocaleString(undefined, { maximumFractionDigits: 0 })} <span className="text-sm text-zinc-500 font-normal">/ hr</span>
                   </motion.span>
                 </AnimatePresence>
               </div>
-            </div>
 
-              {/* EPS Circular Gauge */}
-              <div className="relative w-16 h-16 flex items-center justify-center">
-                <svg className="absolute inset-0 w-full h-full -rotate-90">
-                  <circle cx="32" cy="32" r="28" fill="none" stroke="#e2e8f0" strokeWidth="6" />
-                  <circle
-                    cx="32"
-                    cy="32"
-                    r="28"
-                    fill="none"
-                    stroke={analysis.eps >= 90 ? "#831843" : analysis.eps >= 70 ? "#ef4444" : "#eab308"}
-                    strokeWidth="6"
-                    strokeDasharray={`${(analysis.eps / 100) * 175} 175`}
-                    strokeLinecap="round"
-                    className="transition-all duration-1000"
+              {/* 7-day mini sparkline mock */}
+              <div className="flex items-end gap-1 h-8 mb-5 relative z-10 opacity-70">
+                {[30, 45, 20, 60, 80, 50, 90].map((h, i) => (
+                  <motion.div 
+                    key={i}
+                    initial={{ height: 0 }}
+                    animate={{ height: `${h}%` }}
+                    transition={{ delay: i * 0.05 }}
+                    className={`flex-1 rounded-t-sm ${i === 6 ? (isSimulationActive ? 'bg-emerald-500' : 'bg-rose-500') : 'bg-zinc-700'}`}
                   />
-                </svg>
-                <div className="flex flex-col items-center">
-                  <span className="text-slate-900 font-bold font-mono text-lg leading-none">{Math.round(analysis.eps)}</span>
-                  <span className="text-slate-500 text-[8px] font-mono uppercase">EPS</span>
-                </div>
+                ))}
               </div>
 
-            {/* Isometric 3D Visualization */}
-            <div className="relative h-40 bg-slate-900/60 rounded-xl overflow-hidden mb-5 flex items-center justify-center border border-slate-700 perspective-1000">
-              <div
-                className="relative w-[180px] h-[250px] preserve-3d"
-                style={{ transform: "rotateX(60deg) rotateZ(-45deg)" }}
+              <button 
+                onClick={() => setIsSimulationActive(!isSimulationActive)}
+                className={`w-full relative z-10 text-[11px] font-bold py-2.5 rounded-[6px] uppercase tracking-wider transition-colors ${isSimulationActive ? 'bg-zinc-800 text-zinc-300 hover:bg-zinc-700 border border-white/5' : 'bg-[#3b82f6]/20 text-[#3b82f6] border border-[#3b82f6]/30 hover:bg-[#3b82f6]/30'}`}
               >
-                {/* Road Base */}
-                <div className="absolute inset-0 bg-slate-800 border-2 border-slate-600 rounded-sm" />
-                
-                {/* Center Line */}
-                <div className="absolute inset-y-0 left-1/2 w-1 -translate-x-1/2 bg-[repeating-linear-gradient(0deg,transparent,transparent_10px,rgba(255,255,255,0.3)_10px,rgba(255,255,255,0.3)_20px)]" />
+                {isSimulationActive ? 'Reset Scenario' : 'Simulate Enforcement'}
+              </button>
+            </div>
 
-                {/* The Obstruction (Illegally Parked Vehicle) */}
-                <motion.div
-                  initial={{ z: 50, opacity: 0 }}
-                  animate={{ z: 0, opacity: 1, width: `${analysis.chokePercent}%` }}
-                  className="absolute bottom-1/2 left-2 bg-rose-600 rounded flex items-center justify-center shadow-[0_0_15px_rgba(225,29,72,0.5)]"
-                  style={{ height: '30px', transform: "translateZ(10px)" }}
+            {/* 2D Road Cross-Section Diagram */}
+            <div className="relative h-32 bg-[#0B0F1A] rounded-xl border border-white/5 shadow-inner overflow-hidden flex flex-col justify-center px-6">
+              <p className="absolute top-3 left-4 text-[9px] font-mono text-zinc-500 uppercase tracking-widest">Road Cross-Section</p>
+              
+              <div className="relative w-full h-12 mt-4 bg-zinc-900 border-y border-zinc-700 flex items-center">
+                {/* Center Dash */}
+                <div className="absolute inset-0 flex items-center justify-center">
+                   <div className="w-full border-t-2 border-dashed border-zinc-600/50" />
+                </div>
+
+                {/* Clear Segment */}
+                <motion.div 
+                  initial={{ width: 0 }}
+                  animate={{ width: `${100 - analysis.chokePercent}%` }}
+                  className="h-full bg-[#22c55e]/20 border-y-2 border-[#22c55e]/50 flex items-center justify-center relative"
                 >
-                  <div className="text-white text-[9px] font-bold rotate-90 opacity-80">{analysis.dominantVehicle.replace("_", " ")}</div>
+                  <span className="text-[10px] font-mono font-bold text-[#22c55e]">{analysis.clearance.toFixed(1)}m</span>
                 </motion.div>
 
-                {/* Simulated Queue of Cars trapped behind */}
-                {!isSimulationActive && (
-                  <div className="absolute bottom-4 left-2 w-[40%] flex flex-col gap-2">
-                    {[...Array(3)].map((_, i) => (
-                      <motion.div
-                        key={i}
-                        initial={{ y: 50, opacity: 0 }}
-                        animate={{ y: 0, opacity: 1 }}
-                        transition={{ delay: i * 0.2, repeat: Infinity, duration: 2 }}
-                        className="w-full h-6 bg-amber-500/80 rounded-sm shadow-lg"
-                        style={{ transform: "translateZ(5px)" }}
-                      />
-                    ))}
-                  </div>
-                )}
+                {/* Blocked Segment */}
+                <motion.div 
+                  initial={{ width: 0 }}
+                  animate={{ width: `${analysis.chokePercent}%` }}
+                  className="h-full bg-[#ef4444]/30 border-y-2 border-[#ef4444]/60 flex items-center justify-center relative"
+                >
+                  <span className="text-[10px] font-mono font-bold text-[#ef4444] whitespace-nowrap overflow-hidden px-1">
+                    {analysis.dominantVehicle.replace("_", " ")}
+                  </span>
+                </motion.div>
               </div>
             </div>
 
-            {/* Action Metrics */}
-            <div className="flex items-center justify-between mb-4 text-sm">
-              <div className="text-slate-600">
-                <span className="font-mono bg-slate-200 px-1.5 py-0.5 rounded mr-1">W</span> {analysis.roadWidth}m Road
+            {/* Labeled Stat Chips */}
+            <div className="flex items-center gap-2 text-sm">
+              <div className="flex-1 bg-black/40 border border-white/5 rounded-lg p-2.5 flex flex-col">
+                <span className="text-[10px] text-zinc-500 font-mono flex items-center gap-1.5 uppercase mb-1">
+                  <Ruler className="w-3 h-3" /> Width
+                </span>
+                <span className="text-zinc-200 font-mono font-bold text-xs">{analysis.roadWidth}m</span>
               </div>
-              <div className="text-slate-600">
-                <span className="font-mono bg-rose-100 text-rose-700 px-1.5 py-0.5 rounded mr-1">C</span> {analysis.chokePercent.toFixed(0)}% Choke
+              <div className="flex-1 bg-black/40 border border-white/5 rounded-lg p-2.5 flex flex-col relative overflow-hidden">
+                <div className={`absolute inset-0 opacity-10 ${analysis.chokePercent > 50 ? 'bg-[#ef4444]' : analysis.chokePercent > 25 ? 'bg-[#f97316]' : 'bg-zinc-500'}`} />
+                <span className="text-[10px] text-zinc-500 font-mono flex items-center gap-1.5 uppercase mb-1 relative z-10">
+                  <Activity className="w-3 h-3" /> Choke
+                </span>
+                <span className={`font-mono font-bold text-xs relative z-10 ${analysis.chokePercent > 50 ? 'text-[#ef4444]' : analysis.chokePercent > 25 ? 'text-[#f97316]' : 'text-zinc-200'}`}>
+                  {analysis.chokePercent.toFixed(0)}%
+                </span>
               </div>
-              <div className="text-slate-600">
-                <span className="font-mono bg-emerald-100 text-emerald-700 px-1.5 py-0.5 rounded mr-1">R</span> {analysis.clearance.toFixed(1)}m Left
+              <div className="flex-1 bg-black/40 border border-white/5 rounded-lg p-2.5 flex flex-col">
+                <span className="text-[10px] text-zinc-500 font-mono flex items-center gap-1.5 uppercase mb-1">
+                  <Navigation className="w-3 h-3" /> Lane left
+                </span>
+                <span className="text-[#22c55e] font-mono font-bold text-xs">{analysis.clearance.toFixed(1)}m</span>
               </div>
             </div>
 
             {/* Explainable AI (SHAP) Metrics */}
-            <div className="mb-5">
-              <p className="text-[10px] text-slate-400 font-mono uppercase tracking-widest mb-3 flex items-center gap-2">
+            <div>
+              <p className="text-[10px] text-zinc-400 font-mono uppercase tracking-widest mb-3 flex items-center gap-2">
                 <Brain className="w-3 h-3 text-indigo-400" /> AI Inference Drivers
               </p>
-              <div className="bg-slate-900/40 rounded-xl p-4 border border-slate-700/60 space-y-3">
+              <div className="bg-black/40 rounded-xl p-4 border border-white/5 space-y-4 shadow-inner">
                 {shapData ? (
                   <>
                     {[...(shapData.top_positive_contributors || []), ...(shapData.top_negative_contributors || [])]
@@ -267,16 +279,16 @@ export default function PhysicsInspector() {
                       .map((c: any, i: number) => {
                         const width = Math.min(100, Math.max(10, Math.abs(c.impact) * 100));
                         return (
-                          <div key={i} className="flex flex-col gap-1">
-                            <div className="flex justify-between text-[10px] font-mono text-slate-300">
+                          <div key={i} className="flex flex-col gap-1.5">
+                            <div className="flex justify-between text-[10px] font-mono text-zinc-300">
                               <span>{mapFeatureToLabel(c.feature, c.impact).split(' (')[0]}</span>
                               <span className="font-bold">{mapFeatureToLabel(c.feature, c.impact).split('(')[1]?.replace(')', '')}</span>
                             </div>
-                            <div className="w-full h-1.5 bg-slate-800 rounded-full overflow-hidden">
+                            <div className="w-full h-1 bg-zinc-800 rounded-full overflow-hidden">
                               <motion.div 
                                 initial={{ width: 0 }}
                                 animate={{ width: `${width}%` }}
-                                className={`h-full rounded-full ${getShapColor(c.impact)}`}
+                                className={`h-full rounded-full shadow-[0_0_8px_currentcolor] ${getShapColor(c.impact)}`}
                               />
                             </div>
                           </div>
@@ -284,30 +296,53 @@ export default function PhysicsInspector() {
                     })}
                   </>
                 ) : (
-                  <div className="text-xs text-slate-500 font-mono animate-pulse">Calculating SHAP values from LRU Cache...</div>
+                  <div className="flex flex-col gap-3">
+                    {[60, 80, 40].map((w, i) => (
+                      <div key={i} className="flex flex-col gap-1.5">
+                        <div className="w-1/3 h-2 bg-zinc-800/50 rounded animate-pulse" />
+                        <div className="w-full h-1 bg-zinc-800 rounded-full overflow-hidden">
+                          <div className={`h-full bg-zinc-700 animate-pulse`} style={{ width: `${w}%` }} />
+                        </div>
+                      </div>
+                    ))}
+                  </div>
                 )}
               </div>
             </div>
 
             {/* Dispatch Button */}
             <button
-              onClick={handleDispatch}
+              onClick={() => {
+                if (!dispatchConfirm) {
+                  setDispatchConfirm(true);
+                } else {
+                  setDispatchConfirm(false);
+                  handleDispatch();
+                }
+              }}
               disabled={isSimulatingResolution}
-              className={`w-full py-4 rounded-xl flex items-center justify-center gap-2 font-bold uppercase tracking-widest text-sm transition-all ${
+              className={`w-full py-4 mt-2 rounded-[6px] flex items-center justify-center gap-2 font-bold transition-all ${
                 isSimulatingResolution 
-                  ? "bg-emerald-600 text-white shadow-[0_0_20px_rgba(16,185,129,0.5)] cursor-not-allowed" 
-                  : "bg-rose-600 hover:bg-rose-700 text-white shadow-xl hover:shadow-rose-500/30"
+                  ? "bg-zinc-800 text-zinc-500 cursor-not-allowed border border-white/5" 
+                  : dispatchConfirm
+                  ? "bg-[#ef4444] text-white shadow-[0_0_20px_rgba(239,68,68,0.4)]"
+                  : "bg-[#f97316] hover:bg-[#ea580c] text-white shadow-[0_0_20px_rgba(249,115,22,0.3)]"
               }`}
             >
               {isSimulatingResolution ? (
                 <>
-                  <ShieldAlert className="w-5 h-5" />
-                  Tow Unit En Route... Resolving Queue
+                  <ShieldAlert className="w-4 h-4" />
+                  <span className="text-xs tracking-wider">Unit En Route</span>
+                </>
+              ) : dispatchConfirm ? (
+                <>
+                  <Timer className="w-4 h-4 animate-pulse" />
+                  <span className="text-[13px]">Confirm dispatch? (3s)</span>
                 </>
               ) : (
                 <>
-                  <ShieldAlert className="w-5 h-5" />
-                  Dispatch {analysis.dominantVehicle === "heavy" ? "Heavy-Duty" : ""} Tow Unit
+                  <ShieldAlert className="w-4 h-4" />
+                  <span className="text-[13px]">Dispatch tow unit</span>
                 </>
               )}
             </button>
