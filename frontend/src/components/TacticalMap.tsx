@@ -64,8 +64,7 @@ function getLineWidth(eps: number): number {
 }
 
 export default function TacticalMap() {
-  const { viewState, setViewState, selectedEdge, setSelectedEdge, mapStyle, targetHour, isSimulatingResolution } = useMapStore();
-  const [geoData, setGeoData] = useState<any>(null);
+  const { viewState, setViewState, selectedEdge, setSelectedEdge, mapStyle, targetHour, isSimulatingResolution, geoData, setGeoData } = useMapStore();
   const [poiData, setPoiData] = useState<any>(null);
   const [loading, setLoading] = useState(true);
 

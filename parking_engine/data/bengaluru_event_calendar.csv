@@ -1,0 +1,8 @@
+event_id,venue,start_ts,end_ts,label
+seed_chinnaswamy_2026_04_18,M. Chinnaswamy Stadium,2026-04-18T17:00:00+05:30,2026-04-18T23:30:00+05:30,Cricket match
+seed_kanteerava_2026_05_03,Kanteerava Stadium,2026-05-03T16:00:00+05:30,2026-05-03T22:00:00+05:30,Football fixture
+seed_palace_grounds_2026_06_08,Palace Grounds,2026-06-08T10:00:00+05:30,2026-06-08T21:00:00+05:30,Consumer expo
+seed_biec_2026_06_18,BIEC,2026-06-18T09:00:00+05:30,2026-06-18T18:00:00+05:30,Trade fair
+seed_ktpo_2026_07_11,KTPO Trade Centre,2026-07-11T09:00:00+05:30,2026-07-11T19:00:00+05:30,Technology summit
+seed_nimhans_2026_08_22,NIMHANS Convention Centre,2026-08-22T08:00:00+05:30,2026-08-22T17:00:00+05:30,Medical conference
+seed_manpho_2026_09_05,Manpho Convention Centre,2026-09-05T10:00:00+05:30,2026-09-05T22:00:00+05:30,Corporate conference

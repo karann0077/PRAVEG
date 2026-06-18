@@ -70,6 +70,24 @@ export default function DispatchQueue() {
     setSelectedEdge(feature.properties);
   };
 
+  const handleFeedback = async (feature: any, accuracy: string) => {
+    try {
+      await fetch("/api/feedback", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          edge_id: feature.properties.segment_id,
+          predicted_eps: feature.properties.eps,
+          actual_accuracy: accuracy,
+        })
+      });
+      // Remove from queue locally
+      setQueue((q) => q.filter((f) => f.properties.segment_id !== feature.properties.segment_id));
+    } catch (e) {
+      console.error("Feedback failed", e);
+    }
+  };
+
   return (
     <>
       {/* Toggle tab */}
@@ -159,10 +177,18 @@ export default function DispatchQueue() {
                           <EPSPill eps={eps} />
                         </div>
 
-                        <div className="pl-6 flex items-center justify-between text-[10px]">
-                          <div className="flex items-center gap-3 text-slate-500">
-                            <span className="capitalize font-mono">{p.road_class}</span>
-                            <span>{p.road_width_m}m wide</span>
+                        <div className="pl-6 mt-2 flex items-center justify-between">
+                          <div className="flex items-center gap-2">
+                            <span className="text-[9px] text-slate-500 font-mono uppercase">Mark Resolved:</span>
+                            <button onClick={(e) => { e.stopPropagation(); handleFeedback(feature, "Yes"); }} className="p-1 hover:bg-emerald-500/20 text-slate-500 hover:text-emerald-400 rounded transition-colors" title="Accurate">
+                              👍
+                            </button>
+                            <button onClick={(e) => { e.stopPropagation(); handleFeedback(feature, "Partial"); }} className="p-1 hover:bg-yellow-500/20 text-slate-500 hover:text-yellow-400 rounded transition-colors" title="Partial">
+                              🤔
+                            </button>
+                            <button onClick={(e) => { e.stopPropagation(); handleFeedback(feature, "No"); }} className="p-1 hover:bg-rose-500/20 text-slate-500 hover:text-rose-400 rounded transition-colors" title="Inaccurate">
+                              👎
+                            </button>
                           </div>
                           <div className="flex items-center gap-1 text-slate-600 hover:text-cyan-400 transition-colors">
                             <Crosshair className="w-3 h-3" />

@@ -10,7 +10,7 @@ import numpy as np
 import pandas as pd
 from lightgbm import LGBMRegressor
 from sklearn.metrics import average_precision_score, mean_absolute_error, mean_squared_error, roc_auc_score
-from sklearn.multioutput import MultiOutputRegressor
+from sklearn.multioutput import RegressorChain
 
 from .config import CATEGORICAL_COLUMNS, FEATURE_COLUMNS, TARGET_COLUMNS
 from .features import FeatureContext, add_features, apply_category_levels
@@ -21,8 +21,8 @@ def make_model(
     learning_rate: float = 0.045,
     num_leaves: int = 63,
     random_state: int = 42,
-) -> MultiOutputRegressor:
-    """Create the multi-output LightGBM count forecaster."""
+) -> RegressorChain:
+    """Create the multi-output LightGBM count forecaster using RegressorChain."""
 
     base = LGBMRegressor(
         objective="poisson",
@@ -38,7 +38,9 @@ def make_model(
         n_jobs=-1,
         verbosity=-1,
     )
-    return MultiOutputRegressor(base, n_jobs=1)
+    # The exact strict physical exclusion order requested:
+    # 1: count_car, 0: count_two_wheeler, 4: count_heavy, 2: count_auto, 3: count_light_commercial, 5: count_other
+    return RegressorChain(base, order=[1, 0, 4, 2, 3, 5], cv=5)
 
 
 def train_model(
@@ -47,7 +49,7 @@ def train_model(
     cutoff_hour: pd.Timestamp,
     n_estimators: int,
     random_state: int,
-) -> tuple[MultiOutputRegressor, dict[str, object], pd.DataFrame]:
+) -> tuple[RegressorChain, dict[str, object], pd.DataFrame]:
     """Build features, train the model, and return metrics."""
 
     features = add_features(training_rows, context)
@@ -124,7 +126,7 @@ def _hotspot_ranking_metrics(true_total: np.ndarray, pred_total: np.ndarray) -> 
 
 
 def predict_feature_frame(
-    model: MultiOutputRegressor,
+    model: RegressorChain,
     feature_frame: pd.DataFrame,
     category_levels: dict[str, list[str]],
 ) -> pd.DataFrame:

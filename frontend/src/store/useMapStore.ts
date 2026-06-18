@@ -18,6 +18,8 @@ interface MapState {
   };
   setViewState: (viewState: any) => void;
   flyTo: (longitude: number, latitude: number, zoom?: number) => void;
+  geoData: any | null;
+  setGeoData: (data: any | null) => void;
 }
 
 export const useMapStore = create<MapState>((set) => ({
@@ -47,4 +49,6 @@ export const useMapStore = create<MapState>((set) => ({
         pitch: 45,
       },
     })),
+  geoData: null,
+  setGeoData: (data) => set({ geoData: data }),
 }));

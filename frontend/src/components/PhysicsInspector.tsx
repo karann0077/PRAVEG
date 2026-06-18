@@ -15,7 +15,30 @@ const VEHICLE_WIDTHS: Record<string, number> = {
 };
 
 export default function PhysicsInspector() {
-  const { selectedEdge, setSelectedEdge, isSimulatingResolution, setIsSimulatingResolution } = useMapStore();
+  const { selectedEdge, setSelectedEdge, isSimulatingResolution, setIsSimulatingResolution, geoData } = useMapStore();
+  const [shapData, setShapData] = useState<any>(null);
+
+  React.useEffect(() => {
+    if (selectedEdge) {
+      setShapData(null);
+      fetch(`/api/explain?segment_id=${selectedEdge.segment_id}`)
+        .then(r => r.json())
+        .then(d => {
+          if (d.data) setShapData(d.data);
+        })
+        .catch(console.error);
+    }
+  }, [selectedEdge]);
+
+  const mapFeatureToLabel = (f: string, impact: number) => {
+    if (f === "event_impact_score") return `🔴 High Event Proximity (+${(Math.abs(impact) * 100).toFixed(0)}% Risk)`;
+    if (f === "overflow_risk_index") return `🔴 Commercial Hub Overflow (+${(Math.abs(impact) * 100).toFixed(0)}% Risk)`;
+    if (f === "rain_shelter_bottleneck") return `🔴 Rain Shelter Bottleneck (+${(Math.abs(impact) * 100).toFixed(0)}% Risk)`;
+    if (f === "dist_to_commercial_m") return `🔴 Near Commercial Zone (+${(Math.abs(impact) * 100).toFixed(0)}% Risk)`;
+    if (f === "dist_to_metro_m") return `🔴 Near Transit Hub (+${(Math.abs(impact) * 100).toFixed(0)}% Risk)`;
+    if (f === "is_raining") return impact < 0 ? `🟢 Clear Weather (-${(Math.abs(impact) * 100).toFixed(0)}% Risk)` : `🔴 Rain Hazard (+${(Math.abs(impact) * 100).toFixed(0)}% Risk)`;
+    return impact > 0 ? `🔴 ${f} (+${(Math.abs(impact) * 100).toFixed(0)}% Risk)` : `🟢 ${f} (-${(Math.abs(impact) * 100).toFixed(0)}% Risk)`;
+  };
 
   const analysis = useMemo(() => {
     if (!selectedEdge) return null;
@@ -54,7 +77,24 @@ export default function PhysicsInspector() {
 
   const handleDispatch = () => {
     setIsSimulatingResolution(true);
-    // In Reform 5 we will add routing here
+    
+    // SMART ROUTING FEATURE: Collect red lines to avoid
+    let avoidPolygons: any[] = [];
+    if (geoData && geoData.features) {
+      avoidPolygons = geoData.features
+        .filter((f: any) => f.properties.eps > 70)
+        .map((f: any) => f.geometry);
+    }
+    
+    console.log("SMART ROUTING REQUEST: Dispatching tow truck...");
+    console.log(`Passing ${avoidPolygons.length} 'Red Lines' (EPS > 70) to Routing API as 'avoid_polygons'`);
+    console.log(JSON.stringify({
+      start: [77.585, 12.975], // Police Station
+      end: selectedEdge.geometry?.coordinates[0],
+      avoid_polygons: avoidPolygons
+    }));
+
+    // Simulate resolution time
     setTimeout(() => {
       setIsSimulatingResolution(false);
       setSelectedEdge(null);
@@ -180,6 +220,31 @@ export default function PhysicsInspector() {
               </div>
               <div className="text-slate-600">
                 <span className="font-mono bg-emerald-100 text-emerald-700 px-1.5 py-0.5 rounded mr-1">R</span> {analysis.clearance.toFixed(1)}m Left
+              </div>
+            </div>
+
+            {/* Explainable AI (SHAP) Metrics */}
+            <div className="mb-4">
+              <p className="text-[10px] text-slate-500 font-mono uppercase tracking-widest mb-2">
+                AI Inference Drivers (SHAP)
+              </p>
+              <div className="bg-slate-100 rounded-lg p-3 space-y-2 border border-slate-200">
+                {shapData ? (
+                  <>
+                    {shapData.top_positive_contributors?.map((c: any, i: number) => (
+                      <div key={i} className="text-xs font-mono text-slate-700">
+                        {mapFeatureToLabel(c.feature, c.impact)}
+                      </div>
+                    ))}
+                    {shapData.top_negative_contributors?.map((c: any, i: number) => (
+                      <div key={i} className="text-xs font-mono text-slate-700">
+                        {mapFeatureToLabel(c.feature, c.impact)}
+                      </div>
+                    ))}
+                  </>
+                ) : (
+                  <div className="text-xs text-slate-400 font-mono animate-pulse">Calculating SHAP values from LRU Cache...</div>
+                )}
               </div>
             </div>
 
