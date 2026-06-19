@@ -51,7 +51,7 @@ export async function GET(request: Request) {
   }
 
   try {
-    const response = await fetch(`http://localhost:8000/explain?segment_id=${segmentId}&target_hour=${targetHour}`);
+    const response = await fetch(`${(process.env.BACKEND_URL || "http://localhost:8000").replace(/\/$/, "")}/explain?segment_id=${segmentId}&target_hour=${targetHour}`);
     if (!response.ok) {
       const errorText = await response.text();
       throw new Error(`FastAPI returned ${response.status}: ${errorText}`);

@@ -9,7 +9,7 @@ export async function GET(request: Request) {
   }
 
   try {
-    const response = await fetch(`http://localhost:8000/resolve_impact?segment_id=${encodeURIComponent(segmentId)}`);
+    const response = await fetch(`${(process.env.BACKEND_URL || "http://localhost:8000").replace(/\/$/, "")}/resolve_impact?segment_id=${encodeURIComponent(segmentId)}`);
     if (!response.ok) {
       const errorText = await response.text();
       throw new Error(`FastAPI returned ${response.status}: ${errorText}`);

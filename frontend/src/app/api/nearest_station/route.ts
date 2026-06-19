@@ -9,7 +9,7 @@ export async function GET(request: Request) {
   }
 
   try {
-    const response = await fetch(`http://localhost:8000/nearest_station?segment_id=${encodeURIComponent(segmentId)}`);
+    const response = await fetch(`${(process.env.BACKEND_URL || "http://localhost:8000").replace(/\/$/, "")}/nearest_station?segment_id=${encodeURIComponent(segmentId)}`);
     if (!response.ok) {
       const errorText = await response.text();
       throw new Error(`FastAPI returned ${response.status}: ${errorText}`);

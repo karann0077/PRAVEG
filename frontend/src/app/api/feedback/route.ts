@@ -9,7 +9,7 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: "Missing required fields" }, { status: 400 });
     }
 
-    const response = await fetch("http://localhost:8000/feedback", {
+    const response = await fetch(`${(process.env.BACKEND_URL || "http://localhost:8000").replace(/\/$/, "")}/feedback`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

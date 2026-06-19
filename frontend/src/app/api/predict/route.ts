@@ -12,7 +12,7 @@ export async function GET(request: Request) {
   }
 
   try {
-    let url = `http://localhost:8000/predict?datetime=${encodeURIComponent(datetime)}&top_k=${topK}`;
+    let url = `${(process.env.BACKEND_URL || "http://localhost:8000").replace(/\/$/, "")}/predict?datetime=${encodeURIComponent(datetime)}&top_k=${topK}`;
     if (lat && lon) {
         url += `&lat=${lat}&lon=${lon}`;
     }
