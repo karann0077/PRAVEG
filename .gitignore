@@ -56,3 +56,15 @@ artifacts/parking_model/
 # OS specific files
 .DS_Store
 Thumbs.db
+
+# Logs and debug files
+*.log
+
+# Diffs and temporary texts
+diff*.txt
+
+# Machine Learning Training outputs
+catboost_info/
+
+# Artifacts & Workspaces
+/artifacts/
