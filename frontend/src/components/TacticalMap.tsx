@@ -151,17 +151,6 @@ export default function TacticalMap() {
         path: patrolRouteGeometry,
         color: [59, 130, 246, 255] // Vibrant Blue
       });
-    } else if (geoData && geoData.features) {
-      const hotspots = geoData.features
-        .filter((f: any) => f.properties.eps > 80)
-        .slice(0, 5)
-        .map((f: any) => f.geometry.coordinates[0]);
-      if (hotspots.length > 0) {
-        tspPath.push({
-          path: [[77.585, 12.975], ...hotspots.map((c: any) => Array.isArray(c[0]) ? c[0] : c)],
-          color: [59, 130, 246, 255] // Vibrant Blue
-        });
-      }
     }
 
     return [
