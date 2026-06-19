@@ -69,3 +69,4 @@ catboost_info/
 # Keep the final OSM model and predictions
 !artifacts/parking_model_osm/
 !artifacts/predictions/
+!dataset/police_stations.csv
