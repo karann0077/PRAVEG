@@ -20,6 +20,7 @@ from __future__ import annotations
 import json
 import sqlite3
 import threading
+import subprocess
 from contextlib import asynccontextmanager
 from pathlib import Path
 from typing import Optional
@@ -93,7 +94,24 @@ async def lifespan(app: FastAPI):
     Path("artifacts").mkdir(exist_ok=True)
     _get_db()   # Pre-warm the main-thread connection
 
+    print("Starting live_traffic_daemon.py in background...")
+    daemon_process = subprocess.Popen(["python", "live_traffic_daemon.py"])
+
+    print("Starting run_batch.py in background thread...")
+    def run_batch_bg():
+        try:
+            subprocess.run(["python", "run_batch.py"], check=True)
+        except Exception as e:
+            print("Error running batch predictions:", e)
+    threading.Thread(target=run_batch_bg, daemon=True).start()
+
     yield
+
+    print("Terminating background processes...")
+    try:
+        daemon_process.terminate()
+    except:
+        pass
 
     if hasattr(_db_local, "conn") and _db_local.conn:
         _db_local.conn.close()
