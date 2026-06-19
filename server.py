@@ -327,24 +327,36 @@ def nearest_station_endpoint(
         raise HTTPException(status_code=404, detail=f"Segment {segment_id} not found")
 
     row = segment_row.iloc[0]
-    station_name = str(row.get("police_station", "Unknown"))
     seg_lat = float(row.get("lat_center", 0))
     seg_lon = float(row.get("lon_center", 0))
 
-    # Estimate station location: centroid of all segments under this station
-    station_segments = meta[meta["police_station"].astype(str) == station_name]
-    if not station_segments.empty:
-        station_lat = float(station_segments["lat_center"].mean())
-        station_lon = float(station_segments["lon_center"].mean())
-    else:
-        station_lat, station_lon = seg_lat, seg_lon
-
-    # Haversine distance
+    # Load actual traffic police stations
+    stations_path = Path("dataset/police_stations.csv")
+    if not stations_path.exists():
+        raise HTTPException(status_code=500, detail="Police stations dataset not found")
+        
+    stations_df = pd.read_csv(stations_path)
+    
+    # Calculate Haversine distance to all stations
     import math
-    dlat = math.radians(station_lat - seg_lat)
-    dlon = math.radians(station_lon - seg_lon)
-    a = math.sin(dlat / 2) ** 2 + math.cos(math.radians(seg_lat)) * math.cos(math.radians(station_lat)) * math.sin(dlon / 2) ** 2
-    distance_m = 2 * 6_371_000 * math.asin(math.sqrt(a))
+    def haversine(lat1, lon1, lat2, lon2):
+        lat1, lon1, lat2, lon2 = map(math.radians, [lat1, lon1, lat2, lon2])
+        dlat = lat2 - lat1
+        dlon = lon2 - lon1
+        a = math.sin(dlat / 2) ** 2 + math.cos(lat1) * math.cos(lat2) * math.sin(dlon / 2) ** 2
+        return 2 * 6371000 * math.asin(math.sqrt(a))
+        
+    distances = stations_df.apply(
+        lambda r: haversine(seg_lat, seg_lon, float(r["latitude"]), float(r["longitude"])), axis=1
+    )
+    
+    nearest_idx = distances.idxmin()
+    nearest_station = stations_df.loc[nearest_idx]
+    
+    station_name = nearest_station["matched_name"]
+    station_lat = float(nearest_station["latitude"])
+    station_lon = float(nearest_station["longitude"])
+    distance_m = float(distances.loc[nearest_idx])
 
     # ETA at city average speed (15 km/h in congested Bengaluru)
     eta_minutes = max(3, round((distance_m / 1000.0) / 15.0 * 60.0))
@@ -356,7 +368,6 @@ def nearest_station_endpoint(
         "eta_minutes": eta_minutes,
         "station_location": {"lat": station_lat, "lon": station_lon},
     }
-
 
 if __name__ == "__main__":
     uvicorn.run("server:app", host="0.0.0.0", port=8000, reload=False)

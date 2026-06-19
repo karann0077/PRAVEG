@@ -48,3 +48,7 @@ INFO:     127.0.0.1:49167 - "GET /nearest_station?segment_id=osm_way_1219710436 
 INFO:     127.0.0.1:50399 - "GET /nearest_station?segment_id=osm_way_1329637596 HTTP/1.1" 200 OK
 INFO:     127.0.0.1:50467 - "GET /nearest_station?segment_id=osm_way_1219710436 HTTP/1.1" 200 OK
 INFO:     127.0.0.1:50482 - "GET /resolve_impact?segment_id=osm_way_1219710436 HTTP/1.1" 200 OK
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [63697]

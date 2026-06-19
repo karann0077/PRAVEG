@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState, useMemo } from "react";
 import DeckGL from "@deck.gl/react";
-import { GeoJsonLayer, ArcLayer, PathLayer } from "@deck.gl/layers";
+import { GeoJsonLayer, ArcLayer, PathLayer, TextLayer } from "@deck.gl/layers";
 import { HeatmapLayer, HexagonLayer } from "@deck.gl/aggregation-layers";
 import * as turf from '@turf/turf';
 import { useMapStore } from "@/store/useMapStore";
@@ -288,15 +288,9 @@ export default function TacticalMap() {
       id: 'tsp-patrol-route-glow',
       data: tspPath,
       getPath: (d: any) => d.path,
-      getColor: [255, 255, 255, 38], // Outer 6px semi-transparent white (rgba 0.15)
-      getWidth: 6,
+      getColor: [255, 255, 255, 60], // Outer 10px semi-transparent white
+      getWidth: 10,
       widthUnits: "pixels",
-      dashJustified: true,
-      dashGapPickable: true,
-      getDashArray: [20, 8],
-      dashOffset: dashOffset,
-      extensions: [new (require('@deck.gl/extensions').PathStyleExtension)({ dash: true })],
-      updateTriggers: { dashOffset: dashOffset }
     }),
 
     // TSP Patrol Route - Inner Core
@@ -304,15 +298,29 @@ export default function TacticalMap() {
       id: 'tsp-patrol-route-core',
       data: tspPath,
       getPath: (d: any) => d.path,
-      getColor: [59, 130, 246, 255], // Inner 2px electric blue (#3b82f6)
-      getWidth: 2,
+      getColor: [59, 130, 246, 255], // Inner 4px electric blue (#3b82f6)
+      getWidth: 4,
       widthUnits: "pixels",
-      dashJustified: true,
-      dashGapPickable: true,
-      getDashArray: [20, 8],
-      dashOffset: dashOffset,
-      extensions: [new (require('@deck.gl/extensions').PathStyleExtension)({ dash: true })],
-      updateTriggers: { dashOffset: dashOffset }
+    }),
+
+    // Station Name Label
+    (isPatrolRoute || isBuildingRoute) && nearestStation?.station_location && new TextLayer({
+      id: 'station-name-label',
+      data: [{
+        position: [nearestStation.station_location.lon, nearestStation.station_location.lat],
+        text: nearestStation.station_name
+      }],
+      getPosition: (d: any) => d.position,
+      getText: (d: any) => d.text,
+      getSize: 10,
+      getColor: [255, 255, 255],
+      getPixelOffset: [0, -20],
+      fontFamily: 'monospace',
+      fontWeight: 'bold',
+      background: true,
+      getBackgroundColor: [30, 58, 138, 200], // Dark police blue
+      getBorderWidth: 0,
+      padding: [4, 4]
     }),
 
     !isTrafficBlockage && new ArcLayer({

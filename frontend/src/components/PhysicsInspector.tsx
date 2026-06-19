@@ -291,7 +291,7 @@ export default function PhysicsInspector() {
                 <div className={`px-2 py-0.5 rounded text-[10px] font-bold tracking-wider uppercase border ${details.priorityBg} ${details.priorityColor}`}>
                   {details.priorityLevel} Priority
                 </div>
-                <div className="text-[11px] text-zinc-400 font-mono tracking-wide">{details.stationName} Station</div>
+                <div className="text-[11px] text-zinc-400 font-mono tracking-wide">{nearestStation ? nearestStation.station_name : `${details.stationName} Station`}</div>
               </div>
               <h3 className="text-white text-lg font-bold truncate leading-tight flex items-center gap-2">
                 <Crosshair className="w-5 h-5 text-blue-500" />
