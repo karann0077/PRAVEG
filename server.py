@@ -189,7 +189,7 @@ def explain_endpoint(
         context: FeatureContext = model_bundle["context"]
 
         meta = context.segment_metadata
-        if segment_id not in meta["segment_id"].values:
+        if str(segment_id) not in meta["segment_id"].astype(str).values:
             raise HTTPException(status_code=404, detail=f"Segment {segment_id} not found.")
 
         # ── Resolve target hour ──────────────────────────────────────────────

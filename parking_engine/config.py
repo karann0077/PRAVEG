@@ -15,7 +15,7 @@ from pathlib import Path
 
 # ── Canonical Model Path ─────────────────────────────────────────────────────
 # Used uniformly by train.py, server.py, run_batch.py, and live_traffic_daemon.py
-MODEL_DIR = Path("artifacts/parking_model")
+MODEL_DIR = Path("artifacts/parking_model_osm")
 
 TARGET_COLUMNS = [
     "count_two_wheeler",
