@@ -76,6 +76,9 @@ def run_prediction(
     )
     top = scored.head(top_k).copy()
 
+    # Filter out safe segments to prevent the map from rendering thousands of irrelevant green lines (abnormal graph fix)
+    top = top[top["eps"] >= 15]
+
     out_csv.parent.mkdir(parents=True, exist_ok=True)
     top.to_csv(out_csv, index=False)
     write_geojson(top, out_geojson, grid_size_deg=context.grid_size_deg)
@@ -106,23 +109,7 @@ def main() -> None:
     print(f"\nSaved CSV: {out_csv}")
     print(f"Saved GeoJSON: {out_geojson}")
 
-    display_cols = [
-        "target_hour",
-        "segment_id",
-        "police_station",
-        "junction_name",
-        "road_class",
-        "predicted_total",
-        "traffic_interruption_0_100",
-        "eps",
-        "priority_band",
-        "recommended_action",
-        "recommended_force_units",
-        "economic_loss_inr",
-    ]
-    print(top[display_cols].to_string(index=False, max_colwidth=42))
-    print(f"\nSaved CSV: {out_csv}")
-    print(f"Saved GeoJSON: {out_geojson}")
+
 
 
 if __name__ == "__main__":
