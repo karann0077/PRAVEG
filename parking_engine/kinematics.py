@@ -121,27 +121,45 @@ def generate_ripples(predictions_df: pd.DataFrame, road_graph=None) -> list:
     if bottlenecks.empty:
         return ripples
 
+    # Prepare geometries for STRtree
+    geoms = []
+    row_data = []
+    
+    for _, row in predictions_df.iterrows():
+        geom = _load_geometry(str(row.get("geometry_wkt", "")))
+        if geom is not None:
+            geoms.append(geom)
+            row_data.append(row)
+
+    if not geoms:
+        return ripples
+
+    from shapely.strtree import STRtree
+    tree = STRtree(geoms)
+
     for _, row in bottlenecks.iterrows():
         segment_id = str(row["segment_id"])
         eps = float(row["eps"])
-        target_wkt = str(row.get("geometry_wkt", ""))
+        target_geom = _load_geometry(str(row.get("geometry_wkt", "")))
 
-        if not target_wkt:
+        if target_geom is None:
             continue  # Cannot do spatial ripple without geometry
 
-        # Find neighbours using spatial intersection
-        neighbours = get_intersecting_segments(target_wkt, predictions_df, RIPPLE_RADIUS_M)
+        buffer_deg = RIPPLE_RADIUS_M * _M_TO_DEG
+        buffered = target_geom.buffer(buffer_deg)
 
-        for nbr_id, dist_m in neighbours:
+        # Query the tree for intersecting geometries
+        intersecting_idx = tree.query(buffered, predicate="intersects")
+
+        for idx in intersecting_idx:
+            nbr_geom = geoms[idx]
+            nbr_row = row_data[idx]
+            nbr_id = str(nbr_row["segment_id"])
+
             if nbr_id == segment_id:
                 continue
 
-            # Get neighbour geometry
-            nbr_rows = predictions_df[predictions_df["segment_id"] == nbr_id]
-            if nbr_rows.empty:
-                continue
-            nbr_wkt = str(nbr_rows.iloc[0].get("geometry_wkt", ""))
-            nbr_geom = _load_geometry(nbr_wkt)
+            dist_m = _haversine_centroid_m(target_geom, nbr_geom)
             coords = _geojson_coords(nbr_geom)
             if coords is None:
                 continue
@@ -160,8 +178,8 @@ def generate_ripples(predictions_df: pd.DataFrame, road_graph=None) -> list:
                     "is_ripple": True,
                     "distance_from_bottleneck_m": round(dist_m, 1),
                     "decay_factor": round(decay, 3),
-                    "road_class": str(nbr_rows.iloc[0].get("road_class", "unknown")),
-                    "police_station": str(nbr_rows.iloc[0].get("police_station", "Unknown")),
+                    "road_class": str(nbr_row.get("road_class", "unknown")),
+                    "police_station": str(nbr_row.get("police_station", "Unknown")),
                 },
                 "geometry": {"type": "LineString", "coordinates": coords},
             })
