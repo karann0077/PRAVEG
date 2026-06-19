@@ -20,7 +20,7 @@ from datetime import datetime
 from pathlib import Path
 
 
-MODEL_PATH = "artifacts/parking_model_osm/model.joblib"
+MODEL_PATH = "artifacts/parking_model_v3_ensemble/model.joblib"
 OUT_DIR = Path("artifacts/predictions")
 TOP_K = 150
 

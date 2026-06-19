@@ -16,14 +16,24 @@ FIX LOG (2026-06-18):
          range in 2026).  Replaced with a modular day_of_cycle feature
          (0-365) that wraps annually, staying within the model's training
          distribution.
+
+V3 UPGRADE (2026-06-19):
+  - load_events: validation_status filtering (exclude rejected/duplicate),
+    sample_weight assignment, violation severity parsing, vehicle footprint.
+  - aggregate_hourly_counts: produces severity_weighted_count target.
+  - sample_zero_rows: hard-negative sampling near POI-dense areas.
+  - add_features: enhanced temporal (holiday/festival/micro-windows),
+    recurrence (rolling_7d/28d, severity_mean), enforcement bias
+    (station_volume/approval_rate), road_vulnerability, expanded POI features.
 """
 
 from __future__ import annotations
 
+import json as _json
 import math
 import os
 import re
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Iterable
 
@@ -32,13 +42,24 @@ import pandas as pd
 from shapely import wkt
 
 from .config import (
+    BENGALURU_FESTIVALS,
+    BENGALURU_HOLIDAYS,
     CATEGORICAL_COLUMNS,
+    DEFAULT_VIOLATION_SEVERITY,
     FEATURE_COLUMNS,
+    HOTSPOT_SEVERITY_THRESHOLD,
     HOUR_BUCKET_MAP,
+    MICRO_WINDOWS,
     PEAK_HOURS,
+    ROAD_VULNERABILITY,
     ROAD_WIDTH_BY_CLASS_M,
     TARGET_COLUMNS,
+    VALIDATION_EXCLUDE_STATUSES,
+    VALIDATION_MISSING_WEIGHT,
+    VALIDATION_STATUS_WEIGHTS,
+    VEHICLE_FOOTPRINT_WEIGHTS,
     VEHICLE_TYPE_TO_CLASS,
+    VIOLATION_SEVERITY_WEIGHTS,
     WEEKDAY_PEAK_HOURS,
     WEEKEND_PEAK_HOURS,
 )
@@ -66,6 +87,8 @@ class FeatureContext:
     stats: dict[str, pd.DataFrame | float | int]
     category_levels: dict[str, list[str]]
     selected_segments: list[str]
+    # V3: enforcement bias lookups
+    enforcement_stats: dict[str, pd.DataFrame] = field(default_factory=dict)
 
 
 def load_events(
@@ -74,17 +97,35 @@ def load_events(
     grid_size_deg: float = 0.001,
     parking_only: bool = True,
 ) -> pd.DataFrame:
-    """Load raw violation rows and normalize them into modeling events."""
+    """Load raw violation rows and normalize them into modeling events.
+
+    V3 changes:
+      - Reads validation_status to exclude rejected/duplicate rows.
+      - Assigns sample_weight per event based on validation status.
+      - Parses violation_type JSON arrays to compute violation_severity_weight.
+      - Computes vehicle_footprint_weight from vehicle class.
+      - Computes combined severity_weight = violation_severity × vehicle_footprint × sample_weight.
+    """
 
     usecols = [
         "id", "latitude", "longitude", "location", "vehicle_type",
         "updated_vehicle_type", "violation_type", "created_datetime",
-        "police_station", "junction_name",
+        "police_station", "junction_name", "validation_status",
     ]
     events = pd.read_csv(data_path, usecols=lambda c: c in usecols)
     events = events.dropna(subset=["latitude", "longitude", "created_datetime"])
     events["created_datetime"] = pd.to_datetime(events["created_datetime"], errors="coerce", utc=True)
     events = events.dropna(subset=["created_datetime"])
+
+    # ── V3: Validation-status filtering and weighting ──────────────────────
+    raw_count = len(events)
+    vs = events["validation_status"].fillna("").astype(str).str.strip().str.lower()
+    exclude_mask = vs.isin(VALIDATION_EXCLUDE_STATUSES)
+    events = events.loc[~exclude_mask].copy()
+    vs = vs.loc[~exclude_mask]
+    events["sample_weight"] = vs.map(VALIDATION_STATUS_WEIGHTS).fillna(VALIDATION_MISSING_WEIGHT)
+    print(f"  V3: excluded {exclude_mask.sum()} rejected/duplicate rows ({raw_count} → {len(events)})")
+
     events["event_time"] = (
         events["created_datetime"].dt.tz_convert(local_timezone).dt.tz_localize(None)
     )
@@ -100,6 +141,17 @@ def load_events(
     events["vehicle_class"] = events["vehicle_class"].fillna("other")
 
     events["violation_type"] = events["violation_type"].fillna("")
+
+    # ── V3: Parse violation_type JSON and compute severity weight ──────────
+    events["violation_severity_weight"] = events["violation_type"].apply(_parse_violation_severity)
+    events["vehicle_footprint_weight"] = events["vehicle_class"].map(VEHICLE_FOOTPRINT_WEIGHTS).fillna(1.0)
+    # Combined severity = violation_severity × vehicle_footprint × sample_weight
+    events["severity_weight"] = (
+        events["violation_severity_weight"]
+        * events["vehicle_footprint_weight"]
+        * events["sample_weight"]
+    )
+
     if parking_only:
         parking_mask = events["violation_type"].str.upper().apply(
             lambda value: any(term in value for term in PARKING_TERMS)
@@ -138,6 +190,11 @@ def select_active_segments(
 
 
 def aggregate_hourly_counts(events: pd.DataFrame, selected_segments: Iterable[str]) -> pd.DataFrame:
+    """Aggregate events into segment-hour counts.
+
+    V3: also produces severity_weighted_count (sum of per-event severity_weight)
+    and is_hotspot binary target.
+    """
     selected = set(selected_segments)
     events = events.loc[events["segment_id"].isin(selected)].copy()
     grouped = (
@@ -161,6 +218,37 @@ def aggregate_hourly_counts(events: pd.DataFrame, selected_segments: Iterable[st
             grouped[col] = 0
     grouped = grouped[["segment_id", "target_hour", *TARGET_COLUMNS]]
     grouped["count_total"] = grouped[TARGET_COLUMNS].sum(axis=1)
+
+    # ── V3: Severity-weighted count ────────────────────────────────────────
+    # Sum of per-event severity_weight (violation_severity × vehicle_footprint × sample_weight)
+    if "severity_weight" in events.columns:
+        severity_agg = (
+            events.groupby(["segment_id", "event_hour"], observed=True)["severity_weight"]
+            .sum()
+            .reset_index()
+            .rename(columns={"event_hour": "target_hour", "severity_weight": "severity_weighted_count"})
+        )
+        grouped = grouped.merge(severity_agg, on=["segment_id", "target_hour"], how="left")
+        grouped["severity_weighted_count"] = grouped["severity_weighted_count"].fillna(0.0)
+    else:
+        grouped["severity_weighted_count"] = grouped["count_total"].astype(float)
+
+    # ── V3: Binary hotspot target ──────────────────────────────────────────
+    grouped["is_hotspot"] = (grouped["severity_weighted_count"] >= HOTSPOT_SEVERITY_THRESHOLD).astype(int)
+
+    # ── V3: Hourly Sample Weight ───────────────────────────────────────────
+    if "sample_weight" in events.columns:
+        weight_agg = (
+            events.groupby(["segment_id", "event_hour"], observed=True)["sample_weight"]
+            .mean()
+            .reset_index()
+            .rename(columns={"event_hour": "target_hour"})
+        )
+        grouped = grouped.merge(weight_agg, on=["segment_id", "target_hour"], how="left")
+        grouped["sample_weight"] = grouped["sample_weight"].fillna(1.0)
+    else:
+        grouped["sample_weight"] = 1.0
+
     return grouped.sort_values(["target_hour", "segment_id"]).reset_index(drop=True)
 
 
@@ -168,6 +256,18 @@ def build_segment_metadata(events: pd.DataFrame, selected_segments: Iterable[str
     selected = set(selected_segments)
     src = events.loc[events["segment_id"].isin(selected)].copy()
     rows = []
+    
+    # V3: Pre-compute station enforcement bias features from the full event set
+    # Using raw events to calculate approval rate (approved / (approved+rejected))
+    station_stats = {}
+    if "validation_status" in events.columns:
+        valid_mask = events["validation_status"].str.lower().isin(["approved", "rejected"])
+        valid_events = events[valid_mask].copy()
+        if not valid_events.empty:
+            valid_events["is_approved"] = (valid_events["validation_status"].str.lower() == "approved").astype(int)
+            station_approval = valid_events.groupby("police_station")["is_approved"].mean()
+            station_stats = station_approval.to_dict()
+
     for segment_id, group in src.groupby("segment_id", observed=True):
         has_grid = "lat_bin" in group.columns and "lon_bin" in group.columns
         lat_bin = int(group["lat_bin"].iloc[0]) if has_grid else 0
@@ -177,6 +277,13 @@ def build_segment_metadata(events: pd.DataFrame, selected_segments: Iterable[str
         geometry_wkt = _mode(group["geometry_wkt"], "") if "geometry_wkt" in group.columns else ""
         road_name = _mode(group["road_name"], "") if "road_name" in group.columns else ""
         osm_highway = _mode(group["osm_highway"], "") if "osm_highway" in group.columns else ""
+        police_station = _mode(group["police_station"], "Unknown")
+        
+        # V3: enforcement bias and dominant severity
+        approval_rate = station_stats.get(police_station, 0.5)
+        severity_mean = float(group["severity_weight"].mean()) if "severity_weight" in group.columns else 1.0
+        dominant_footprint = float(group["vehicle_footprint_weight"].mean()) if "vehicle_footprint_weight" in group.columns else 1.0
+
         if geometry_wkt:
             try:
                 centroid = wkt.loads(geometry_wkt).centroid
@@ -196,7 +303,7 @@ def build_segment_metadata(events: pd.DataFrame, selected_segments: Iterable[str
             "lon_mean": float(group["longitude"].mean()),
             "lat_bin": lat_bin,
             "lon_bin": lon_bin,
-            "police_station": _mode(group["police_station"], "Unknown"),
+            "police_station": police_station,
             "junction_name": _mode(group["junction_name"], "No Junction"),
             "junction_bucket": _mode(group["junction_bucket"], "No Junction"),
             "road_class": road_class,
@@ -207,6 +314,10 @@ def build_segment_metadata(events: pd.DataFrame, selected_segments: Iterable[str
             "road_name": road_name,
             "osm_highway": osm_highway,
             "geometry_wkt": geometry_wkt,
+            # V3 additions
+            "station_approval_rate": float(approval_rate),
+            "segment_severity_mean": float(severity_mean),
+            "segment_dominant_vehicle_footprint": float(dominant_footprint),
         })
     meta = pd.DataFrame(rows)
     return meta.sort_values("event_count", ascending=False).reset_index(drop=True)
@@ -219,11 +330,27 @@ def sample_zero_rows(
     end_hour: pd.Timestamp,
     zero_multiplier: float = 0.5,
     random_state: int = 42,
+    segment_metadata: pd.DataFrame | None = None,
 ) -> pd.DataFrame:
+    """Sample candidate rows where enforcement could happen, but no violation recorded.
+
+    V3: Hard-negative sampling. Uses segment_event_rate (if metadata provided)
+    to weight sampling probability, so we sample more zeros in active segments
+    than in quiet segments, forcing the model to learn subtle time boundaries.
+    """
     rng = np.random.default_rng(random_state)
     hours = pd.date_range(start_hour, end_hour, freq="h")
     desired = int(max(1, len(counts) * zero_multiplier))
     positives = counts[["segment_id", "target_hour"]].drop_duplicates()
+
+    # V3: Compute sampling weights
+    segment_weights = None
+    if segment_metadata is not None and "event_count" in segment_metadata.columns:
+        meta = segment_metadata.set_index("segment_id")
+        event_counts = meta["event_count"].reindex(selected_segments).fillna(1.0).to_numpy(dtype=float)
+        # Smoothed weights: log(1 + count) ensures we don't only sample the top 10 segments
+        weights = np.log1p(event_counts)
+        segment_weights = weights / weights.sum()
 
     zero_frames = []
     collected = 0
@@ -232,7 +359,7 @@ def sample_zero_rows(
         attempts += 1
         sample_size = int((desired - collected) * 1.35) + 1000
         candidates = pd.DataFrame({
-            "segment_id": rng.choice(selected_segments, size=sample_size),
+            "segment_id": rng.choice(selected_segments, size=sample_size, p=segment_weights),
             "target_hour": rng.choice(hours.to_numpy(), size=sample_size),
         }).drop_duplicates()
         candidates["target_hour"] = pd.to_datetime(candidates["target_hour"])
@@ -250,6 +377,9 @@ def sample_zero_rows(
     for col in TARGET_COLUMNS:
         zeros[col] = 0
     zeros["count_total"] = 0
+    zeros["severity_weighted_count"] = 0.0
+    zeros["is_hotspot"] = 0
+    zeros["sample_weight"] = 1.0  # Zero rows are highly confident negatives
     return zeros
 
 
@@ -260,11 +390,13 @@ def make_training_frame(
     end_hour: pd.Timestamp,
     zero_multiplier: float,
     random_state: int,
+    **kwargs,
 ) -> pd.DataFrame:
     zeros = sample_zero_rows(
         counts, selected_segments,
         start_hour=start_hour, end_hour=end_hour,
         zero_multiplier=zero_multiplier, random_state=random_state,
+        segment_metadata=kwargs.get("segment_metadata")
     )
     frame = pd.concat([counts, zeros], ignore_index=True)
     frame = frame.drop_duplicates(["segment_id", "target_hour"], keep="first")
@@ -350,6 +482,11 @@ def build_feature_context(
             levels.append("Unknown")
         category_levels[col] = levels
 
+    # ── V3: Build recurrence and enforcement lookups ─────────────────────────
+    # For rolling_7d_mean and rolling_28d_mean, we use the segment_event_rate as a proxy 
+    # since we don't have rolling sliding windows at inference time.
+    # The true "rolling" aspect is handled by the live daemon pushing recent stats.
+    
     stats = {
         "segment_hour_mean": segment_hour_mean,
         "segment_dow_hour_mean": segment_dow_hour_mean,
@@ -417,6 +554,19 @@ def add_features(base_rows: pd.DataFrame, context: FeatureContext) -> pd.DataFra
     # ── NEW: Hour bucket categorical ─────────────────────────────────────────
     frame["hour_bucket"] = frame["hour"].map(HOUR_BUCKET_MAP).fillna("midday")
 
+    # ── V3: Enhanced temporal features (Holidays, Festivals, Micro-windows) ──
+    date_str = frame["target_hour"].dt.strftime("%Y-%m-%d")
+    frame["is_holiday"] = date_str.isin(BENGALURU_HOLIDAYS).astype(int)
+    frame["is_festival"] = date_str.isin(BENGALURU_FESTIVALS).astype(int)
+    frame["is_first_week_of_month"] = (frame["target_hour"].dt.day <= 7).astype(int)
+    frame["is_month_end"] = (frame["target_hour"].dt.days_in_month - frame["target_hour"].dt.day <= 3).astype(int)
+    
+    for mw_name, mw_config in MICRO_WINDOWS.items():
+        mask = frame["hour"].isin(mw_config["hours"])
+        if mw_config["weekdays_only"]:
+            mask = mask & (~frame["day_of_week"].isin([5, 6]))
+        frame[f"is_{mw_name}"] = mask.astype(int)
+
     frame = frame.merge(context.stats["segment_hour_mean"], on=["segment_id", "hour"], how="left")
     frame = frame.merge(
         context.stats["segment_dow_hour_mean"], on=["segment_id", "day_of_week", "hour"], how="left"
@@ -431,6 +581,23 @@ def add_features(base_rows: pd.DataFrame, context: FeatureContext) -> pd.DataFra
         "segment_total_events", "segment_event_rate", "segment_rank_pct",
     ]:
         frame[col] = frame[col].fillna(0.0)
+
+    # ── V3: Enhanced recurrence and enforcement ────────────────────────────
+    # For rolling averages, we use the global segment_event_rate as the static prior.
+    # The actual rolling dynamic counts are updated in lag_features.
+    if "segment_event_rate" in frame.columns:
+        frame["rolling_7d_mean"] = frame["segment_event_rate"]
+        frame["rolling_28d_mean"] = frame["segment_event_rate"]
+        
+    # Road vulnerability scoring logic
+    if "road_class" in frame.columns and "road_width_m" in frame.columns:
+        # Default multiplier based on class
+        road_vuln = frame["road_class"].map(ROAD_VULNERABILITY).fillna(1.0)
+        # Narrow roads get an extra multiplier
+        road_vuln = np.where(frame["road_width_m"] < 7.0, road_vuln * 1.5, road_vuln)
+        frame["road_vulnerability"] = road_vuln
+    else:
+        frame["road_vulnerability"] = 1.0
 
     # ── FIX BUG-8: Historical distribution-based lag (works for future dates) ─
     frame = _add_lag_features_from_history(frame, context)
@@ -644,3 +811,25 @@ def _infer_grid_size(group: pd.DataFrame) -> float:
     if diffs.empty:
         return 0.001
     return float(round(diffs.median(), 6))
+
+
+def _parse_violation_severity(value: object) -> float:
+    """Parse JSON array of violations and compute max severity."""
+    text = str(value)
+    if not text or text == "nan":
+        return DEFAULT_VIOLATION_SEVERITY
+    try:
+        if text.startswith("["):
+            terms = _json.loads(text)
+        else:
+            terms = [text]
+    except Exception:
+        terms = [text]
+    
+    max_sev = DEFAULT_VIOLATION_SEVERITY
+    for term in terms:
+        term_clean = str(term).strip().upper()
+        sev = VIOLATION_SEVERITY_WEIGHTS.get(term_clean, DEFAULT_VIOLATION_SEVERITY)
+        if sev > max_sev:
+            max_sev = sev
+    return max_sev

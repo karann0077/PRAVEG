@@ -32,7 +32,7 @@ import numpy as np
 import pandas as pd
 from shapely import wkt
 
-from .config import PEAK_HOURS, TARGET_COLUMNS, TARGET_TO_CLASS, VEHICLE_CLASS_WIDTH_M
+from .config import PEAK_HOURS, TARGET_COLUMNS, TARGET_TO_CLASS, VEHICLE_CLASS_WIDTH_M, VEHICLE_FOOTPRINT_WEIGHTS, ROAD_VULNERABILITY
 
 # ── NEW: occupancy rate ──────────────────────────────────────────────────────
 # The model predicts *violations per hour* (an arrival rate).
@@ -147,15 +147,39 @@ def score_predictions(
 
     live_bonus = np.clip((frame["live_congestion_multiplier"] - 1.0) * 25.0, 0, 15)
 
-    # ── FIX BUG-3: re-balanced EPS formula (50/40/10) ───────────────────────
-    # Old: 0.55 * parking + 0.35 * interruption  => max = 90 always
-    # New: 0.50 * parking + 0.40 * interruption + live_bonus
-    #      max without gridlock = 0.50*100 + 0.40*100 + 15 = 105 -> clip 100
-    #      This gives proper gradient across the 0-100 range.
+    # ── V3: Enterprise Congestion Impact Score (CIS) ─────────────────────────
+    # The new EPS formula is the Congestion Impact Score (CIS):
+    # CIS = 0.4 * calibrated_hotspot_probability + 0.3 * normalized_severity + 0.3 * road_vulnerability_score
+
+    # 1. Hotspot Probability Score (0-100)
+    hotspot_prob = frame.get("hotspot_probability", pd.Series(0.0, index=frame.index))
+    hotspot_score = hotspot_prob * 100.0
+
+    # 2. Normalized Severity Score (0-100)
+    # severity_weighted_count proxy at inference time = count * footprint * default_severity
+    # Default severity is 1.2.
+    severity_sum = np.zeros(len(frame), dtype=float)
+    for target_col in TARGET_COLUMNS:
+        cls = TARGET_TO_CLASS[target_col]
+        severity_sum += frame[target_col].to_numpy(dtype=float) * VEHICLE_FOOTPRINT_WEIGHTS.get(cls, 1.0) * 1.2
+    
+    # Scale severity_sum by p95 count so it ranges roughly 0-100
+    norm_severity = (severity_sum / count_scale) * 50.0 
+    severity_score = np.clip(norm_severity, 0, 100)
+
+    # 3. Road Vulnerability Score (0-100)
+    road_vuln_mult = frame["road_class"].map(ROAD_VULNERABILITY).fillna(0.9)
+    # Narrow roads (width < 7m) get a +0.5 boost to vulnerability
+    road_vuln_mult = np.where(road_width < 7.0, road_vuln_mult + 0.5, road_vuln_mult)
+    # Scale from 0.7-2.5 range to 0-100
+    vuln_score = np.clip((road_vuln_mult - 0.7) / 1.8 * 100.0, 0, 100)
+
+    # Base CIS (0-100)
     frame["eps_raw"] = (
-        0.50 * frame["parking_risk_0_100"]
-        + 0.40 * frame["traffic_interruption_0_100"]
-        + live_bonus
+        0.40 * hotspot_score +
+        0.30 * severity_score +
+        0.30 * vuln_score +
+        live_bonus
     ).clip(0, 100)
 
     # ── FIX BUG-3: graduated gridlock penalty (not a hard jump to 90) ────────
@@ -175,27 +199,66 @@ def score_predictions(
 
     # ── Priority bands ───────────────────────────────────────────────────────
     frame["priority_band"] = np.select(
-        [frame["eps"] >= 85, frame["eps"] >= 60, frame["eps"] >= 40],
+        [frame["eps"] >= 80, frame["eps"] >= 50, frame["eps"] >= 35],
         ["Red Line", "Orange Line", "Watchlist"],
         default="Low",
     )
+    
+    # ── Confidence Band ──────────────────────────────────────────────────────
+    prob = frame.get("hotspot_probability", pd.Series(0.0, index=frame.index))
+    prob_fallback = np.maximum(prob, frame["parking_risk_0_100"] / 100.0)
+
+    frame["confidence_band"] = np.select(
+        [prob_fallback > 0.7, prob_fallback >= 0.4],
+        ["High", "Medium"],
+        default="Low",
+    )
+
     frame["recommended_action"] = np.select(
         [
-            (frame["priority_band"] == "Red Line") & (frame["live_congestion_multiplier"] >= 1.2),
-            frame["priority_band"] == "Red Line",
-            frame["priority_band"] == "Orange Line",
+            (frame["priority_band"] == "Red Line") & (frame["confidence_band"] == "High"),
+            (frame["priority_band"] == "Red Line") & (frame["confidence_band"] != "High"),
+            (frame["priority_band"] == "Orange Line") & (frame["confidence_band"] == "High"),
+            (frame["priority_band"] == "Orange Line") & (frame["confidence_band"] != "High"),
             (frame["priority_band"] == "Low") & (frame["live_congestion_multiplier"] >= 1.2),
         ],
         [
             "Immediate dispatch",
             "Immediate dispatch or tow readiness",
             "Preventative dispatch",
+            "Monitor (Low Confidence)",
             "Stand down: congestion likely not parking-led",
         ],
         default="Monitor",
     )
     frame["recommended_force_units"] = np.ceil(frame["eps"] / 35.0).clip(0, 3).astype(int)
-    frame.loc[frame["eps"] < 40, "recommended_force_units"] = 0
+    frame.loc[(frame["eps"] < 40) | (frame["confidence_band"] == "Low"), "recommended_force_units"] = 0
+
+    # ── Economic Loss Calculation (INR/hr) ───────────────────────────────────
+    # We specifically calculate the loss caused by illegal parking delay.
+    base_speed = frame["road_class"].map({"primary": 40, "secondary": 35, "tertiary": 25, "residential": 20}).fillna(30).astype(float)
+    traffic_vol = frame["road_class"].map(ROAD_CLASS_TRAFFIC_VOLUME).fillna(500).astype(float)
+    
+    choke_pct = (frame["expected_parked_width_m"] / road_width) * 100.0
+    choke_pct = choke_pct.clip(upper=100.0)
+    speed_reduction_pct = (choke_pct * 1.3 + frame["eps"] * 0.15).clip(upper=95.0)
+    
+    congested_speed = base_speed * (1.0 - speed_reduction_pct / 100.0)
+    congested_speed = congested_speed.clip(lower=5.0)
+    
+    D = 0.5  # Assumed segment length in km
+    t_normal_hr = D / base_speed
+    t_congested_hr = D / congested_speed
+    delay_per_vehicle_hr = t_congested_hr - t_normal_hr
+    
+    # Blended Cost per vehicle-hour based on Bengaluru traffic split:
+    # 50% 2W (VoT+VOC=120), 30% Car (350), 10% Auto (180), 5% LCV (300), 5% Heavy (700)
+    # Blended = 0.5*120 + 0.3*350 + 0.1*180 + 0.05*300 + 0.05*700 = 233 INR/hr
+    blended_cost_per_hr = 233.0
+    
+    frame["economic_loss_inr"] = traffic_vol * delay_per_vehicle_hr * blended_cost_per_hr
+    frame["economic_loss_inr"] = frame["economic_loss_inr"].round(0)
+
 
     return frame.sort_values(["eps", "predicted_total"], ascending=False).reset_index(drop=True)
 
@@ -370,6 +433,9 @@ def write_geojson(predictions: pd.DataFrame, path: str | Path, grid_size_deg: fl
             "live_congestion_multiplier": float(row.get("live_congestion_multiplier", 1.0)),
             "clearance_m": float(row.get("clearance_after_predicted_load_m", 0.0)),
             "emergency_gridlock_flag": bool(row.get("emergency_gridlock_flag", False)),
+            "confidence_band": str(row.get("confidence_band", "Low")),
+            "hotspot_probability": float(row.get("hotspot_probability", 0.0)),
+            "economic_loss_inr": float(row.get("economic_loss_inr", 0.0)),
             # ── FIX BUG-4: include geometry_wkt for kinematics ripple engine ──
             "geometry_wkt": geometry_wkt_val,
         }

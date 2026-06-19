@@ -10,64 +10,11 @@ import { useMapStore } from "@/store/useMapStore";
 import { ShieldAlert, Layers, Map as MapIcon, RotateCcw, Activity, AlignLeft, Hexagon, ArrowUpRight, Box } from "lucide-react";
 
 function BottomPillToggles() {
-  const { activeLayerMode, setActiveLayerMode } = useMapStore();
-  
-  const buttons = [
-    { id: "tactical", label: "Problem Roads", icon: <AlignLeft className="w-4 h-4" /> },
-    { id: "heatmap", label: "Heat Map", icon: <Activity className="w-4 h-4" /> }
-  ] as const;
-
-  return (
-    <div className="absolute bottom-8 left-[424px] z-40 flex items-center p-1 bg-[#0B0F1A]/90 backdrop-blur-md rounded-lg border border-white/5 shadow-2xl">
-      {buttons.map((btn) => {
-        const isActive = activeLayerMode === btn.id;
-        return (
-          <button
-            key={btn.id}
-            onClick={() => setActiveLayerMode(btn.id)}
-            className={`relative flex items-center gap-2 px-4 py-2 rounded-md text-xs font-bold uppercase tracking-widest transition-colors z-10 ${
-              isActive ? "text-white" : "text-zinc-500 hover:text-zinc-300"
-            }`}
-          >
-            {isActive && (
-              <div className="absolute inset-0 bg-[#3b82f6]/20 border border-[#3b82f6]/30 rounded-md -z-10 shadow-[0_0_15px_rgba(59,130,246,0.2)]" />
-            )}
-            {btn.icon}
-            {btn.label}
-          </button>
-        );
-      })}
-    </div>
-  );
+  return null;
 }
 
 function HeatmapWeightToggle() {
-  const { activeLayerMode, heatmapWeightMode, setHeatmapWeightMode } = useMapStore();
-  
-  if (activeLayerMode !== 'heatmap') return null;
-
-  return (
-    <div className="absolute bottom-8 left-[600px] z-40 flex items-center p-1 bg-[#0B0F1A]/90 backdrop-blur-md rounded-lg border border-white/5 shadow-2xl">
-      <div className="flex bg-black/40 rounded-md p-0.5">
-        <button
-          onClick={() => setHeatmapWeightMode('violation_density')}
-          className={`px-3 py-1.5 rounded text-[10px] font-bold uppercase tracking-widest transition-colors ${
-            heatmapWeightMode === 'violation_density' ? "bg-rose-500/20 text-rose-400 border border-rose-500/30" : "text-zinc-500 hover:text-zinc-300"
-          }`}
-        >
-          Violation Count
-        </button>
-        <button
-          onClick={() => setHeatmapWeightMode('congestion_impact')}
-          className={`px-3 py-1.5 rounded text-[10px] font-bold uppercase tracking-widest transition-colors ${
-            heatmapWeightMode === 'congestion_impact' ? "bg-amber-500/20 text-amber-400 border border-amber-500/30" : "text-zinc-500 hover:text-zinc-300"
-          }`}
-        >
-          Congestion Impact
-        </button>
-      </div>
-    </div>
-  );
+  return null;
 }
 
 function MapControls() {
@@ -188,7 +135,7 @@ export default function Home() {
         <div className="flex items-center gap-8 h-full py-2">
           {/* Active Hotspots */}
           <div className="flex flex-col items-end justify-center">
-            <span className="text-[10px] text-zinc-500 font-bold uppercase tracking-[0.12em] mb-0.5">Problem Areas</span>
+            <span className="text-[10px] text-zinc-500 font-bold uppercase tracking-[0.12em] mb-0.5">Roads Needing Action</span>
             <div className="flex items-baseline gap-2">
               <span className="text-2xl font-bold font-mono text-white leading-none relative">
                 {stats.hotspots}
@@ -202,7 +149,7 @@ export default function Home() {
 
           {/* Economic Bleed */}
           <div className="flex flex-col items-end justify-center">
-            <span className="text-[10px] text-zinc-500 font-bold uppercase tracking-[0.12em] mb-0.5">Revenue Loss</span>
+            <span className="text-[10px] text-zinc-500 font-bold uppercase tracking-[0.12em] mb-0.5">Est. Public Impact</span>
             <div className="flex items-baseline gap-1.5 text-amber-500">
               <span className="text-2xl font-bold font-mono leading-none drop-shadow-[0_0_8px_rgba(245,158,11,0.4)]">₹{stats.bleedLakhs}L</span>
               <span className="text-xs font-mono">/ hr</span>
@@ -226,8 +173,8 @@ export default function Home() {
       <MapControls />
 
       {/* Footer Attribution (z-20) */}
-      <div className="absolute bottom-4 right-4 z-20 flex items-center gap-3 text-[10px] font-mono">
-        <span className="text-zinc-500/60 uppercase tracking-widest">LightGBM · MapmyIndia</span>
+      <div className="absolute bottom-4 right-4 z-20 flex items-center gap-3 text-[10px] font-mono opacity-50 hover:opacity-100 transition-opacity">
+        <span className="text-zinc-500/60 uppercase tracking-widest">DRISHTI AI Engine · Admin Mode</span>
         <div className="bg-[#0D1117]/80 backdrop-blur-md border border-white/5 text-[#3b82f6] px-2 py-1 rounded flex items-center gap-1.5 shadow-lg">
           <span className="w-1.5 h-1.5 rounded-full bg-[#3b82f6] animate-pulse" />
           298K EVENTS

@@ -1,33 +1,47 @@
 "use client";
 
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState } from "react";
 import { useMapStore } from "@/store/useMapStore";
-import { AlertTriangle, Crosshair, Map, Navigation, CheckCircle, AlertCircle, XCircle, ChevronLeft, ChevronRight } from "lucide-react";
+import { AlertTriangle, Map, Navigation, CheckCircle, AlertCircle, XCircle, ChevronLeft, ChevronRight } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
-function PriorityPill({ eps }: { eps: number }) {
+function PriorityPill({ priority_score, confidence_band }: { priority_score: number, confidence_band: string }) {
   const bg =
-    eps >= 80 ? "bg-[#ef4444]/20 text-[#ef4444] border-[#ef4444]/30" :
-    eps >= 60 ? "bg-[#f97316]/20 text-[#f97316] border-[#f97316]/30" :
-    eps >= 40 ? "bg-[#eab308]/20 text-[#eab308] border-[#eab308]/30" :
+    priority_score >= 80 ? "bg-[#ef4444]/20 text-[#ef4444] border-[#ef4444]/30" :
+    priority_score >= 60 ? "bg-[#f97316]/20 text-[#f97316] border-[#f97316]/30" :
+    priority_score >= 40 ? "bg-[#eab308]/20 text-[#eab308] border-[#eab308]/30" :
     "bg-zinc-800 text-zinc-400 border-zinc-700";
   const label =
-    eps >= 80 ? "🔴 Urgent" :
-    eps >= 60 ? "🟠 High" :
-    eps >= 40 ? "🟡 Moderate" :
-    "⚪ Low";
+    priority_score >= 80 ? "🔴 Critical" :
+    priority_score >= 60 ? "🟠 High" :
+    priority_score >= 40 ? "🟡 Watch" :
+    "⚪ Clear";
+    
+  const confBg = 
+    confidence_band === "High" ? "bg-emerald-500/20 text-emerald-400 border-emerald-500/30" :
+    confidence_band === "Medium" ? "bg-blue-500/20 text-blue-400 border-blue-500/30" :
+    "bg-zinc-800 text-zinc-400 border-zinc-700";
+
+  const confLabel = 
+    confidence_band === "High" ? "Likely Accurate" : 
+    confidence_band === "Medium" ? "Moderate Acc" : "Low Acc";
+
   return (
-    <div className={`${bg} border text-[10px] font-bold tracking-wider px-2 py-0.5 rounded-[6px] flex items-center shadow-inner`}>
-      {label}
+    <div className="flex flex-col gap-1 items-end">
+      <div className={`${bg} border text-[10px] font-bold tracking-wider px-2 py-0.5 rounded-[6px] flex items-center shadow-inner`}>
+        {label} Priority
+      </div>
     </div>
   );
 }
 
 export default function DispatchQueue() {
-  const { flyTo, setSelectedEdge, targetHour, geoData } = useMapStore();
+  const { flyTo, setSelectedEdge, geoData } = useMapStore();
   const [queue, setQueue] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
   const [open, setOpen] = useState(true);
+  // Track action states for features
+  const [actionStates, setActionStates] = useState<Record<string, string>>({});
 
   useEffect(() => {
     if (!geoData) {
@@ -48,7 +62,7 @@ export default function DispatchQueue() {
     const coords = feature.geometry?.coordinates || [];
     const mid = coords[Math.floor(coords.length / 2)] || coords[0];
     if (mid) flyTo(mid[0], mid[1], 17);
-    setSelectedEdge(feature.properties);
+    setSelectedEdge(feature);
   };
 
   const handleFeedback = async (feature: any, accuracy: string) => {
@@ -62,8 +76,11 @@ export default function DispatchQueue() {
           actual_accuracy: accuracy,
         })
       });
-      // Remove from queue locally
-      setQueue((q) => q.filter((f) => f.properties.segment_id !== feature.properties.segment_id));
+      // Mark as cleared instead of removing instantly to show state
+      setActionStates(prev => ({ ...prev, [feature.properties.segment_id]: "Cleared" }));
+      setTimeout(() => {
+        setQueue((q) => q.filter((f) => f.properties.segment_id !== feature.properties.segment_id));
+      }, 2000);
     } catch (e) {
       console.error("Feedback failed", e);
     }
@@ -85,7 +102,7 @@ export default function DispatchQueue() {
               <AlertTriangle className="w-4 h-4 text-[#3b82f6]" />
             </div>
             <div>
-              <p className="text-white font-heading font-bold text-sm tracking-widest uppercase">Alerts</p>
+              <p className="text-white font-heading font-bold text-sm tracking-widest uppercase">Dispatch Queue</p>
               <p className="text-zinc-500 text-[11px] font-mono mt-0.5">{queue.length} roads need attention</p>
             </div>
           </div>
@@ -98,14 +115,7 @@ export default function DispatchQueue() {
           </div>
         </div>
 
-        {/* Action Button */}
-        <button className="w-full flex items-center justify-center gap-2 bg-[#3b82f6] hover:bg-[#2563eb] text-white py-3 px-4 rounded-[6px] transition-colors font-medium text-[13px]">
-          <span className="relative flex h-2 w-2">
-            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
-            <span className="relative inline-flex rounded-full h-2 w-2 bg-white"></span>
-          </span>
-          Plan Best Route
-        </button>
+
       </div>
 
             {/* Cards */}
@@ -124,14 +134,10 @@ export default function DispatchQueue() {
                   <AnimatePresence>
                   {queue.map((feature, idx) => {
                     const p = feature.properties;
-                    const eps: number = p.eps ?? 0;
-                    const dotColor =
-                      eps >= 90 ? "bg-[#ef4444] shadow-[0_0_8px_rgba(239,68,68,0.6)]" :
-                      eps >= 70 ? "bg-[#f97316] shadow-[0_0_8px_rgba(249,115,22,0.6)]" :
-                      eps >= 50 ? "bg-[#eab308]" :
-                      eps >= 30 ? "bg-[#facc15]" :
-                      "bg-[#22c55e]";
-                    const isCritical = eps >= 70;
+                    const priority_score: number = p.eps ?? 0;
+                    const confidence_band = p.confidence_band || "Low";
+                    const isCritical = priority_score >= 80;
+                    const actionStatus = actionStates[p.segment_id] || "Not sent";
 
                     return (
                       <motion.div
@@ -147,14 +153,11 @@ export default function DispatchQueue() {
                       >
                         {/* Hover Reveal Actions Background */}
                         <div className="absolute top-0 right-0 bottom-0 w-32 bg-gradient-to-l from-[#0B0F1A] via-[#0B0F1A] to-transparent translate-x-full group-hover:translate-x-0 transition-transform duration-200 ease-out z-10 flex items-center justify-end pr-4 gap-2">
-                          <button onClick={(e) => { e.stopPropagation(); handleFeedback(feature, "Yes"); }} className="p-1.5 hover:bg-emerald-500/20 text-zinc-500 hover:text-emerald-400 rounded-full transition-colors" title="Mark Resolved">
-                            <CheckCircle className="w-4 h-4" strokeWidth={1.5} />
+                          <button onClick={(e) => { e.stopPropagation(); setActionStates(prev => ({ ...prev, [p.segment_id]: "Team sent" })); }} className="px-2 py-1 bg-blue-500/20 text-blue-400 hover:bg-blue-500/30 rounded text-[10px] font-bold" title="Send Team">
+                            Send
                           </button>
-                          <button onClick={(e) => { e.stopPropagation(); handleFeedback(feature, "Partial"); }} className="p-1.5 hover:bg-yellow-500/20 text-zinc-500 hover:text-yellow-400 rounded-full transition-colors" title="Needs Investigation">
-                            <AlertCircle className="w-4 h-4" strokeWidth={1.5} />
-                          </button>
-                          <button onClick={(e) => { e.stopPropagation(); handleFeedback(feature, "No"); }} className="p-1.5 hover:bg-rose-500/20 text-zinc-500 hover:text-rose-400 rounded-full transition-colors" title="Inaccurate">
-                            <XCircle className="w-4 h-4" strokeWidth={1.5} />
+                          <button onClick={(e) => { e.stopPropagation(); handleFeedback(feature, "Yes"); }} className="px-2 py-1 bg-emerald-500/20 text-emerald-400 hover:bg-emerald-500/30 rounded text-[10px] font-bold" title="Mark Cleared">
+                            Clear
                           </button>
                         </div>
 
@@ -165,28 +168,31 @@ export default function DispatchQueue() {
                               <span className="text-zinc-500 text-[10px] font-mono flex-shrink-0">
                                 #{String(idx + 1).padStart(2, "0")}
                               </span>
-                              <div className="relative flex items-center justify-center flex-shrink-0">
-                                {isCritical && <span className={`absolute inset-0 rounded-full animate-ping opacity-50 ${dotColor}`} />}
-                                <span className={`w-2 h-2 rounded-full ${dotColor}`} />
-                              </div>
                               <p className="text-zinc-200 text-[13px] font-bold leading-tight truncate">
-                                {p.road_name || (p.junction_name !== "No Junction" ? p.junction_name : null) || p.police_station || "Unknown"}
+                                {p.road_name || (p.junction_name !== "No Junction" ? p.junction_name : null) || p.police_station || "Unknown Road"}
                               </p>
                             </div>
                             
                             {/* Stats Line */}
                             <div className="flex items-center gap-3 pl-6">
-                              <span className="text-[10px] text-zinc-400 font-mono">
-                                {p.police_station} Station
+                              <span className="text-[11px] text-zinc-400">
+                                {p.police_station} Station · <span className="text-zinc-300 font-bold">{Math.round(p.predicted_total || 0)} vehicles expected</span>
                               </span>
-                              <span className="text-[10px] text-zinc-500 font-mono flex items-center gap-1">
-                                Est. vehicles: <strong className="text-zinc-300">{Math.round(p.predicted_total || 0)}</strong>
+                            </div>
+                            {/* Action Status */}
+                            <div className="flex items-center gap-3 pl-6 mt-1.5">
+                              <span className={`text-[9px] font-bold uppercase tracking-wider ${
+                                actionStatus === 'Cleared' ? 'text-emerald-400' :
+                                actionStatus === 'Team sent' ? 'text-blue-400' :
+                                'text-zinc-500'
+                              }`}>
+                                {actionStatus}
                               </span>
                             </div>
                           </div>
                           
                           <div className="flex items-center gap-3">
-                            <PriorityPill eps={eps} />
+                            <PriorityPill priority_score={priority_score} confidence_band={confidence_band} />
                           </div>
                         </div>
                       </motion.div>

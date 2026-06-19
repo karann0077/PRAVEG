@@ -87,6 +87,7 @@ def main() -> None:
         "priority_band",
         "recommended_action",
         "recommended_force_units",
+        "economic_loss_inr",
     ]
     print(top[display_cols].to_string(index=False, max_colwidth=42))
     print(f"\nSaved CSV: {out_csv}")

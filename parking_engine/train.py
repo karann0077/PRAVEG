@@ -119,6 +119,7 @@ def main() -> None:
         end_hour=end_hour,
         zero_multiplier=args.zero_multiplier,
         random_state=args.random_state,
+        segment_metadata=segment_metadata,
     )
 
     # ── V2: Integrate spatial context (dist_to_metro_m, dist_to_commercial_m) ──
@@ -131,10 +132,17 @@ def main() -> None:
             segment_metadata = segment_metadata.merge(
                 spatial_features, on="segment_id", how="left", suffixes=("", "_spatial")
             )
-            for col in ["dist_to_metro_m", "dist_to_commercial_m"]:
+            # Fill missing distances with a large default (5000m)
+            dist_cols = [c for c in spatial_features.columns if c.startswith("dist_to_")]
+            for col in dist_cols:
                 if col in segment_metadata.columns:
                     segment_metadata[col] = segment_metadata[col].fillna(5000.0)
-            print(f"  Spatial context: {len(spatial_features)} segments enriched")
+            # Fill missing counts with 0
+            count_cols = [c for c in spatial_features.columns if c.startswith("poi_count_") or c.startswith("poi_gravity_")]
+            for col in count_cols:
+                if col in segment_metadata.columns:
+                    segment_metadata[col] = segment_metadata[col].fillna(0.0)
+            print(f"  Spatial context: {len(spatial_features)} segments enriched with {len(dist_cols) + len(count_cols)} V3 POI features")
         except Exception as exc:
             print(f"  Spatial context failed (non-fatal): {exc}")
 

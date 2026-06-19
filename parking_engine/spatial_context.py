@@ -39,7 +39,32 @@ POI_COLUMNS = [
     "tags",
 ]
 
-SPATIAL_CONTEXT_COLUMNS = ["segment_id", "dist_to_metro_m", "dist_to_commercial_m"]
+SPATIAL_CONTEXT_COLUMNS = [
+    "segment_id", 
+    "dist_to_metro_m", 
+    "dist_to_commercial_m",
+    "dist_to_bus_stop_m",
+    "dist_to_school_m",
+    "dist_to_hospital_m",
+    "dist_to_market_m",
+    "dist_to_restaurant_m",
+    "dist_to_worship_m",
+    "poi_count_200m",
+    "poi_count_500m",
+    "poi_gravity_score",
+]
+
+# V3: POI gravity weights - higher weight = more parking impact
+POI_GRAVITY_WEIGHTS = {
+    "metro": 3.0,
+    "commercial": 2.5,
+    "market": 2.5,
+    "school": 2.0,
+    "hospital": 2.0,
+    "restaurant": 1.5,
+    "bus_stop": 1.2,
+    "worship": 1.5,
+}
 
 
 def fetch_bengaluru_context_pois(
@@ -196,18 +221,24 @@ def build_spatial_context_features(
     )
 
     result = segments[["segment_id"]].copy()
-    result["dist_to_metro_m"] = nearest_poi_distances_m(
-        segments,
-        context_pois,
-        poi_type="metro",
-        missing_distance_m=missing_distance_m,
-    ).to_numpy()
-    result["dist_to_commercial_m"] = nearest_poi_distances_m(
-        segments,
-        context_pois,
-        poi_type="commercial",
-        missing_distance_m=missing_distance_m,
-    ).to_numpy()
+    poi_types = [
+        "metro", "commercial", "bus_stop", "school", 
+        "hospital", "market", "restaurant", "worship"
+    ]
+    for ptype in poi_types:
+        result[f"dist_to_{ptype}_m"] = nearest_poi_distances_m(
+            segments,
+            context_pois,
+            poi_type=ptype,
+            missing_distance_m=missing_distance_m,
+        ).to_numpy()
+
+    # V3: Density counts within 200m and 500m
+    counts_200, counts_500, gravity_score = _compute_poi_density_and_gravity(segments, context_pois)
+    result["poi_count_200m"] = counts_200
+    result["poi_count_500m"] = counts_500
+    result["poi_gravity_score"] = gravity_score
+
     return result[SPATIAL_CONTEXT_COLUMNS]
 
 
@@ -247,6 +278,72 @@ def nearest_poi_distances_m(
     )
     distances.index = segments["segment_id"]
     return distances
+
+
+def _compute_poi_density_and_gravity(segments: pd.DataFrame, context_pois: pd.DataFrame) -> tuple[pd.Series, pd.Series, pd.Series]:
+    """V3: Compute counts of POIs within radii and gravity score."""
+    n_segments = len(segments)
+    counts_200 = pd.Series(0.0, index=segments.index, dtype="float64")
+    counts_500 = pd.Series(0.0, index=segments.index, dtype="float64")
+    gravity_score = pd.Series(0.0, index=segments.index, dtype="float64")
+
+    valid_segments = segments[["lat_center", "lon_center"]].notna().all(axis=1)
+    if not valid_segments.any() or context_pois.empty:
+        return counts_200, counts_500, gravity_score
+
+    segment_x, segment_y = project_lonlat_to_epsg32643(
+        segments.loc[valid_segments, "lon_center"].to_numpy(dtype=float),
+        segments.loc[valid_segments, "lat_center"].to_numpy(dtype=float),
+    )
+    query_points = np.column_stack([segment_x, segment_y])
+
+    # For counts, we consider all POIs
+    valid_pois = context_pois.dropna(subset=["lat", "lon"])
+    if valid_pois.empty:
+        return counts_200, counts_500, gravity_score
+        
+    poi_x, poi_y = project_lonlat_to_epsg32643(
+        valid_pois["lon"].to_numpy(dtype=float),
+        valid_pois["lat"].to_numpy(dtype=float),
+    )
+    target_points = np.column_stack([poi_x, poi_y])
+
+    try:
+        from scipy.spatial import cKDTree
+        tree = cKDTree(target_points)
+        # counts within 200m and 500m
+        idx_200 = tree.query_ball_point(query_points, r=200.0)
+        idx_500 = tree.query_ball_point(query_points, r=500.0)
+        
+        c200 = np.array([len(indices) for indices in idx_200], dtype="float64")
+        c500 = np.array([len(indices) for indices in idx_500], dtype="float64")
+        counts_200.loc[valid_segments] = c200
+        counts_500.loc[valid_segments] = c500
+        
+        # Calculate gravity score: sum of weight / max(10, distance)^1.5
+        # We'll just approximate it using the 500m neighbors for efficiency
+        poi_types = valid_pois["poi_type"].to_numpy()
+        gravity = np.zeros(len(query_points), dtype="float64")
+        
+        for i, indices in enumerate(idx_500):
+            if not indices:
+                continue
+            targets = target_points[indices]
+            ptypes = poi_types[indices]
+            dist = np.sqrt(np.sum((targets - query_points[i])**2, axis=1))
+            dist = np.maximum(dist, 10.0)  # avoid div by zero, assume min 10m
+            weights = np.array([POI_GRAVITY_WEIGHTS.get(pt, 1.0) for pt in ptypes])
+            gravity[i] = np.sum(weights / (dist ** 1.5)) * 1000  # scale factor
+            
+        gravity_score.loc[valid_segments] = gravity
+        
+    except Exception as e:
+        LOGGER.warning("cKDTree unavailable or failed, skipping POI density features: %s", e)
+        
+    counts_200.index = segments["segment_id"]
+    counts_500.index = segments["segment_id"]
+    gravity_score.index = segments["segment_id"]
+    return counts_200, counts_500, gravity_score
 
 
 def project_lonlat_to_epsg32643(
@@ -299,7 +396,12 @@ def normalize_poi_dataframe(pois: pd.DataFrame | Iterable[dict[str, Any]] | None
     frame["lat"] = pd.to_numeric(frame["lat"], errors="coerce")
     frame["lon"] = pd.to_numeric(frame["lon"], errors="coerce")
     frame = frame.dropna(subset=["lat", "lon", "poi_type"])
-    frame = frame.loc[frame["poi_type"].isin(["metro", "commercial"])].copy()
+    
+    valid_types = [
+        "metro", "commercial", "bus_stop", "school", 
+        "hospital", "market", "restaurant", "worship"
+    ]
+    frame = frame.loc[frame["poi_type"].isin(valid_types)].copy()
     if frame.empty:
         return _empty_poi_frame()
 
@@ -348,6 +450,15 @@ def _fetch_context_pois_with_overpass(
       node["landuse"~"^(commercial|retail)$"]{selector};
       way["landuse"~"^(commercial|retail)$"]{selector};
       relation["landuse"~"^(commercial|retail)$"]{selector};
+      node["highway"="bus_stop"]{selector};
+      node["amenity"~"^(school|college|university)$"]{selector};
+      way["amenity"~"^(school|college|university)$"]{selector};
+      node["amenity"~"^(hospital|clinic)$"]{selector};
+      way["amenity"~"^(hospital|clinic)$"]{selector};
+      node["amenity"~"^(marketplace|restaurant|cafe|fast_food|food_court)$"]{selector};
+      way["amenity"~"^(marketplace|restaurant|cafe|fast_food|food_court)$"]{selector};
+      node["amenity"="place_of_worship"]{selector};
+      way["amenity"="place_of_worship"]{selector};
     );
     out tags center;
     """
@@ -547,6 +658,19 @@ def _poi_type_from_osm_tags(tags: dict[str, Any]) -> str | None:
         return "metro"
     if str(tags.get("landuse", "")).lower() in {"commercial", "retail"}:
         return "commercial"
+    if str(tags.get("highway", "")).lower() == "bus_stop":
+        return "bus_stop"
+    amenity = str(tags.get("amenity", "")).lower()
+    if amenity in {"school", "college", "university"}:
+        return "school"
+    if amenity in {"hospital", "clinic"}:
+        return "hospital"
+    if amenity in {"restaurant", "cafe", "fast_food", "food_court"}:
+        return "restaurant"
+    if amenity == "marketplace":
+        return "market"
+    if amenity == "place_of_worship":
+        return "worship"
     return None
 
 
@@ -556,6 +680,18 @@ def _normalize_poi_type(value: Any) -> str | None:
         return "metro"
     if text in {"commercial", "retail", "landuse_commercial", "landuse_retail"}:
         return "commercial"
+    if text in {"bus_stop", "highway_bus_stop"}:
+        return "bus_stop"
+    if text in {"school", "college", "university"}:
+        return "school"
+    if text in {"hospital", "clinic"}:
+        return "hospital"
+    if text in {"restaurant", "cafe", "fast_food", "food_court"}:
+        return "restaurant"
+    if text in {"market", "marketplace"}:
+        return "market"
+    if text in {"worship", "place_of_worship"}:
+        return "worship"
     return None
 
 

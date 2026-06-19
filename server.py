@@ -81,7 +81,7 @@ def _get_db() -> sqlite3.Connection:
 async def lifespan(app: FastAPI):
     global model_bundle
 
-    model_path = "artifacts/parking_model_osm/model.joblib"
+    model_path = "artifacts/parking_model_v3_ensemble/model.joblib"
     if not Path(model_path).exists():
         model_path = "artifacts/parking_model/model.joblib"
 
@@ -133,6 +133,11 @@ def predict_endpoint(
             live_congestion_multiplier=live_multipliers,
         )
         top = scored.head(top_k).copy()
+        
+        # ── Map Phase 5 fields ───────────────────────────────────────────────
+        top["cis"] = top["eps"]
+        top["calibrated_probability"] = top.get("hotspot_probability", 0.0)
+        
         return {"status": "success", "data": top.to_dict(orient="records")}
     except Exception as exc:
         raise HTTPException(status_code=500, detail=str(exc))
@@ -176,7 +181,8 @@ def explain_endpoint(
                 X[col] = X[col].cat.codes
 
         # ── SHAP on the first estimator in the chain ─────────────────────────
-        base_lgbm = model.estimators_[0]
+        model_reg = model.get("regressor") if isinstance(model, dict) else model
+        base_lgbm = model_reg.estimators_[0]
         explainer = shap.TreeExplainer(base_lgbm)
         shap_values = explainer.shap_values(X)
 
@@ -262,7 +268,7 @@ def health_endpoint():
 # ── /metrics  (existing — kept) ───────────────────────────────────────────────
 @app.get("/metrics")
 def metrics_endpoint():
-    metrics_path = Path("artifacts/parking_model_osm/metrics.json")
+    metrics_path = Path("artifacts/parking_model_v3_ensemble/metrics.json")
     if not metrics_path.exists():
         raise HTTPException(status_code=404, detail="Metrics not found.")
     return json.loads(metrics_path.read_text())

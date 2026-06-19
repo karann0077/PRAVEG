@@ -9,10 +9,12 @@ interface MapState {
   setSelectedHeatmapZone: (zone: any | null) => void;
   isSimulatingResolution: boolean;
   setIsSimulatingResolution: (val: boolean) => void;
-  activeLayerMode: 'tactical' | 'heatmap';
-  setActiveLayerMode: (mode: 'tactical' | 'heatmap') => void;
+  activeLayerMode: 'action_roads' | 'traffic_blockage' | 'patrol_route' | 'all_predictions';
+  setActiveLayerMode: (mode: 'action_roads' | 'traffic_blockage' | 'patrol_route' | 'all_predictions') => void;
   isSimulationActive: boolean;
   setIsSimulationActive: (val: boolean) => void;
+  isBuildingRoute: boolean;
+  setIsBuildingRoute: (val: boolean) => void;
   mapStyle: 'dark' | 'satellite' | 'light';
   setMapStyle: (style: 'dark' | 'satellite' | 'light') => void;
   viewState: {
@@ -35,6 +37,9 @@ interface MapState {
   nearestStation: any | null;
   setNearestStation: (data: any | null) => void;
 
+  patrolRouteGeometry: any | null;
+  setPatrolRouteGeometry: (data: any | null) => void;
+
   // Heatmap weight mode toggle
   heatmapWeightMode: 'violation_density' | 'congestion_impact';
   setHeatmapWeightMode: (mode: 'violation_density' | 'congestion_impact') => void;
@@ -49,10 +54,12 @@ export const useMapStore = create<MapState>((set) => ({
   setSelectedHeatmapZone: (zone) => set({ selectedHeatmapZone: zone }),
   isSimulatingResolution: false,
   setIsSimulatingResolution: (val) => set({ isSimulatingResolution: val }),
-  activeLayerMode: 'tactical',
+  activeLayerMode: 'action_roads',
   setActiveLayerMode: (mode) => set({ activeLayerMode: mode }),
   isSimulationActive: false,
   setIsSimulationActive: (val) => set({ isSimulationActive: val }),
+  isBuildingRoute: false,
+  setIsBuildingRoute: (val) => set({ isBuildingRoute: val }),
   mapStyle: 'dark',
   setMapStyle: (style) => set({ mapStyle: style }),
   viewState: {
@@ -80,6 +87,8 @@ export const useMapStore = create<MapState>((set) => ({
   setResolutionImpact: (data) => set({ resolutionImpact: data }),
   nearestStation: null,
   setNearestStation: (data) => set({ nearestStation: data }),
+  patrolRouteGeometry: null,
+  setPatrolRouteGeometry: (data) => set({ patrolRouteGeometry: data }),
   heatmapWeightMode: 'violation_density',
   setHeatmapWeightMode: (mode) => set({ heatmapWeightMode: mode }),
 }));

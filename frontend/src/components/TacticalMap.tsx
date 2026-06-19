@@ -42,7 +42,7 @@ const MAP_STYLES = {
 };
 
 export default function TacticalMap() {
-  const { viewState, setViewState, selectedEdge, setSelectedEdge, mapStyle, targetHour, isSimulatingResolution, geoData, setGeoData, activeLayerMode, setSelectedHeatmapZone, heatmapWeightMode } = useMapStore();
+  const { viewState, setViewState, selectedEdge, setSelectedEdge, mapStyle, targetHour, isSimulatingResolution, geoData, setGeoData, activeLayerMode, setSelectedHeatmapZone, heatmapWeightMode, isBuildingRoute, nearestStation, patrolRouteGeometry } = useMapStore();
   const [poiData, setPoiData] = useState<any>(null);
   const [loading, setLoading] = useState(true);
   const [dashOffset, setDashOffset] = useState(0);
@@ -82,27 +82,23 @@ export default function TacticalMap() {
   }, [targetHour, setGeoData]);
 
   const currentStyle = mapStyle === "satellite" ? MAP_STYLES.satellite : mapStyle === "light" ? MAP_STYLES.light : MAP_STYLES.dark;
-
-  const isTactical = activeLayerMode === "tactical";
-  const isHeatmap = activeLayerMode === "heatmap";
+  const isActionRoads = activeLayerMode === "action_roads";
+  const isTrafficBlockage = activeLayerMode === "traffic_blockage";
+  const isPatrolRoute = activeLayerMode === "patrol_route";
+  const isAllPredictions = activeLayerMode === "all_predictions";
 
   // --- TURF.JS GEOMETRY CHUNKING (HEATMAP INTERPOLATION) ---
   const heatmapPoints = useMemo(() => {
-    if (!isHeatmap || !geoData || !geoData.features) return [];
+    if (!isTrafficBlockage || !geoData || !geoData.features) return [];
     const points: any[] = [];
     geoData.features.forEach((f: any) => {
       const eps = f.properties?.eps ?? 0;
-      // Removed the hard threshold (eps < 50) so the Heatmap is always visible 
-      // and shows the natural ambient traffic density even during calm hours.
-      
       const econLoss = f.properties?.economic_loss || (eps * 15000); // Derive economic bleed if missing
       const estVehicles = f.properties?.predicted_total || Math.floor(eps / 2);
       const weight = heatmapWeightMode === 'violation_density' ? estVehicles : econLoss;
       
       try {
-        // Some GeoJSON might have multi geometries, try standard lineString first
         const line = turf.lineString(f.geometry.coordinates);
-        // Split into dense 50-meter chunks to perfectly trace the road topology
         const chunks = turf.lineChunk(line, 0.05, { units: 'kilometers' });
         chunks.features.forEach((chunk: any) => {
            const coord = chunk.geometry.coordinates[0];
@@ -116,7 +112,6 @@ export default function TacticalMap() {
            });
         });
       } catch (err) {
-        // Safe fallback for irregular MultiLineStrings
         let coord = f.geometry.coordinates[0];
         while (Array.isArray(coord) && Array.isArray(coord[0])) coord = coord[0];
         if (Array.isArray(coord)) {
@@ -132,7 +127,7 @@ export default function TacticalMap() {
       }
     });
     return points;
-  }, [geoData, isHeatmap, heatmapWeightMode]);
+  }, [geoData, isTrafficBlockage, heatmapWeightMode]);
 
   const layers = useMemo(() => {
     let dispatchRouteData = [];
@@ -140,67 +135,67 @@ export default function TacticalMap() {
       const coords = selectedEdge.geometry.coordinates;
       let targetCoord = coords[0];
       if (Array.isArray(targetCoord) && Array.isArray(targetCoord[0])) {
-        targetCoord = targetCoord[0]; // Handle MultiLineString
+        targetCoord = targetCoord[0];
       }
       if (targetCoord) {
         dispatchRouteData.push({
-          source: [77.585, 12.975], // Mock Cubbon Park Traffic Police Station
+          source: [77.585, 12.975],
           target: targetCoord
         });
       }
     }
 
-    // Build mock TSP Route out of top 5 hotspots
     let tspPath: any[] = [];
-    if (geoData && geoData.features) {
+    if (isBuildingRoute && patrolRouteGeometry) {
+      tspPath.push({
+        path: patrolRouteGeometry,
+        color: [255, 255, 255, 255]
+      });
+    } else if (geoData && geoData.features) {
       const hotspots = geoData.features
         .filter((f: any) => f.properties.eps > 80)
         .slice(0, 5)
         .map((f: any) => f.geometry.coordinates[0]);
       if (hotspots.length > 0) {
         tspPath.push({
-          path: [[77.585, 12.975], ...hotspots.map((c: any) => Array.isArray(c[0]) ? c[0] : c)], // Mock Police Station + Hotspots
+          path: [[77.585, 12.975], ...hotspots.map((c: any) => Array.isArray(c[0]) ? c[0] : c)],
           color: [255, 255, 255, 255]
         });
       }
     }
 
     return [
-      // Heatmap Mode (Economic Bleed Weighting)
-      isHeatmap && new HeatmapLayer({
+      isTrafficBlockage && new HeatmapLayer({
         id: 'heatmap-layer',
         data: heatmapPoints,
         getPosition: (d: any) => d.position,
         getWeight: (d: any) => d.weight,
-        radiusPixels: 20, // Tighter radius for precision KDE
-        intensity: 2,   // Higher intensity
+        radiusPixels: 20,
+        intensity: 2,
         threshold: 0.05,
         colorRange: [
-          [34, 197, 94, 50],     // Clear / Low Density (Green, 20%)
-          [6, 182, 212, 100],    // Cool
-          [168, 85, 247, 150],   // Medium
-          [236, 72, 153, 200],   // High
-          [239, 68, 68, 255]     // Critical / Danger
+          [34, 197, 94, 50],
+          [6, 182, 212, 100],
+          [168, 85, 247, 150],
+          [236, 72, 153, 200],
+          [239, 68, 68, 255]
         ]
       }),
 
-      // The Invisible Mesh Hack (Clickable Heatmap Zone Commander)
-      isHeatmap && new HexagonLayer({
+      isTrafficBlockage && new HexagonLayer({
         id: 'heatmap-picker-layer',
         data: heatmapPoints,
         getPosition: (d: any) => d.position,
-        radius: 200, // Hex bin size acting as the interactive bounding volume
-        opacity: 0, // INVISIBLE but INTERACTIVE
+        radius: 200,
+        opacity: 0,
         pickable: true,
         onClick: (info: any) => {
            if (info.object && info.object.points) {
               const pts = info.object.points;
-              // Aggregate financial and squad data for the entire Zone
               const totalLoss = pts.reduce((sum: number, p: any) => sum + p.source.economic_loss, 0);
               const totalVeh = pts.reduce((sum: number, p: any) => sum + p.source.vehicles, 0);
               const uniqueSegments = new Set(pts.map((p: any) => p.source.segment_id)).size;
               
-              // Calculate a Staging Area safely offset from the epicenter
               const hexCenter = info.coordinate;
               const stagingArea = [hexCenter[0] + 0.005, hexCenter[1] + 0.005];
 
@@ -217,8 +212,7 @@ export default function TacticalMap() {
         }
       }),
 
-      // Neon Glow Underlying Layer
-      isTactical && new GeoJsonLayer({
+      !isTrafficBlockage && new GeoJsonLayer({
         id: "traffic-glow",
         data: geoData,
         pickable: false,
@@ -228,28 +222,29 @@ export default function TacticalMap() {
         getLineWidth: 12,
         getLineColor: (d: any) => {
           const eps = d.properties?.eps ?? 0;
+          
           if (selectedEdge) {
-            if (selectedEdge.segment_id === d.properties.segment_id) {
+            if (selectedEdge.properties?.segment_id === d.properties.segment_id) {
               return isSimulatingResolution ? [16, 185, 129, 100] : [255, 255, 255, 100];
             }
-            if (d.properties.is_ripple && d.properties.source_bottleneck === selectedEdge.segment_id) {
-               return isSimulatingResolution ? [16, 185, 129, 80] : [255, 42, 95, 80]; // Crimson glow
+            if (d.properties.is_ripple && d.properties.source_bottleneck === selectedEdge.properties?.segment_id) {
+               return isSimulatingResolution ? [16, 185, 129, 80] : [255, 42, 95, 80];
             }
             return [30, 30, 30, 0]; 
           }
           if (d.properties?.is_ripple) return [0,0,0,0];
           
-          if (eps >= 70) return [239, 68, 68, 120]; // #ef4444 (Critical Glow)
-          if (eps >= 50) return [249, 115, 22, 100]; // #f97316 (Warning Glow)
-          return [34, 197, 94, 60]; // #22c55e (Clear Glow)
+          if (eps >= 80) return [220, 38, 38, 120]; // Deep Red
+          if (eps >= 60) return [249, 115, 22, 100]; // Orange
+          if (eps >= 40) return [234, 179, 8, 80]; // Yellow
+          return [34, 197, 94, 60]; // Green
         },
         lineCapRounded: true,
         lineJointRounded: true,
-        updateTriggers: { getLineColor: [geoData, selectedEdge, isSimulatingResolution] },
+        updateTriggers: { getLineColor: [geoData, selectedEdge, isSimulatingResolution, activeLayerMode] },
       }),
 
-      // Original Tactical Traffic Lines (Core Line)
-      isTactical && new GeoJsonLayer({
+      !isTrafficBlockage && new GeoJsonLayer({
         id: "traffic-core",
         data: geoData,
         pickable: true,
@@ -259,35 +254,37 @@ export default function TacticalMap() {
         filled: false,
         lineWidthUnits: "pixels",
         lineWidthMinPixels: 1,
-        getLineWidth: 2, // Very thin core for the neon effect
+        getLineWidth: 2,
         getLineColor: (d: any) => {
           const eps = d.properties?.eps ?? 0;
+
           if (selectedEdge) {
-            if (selectedEdge.segment_id === d.properties.segment_id) {
+            if (selectedEdge.properties?.segment_id === d.properties.segment_id) {
               return isSimulatingResolution ? [16, 185, 129, 255] : [255, 255, 255, 255];
             }
-            if (d.properties.is_ripple && d.properties.source_bottleneck === selectedEdge.segment_id) {
-               return isSimulatingResolution ? [16, 185, 129, 255] : [255, 100, 140, 255]; // Bright pink-red core
+            if (d.properties.is_ripple && d.properties.source_bottleneck === selectedEdge.properties?.segment_id) {
+               return isSimulatingResolution ? [16, 185, 129, 255] : [255, 100, 140, 255];
             }
-            return [100, 100, 100, 50]; // Fade
+            return [100, 100, 100, 50];
           }
           if (d.properties?.is_ripple) return [0,0,0,0];
           
-          if (eps >= 70) return [239, 68, 68, 255]; // Critical Core
-          if (eps >= 50) return [249, 115, 22, 255]; // Warning Core
-          return [34, 197, 94, 255]; // Clear Core
+          if (eps >= 80) return [220, 38, 38, 255]; // Deep Red
+          if (eps >= 60) return [249, 115, 22, 255]; // Orange
+          if (eps >= 40) return [234, 179, 8, 255]; // Yellow
+          return [34, 197, 94, 255]; // Green
         },
         lineCapRounded: true,
         lineJointRounded: true,
         onClick: (info: any) => {
-          setSelectedEdge(info.object ? { ...info.object.properties, geometry: info.object.geometry } : null);
+          setSelectedEdge(info.object ? info.object : null);
           return true;
         },
-        updateTriggers: { getLineColor: [geoData, selectedEdge, isSimulatingResolution] },
-      }),
+        updateTriggers: { getLineColor: [geoData, selectedEdge, isSimulatingResolution, activeLayerMode] },
+      }),,
     
     // TSP Patrol Route - Outer Glow
-    isTactical && new PathLayer({
+    (isPatrolRoute || isBuildingRoute) && new PathLayer({
       id: 'tsp-patrol-route-glow',
       data: tspPath,
       getPath: (d: any) => d.path,
@@ -303,7 +300,7 @@ export default function TacticalMap() {
     }),
 
     // TSP Patrol Route - Inner Core
-    isTactical && new PathLayer({
+    (isPatrolRoute || isBuildingRoute) && new PathLayer({
       id: 'tsp-patrol-route-core',
       data: tspPath,
       getPath: (d: any) => d.path,
@@ -318,7 +315,7 @@ export default function TacticalMap() {
       updateTriggers: { dashOffset: dashOffset }
     }),
 
-    isTactical && new ArcLayer({
+    !isTrafficBlockage && new ArcLayer({
       id: "dispatch-arc",
       data: dispatchRouteData,
       getSourcePosition: (d: any) => d.source,
@@ -331,7 +328,7 @@ export default function TacticalMap() {
       visible: isSimulatingResolution,
     }),
     ].filter(Boolean);
-  }, [geoData, poiData, selectedEdge, setSelectedEdge, activeLayerMode, dashOffset, isSimulatingResolution, heatmapPoints, isTactical, isHeatmap]);
+  }, [geoData, poiData, selectedEdge, setSelectedEdge, activeLayerMode, dashOffset, isSimulatingResolution, heatmapPoints, isActionRoads, isTrafficBlockage, isPatrolRoute, isAllPredictions, isBuildingRoute, nearestStation, patrolRouteGeometry]);
 
   return (
     <motion.div 
