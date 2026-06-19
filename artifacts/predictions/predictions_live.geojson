@@ -4,143 +4,8 @@
     {
       "type": "Feature",
       "properties": {
-        "segment_id": "osm_way_160512746",
-        "target_hour": "2026-06-19 18:00:00",
-        "police_station": "HSR Layout",
-        "junction_name": "No Junction",
-        "road_class": "motorway",
-        "road_width_m": 15.0,
-        "predicted_total": 0.0009122059592747725,
-        "traffic_interruption_0_100": 1.348562228553618e-06,
-        "parking_risk_0_100": 0.020269189061694615,
-        "eps": 7.23,
-        "priority_band": "Low",
-        "recommended_action": "Monitor",
-        "recommended_force_units": 0,
-        "map_matching_mode": "osm_overpass_nearest_road",
-        "road_name": "Electronic City Flyover",
-        "osm_highway": "motorway",
-        "count_two_wheeler": 0.0004335535147313102,
-        "count_car": 0.0003027482341877666,
-        "count_auto": 0.0001206672953700487,
-        "count_light_commercial": 3.228047183237317e-05,
-        "count_heavy": 1.7138703923427646e-05,
-        "count_other": 5.8177392298461725e-06,
-        "live_congestion_multiplier": 1.0,
-        "clearance_m": 14.999697802159831,
-        "emergency_gridlock_flag": false,
-        "confidence_band": "Low",
-        "hotspot_probability": 0.0,
-        "economic_loss_inr": 213.0,
-        "geometry_wkt": "LINESTRING (77.6375915 12.893, 77.6389674 12.8907619, 77.6403568 12.8885054, 77.6418213 12.8861418, 77.6424318 12.8851565, 77.6429104 12.8843839, 77.6430444 12.8841677, 77.6438785 12.8827976, 77.6445706 12.8816785, 77.6458607 12.879558, 77.6467431 12.8781173, 77.6471401 12.8774767, 77.6474888 12.8769433, 77.6478589 12.8764569, 77.6491092 12.8750622, 77.6500181 12.8740513, 77.650627 12.8733689, 77.65126 12.8725844, 77.6522605 12.8713267, 77.6541289 12.8689616, 77.6548504 12.8680516, 77.6557328 12.8669429, 77.6594959 12.8621842, 77.6602479 12.8612492)"
-      },
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            77.6375915,
-            12.893
-          ],
-          [
-            77.6389674,
-            12.8907619
-          ],
-          [
-            77.6403568,
-            12.8885054
-          ],
-          [
-            77.6418213,
-            12.8861418
-          ],
-          [
-            77.6424318,
-            12.8851565
-          ],
-          [
-            77.6429104,
-            12.8843839
-          ],
-          [
-            77.6430444,
-            12.8841677
-          ],
-          [
-            77.6438785,
-            12.8827976
-          ],
-          [
-            77.6445706,
-            12.8816785
-          ],
-          [
-            77.6458607,
-            12.879558
-          ],
-          [
-            77.6467431,
-            12.8781173
-          ],
-          [
-            77.6471401,
-            12.8774767
-          ],
-          [
-            77.6474888,
-            12.8769433
-          ],
-          [
-            77.6478589,
-            12.8764569
-          ],
-          [
-            77.6491092,
-            12.8750622
-          ],
-          [
-            77.6500181,
-            12.8740513
-          ],
-          [
-            77.650627,
-            12.8733689
-          ],
-          [
-            77.65126,
-            12.8725844
-          ],
-          [
-            77.6522605,
-            12.8713267
-          ],
-          [
-            77.6541289,
-            12.8689616
-          ],
-          [
-            77.6548504,
-            12.8680516
-          ],
-          [
-            77.6557328,
-            12.8669429
-          ],
-          [
-            77.6594959,
-            12.8621842
-          ],
-          [
-            77.6602479,
-            12.8612492
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
         "segment_id": "osm_way_103269863",
-        "target_hour": "2026-06-19 18:00:00",
+        "target_hour": "2026-06-19 19:00:00",
         "police_station": "HSR Layout",
         "junction_name": "No Junction",
         "road_class": "motorway",
@@ -426,8 +291,143 @@
     {
       "type": "Feature",
       "properties": {
+        "segment_id": "osm_way_160512746",
+        "target_hour": "2026-06-19 19:00:00",
+        "police_station": "HSR Layout",
+        "junction_name": "No Junction",
+        "road_class": "motorway",
+        "road_width_m": 15.0,
+        "predicted_total": 0.0009117774740393451,
+        "traffic_interruption_0_100": 1.3467463255700807e-06,
+        "parking_risk_0_100": 0.020259669097133504,
+        "eps": 7.23,
+        "priority_band": "Low",
+        "recommended_action": "Monitor",
+        "recommended_force_units": 0,
+        "map_matching_mode": "osm_overpass_nearest_road",
+        "road_name": "Electronic City Flyover",
+        "osm_highway": "motorway",
+        "count_two_wheeler": 0.0004335535147313102,
+        "count_car": 0.0003027482341877666,
+        "count_auto": 0.0001206672953700487,
+        "count_light_commercial": 3.228047183237317e-05,
+        "count_heavy": 1.7138703923427646e-05,
+        "count_other": 5.389253994418719e-06,
+        "live_congestion_multiplier": 1.0,
+        "clearance_m": 14.999698005690318,
+        "emergency_gridlock_flag": false,
+        "confidence_band": "Low",
+        "hotspot_probability": 0.0,
+        "economic_loss_inr": 213.0,
+        "geometry_wkt": "LINESTRING (77.6375915 12.893, 77.6389674 12.8907619, 77.6403568 12.8885054, 77.6418213 12.8861418, 77.6424318 12.8851565, 77.6429104 12.8843839, 77.6430444 12.8841677, 77.6438785 12.8827976, 77.6445706 12.8816785, 77.6458607 12.879558, 77.6467431 12.8781173, 77.6471401 12.8774767, 77.6474888 12.8769433, 77.6478589 12.8764569, 77.6491092 12.8750622, 77.6500181 12.8740513, 77.650627 12.8733689, 77.65126 12.8725844, 77.6522605 12.8713267, 77.6541289 12.8689616, 77.6548504 12.8680516, 77.6557328 12.8669429, 77.6594959 12.8621842, 77.6602479 12.8612492)"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            77.6375915,
+            12.893
+          ],
+          [
+            77.6389674,
+            12.8907619
+          ],
+          [
+            77.6403568,
+            12.8885054
+          ],
+          [
+            77.6418213,
+            12.8861418
+          ],
+          [
+            77.6424318,
+            12.8851565
+          ],
+          [
+            77.6429104,
+            12.8843839
+          ],
+          [
+            77.6430444,
+            12.8841677
+          ],
+          [
+            77.6438785,
+            12.8827976
+          ],
+          [
+            77.6445706,
+            12.8816785
+          ],
+          [
+            77.6458607,
+            12.879558
+          ],
+          [
+            77.6467431,
+            12.8781173
+          ],
+          [
+            77.6471401,
+            12.8774767
+          ],
+          [
+            77.6474888,
+            12.8769433
+          ],
+          [
+            77.6478589,
+            12.8764569
+          ],
+          [
+            77.6491092,
+            12.8750622
+          ],
+          [
+            77.6500181,
+            12.8740513
+          ],
+          [
+            77.650627,
+            12.8733689
+          ],
+          [
+            77.65126,
+            12.8725844
+          ],
+          [
+            77.6522605,
+            12.8713267
+          ],
+          [
+            77.6541289,
+            12.8689616
+          ],
+          [
+            77.6548504,
+            12.8680516
+          ],
+          [
+            77.6557328,
+            12.8669429
+          ],
+          [
+            77.6594959,
+            12.8621842
+          ],
+          [
+            77.6602479,
+            12.8612492
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
         "segment_id": "osm_way_380052400",
-        "target_hour": "2026-06-19 18:00:00",
+        "target_hour": "2026-06-19 19:00:00",
         "police_station": "Chikkabanavara",
         "junction_name": "No Junction",
         "road_class": "motorway",
@@ -698,7 +698,7 @@
       "type": "Feature",
       "properties": {
         "segment_id": "osm_way_160511377",
-        "target_hour": "2026-06-19 18:00:00",
+        "target_hour": "2026-06-19 19:00:00",
         "police_station": "HSR Layout",
         "junction_name": "No Junction",
         "road_class": "motorway",
@@ -765,7 +765,7 @@
       "type": "Feature",
       "properties": {
         "segment_id": "osm_way_1409948319",
-        "target_hour": "2026-06-19 18:00:00",
+        "target_hour": "2026-06-19 19:00:00",
         "police_station": "Rajajinagar",
         "junction_name": "No Junction",
         "road_class": "trunk",
@@ -836,7 +836,7 @@
       "type": "Feature",
       "properties": {
         "segment_id": "osm_way_159820223",
-        "target_hour": "2026-06-19 18:00:00",
+        "target_hour": "2026-06-19 19:00:00",
         "police_station": "Rajajinagar",
         "junction_name": "No Junction",
         "road_class": "trunk",
@@ -970,371 +970,8 @@
     {
       "type": "Feature",
       "properties": {
-        "segment_id": "osm_way_764222259",
-        "target_hour": "2026-06-19 18:00:00",
-        "police_station": "K.R. Pura",
-        "junction_name": "No Junction",
-        "road_class": "trunk",
-        "road_width_m": 15.0,
-        "predicted_total": 0.0009640919054620764,
-        "traffic_interruption_0_100": 1.4408736870308303e-06,
-        "parking_risk_0_100": 0.021421969734147783,
-        "eps": 6.12,
-        "priority_band": "Low",
-        "recommended_action": "Monitor",
-        "recommended_force_units": 0,
-        "map_matching_mode": "osm_overpass_nearest_road",
-        "road_name": "Old Madras Road",
-        "osm_highway": "trunk",
-        "count_two_wheeler": 0.00048618633614927443,
-        "count_car": 0.0003027482341877666,
-        "count_auto": 0.0001206672953700487,
-        "count_light_commercial": 3.228047183237317e-05,
-        "count_heavy": 1.7138703923427646e-05,
-        "count_other": 5.070863999185814e-06,
-        "live_congestion_multiplier": 1.0,
-        "clearance_m": 14.999687630361283,
-        "emergency_gridlock_flag": false,
-        "confidence_band": "Low",
-        "hotspot_probability": 0.0,
-        "economic_loss_inr": 180.0,
-        "geometry_wkt": "LINESTRING (77.6924381 13.0082247, 77.6929459 13.0083298, 77.6934983 13.0083872, 77.6943083 13.0083879, 77.694817 13.0083872, 77.6948743 13.0083858, 77.6951811 13.0083785, 77.6952901 13.0083742, 77.6954958 13.0083662, 77.6957671 13.0084052)"
-      },
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            77.6924381,
-            13.0082247
-          ],
-          [
-            77.6929459,
-            13.0083298
-          ],
-          [
-            77.6934983,
-            13.0083872
-          ],
-          [
-            77.6943083,
-            13.0083879
-          ],
-          [
-            77.694817,
-            13.0083872
-          ],
-          [
-            77.6948743,
-            13.0083858
-          ],
-          [
-            77.6951811,
-            13.0083785
-          ],
-          [
-            77.6952901,
-            13.0083742
-          ],
-          [
-            77.6954958,
-            13.0083662
-          ],
-          [
-            77.6957671,
-            13.0084052
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "segment_id": "osm_way_1274067831",
-        "target_hour": "2026-06-19 18:00:00",
-        "police_station": "K.R. Pura",
-        "junction_name": "No Junction",
-        "road_class": "trunk",
-        "road_width_m": 15.0,
-        "predicted_total": 0.0009640919054620764,
-        "traffic_interruption_0_100": 1.4408736870308303e-06,
-        "parking_risk_0_100": 0.021421969734147783,
-        "eps": 6.12,
-        "priority_band": "Low",
-        "recommended_action": "Monitor",
-        "recommended_force_units": 0,
-        "map_matching_mode": "osm_overpass_nearest_road",
-        "road_name": "Old Madras Road",
-        "osm_highway": "trunk",
-        "count_two_wheeler": 0.00048618633614927443,
-        "count_car": 0.0003027482341877666,
-        "count_auto": 0.0001206672953700487,
-        "count_light_commercial": 3.228047183237317e-05,
-        "count_heavy": 1.7138703923427646e-05,
-        "count_other": 5.070863999185814e-06,
-        "live_congestion_multiplier": 1.0,
-        "clearance_m": 14.999687630361283,
-        "emergency_gridlock_flag": false,
-        "confidence_band": "Low",
-        "hotspot_probability": 0.0,
-        "economic_loss_inr": 180.0,
-        "geometry_wkt": "LINESTRING (77.6958894 13.008328, 77.6958028 13.0082855, 77.6957621 13.0082748, 77.6957101 13.0082611, 77.6946206 13.0082232, 77.6942415 13.0082272, 77.6941542 13.0082281, 77.6940763 13.0082362, 77.6939285 13.0082515, 77.6938049 13.0082643, 77.6935317 13.0082677, 77.6934653 13.0082685, 77.6931876 13.008228, 77.6929526 13.0081937, 77.6924978 13.0081116)"
-      },
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            77.6958894,
-            13.008328
-          ],
-          [
-            77.6958028,
-            13.0082855
-          ],
-          [
-            77.6957621,
-            13.0082748
-          ],
-          [
-            77.6957101,
-            13.0082611
-          ],
-          [
-            77.6946206,
-            13.0082232
-          ],
-          [
-            77.6942415,
-            13.0082272
-          ],
-          [
-            77.6941542,
-            13.0082281
-          ],
-          [
-            77.6940763,
-            13.0082362
-          ],
-          [
-            77.6939285,
-            13.0082515
-          ],
-          [
-            77.6938049,
-            13.0082643
-          ],
-          [
-            77.6935317,
-            13.0082677
-          ],
-          [
-            77.6934653,
-            13.0082685
-          ],
-          [
-            77.6931876,
-            13.008228
-          ],
-          [
-            77.6929526,
-            13.0081937
-          ],
-          [
-            77.6924978,
-            13.0081116
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "segment_id": "osm_way_40696223",
-        "target_hour": "2026-06-19 18:00:00",
-        "police_station": "Madiwala",
-        "junction_name": "BTP137 - Madiwala Traffic PS Junction",
-        "road_class": "trunk",
-        "road_width_m": 15.0,
-        "predicted_total": 0.0009631820960133113,
-        "traffic_interruption_0_100": 1.439082086829302e-06,
-        "parking_risk_0_100": 0.021401756075445366,
-        "eps": 6.12,
-        "priority_band": "Low",
-        "recommended_action": "Monitor",
-        "recommended_force_units": 0,
-        "map_matching_mode": "osm_overpass_nearest_road",
-        "road_name": "Hosur Road",
-        "osm_highway": "trunk",
-        "count_two_wheeler": 0.0004853212574890345,
-        "count_car": 0.0003027482341877666,
-        "count_auto": 0.0001206672953700487,
-        "count_light_commercial": 3.228047183237317e-05,
-        "count_heavy": 1.7138703923427646e-05,
-        "count_other": 5.026133210660627e-06,
-        "live_congestion_multiplier": 1.0,
-        "clearance_m": 14.99968782462414,
-        "emergency_gridlock_flag": false,
-        "confidence_band": "Low",
-        "hotspot_probability": 0.0,
-        "economic_loss_inr": 180.0,
-        "geometry_wkt": "LINESTRING (77.6208647 12.9202307, 77.6209061 12.9201591, 77.6209846 12.9200598, 77.6213541 12.9195205, 77.6214053 12.9194475)"
-      },
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            77.6208647,
-            12.9202307
-          ],
-          [
-            77.6209061,
-            12.9201591
-          ],
-          [
-            77.6209846,
-            12.9200598
-          ],
-          [
-            77.6213541,
-            12.9195205
-          ],
-          [
-            77.6214053,
-            12.9194475
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "segment_id": "osm_way_554773202",
-        "target_hour": "2026-06-19 18:00:00",
-        "police_station": "K.R. Pura",
-        "junction_name": "No Junction",
-        "road_class": "trunk",
-        "road_width_m": 15.0,
-        "predicted_total": 0.0009628203202175462,
-        "traffic_interruption_0_100": 1.4384150648361071e-06,
-        "parking_risk_0_100": 0.02139371833358439,
-        "eps": 6.12,
-        "priority_band": "Low",
-        "recommended_action": "Monitor",
-        "recommended_force_units": 0,
-        "map_matching_mode": "osm_overpass_nearest_road",
-        "road_name": "Old Madras Road",
-        "osm_highway": "trunk",
-        "count_two_wheeler": 0.0004849594816932695,
-        "count_car": 0.0003027482341877666,
-        "count_auto": 0.0001206672953700487,
-        "count_light_commercial": 3.228047183237317e-05,
-        "count_heavy": 1.7138703923427646e-05,
-        "count_other": 5.026133210660627e-06,
-        "live_congestion_multiplier": 1.0,
-        "clearance_m": 14.999687896979298,
-        "emergency_gridlock_flag": false,
-        "confidence_band": "Low",
-        "hotspot_probability": 0.0,
-        "economic_loss_inr": 180.0,
-        "geometry_wkt": "LINESTRING (77.6969507 13.0094908, 77.6962756 13.0086263, 77.6959896 13.0083729, 77.6958894 13.008328)"
-      },
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            77.6969507,
-            13.0094908
-          ],
-          [
-            77.6962756,
-            13.0086263
-          ],
-          [
-            77.6959896,
-            13.0083729
-          ],
-          [
-            77.6958894,
-            13.008328
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "segment_id": "osm_way_1409657256",
-        "target_hour": "2026-06-19 18:00:00",
-        "police_station": "Kamakshipalya",
-        "junction_name": "No Junction",
-        "road_class": "trunk",
-        "road_width_m": 15.0,
-        "predicted_total": 0.0009118832439012818,
-        "traffic_interruption_0_100": 1.3471944670939706e-06,
-        "parking_risk_0_100": 0.020262019062289305,
-        "eps": 6.12,
-        "priority_band": "Low",
-        "recommended_action": "Monitor",
-        "recommended_force_units": 0,
-        "map_matching_mode": "osm_overpass_nearest_road",
-        "road_name": "Sumanahalli Flyover",
-        "osm_highway": "trunk",
-        "count_two_wheeler": 0.0004335535147313102,
-        "count_car": 0.0003027482341877666,
-        "count_auto": 0.0001206672953700487,
-        "count_light_commercial": 3.228047183237317e-05,
-        "count_heavy": 1.7138703923427646e-05,
-        "count_other": 5.495023856355472e-06,
-        "live_congestion_multiplier": 1.0,
-        "clearance_m": 14.999697955449633,
-        "emergency_gridlock_flag": false,
-        "confidence_band": "Low",
-        "hotspot_probability": 0.0,
-        "economic_loss_inr": 180.0,
-        "geometry_wkt": "LINESTRING (77.5189329 12.9847855, 77.518982 12.9850448, 77.5190337 12.9853648, 77.5191496 12.9863055, 77.5191788 12.986504, 77.5192372 12.9867365, 77.5193133 12.987011, 77.5197358 12.9884389)"
-      },
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            77.5189329,
-            12.9847855
-          ],
-          [
-            77.518982,
-            12.9850448
-          ],
-          [
-            77.5190337,
-            12.9853648
-          ],
-          [
-            77.5191496,
-            12.9863055
-          ],
-          [
-            77.5191788,
-            12.986504
-          ],
-          [
-            77.5192372,
-            12.9867365
-          ],
-          [
-            77.5193133,
-            12.987011
-          ],
-          [
-            77.5197358,
-            12.9884389
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
         "segment_id": "osm_way_1259763900",
-        "target_hour": "2026-06-19 18:00:00",
+        "target_hour": "2026-06-19 19:00:00",
         "police_station": "Byatarayanapura",
         "junction_name": "BTP096 - Gali Anjaneya Temple",
         "road_class": "trunk",
@@ -1404,9 +1041,9 @@
     {
       "type": "Feature",
       "properties": {
-        "segment_id": "osm_way_172886640",
-        "target_hour": "2026-06-19 18:00:00",
-        "police_station": "K.R. Pura",
+        "segment_id": "osm_way_1055599191",
+        "target_hour": "2026-06-19 19:00:00",
+        "police_station": "Yeshwanthpura",
         "junction_name": "No Junction",
         "road_class": "trunk",
         "road_width_m": 15.0,
@@ -1418,7 +1055,7 @@
         "recommended_action": "Monitor",
         "recommended_force_units": 0,
         "map_matching_mode": "osm_overpass_nearest_road",
-        "road_name": "Old Madras Road",
+        "road_name": "Tumkur Road",
         "osm_highway": "trunk",
         "count_two_wheeler": 0.0004335535147313102,
         "count_car": 0.0003027482341877666,
@@ -1432,130 +1069,146 @@
         "confidence_band": "Low",
         "hotspot_probability": 0.0,
         "economic_loss_inr": 180.0,
-        "geometry_wkt": "LINESTRING (77.6957671 13.0084052, 77.6959516 13.0084679, 77.6961981 13.0086672, 77.6965083 13.0090851, 77.6967952 13.0094716, 77.6968552 13.0095458, 77.6971795 13.0099461, 77.6975199 13.0103588, 77.697653 13.0105267, 77.6976889 13.0105706, 77.6977431 13.0106369, 77.6978933 13.0108258, 77.6982466 13.0112526, 77.698534 13.0115867, 77.6986065 13.011671, 77.698767 13.0119037, 77.6989215 13.0121188, 77.699113 13.0124504, 77.6992297 13.0126514, 77.6993416 13.0128486, 77.6995457 13.0132084, 77.6995927 13.0132912, 77.699657 13.0134011, 77.7002422 13.0144012, 77.7006275 13.0149966, 77.7012082 13.0155496, 77.7016899 13.0158777, 77.7025854 13.0163097, 77.7043367 13.0170875, 77.7044679 13.0171458)"
+        "geometry_wkt": "LINESTRING (77.5412785 13.0282778, 77.5413619 13.0282294, 77.5414586 13.0281734, 77.5414959 13.0281519, 77.5415254 13.0281337, 77.5416331 13.0280758, 77.5417154 13.0280309, 77.5419061 13.0279269, 77.542066 13.0278346, 77.5424639 13.0276269, 77.5429517 13.0273519, 77.5433549 13.0271132, 77.5435414 13.0270022, 77.543901 13.0267882, 77.5441183 13.0266639, 77.5443205 13.0265475, 77.5443688 13.02652, 77.5445056 13.0264419, 77.5447919 13.0262783, 77.545034 13.0261409, 77.5450986 13.0261054, 77.5452612 13.0260109, 77.5457533 13.0257327, 77.5467087 13.025192, 77.5471692 13.0249313, 77.5475117 13.0247374, 77.547572 13.0247066, 77.5477353 13.0246136, 77.5478201 13.0245653, 77.5479328 13.0245012, 77.5480082 13.0244568, 77.548086 13.0244128, 77.5482645 13.0243119, 77.5484302 13.0242183)"
       },
       "geometry": {
         "type": "LineString",
         "coordinates": [
           [
-            77.6957671,
-            13.0084052
+            77.5412785,
+            13.0282778
           ],
           [
-            77.6959516,
-            13.0084679
+            77.5413619,
+            13.0282294
           ],
           [
-            77.6961981,
-            13.0086672
+            77.5414586,
+            13.0281734
           ],
           [
-            77.6965083,
-            13.0090851
+            77.5414959,
+            13.0281519
           ],
           [
-            77.6967952,
-            13.0094716
+            77.5415254,
+            13.0281337
           ],
           [
-            77.6968552,
-            13.0095458
+            77.5416331,
+            13.0280758
           ],
           [
-            77.6971795,
-            13.0099461
+            77.5417154,
+            13.0280309
           ],
           [
-            77.6975199,
-            13.0103588
+            77.5419061,
+            13.0279269
           ],
           [
-            77.697653,
-            13.0105267
+            77.542066,
+            13.0278346
           ],
           [
-            77.6976889,
-            13.0105706
+            77.5424639,
+            13.0276269
           ],
           [
-            77.6977431,
-            13.0106369
+            77.5429517,
+            13.0273519
           ],
           [
-            77.6978933,
-            13.0108258
+            77.5433549,
+            13.0271132
           ],
           [
-            77.6982466,
-            13.0112526
+            77.5435414,
+            13.0270022
           ],
           [
-            77.698534,
-            13.0115867
+            77.543901,
+            13.0267882
           ],
           [
-            77.6986065,
-            13.011671
+            77.5441183,
+            13.0266639
           ],
           [
-            77.698767,
-            13.0119037
+            77.5443205,
+            13.0265475
           ],
           [
-            77.6989215,
-            13.0121188
+            77.5443688,
+            13.02652
           ],
           [
-            77.699113,
-            13.0124504
+            77.5445056,
+            13.0264419
           ],
           [
-            77.6992297,
-            13.0126514
+            77.5447919,
+            13.0262783
           ],
           [
-            77.6993416,
-            13.0128486
+            77.545034,
+            13.0261409
           ],
           [
-            77.6995457,
-            13.0132084
+            77.5450986,
+            13.0261054
           ],
           [
-            77.6995927,
-            13.0132912
+            77.5452612,
+            13.0260109
           ],
           [
-            77.699657,
-            13.0134011
+            77.5457533,
+            13.0257327
           ],
           [
-            77.7002422,
-            13.0144012
+            77.5467087,
+            13.025192
           ],
           [
-            77.7006275,
-            13.0149966
+            77.5471692,
+            13.0249313
           ],
           [
-            77.7012082,
-            13.0155496
+            77.5475117,
+            13.0247374
           ],
           [
-            77.7016899,
-            13.0158777
+            77.547572,
+            13.0247066
           ],
           [
-            77.7025854,
-            13.0163097
+            77.5477353,
+            13.0246136
           ],
           [
-            77.7043367,
-            13.0170875
+            77.5478201,
+            13.0245653
           ],
           [
-            77.7044679,
-            13.0171458
+            77.5479328,
+            13.0245012
+          ],
+          [
+            77.5480082,
+            13.0244568
+          ],
+          [
+            77.548086,
+            13.0244128
+          ],
+          [
+            77.5482645,
+            13.0243119
+          ],
+          [
+            77.5484302,
+            13.0242183
           ]
         ]
       }
@@ -1564,7 +1217,7 @@
       "type": "Feature",
       "properties": {
         "segment_id": "osm_way_376662041",
-        "target_hour": "2026-06-19 18:00:00",
+        "target_hour": "2026-06-19 19:00:00",
         "police_station": "Mahadevapura",
         "junction_name": "No Junction",
         "road_class": "trunk",
@@ -1723,7 +1376,7 @@
       "type": "Feature",
       "properties": {
         "segment_id": "osm_way_454013130",
-        "target_hour": "2026-06-19 18:00:00",
+        "target_hour": "2026-06-19 19:00:00",
         "police_station": "City Market",
         "junction_name": "BTP082 - KR Market Junction",
         "road_class": "trunk",
@@ -1890,7 +1543,7 @@
       "type": "Feature",
       "properties": {
         "segment_id": "osm_way_377832174",
-        "target_hour": "2026-06-19 18:00:00",
+        "target_hour": "2026-06-19 19:00:00",
         "police_station": "Kodigehalli",
         "junction_name": "No Junction",
         "road_class": "trunk",
@@ -2033,7 +1686,7 @@
       "type": "Feature",
       "properties": {
         "segment_id": "osm_way_327581088",
-        "target_hour": "2026-06-19 18:00:00",
+        "target_hour": "2026-06-19 19:00:00",
         "police_station": "Rajajinagar",
         "junction_name": "No Junction",
         "road_class": "trunk",
@@ -2136,7 +1789,7 @@
       "type": "Feature",
       "properties": {
         "segment_id": "osm_way_376978813",
-        "target_hour": "2026-06-19 18:00:00",
+        "target_hour": "2026-06-19 19:00:00",
         "police_station": "HAL Old Airport",
         "junction_name": "No Junction",
         "road_class": "trunk",
@@ -2227,7 +1880,7 @@
       "type": "Feature",
       "properties": {
         "segment_id": "osm_way_1453976892",
-        "target_hour": "2026-06-19 18:00:00",
+        "target_hour": "2026-06-19 19:00:00",
         "police_station": "HAL Old Airport",
         "junction_name": "No Junction",
         "road_class": "trunk",
@@ -2290,7 +1943,7 @@
       "type": "Feature",
       "properties": {
         "segment_id": "osm_way_1196514124",
-        "target_hour": "2026-06-19 18:00:00",
+        "target_hour": "2026-06-19 19:00:00",
         "police_station": "HSR Layout",
         "junction_name": "No Junction",
         "road_class": "trunk",
@@ -2345,7 +1998,7 @@
       "type": "Feature",
       "properties": {
         "segment_id": "osm_way_377096332",
-        "target_hour": "2026-06-19 18:00:00",
+        "target_hour": "2026-06-19 19:00:00",
         "police_station": "HAL Old Airport",
         "junction_name": "No Junction",
         "road_class": "trunk",
@@ -2448,7 +2101,7 @@
       "type": "Feature",
       "properties": {
         "segment_id": "osm_way_617589873",
-        "target_hour": "2026-06-19 18:00:00",
+        "target_hour": "2026-06-19 19:00:00",
         "police_station": "Banaswadi",
         "junction_name": "No Junction",
         "road_class": "trunk",
@@ -2599,7 +2252,7 @@
       "type": "Feature",
       "properties": {
         "segment_id": "osm_way_244585079",
-        "target_hour": "2026-06-19 18:00:00",
+        "target_hour": "2026-06-19 19:00:00",
         "police_station": "Rajajinagar",
         "junction_name": "No Junction",
         "road_class": "trunk",
@@ -2718,7 +2371,7 @@
       "type": "Feature",
       "properties": {
         "segment_id": "osm_way_377857856",
-        "target_hour": "2026-06-19 18:00:00",
+        "target_hour": "2026-06-19 19:00:00",
         "police_station": "Kodigehalli",
         "junction_name": "No Junction",
         "road_class": "trunk",
@@ -2861,7 +2514,7 @@
       "type": "Feature",
       "properties": {
         "segment_id": "osm_way_392213813",
-        "target_hour": "2026-06-19 18:00:00",
+        "target_hour": "2026-06-19 19:00:00",
         "police_station": "Yeshwanthpura",
         "junction_name": "No Junction",
         "road_class": "trunk",
@@ -2916,7 +2569,7 @@
       "type": "Feature",
       "properties": {
         "segment_id": "osm_way_1442516746",
-        "target_hour": "2026-06-19 18:00:00",
+        "target_hour": "2026-06-19 19:00:00",
         "police_station": "Thalagattapura",
         "junction_name": "No Junction",
         "road_class": "trunk",
@@ -3103,7 +2756,7 @@
       "type": "Feature",
       "properties": {
         "segment_id": "osm_way_1312998591",
-        "target_hour": "2026-06-19 18:00:00",
+        "target_hour": "2026-06-19 19:00:00",
         "police_station": "Yeshwanthpura",
         "junction_name": "No Junction",
         "road_class": "trunk",
@@ -3158,7 +2811,7 @@
       "type": "Feature",
       "properties": {
         "segment_id": "osm_way_1219710438",
-        "target_hour": "2026-06-19 18:00:00",
+        "target_hour": "2026-06-19 19:00:00",
         "police_station": "Chikkajala",
         "junction_name": "No Junction",
         "road_class": "trunk",
@@ -3225,7 +2878,7 @@
       "type": "Feature",
       "properties": {
         "segment_id": "osm_way_1388159517",
-        "target_hour": "2026-06-19 18:00:00",
+        "target_hour": "2026-06-19 19:00:00",
         "police_station": "J.P. Nagar",
         "junction_name": "No Junction",
         "road_class": "trunk",
@@ -3492,7 +3145,7 @@
       "type": "Feature",
       "properties": {
         "segment_id": "osm_way_1013616313",
-        "target_hour": "2026-06-19 18:00:00",
+        "target_hour": "2026-06-19 19:00:00",
         "police_station": "K.S. Layout",
         "junction_name": "No Junction",
         "road_class": "trunk",
@@ -3755,7 +3408,7 @@
       "type": "Feature",
       "properties": {
         "segment_id": "osm_way_1250320999",
-        "target_hour": "2026-06-19 18:00:00",
+        "target_hour": "2026-06-19 19:00:00",
         "police_station": "K.S. Layout",
         "junction_name": "No Junction",
         "road_class": "trunk",
@@ -3970,7 +3623,7 @@
       "type": "Feature",
       "properties": {
         "segment_id": "osm_way_161234109",
-        "target_hour": "2026-06-19 18:00:00",
+        "target_hour": "2026-06-19 19:00:00",
         "police_station": "Sadashivanagar",
         "junction_name": "BTP030 - Mekhri Circle",
         "road_class": "trunk",
@@ -4044,8 +3697,79 @@
     {
       "type": "Feature",
       "properties": {
+        "segment_id": "osm_way_1409657256",
+        "target_hour": "2026-06-19 19:00:00",
+        "police_station": "Kamakshipalya",
+        "junction_name": "No Junction",
+        "road_class": "trunk",
+        "road_width_m": 15.0,
+        "predicted_total": 0.0009114785271379915,
+        "traffic_interruption_0_100": 1.345480127312726e-06,
+        "parking_risk_0_100": 0.020253027178340766,
+        "eps": 6.12,
+        "priority_band": "Low",
+        "recommended_action": "Monitor",
+        "recommended_force_units": 0,
+        "map_matching_mode": "osm_overpass_nearest_road",
+        "road_name": "Sumanahalli Flyover",
+        "osm_highway": "trunk",
+        "count_two_wheeler": 0.0004335535147313102,
+        "count_car": 0.0003027482341877666,
+        "count_auto": 0.0001206672953700487,
+        "count_light_commercial": 3.228047183237317e-05,
+        "count_heavy": 1.7138703923427646e-05,
+        "count_other": 5.09030709306524e-06,
+        "live_congestion_multiplier": 1.0,
+        "clearance_m": 14.999698147690097,
+        "emergency_gridlock_flag": false,
+        "confidence_band": "Low",
+        "hotspot_probability": 0.0,
+        "economic_loss_inr": 180.0,
+        "geometry_wkt": "LINESTRING (77.5189329 12.9847855, 77.518982 12.9850448, 77.5190337 12.9853648, 77.5191496 12.9863055, 77.5191788 12.986504, 77.5192372 12.9867365, 77.5193133 12.987011, 77.5197358 12.9884389)"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            77.5189329,
+            12.9847855
+          ],
+          [
+            77.518982,
+            12.9850448
+          ],
+          [
+            77.5190337,
+            12.9853648
+          ],
+          [
+            77.5191496,
+            12.9863055
+          ],
+          [
+            77.5191788,
+            12.986504
+          ],
+          [
+            77.5192372,
+            12.9867365
+          ],
+          [
+            77.5193133,
+            12.987011
+          ],
+          [
+            77.5197358,
+            12.9884389
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
         "segment_id": "osm_way_90840911",
-        "target_hour": "2026-06-19 18:00:00",
+        "target_hour": "2026-06-19 19:00:00",
         "police_station": "Yeshwanthpura",
         "junction_name": "No Junction",
         "road_class": "trunk",
@@ -4128,7 +3852,7 @@
       "type": "Feature",
       "properties": {
         "segment_id": "osm_way_378425665",
-        "target_hour": "2026-06-19 18:00:00",
+        "target_hour": "2026-06-19 19:00:00",
         "police_station": "Yeshwanthpura",
         "junction_name": "No Junction",
         "road_class": "trunk",
@@ -4215,7 +3939,7 @@
       "type": "Feature",
       "properties": {
         "segment_id": "osm_way_1444553076",
-        "target_hour": "2026-06-19 18:00:00",
+        "target_hour": "2026-06-19 19:00:00",
         "police_station": "Thalagattapura",
         "junction_name": "No Junction",
         "road_class": "trunk",
@@ -4437,8 +4161,186 @@
     {
       "type": "Feature",
       "properties": {
+        "segment_id": "osm_way_764222259",
+        "target_hour": "2026-06-19 19:00:00",
+        "police_station": "K.R. Pura",
+        "junction_name": "No Junction",
+        "road_class": "trunk",
+        "road_width_m": 15.0,
+        "predicted_total": 0.0009114590840441122,
+        "traffic_interruption_0_100": 1.3453977931732197e-06,
+        "parking_risk_0_100": 0.020252595197089995,
+        "eps": 6.12,
+        "priority_band": "Low",
+        "recommended_action": "Monitor",
+        "recommended_force_units": 0,
+        "map_matching_mode": "osm_overpass_nearest_road",
+        "road_name": "Old Madras Road",
+        "osm_highway": "trunk",
+        "count_two_wheeler": 0.0004335535147313102,
+        "count_car": 0.0003027482341877666,
+        "count_auto": 0.0001206672953700487,
+        "count_light_commercial": 3.228047183237317e-05,
+        "count_heavy": 1.7138703923427646e-05,
+        "count_other": 5.070863999185814e-06,
+        "live_congestion_multiplier": 1.0,
+        "clearance_m": 14.999698156925566,
+        "emergency_gridlock_flag": false,
+        "confidence_band": "Low",
+        "hotspot_probability": 0.0,
+        "economic_loss_inr": 180.0,
+        "geometry_wkt": "LINESTRING (77.6924381 13.0082247, 77.6929459 13.0083298, 77.6934983 13.0083872, 77.6943083 13.0083879, 77.694817 13.0083872, 77.6948743 13.0083858, 77.6951811 13.0083785, 77.6952901 13.0083742, 77.6954958 13.0083662, 77.6957671 13.0084052)"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            77.6924381,
+            13.0082247
+          ],
+          [
+            77.6929459,
+            13.0083298
+          ],
+          [
+            77.6934983,
+            13.0083872
+          ],
+          [
+            77.6943083,
+            13.0083879
+          ],
+          [
+            77.694817,
+            13.0083872
+          ],
+          [
+            77.6948743,
+            13.0083858
+          ],
+          [
+            77.6951811,
+            13.0083785
+          ],
+          [
+            77.6952901,
+            13.0083742
+          ],
+          [
+            77.6954958,
+            13.0083662
+          ],
+          [
+            77.6957671,
+            13.0084052
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": "osm_way_1274067831",
+        "target_hour": "2026-06-19 19:00:00",
+        "police_station": "K.R. Pura",
+        "junction_name": "No Junction",
+        "road_class": "trunk",
+        "road_width_m": 15.0,
+        "predicted_total": 0.0009114590840441122,
+        "traffic_interruption_0_100": 1.3453977931732197e-06,
+        "parking_risk_0_100": 0.020252595197089995,
+        "eps": 6.12,
+        "priority_band": "Low",
+        "recommended_action": "Monitor",
+        "recommended_force_units": 0,
+        "map_matching_mode": "osm_overpass_nearest_road",
+        "road_name": "Old Madras Road",
+        "osm_highway": "trunk",
+        "count_two_wheeler": 0.0004335535147313102,
+        "count_car": 0.0003027482341877666,
+        "count_auto": 0.0001206672953700487,
+        "count_light_commercial": 3.228047183237317e-05,
+        "count_heavy": 1.7138703923427646e-05,
+        "count_other": 5.070863999185814e-06,
+        "live_congestion_multiplier": 1.0,
+        "clearance_m": 14.999698156925566,
+        "emergency_gridlock_flag": false,
+        "confidence_band": "Low",
+        "hotspot_probability": 0.0,
+        "economic_loss_inr": 180.0,
+        "geometry_wkt": "LINESTRING (77.6958894 13.008328, 77.6958028 13.0082855, 77.6957621 13.0082748, 77.6957101 13.0082611, 77.6946206 13.0082232, 77.6942415 13.0082272, 77.6941542 13.0082281, 77.6940763 13.0082362, 77.6939285 13.0082515, 77.6938049 13.0082643, 77.6935317 13.0082677, 77.6934653 13.0082685, 77.6931876 13.008228, 77.6929526 13.0081937, 77.6924978 13.0081116)"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            77.6958894,
+            13.008328
+          ],
+          [
+            77.6958028,
+            13.0082855
+          ],
+          [
+            77.6957621,
+            13.0082748
+          ],
+          [
+            77.6957101,
+            13.0082611
+          ],
+          [
+            77.6946206,
+            13.0082232
+          ],
+          [
+            77.6942415,
+            13.0082272
+          ],
+          [
+            77.6941542,
+            13.0082281
+          ],
+          [
+            77.6940763,
+            13.0082362
+          ],
+          [
+            77.6939285,
+            13.0082515
+          ],
+          [
+            77.6938049,
+            13.0082643
+          ],
+          [
+            77.6935317,
+            13.0082677
+          ],
+          [
+            77.6934653,
+            13.0082685
+          ],
+          [
+            77.6931876,
+            13.008228
+          ],
+          [
+            77.6929526,
+            13.0081937
+          ],
+          [
+            77.6924978,
+            13.0081116
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
         "segment_id": "osm_way_23046218",
-        "target_hour": "2026-06-19 18:00:00",
+        "target_hour": "2026-06-19 19:00:00",
         "police_station": "Byatarayanapura",
         "junction_name": "BTP095 - Satellite Bus Stand, Mysore Road",
         "road_class": "trunk",
@@ -4645,7 +4547,7 @@
       "type": "Feature",
       "properties": {
         "segment_id": "osm_way_762500477",
-        "target_hour": "2026-06-19 18:00:00",
+        "target_hour": "2026-06-19 19:00:00",
         "police_station": "Byatarayanapura",
         "junction_name": "BTP096 - Gali Anjaneya Temple",
         "road_class": "trunk",
@@ -4724,7 +4626,7 @@
       "type": "Feature",
       "properties": {
         "segment_id": "osm_way_36885144",
-        "target_hour": "2026-06-19 18:00:00",
+        "target_hour": "2026-06-19 19:00:00",
         "police_station": "City Market",
         "junction_name": "BTP082 - KR Market Junction",
         "road_class": "trunk",
@@ -4835,7 +4737,7 @@
       "type": "Feature",
       "properties": {
         "segment_id": "osm_way_380929046",
-        "target_hour": "2026-06-19 18:00:00",
+        "target_hour": "2026-06-19 19:00:00",
         "police_station": "HAL Old Airport",
         "junction_name": "No Junction",
         "road_class": "trunk",
@@ -4890,7 +4792,7 @@
       "type": "Feature",
       "properties": {
         "segment_id": "osm_way_380929051",
-        "target_hour": "2026-06-19 18:00:00",
+        "target_hour": "2026-06-19 19:00:00",
         "police_station": "HAL Old Airport",
         "junction_name": "No Junction",
         "road_class": "trunk",
@@ -5001,7 +4903,7 @@
       "type": "Feature",
       "properties": {
         "segment_id": "osm_way_735411628",
-        "target_hour": "2026-06-19 18:00:00",
+        "target_hour": "2026-06-19 19:00:00",
         "police_station": "HAL Old Airport",
         "junction_name": "No Junction",
         "road_class": "trunk",
@@ -5064,7 +4966,7 @@
       "type": "Feature",
       "properties": {
         "segment_id": "osm_way_157063002",
-        "target_hour": "2026-06-19 18:00:00",
+        "target_hour": "2026-06-19 19:00:00",
         "police_station": "K.R. Pura",
         "junction_name": "No Junction",
         "road_class": "trunk",
@@ -5139,7 +5041,7 @@
       "type": "Feature",
       "properties": {
         "segment_id": "osm_way_172886625",
-        "target_hour": "2026-06-19 18:00:00",
+        "target_hour": "2026-06-19 19:00:00",
         "police_station": "Banaswadi",
         "junction_name": "No Junction",
         "road_class": "trunk",
@@ -5190,7 +5092,7 @@
       "type": "Feature",
       "properties": {
         "segment_id": "osm_way_1148450802",
-        "target_hour": "2026-06-19 18:00:00",
+        "target_hour": "2026-06-19 19:00:00",
         "police_station": "Yeshwanthpura",
         "junction_name": "No Junction",
         "road_class": "trunk",
@@ -5273,7 +5175,7 @@
       "type": "Feature",
       "properties": {
         "segment_id": "osm_way_121973956",
-        "target_hour": "2026-06-19 18:00:00",
+        "target_hour": "2026-06-19 19:00:00",
         "police_station": "Mahadevapura",
         "junction_name": "No Junction",
         "road_class": "trunk",
@@ -5340,7 +5242,7 @@
       "type": "Feature",
       "properties": {
         "segment_id": "osm_way_377104675",
-        "target_hour": "2026-06-19 18:00:00",
+        "target_hour": "2026-06-19 19:00:00",
         "police_station": "Bellandur",
         "junction_name": "No Junction",
         "road_class": "trunk",
@@ -5399,7 +5301,7 @@
       "type": "Feature",
       "properties": {
         "segment_id": "osm_way_172886626",
-        "target_hour": "2026-06-19 18:00:00",
+        "target_hour": "2026-06-19 19:00:00",
         "police_station": "Banaswadi",
         "junction_name": "No Junction",
         "road_class": "trunk",
@@ -5446,7 +5348,7 @@
       "type": "Feature",
       "properties": {
         "segment_id": "osm_way_172886639",
-        "target_hour": "2026-06-19 18:00:00",
+        "target_hour": "2026-06-19 19:00:00",
         "police_station": "K.R. Pura",
         "junction_name": "No Junction",
         "road_class": "trunk",
@@ -5629,7 +5531,7 @@
       "type": "Feature",
       "properties": {
         "segment_id": "osm_way_47888627",
-        "target_hour": "2026-06-19 18:00:00",
+        "target_hour": "2026-06-19 19:00:00",
         "police_station": "Thalagattapura",
         "junction_name": "No Junction",
         "road_class": "trunk",
@@ -6028,7 +5930,7 @@
       "type": "Feature",
       "properties": {
         "segment_id": "osm_way_458681954",
-        "target_hour": "2026-06-19 18:00:00",
+        "target_hour": "2026-06-19 19:00:00",
         "police_station": "Byatarayanapura",
         "junction_name": "BTP095 - Satellite Bus Stand, Mysore Road",
         "road_class": "trunk",
@@ -6119,7 +6021,7 @@
       "type": "Feature",
       "properties": {
         "segment_id": "osm_way_1275566806",
-        "target_hour": "2026-06-19 18:00:00",
+        "target_hour": "2026-06-19 19:00:00",
         "police_station": "Kodigehalli",
         "junction_name": "No Junction",
         "road_class": "trunk",
@@ -6322,7 +6224,7 @@
       "type": "Feature",
       "properties": {
         "segment_id": "osm_way_1315288638",
-        "target_hour": "2026-06-19 18:00:00",
+        "target_hour": "2026-06-19 19:00:00",
         "police_station": "Mahadevapura",
         "junction_name": "No Junction",
         "road_class": "trunk",
@@ -6405,7 +6307,7 @@
       "type": "Feature",
       "properties": {
         "segment_id": "osm_way_377103305",
-        "target_hour": "2026-06-19 18:00:00",
+        "target_hour": "2026-06-19 19:00:00",
         "police_station": "HAL Old Airport",
         "junction_name": "No Junction",
         "road_class": "trunk",
@@ -6496,7 +6398,7 @@
       "type": "Feature",
       "properties": {
         "segment_id": "osm_way_380929042",
-        "target_hour": "2026-06-19 18:00:00",
+        "target_hour": "2026-06-19 19:00:00",
         "police_station": "Bellandur",
         "junction_name": "No Junction",
         "road_class": "trunk",
@@ -6571,7 +6473,7 @@
       "type": "Feature",
       "properties": {
         "segment_id": "osm_way_458681953",
-        "target_hour": "2026-06-19 18:00:00",
+        "target_hour": "2026-06-19 19:00:00",
         "police_station": "Byatarayanapura",
         "junction_name": "BTP093 - Toll Gate, Mysore Road",
         "road_class": "trunk",
@@ -6802,7 +6704,7 @@
       "type": "Feature",
       "properties": {
         "segment_id": "osm_way_55684017",
-        "target_hour": "2026-06-19 18:00:00",
+        "target_hour": "2026-06-19 19:00:00",
         "police_station": "Byatarayanapura",
         "junction_name": "No Junction",
         "road_class": "trunk",
@@ -6937,7 +6839,7 @@
       "type": "Feature",
       "properties": {
         "segment_id": "osm_way_380929048",
-        "target_hour": "2026-06-19 18:00:00",
+        "target_hour": "2026-06-19 19:00:00",
         "police_station": "Bellandur",
         "junction_name": "No Junction",
         "road_class": "trunk",
@@ -6992,7 +6894,7 @@
       "type": "Feature",
       "properties": {
         "segment_id": "osm_way_377104672",
-        "target_hour": "2026-06-19 18:00:00",
+        "target_hour": "2026-06-19 19:00:00",
         "police_station": "Bellandur",
         "junction_name": "No Junction",
         "road_class": "trunk",
@@ -7063,7 +6965,7 @@
       "type": "Feature",
       "properties": {
         "segment_id": "osm_way_377096329",
-        "target_hour": "2026-06-19 18:00:00",
+        "target_hour": "2026-06-19 19:00:00",
         "police_station": "HAL Old Airport",
         "junction_name": "No Junction",
         "road_class": "trunk",
@@ -7114,7 +7016,7 @@
       "type": "Feature",
       "properties": {
         "segment_id": "osm_way_172886632",
-        "target_hour": "2026-06-19 18:00:00",
+        "target_hour": "2026-06-19 19:00:00",
         "police_station": "K.R. Pura",
         "junction_name": "No Junction",
         "road_class": "trunk",
@@ -7241,7 +7143,7 @@
       "type": "Feature",
       "properties": {
         "segment_id": "osm_way_454013129",
-        "target_hour": "2026-06-19 18:00:00",
+        "target_hour": "2026-06-19 19:00:00",
         "police_station": "City Market",
         "junction_name": "BTP083 - AS Char Street, Mysore Road",
         "road_class": "trunk",
@@ -7424,7 +7326,7 @@
       "type": "Feature",
       "properties": {
         "segment_id": "osm_way_1282361004",
-        "target_hour": "2026-06-19 18:00:00",
+        "target_hour": "2026-06-19 19:00:00",
         "police_station": "Byatarayanapura",
         "junction_name": "BTP096 - Gali Anjaneya Temple",
         "road_class": "trunk",
@@ -7479,7 +7381,7 @@
       "type": "Feature",
       "properties": {
         "segment_id": "osm_way_1240374873",
-        "target_hour": "2026-06-19 18:00:00",
+        "target_hour": "2026-06-19 19:00:00",
         "police_station": "Bellandur",
         "junction_name": "No Junction",
         "road_class": "trunk",
@@ -7546,7 +7448,7 @@
       "type": "Feature",
       "properties": {
         "segment_id": "osm_way_1148717633",
-        "target_hour": "2026-06-19 18:00:00",
+        "target_hour": "2026-06-19 19:00:00",
         "police_station": "Byatarayanapura",
         "junction_name": "No Junction",
         "road_class": "trunk",
@@ -7689,7 +7591,7 @@
       "type": "Feature",
       "properties": {
         "segment_id": "osm_way_510972415",
-        "target_hour": "2026-06-19 18:00:00",
+        "target_hour": "2026-06-19 19:00:00",
         "police_station": "Malleshwaram",
         "junction_name": "No Junction",
         "road_class": "trunk",
@@ -7748,7 +7650,7 @@
       "type": "Feature",
       "properties": {
         "segment_id": "osm_way_55684025",
-        "target_hour": "2026-06-19 18:00:00",
+        "target_hour": "2026-06-19 19:00:00",
         "police_station": "Byatarayanapura",
         "junction_name": "No Junction",
         "road_class": "trunk",
@@ -7975,7 +7877,7 @@
       "type": "Feature",
       "properties": {
         "segment_id": "osm_way_380724493",
-        "target_hour": "2026-06-19 18:00:00",
+        "target_hour": "2026-06-19 19:00:00",
         "police_station": "Banaswadi",
         "junction_name": "No Junction",
         "road_class": "trunk",
@@ -8038,7 +7940,7 @@
       "type": "Feature",
       "properties": {
         "segment_id": "osm_way_380929043",
-        "target_hour": "2026-06-19 18:00:00",
+        "target_hour": "2026-06-19 19:00:00",
         "police_station": "Bellandur",
         "junction_name": "No Junction",
         "road_class": "trunk",
@@ -8109,7 +8011,7 @@
       "type": "Feature",
       "properties": {
         "segment_id": "osm_way_788760454",
-        "target_hour": "2026-06-19 18:00:00",
+        "target_hour": "2026-06-19 19:00:00",
         "police_station": "Thalagattapura",
         "junction_name": "No Junction",
         "road_class": "trunk",
@@ -8296,7 +8198,7 @@
       "type": "Feature",
       "properties": {
         "segment_id": "osm_way_1215354175",
-        "target_hour": "2026-06-19 18:00:00",
+        "target_hour": "2026-06-19 19:00:00",
         "police_station": "Bellandur",
         "junction_name": "No Junction",
         "road_class": "trunk",
@@ -8343,7 +8245,7 @@
       "type": "Feature",
       "properties": {
         "segment_id": "osm_way_1196514116",
-        "target_hour": "2026-06-19 18:00:00",
+        "target_hour": "2026-06-19 19:00:00",
         "police_station": "HSR Layout",
         "junction_name": "No Junction",
         "road_class": "trunk",
@@ -8402,7 +8304,7 @@
       "type": "Feature",
       "properties": {
         "segment_id": "osm_way_760543000",
-        "target_hour": "2026-06-19 18:00:00",
+        "target_hour": "2026-06-19 19:00:00",
         "police_station": "Kodigehalli",
         "junction_name": "No Junction",
         "road_class": "trunk",
@@ -8453,7 +8355,7 @@
       "type": "Feature",
       "properties": {
         "segment_id": "osm_way_312055529",
-        "target_hour": "2026-06-19 18:00:00",
+        "target_hour": "2026-06-19 19:00:00",
         "police_station": "Hulimavu",
         "junction_name": "No Junction",
         "road_class": "trunk",
@@ -8588,7 +8490,7 @@
       "type": "Feature",
       "properties": {
         "segment_id": "osm_way_1239003798",
-        "target_hour": "2026-06-19 18:00:00",
+        "target_hour": "2026-06-19 19:00:00",
         "police_station": "HAL Old Airport",
         "junction_name": "No Junction",
         "road_class": "trunk",
@@ -8659,7 +8561,7 @@
       "type": "Feature",
       "properties": {
         "segment_id": "osm_way_1239003799",
-        "target_hour": "2026-06-19 18:00:00",
+        "target_hour": "2026-06-19 19:00:00",
         "police_station": "HAL Old Airport",
         "junction_name": "No Junction",
         "road_class": "trunk",
@@ -8734,7 +8636,7 @@
       "type": "Feature",
       "properties": {
         "segment_id": "osm_way_607860782",
-        "target_hour": "2026-06-19 18:00:00",
+        "target_hour": "2026-06-19 19:00:00",
         "police_station": "Byatarayanapura",
         "junction_name": "No Junction",
         "road_class": "trunk",
@@ -8841,7 +8743,7 @@
       "type": "Feature",
       "properties": {
         "segment_id": "osm_way_1148717632",
-        "target_hour": "2026-06-19 18:00:00",
+        "target_hour": "2026-06-19 19:00:00",
         "police_station": "Byatarayanapura",
         "junction_name": "No Junction",
         "road_class": "trunk",
@@ -8896,7 +8798,7 @@
       "type": "Feature",
       "properties": {
         "segment_id": "osm_way_353377531",
-        "target_hour": "2026-06-19 18:00:00",
+        "target_hour": "2026-06-19 19:00:00",
         "police_station": "Mico Layout",
         "junction_name": "BTP130 - GD Mara Junction",
         "road_class": "trunk",
@@ -8991,7 +8893,7 @@
       "type": "Feature",
       "properties": {
         "segment_id": "osm_way_1353927911",
-        "target_hour": "2026-06-19 18:00:00",
+        "target_hour": "2026-06-19 19:00:00",
         "police_station": "HAL Old Airport",
         "junction_name": "No Junction",
         "road_class": "trunk",
@@ -9046,7 +8948,7 @@
       "type": "Feature",
       "properties": {
         "segment_id": "osm_way_454483811",
-        "target_hour": "2026-06-19 18:00:00",
+        "target_hour": "2026-06-19 19:00:00",
         "police_station": "Yeshwanthpura",
         "junction_name": "No Junction",
         "road_class": "trunk",
@@ -9144,8 +9046,167 @@
     {
       "type": "Feature",
       "properties": {
+        "segment_id": "osm_way_172886640",
+        "target_hour": "2026-06-19 19:00:00",
+        "police_station": "K.R. Pura",
+        "junction_name": "No Junction",
+        "road_class": "trunk",
+        "road_width_m": 15.0,
+        "predicted_total": 0.0009114143532555869,
+        "traffic_interruption_0_100": 1.3452083891252187e-06,
+        "parking_risk_0_100": 0.020251601380871787,
+        "eps": 6.12,
+        "priority_band": "Low",
+        "recommended_action": "Monitor",
+        "recommended_force_units": 0,
+        "map_matching_mode": "osm_overpass_nearest_road",
+        "road_name": "Old Madras Road",
+        "osm_highway": "trunk",
+        "count_two_wheeler": 0.0004335535147313102,
+        "count_car": 0.0003027482341877666,
+        "count_auto": 0.0001206672953700487,
+        "count_light_commercial": 3.228047183237317e-05,
+        "count_heavy": 1.7138703923427646e-05,
+        "count_other": 5.026133210660627e-06,
+        "live_congestion_multiplier": 1.0,
+        "clearance_m": 14.999698178172691,
+        "emergency_gridlock_flag": false,
+        "confidence_band": "Low",
+        "hotspot_probability": 0.0,
+        "economic_loss_inr": 180.0,
+        "geometry_wkt": "LINESTRING (77.6957671 13.0084052, 77.6959516 13.0084679, 77.6961981 13.0086672, 77.6965083 13.0090851, 77.6967952 13.0094716, 77.6968552 13.0095458, 77.6971795 13.0099461, 77.6975199 13.0103588, 77.697653 13.0105267, 77.6976889 13.0105706, 77.6977431 13.0106369, 77.6978933 13.0108258, 77.6982466 13.0112526, 77.698534 13.0115867, 77.6986065 13.011671, 77.698767 13.0119037, 77.6989215 13.0121188, 77.699113 13.0124504, 77.6992297 13.0126514, 77.6993416 13.0128486, 77.6995457 13.0132084, 77.6995927 13.0132912, 77.699657 13.0134011, 77.7002422 13.0144012, 77.7006275 13.0149966, 77.7012082 13.0155496, 77.7016899 13.0158777, 77.7025854 13.0163097, 77.7043367 13.0170875, 77.7044679 13.0171458)"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            77.6957671,
+            13.0084052
+          ],
+          [
+            77.6959516,
+            13.0084679
+          ],
+          [
+            77.6961981,
+            13.0086672
+          ],
+          [
+            77.6965083,
+            13.0090851
+          ],
+          [
+            77.6967952,
+            13.0094716
+          ],
+          [
+            77.6968552,
+            13.0095458
+          ],
+          [
+            77.6971795,
+            13.0099461
+          ],
+          [
+            77.6975199,
+            13.0103588
+          ],
+          [
+            77.697653,
+            13.0105267
+          ],
+          [
+            77.6976889,
+            13.0105706
+          ],
+          [
+            77.6977431,
+            13.0106369
+          ],
+          [
+            77.6978933,
+            13.0108258
+          ],
+          [
+            77.6982466,
+            13.0112526
+          ],
+          [
+            77.698534,
+            13.0115867
+          ],
+          [
+            77.6986065,
+            13.011671
+          ],
+          [
+            77.698767,
+            13.0119037
+          ],
+          [
+            77.6989215,
+            13.0121188
+          ],
+          [
+            77.699113,
+            13.0124504
+          ],
+          [
+            77.6992297,
+            13.0126514
+          ],
+          [
+            77.6993416,
+            13.0128486
+          ],
+          [
+            77.6995457,
+            13.0132084
+          ],
+          [
+            77.6995927,
+            13.0132912
+          ],
+          [
+            77.699657,
+            13.0134011
+          ],
+          [
+            77.7002422,
+            13.0144012
+          ],
+          [
+            77.7006275,
+            13.0149966
+          ],
+          [
+            77.7012082,
+            13.0155496
+          ],
+          [
+            77.7016899,
+            13.0158777
+          ],
+          [
+            77.7025854,
+            13.0163097
+          ],
+          [
+            77.7043367,
+            13.0170875
+          ],
+          [
+            77.7044679,
+            13.0171458
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
         "segment_id": "osm_way_380929049",
-        "target_hour": "2026-06-19 18:00:00",
+        "target_hour": "2026-06-19 19:00:00",
         "police_station": "HAL Old Airport",
         "junction_name": "No Junction",
         "road_class": "trunk",
@@ -9191,9 +9252,9 @@
     {
       "type": "Feature",
       "properties": {
-        "segment_id": "osm_way_1055599191",
-        "target_hour": "2026-06-19 18:00:00",
-        "police_station": "Yeshwanthpura",
+        "segment_id": "osm_way_554773202",
+        "target_hour": "2026-06-19 19:00:00",
+        "police_station": "K.R. Pura",
         "junction_name": "No Junction",
         "road_class": "trunk",
         "road_width_m": 15.0,
@@ -9205,7 +9266,7 @@
         "recommended_action": "Monitor",
         "recommended_force_units": 0,
         "map_matching_mode": "osm_overpass_nearest_road",
-        "road_name": "Tumkur Road",
+        "road_name": "Old Madras Road",
         "osm_highway": "trunk",
         "count_two_wheeler": 0.0004335535147313102,
         "count_car": 0.0003027482341877666,
@@ -9219,146 +9280,26 @@
         "confidence_band": "Low",
         "hotspot_probability": 0.0,
         "economic_loss_inr": 180.0,
-        "geometry_wkt": "LINESTRING (77.5412785 13.0282778, 77.5413619 13.0282294, 77.5414586 13.0281734, 77.5414959 13.0281519, 77.5415254 13.0281337, 77.5416331 13.0280758, 77.5417154 13.0280309, 77.5419061 13.0279269, 77.542066 13.0278346, 77.5424639 13.0276269, 77.5429517 13.0273519, 77.5433549 13.0271132, 77.5435414 13.0270022, 77.543901 13.0267882, 77.5441183 13.0266639, 77.5443205 13.0265475, 77.5443688 13.02652, 77.5445056 13.0264419, 77.5447919 13.0262783, 77.545034 13.0261409, 77.5450986 13.0261054, 77.5452612 13.0260109, 77.5457533 13.0257327, 77.5467087 13.025192, 77.5471692 13.0249313, 77.5475117 13.0247374, 77.547572 13.0247066, 77.5477353 13.0246136, 77.5478201 13.0245653, 77.5479328 13.0245012, 77.5480082 13.0244568, 77.548086 13.0244128, 77.5482645 13.0243119, 77.5484302 13.0242183)"
+        "geometry_wkt": "LINESTRING (77.6969507 13.0094908, 77.6962756 13.0086263, 77.6959896 13.0083729, 77.6958894 13.008328)"
       },
       "geometry": {
         "type": "LineString",
         "coordinates": [
           [
-            77.5412785,
-            13.0282778
+            77.6969507,
+            13.0094908
           ],
           [
-            77.5413619,
-            13.0282294
+            77.6962756,
+            13.0086263
           ],
           [
-            77.5414586,
-            13.0281734
+            77.6959896,
+            13.0083729
           ],
           [
-            77.5414959,
-            13.0281519
-          ],
-          [
-            77.5415254,
-            13.0281337
-          ],
-          [
-            77.5416331,
-            13.0280758
-          ],
-          [
-            77.5417154,
-            13.0280309
-          ],
-          [
-            77.5419061,
-            13.0279269
-          ],
-          [
-            77.542066,
-            13.0278346
-          ],
-          [
-            77.5424639,
-            13.0276269
-          ],
-          [
-            77.5429517,
-            13.0273519
-          ],
-          [
-            77.5433549,
-            13.0271132
-          ],
-          [
-            77.5435414,
-            13.0270022
-          ],
-          [
-            77.543901,
-            13.0267882
-          ],
-          [
-            77.5441183,
-            13.0266639
-          ],
-          [
-            77.5443205,
-            13.0265475
-          ],
-          [
-            77.5443688,
-            13.02652
-          ],
-          [
-            77.5445056,
-            13.0264419
-          ],
-          [
-            77.5447919,
-            13.0262783
-          ],
-          [
-            77.545034,
-            13.0261409
-          ],
-          [
-            77.5450986,
-            13.0261054
-          ],
-          [
-            77.5452612,
-            13.0260109
-          ],
-          [
-            77.5457533,
-            13.0257327
-          ],
-          [
-            77.5467087,
-            13.025192
-          ],
-          [
-            77.5471692,
-            13.0249313
-          ],
-          [
-            77.5475117,
-            13.0247374
-          ],
-          [
-            77.547572,
-            13.0247066
-          ],
-          [
-            77.5477353,
-            13.0246136
-          ],
-          [
-            77.5478201,
-            13.0245653
-          ],
-          [
-            77.5479328,
-            13.0245012
-          ],
-          [
-            77.5480082,
-            13.0244568
-          ],
-          [
-            77.548086,
-            13.0244128
-          ],
-          [
-            77.5482645,
-            13.0243119
-          ],
-          [
-            77.5484302,
-            13.0242183
+            77.6958894,
+            13.008328
           ]
         ]
       }
@@ -9367,7 +9308,7 @@
       "type": "Feature",
       "properties": {
         "segment_id": "osm_way_1203530534",
-        "target_hour": "2026-06-19 18:00:00",
+        "target_hour": "2026-06-19 19:00:00",
         "police_station": "HAL Old Airport",
         "junction_name": "No Junction",
         "road_class": "trunk",
@@ -9454,7 +9395,7 @@
       "type": "Feature",
       "properties": {
         "segment_id": "osm_way_467074977",
-        "target_hour": "2026-06-19 18:00:00",
+        "target_hour": "2026-06-19 19:00:00",
         "police_station": "Kodigehalli",
         "junction_name": "No Junction",
         "road_class": "trunk",
@@ -9504,8 +9445,67 @@
     {
       "type": "Feature",
       "properties": {
+        "segment_id": "osm_way_40696223",
+        "target_hour": "2026-06-19 19:00:00",
+        "police_station": "Madiwala",
+        "junction_name": "BTP137 - Madiwala Traffic PS Junction",
+        "road_class": "trunk",
+        "road_width_m": 15.0,
+        "predicted_total": 0.0009114143532555869,
+        "traffic_interruption_0_100": 1.3452083891252187e-06,
+        "parking_risk_0_100": 0.020251601380871787,
+        "eps": 6.12,
+        "priority_band": "Low",
+        "recommended_action": "Monitor",
+        "recommended_force_units": 0,
+        "map_matching_mode": "osm_overpass_nearest_road",
+        "road_name": "Hosur Road",
+        "osm_highway": "trunk",
+        "count_two_wheeler": 0.0004335535147313102,
+        "count_car": 0.0003027482341877666,
+        "count_auto": 0.0001206672953700487,
+        "count_light_commercial": 3.228047183237317e-05,
+        "count_heavy": 1.7138703923427646e-05,
+        "count_other": 5.026133210660627e-06,
+        "live_congestion_multiplier": 1.0,
+        "clearance_m": 14.999698178172691,
+        "emergency_gridlock_flag": false,
+        "confidence_band": "Low",
+        "hotspot_probability": 0.0,
+        "economic_loss_inr": 180.0,
+        "geometry_wkt": "LINESTRING (77.6208647 12.9202307, 77.6209061 12.9201591, 77.6209846 12.9200598, 77.6213541 12.9195205, 77.6214053 12.9194475)"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            77.6208647,
+            12.9202307
+          ],
+          [
+            77.6209061,
+            12.9201591
+          ],
+          [
+            77.6209846,
+            12.9200598
+          ],
+          [
+            77.6213541,
+            12.9195205
+          ],
+          [
+            77.6214053,
+            12.9194475
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
         "segment_id": "osm_way_677326081",
-        "target_hour": "2026-06-19 18:00:00",
+        "target_hour": "2026-06-19 19:00:00",
         "police_station": "Mahadevapura",
         "junction_name": "No Junction",
         "road_class": "trunk",
@@ -9552,7 +9552,7 @@
       "type": "Feature",
       "properties": {
         "segment_id": "osm_way_71519007",
-        "target_hour": "2026-06-19 18:00:00",
+        "target_hour": "2026-06-19 19:00:00",
         "police_station": "Yeshwanthpura",
         "junction_name": "No Junction",
         "road_class": "trunk",
@@ -9615,7 +9615,7 @@
       "type": "Feature",
       "properties": {
         "segment_id": "osm_way_473787611",
-        "target_hour": "2026-06-19 18:00:00",
+        "target_hour": "2026-06-19 19:00:00",
         "police_station": "Banaswadi",
         "junction_name": "No Junction",
         "road_class": "trunk",
@@ -9662,7 +9662,7 @@
       "type": "Feature",
       "properties": {
         "segment_id": "osm_way_312063814",
-        "target_hour": "2026-06-19 18:00:00",
+        "target_hour": "2026-06-19 19:00:00",
         "police_station": "HSR Layout",
         "junction_name": "No Junction",
         "road_class": "trunk",
@@ -9805,7 +9805,7 @@
       "type": "Feature",
       "properties": {
         "segment_id": "osm_way_1382087681",
-        "target_hour": "2026-06-19 18:00:00",
+        "target_hour": "2026-06-19 19:00:00",
         "police_station": "Kodigehalli",
         "junction_name": "No Junction",
         "road_class": "trunk",
@@ -9856,7 +9856,7 @@
       "type": "Feature",
       "properties": {
         "segment_id": "osm_way_377832657",
-        "target_hour": "2026-06-19 18:00:00",
+        "target_hour": "2026-06-19 19:00:00",
         "police_station": "R.T. Nagar",
         "junction_name": "No Junction",
         "road_class": "trunk",
@@ -9991,7 +9991,7 @@
       "type": "Feature",
       "properties": {
         "segment_id": "osm_way_1203530533",
-        "target_hour": "2026-06-19 18:00:00",
+        "target_hour": "2026-06-19 19:00:00",
         "police_station": "HAL Old Airport",
         "junction_name": "No Junction",
         "road_class": "trunk",
@@ -10065,133 +10065,78 @@
     {
       "type": "Feature",
       "properties": {
-        "segment_id": "osm_way_150357930",
-        "target_hour": "2026-06-19 18:00:00",
+        "segment_id": "osm_way_190144809",
+        "target_hour": "2026-06-19 19:00:00",
         "police_station": "City Market",
         "junction_name": "BTP082 - KR Market Junction",
         "road_class": "primary",
         "road_width_m": 12.0,
-        "predicted_total": 0.0009666278525222995,
-        "traffic_interruption_0_100": 2.2605753824400665e-06,
-        "parking_risk_0_100": 0.021478312025169366,
+        "predicted_total": 0.000964772986476436,
+        "traffic_interruption_0_100": 2.254591924266691e-06,
+        "parking_risk_0_100": 0.021437101624410815,
         "eps": 4.45,
         "priority_band": "Low",
         "recommended_action": "Monitor",
         "recommended_force_units": 0,
         "map_matching_mode": "osm_overpass_nearest_road",
-        "road_name": "Kalasipalya Main Road",
+        "road_name": "Krishna Rajendra Road",
         "osm_highway": "primary",
-        "count_two_wheeler": 0.0004882455387503156,
-        "count_car": 0.0003027482341877666,
-        "count_auto": 0.0001206672953700487,
-        "count_light_commercial": 3.228047183237317e-05,
-        "count_heavy": 1.7138703923427646e-05,
-        "count_other": 5.547608458367606e-06,
-        "live_congestion_multiplier": 1.0,
-        "clearance_m": 11.999686992067144,
-        "emergency_gridlock_flag": false,
-        "confidence_band": "Low",
-        "hotspot_probability": 0.0,
-        "economic_loss_inr": 59.0,
-        "geometry_wkt": "LINESTRING (77.5773314 12.9636047, 77.5773172 12.963461, 77.5773333 12.9633608, 77.5774882 12.9629219, 77.5775017 12.9628701, 77.5776272 12.9623895, 77.5776522 12.9622939, 77.5776867 12.9619334, 77.5777147 12.9616417, 77.5777156 12.9615581)"
-      },
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            77.5773314,
-            12.9636047
-          ],
-          [
-            77.5773172,
-            12.963461
-          ],
-          [
-            77.5773333,
-            12.9633608
-          ],
-          [
-            77.5774882,
-            12.9629219
-          ],
-          [
-            77.5775017,
-            12.9628701
-          ],
-          [
-            77.5776272,
-            12.9623895
-          ],
-          [
-            77.5776522,
-            12.9622939
-          ],
-          [
-            77.5776867,
-            12.9619334
-          ],
-          [
-            77.5777147,
-            12.9616417
-          ],
-          [
-            77.5777156,
-            12.9615581
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "segment_id": "osm_way_1412642797",
-        "target_hour": "2026-06-19 18:00:00",
-        "police_station": "Pulikeshinagar(F.Town)",
-        "junction_name": "No Junction",
-        "road_class": "primary",
-        "road_width_m": 12.0,
-        "predicted_total": 0.0009644010698213162,
-        "traffic_interruption_0_100": 2.2535190602468447e-06,
-        "parking_risk_0_100": 0.021428838581249998,
-        "eps": 4.45,
-        "priority_band": "Low",
-        "recommended_action": "Monitor",
-        "recommended_force_units": 0,
-        "map_matching_mode": "osm_overpass_nearest_road",
-        "road_name": "Haines Road",
-        "osm_highway": "primary",
-        "count_two_wheeler": 0.0004861771105132813,
+        "count_two_wheeler": 0.0004865490271684011,
         "count_car": 0.0003027482341877666,
         "count_auto": 0.0001206672953700487,
         "count_light_commercial": 3.228047183237317e-05,
         "count_heavy": 1.7138703923427646e-05,
         "count_other": 5.389253994418719e-06,
         "live_congestion_multiplier": 1.0,
-        "clearance_m": 11.999687480971161,
+        "clearance_m": 11.99968740658783,
         "emergency_gridlock_flag": false,
         "confidence_band": "Low",
         "hotspot_probability": 0.0,
         "economic_loss_inr": 59.0,
-        "geometry_wkt": "LINESTRING (77.6114504 13.0007088, 77.6112643 13.0005427, 77.6110488 13.0002924, 77.6108819 13.0000112)"
+        "geometry_wkt": "LINESTRING (77.5750888 12.9612109, 77.5752198 12.9614394, 77.575278 12.9615264, 77.5756456 12.9621081, 77.5757939 12.9622247, 77.5758651 12.9622807, 77.5760093 12.9624076, 77.5763578 12.9630539, 77.5766564 12.9637557, 77.5767121 12.9638866)"
       },
       "geometry": {
         "type": "LineString",
         "coordinates": [
           [
-            77.6114504,
-            13.0007088
+            77.5750888,
+            12.9612109
           ],
           [
-            77.6112643,
-            13.0005427
+            77.5752198,
+            12.9614394
           ],
           [
-            77.6110488,
-            13.0002924
+            77.575278,
+            12.9615264
           ],
           [
-            77.6108819,
-            13.0000112
+            77.5756456,
+            12.9621081
+          ],
+          [
+            77.5757939,
+            12.9622247
+          ],
+          [
+            77.5758651,
+            12.9622807
+          ],
+          [
+            77.5760093,
+            12.9624076
+          ],
+          [
+            77.5763578,
+            12.9630539
+          ],
+          [
+            77.5766564,
+            12.9637557
+          ],
+          [
+            77.5767121,
+            12.9638866
           ]
         ]
       }
@@ -10199,15 +10144,86 @@
     {
       "type": "Feature",
       "properties": {
-        "segment_id": "osm_way_763175323",
-        "target_hour": "2026-06-19 18:00:00",
+        "segment_id": "osm_way_154340363",
+        "target_hour": "2026-06-19 19:00:00",
         "police_station": "City Market",
         "junction_name": "BTP082 - KR Market Junction",
         "road_class": "primary",
         "road_width_m": 12.0,
-        "predicted_total": 0.0009634847884523387,
-        "traffic_interruption_0_100": 2.2513106934241023e-06,
-        "parking_risk_0_100": 0.021408481134277402,
+        "predicted_total": 0.000964772986476436,
+        "traffic_interruption_0_100": 2.254591924266691e-06,
+        "parking_risk_0_100": 0.021437101624410815,
+        "eps": 4.45,
+        "priority_band": "Low",
+        "recommended_action": "Monitor",
+        "recommended_force_units": 0,
+        "map_matching_mode": "osm_overpass_nearest_road",
+        "road_name": "",
+        "osm_highway": "primary_link",
+        "count_two_wheeler": 0.0004865490271684011,
+        "count_car": 0.0003027482341877666,
+        "count_auto": 0.0001206672953700487,
+        "count_light_commercial": 3.228047183237317e-05,
+        "count_heavy": 1.7138703923427646e-05,
+        "count_other": 5.389253994418719e-06,
+        "live_congestion_multiplier": 1.0,
+        "clearance_m": 11.99968740658783,
+        "emergency_gridlock_flag": false,
+        "confidence_band": "Low",
+        "hotspot_probability": 0.0,
+        "economic_loss_inr": 59.0,
+        "geometry_wkt": "LINESTRING (77.576814 12.9640481, 77.5769326 12.9640022, 77.5770417 12.9639314, 77.5771228 12.9638753, 77.5771803 12.963804, 77.5772225 12.9637501, 77.5772576 12.9636025, 77.5773172 12.963461)"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            77.576814,
+            12.9640481
+          ],
+          [
+            77.5769326,
+            12.9640022
+          ],
+          [
+            77.5770417,
+            12.9639314
+          ],
+          [
+            77.5771228,
+            12.9638753
+          ],
+          [
+            77.5771803,
+            12.963804
+          ],
+          [
+            77.5772225,
+            12.9637501
+          ],
+          [
+            77.5772576,
+            12.9636025
+          ],
+          [
+            77.5773172,
+            12.963461
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": "osm_way_688824224",
+        "target_hour": "2026-06-19 19:00:00",
+        "police_station": "City Market",
+        "junction_name": "BTP082 - KR Market Junction",
+        "road_class": "primary",
+        "road_width_m": 12.0,
+        "predicted_total": 0.000964772986476436,
+        "traffic_interruption_0_100": 2.254591924266691e-06,
+        "parking_risk_0_100": 0.021437101624410815,
         "eps": 4.45,
         "priority_band": "Low",
         "recommended_action": "Monitor",
@@ -10215,358 +10231,34 @@
         "map_matching_mode": "osm_overpass_nearest_road",
         "road_name": "NR Road",
         "osm_highway": "primary",
-        "count_two_wheeler": 0.00048515141089730177,
+        "count_two_wheeler": 0.0004865490271684011,
         "count_car": 0.0003027482341877666,
         "count_auto": 0.0001206672953700487,
         "count_light_commercial": 3.228047183237317e-05,
         "count_heavy": 1.7138703923427646e-05,
-        "count_other": 5.498672241420825e-06,
+        "count_other": 5.389253994418719e-06,
         "live_congestion_multiplier": 1.0,
-        "clearance_m": 11.999687634137418,
+        "clearance_m": 11.99968740658783,
         "emergency_gridlock_flag": false,
         "confidence_band": "Low",
         "hotspot_probability": 0.0,
         "economic_loss_inr": 59.0,
-        "geometry_wkt": "LINESTRING (77.57884 12.9635443, 77.5787165 12.9635447, 77.5784407 12.9635706, 77.5782319 12.9636249, 77.5779867 12.9637213, 77.5774654 12.963912)"
+        "geometry_wkt": "LINESTRING (77.5774654 12.963912, 77.5773816 12.9639364, 77.5768287 12.9640775)"
       },
       "geometry": {
         "type": "LineString",
         "coordinates": [
-          [
-            77.57884,
-            12.9635443
-          ],
-          [
-            77.5787165,
-            12.9635447
-          ],
-          [
-            77.5784407,
-            12.9635706
-          ],
-          [
-            77.5782319,
-            12.9636249
-          ],
-          [
-            77.5779867,
-            12.9637213
-          ],
           [
             77.5774654,
             12.963912
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "segment_id": "osm_way_81524113",
-        "target_hour": "2026-06-19 18:00:00",
-        "police_station": "Mahadevapura",
-        "junction_name": "No Junction",
-        "road_class": "primary",
-        "road_width_m": 12.0,
-        "predicted_total": 0.0009555769739818682,
-        "traffic_interruption_0_100": 2.2287638623552652e-06,
-        "parking_risk_0_100": 0.02123278939040185,
-        "eps": 4.45,
-        "priority_band": "Low",
-        "recommended_action": "Monitor",
-        "recommended_force_units": 0,
-        "map_matching_mode": "osm_overpass_nearest_road",
-        "road_name": "Hoodi Main Road",
-        "osm_highway": "primary",
-        "count_two_wheeler": 0.00047719466020988444,
-        "count_car": 0.0003027482341877666,
-        "count_auto": 0.0001206672953700487,
-        "count_light_commercial": 3.228047183237317e-05,
-        "count_heavy": 1.7138703923427646e-05,
-        "count_other": 5.547608458367606e-06,
-        "live_congestion_multiplier": 1.0,
-        "clearance_m": 11.999689202242852,
-        "emergency_gridlock_flag": false,
-        "confidence_band": "Low",
-        "hotspot_probability": 0.0,
-        "economic_loss_inr": 59.0,
-        "geometry_wkt": "LINESTRING (77.7082244 12.9849539, 77.7082424 12.9852016, 77.708261 12.9853065, 77.7082866 12.9854898, 77.7083458 12.9857546, 77.7083767 12.985832, 77.7086724 12.9865721, 77.7087227 12.9866569, 77.7087856 12.9867766, 77.7091747 12.9874421, 77.7092213 12.9875116, 77.7092659 12.9875613, 77.7093318 12.9876222, 77.7093982 12.9876817, 77.7094689 12.9877453, 77.7095444 12.9878151, 77.7096423 12.9878752, 77.7096804 12.9878986, 77.7097646 12.9879503, 77.7099132 12.9880405, 77.7099946 12.9880915, 77.7107315 12.988521, 77.7120201 12.9892723, 77.7123785 12.9894684, 77.712506 12.989535, 77.7128114 12.9897041, 77.7130223 12.9898384, 77.7133424 12.9900255)"
-      },
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            77.7082244,
-            12.9849539
           ],
           [
-            77.7082424,
-            12.9852016
+            77.5773816,
+            12.9639364
           ],
           [
-            77.708261,
-            12.9853065
-          ],
-          [
-            77.7082866,
-            12.9854898
-          ],
-          [
-            77.7083458,
-            12.9857546
-          ],
-          [
-            77.7083767,
-            12.985832
-          ],
-          [
-            77.7086724,
-            12.9865721
-          ],
-          [
-            77.7087227,
-            12.9866569
-          ],
-          [
-            77.7087856,
-            12.9867766
-          ],
-          [
-            77.7091747,
-            12.9874421
-          ],
-          [
-            77.7092213,
-            12.9875116
-          ],
-          [
-            77.7092659,
-            12.9875613
-          ],
-          [
-            77.7093318,
-            12.9876222
-          ],
-          [
-            77.7093982,
-            12.9876817
-          ],
-          [
-            77.7094689,
-            12.9877453
-          ],
-          [
-            77.7095444,
-            12.9878151
-          ],
-          [
-            77.7096423,
-            12.9878752
-          ],
-          [
-            77.7096804,
-            12.9878986
-          ],
-          [
-            77.7097646,
-            12.9879503
-          ],
-          [
-            77.7099132,
-            12.9880405
-          ],
-          [
-            77.7099946,
-            12.9880915
-          ],
-          [
-            77.7107315,
-            12.988521
-          ],
-          [
-            77.7120201,
-            12.9892723
-          ],
-          [
-            77.7123785,
-            12.9894684
-          ],
-          [
-            77.712506,
-            12.989535
-          ],
-          [
-            77.7128114,
-            12.9897041
-          ],
-          [
-            77.7130223,
-            12.9898384
-          ],
-          [
-            77.7133424,
-            12.9900255
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "segment_id": "osm_way_172891308",
-        "target_hour": "2026-06-19 18:00:00",
-        "police_station": "City Market",
-        "junction_name": "BTP082 - KR Market Junction",
-        "road_class": "primary",
-        "road_width_m": 12.0,
-        "predicted_total": 0.0009122059592747725,
-        "traffic_interruption_0_100": 2.1071284828089176e-06,
-        "parking_risk_0_100": 0.020269189061694615,
-        "eps": 4.45,
-        "priority_band": "Low",
-        "recommended_action": "Monitor",
-        "recommended_force_units": 0,
-        "map_matching_mode": "osm_overpass_nearest_road",
-        "road_name": "Sir Mirza Ismail Chowk Flyover",
-        "osm_highway": "primary",
-        "count_two_wheeler": 0.0004335535147313102,
-        "count_car": 0.0003027482341877666,
-        "count_auto": 0.0001206672953700487,
-        "count_light_commercial": 3.228047183237317e-05,
-        "count_heavy": 1.7138703923427646e-05,
-        "count_other": 5.8177392298461725e-06,
-        "live_congestion_multiplier": 1.0,
-        "clearance_m": 11.999697802159831,
-        "emergency_gridlock_flag": false,
-        "confidence_band": "Low",
-        "hotspot_probability": 0.0,
-        "economic_loss_inr": 59.0,
-        "geometry_wkt": "LINESTRING (77.5746306 12.9646603, 77.5751914 12.9649325, 77.5753803 12.9649723, 77.575503 12.9649591, 77.576242 12.9646321)"
-      },
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            77.5746306,
-            12.9646603
-          ],
-          [
-            77.5751914,
-            12.9649325
-          ],
-          [
-            77.5753803,
-            12.9649723
-          ],
-          [
-            77.575503,
-            12.9649591
-          ],
-          [
-            77.576242,
-            12.9646321
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "segment_id": "osm_way_172891303",
-        "target_hour": "2026-06-19 18:00:00",
-        "police_station": "City Market",
-        "junction_name": "BTP082 - KR Market Junction",
-        "road_class": "primary",
-        "road_width_m": 12.0,
-        "predicted_total": 0.0009122059592747725,
-        "traffic_interruption_0_100": 2.1071284828089176e-06,
-        "parking_risk_0_100": 0.020269189061694615,
-        "eps": 4.45,
-        "priority_band": "Low",
-        "recommended_action": "Monitor",
-        "recommended_force_units": 0,
-        "map_matching_mode": "osm_overpass_nearest_road",
-        "road_name": "Sir Mirza Ismail Chowk Flyover",
-        "osm_highway": "primary",
-        "count_two_wheeler": 0.0004335535147313102,
-        "count_car": 0.0003027482341877666,
-        "count_auto": 0.0001206672953700487,
-        "count_light_commercial": 3.228047183237317e-05,
-        "count_heavy": 1.7138703923427646e-05,
-        "count_other": 5.8177392298461725e-06,
-        "live_congestion_multiplier": 1.0,
-        "clearance_m": 11.999697802159831,
-        "emergency_gridlock_flag": false,
-        "confidence_band": "Low",
-        "hotspot_probability": 0.0,
-        "economic_loss_inr": 59.0,
-        "geometry_wkt": "LINESTRING (77.576242 12.9646321, 77.5764376 12.9645378, 77.576571 12.9644808)"
-      },
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            77.576242,
-            12.9646321
-          ],
-          [
-            77.5764376,
-            12.9645378
-          ],
-          [
-            77.576571,
-            12.9644808
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "segment_id": "osm_way_1148389680",
-        "target_hour": "2026-06-19 18:00:00",
-        "police_station": "Malleshwaram",
-        "junction_name": "No Junction",
-        "road_class": "primary",
-        "road_width_m": 12.0,
-        "predicted_total": 0.0009122059592747725,
-        "traffic_interruption_0_100": 2.1071284828089176e-06,
-        "parking_risk_0_100": 0.020269189061694615,
-        "eps": 4.45,
-        "priority_band": "Low",
-        "recommended_action": "Monitor",
-        "recommended_force_units": 0,
-        "map_matching_mode": "osm_overpass_nearest_road",
-        "road_name": "Sampige Road",
-        "osm_highway": "primary",
-        "count_two_wheeler": 0.0004335535147313102,
-        "count_car": 0.0003027482341877666,
-        "count_auto": 0.0001206672953700487,
-        "count_light_commercial": 3.228047183237317e-05,
-        "count_heavy": 1.7138703923427646e-05,
-        "count_other": 5.8177392298461725e-06,
-        "live_congestion_multiplier": 1.0,
-        "clearance_m": 11.999697802159831,
-        "emergency_gridlock_flag": false,
-        "confidence_band": "Low",
-        "hotspot_probability": 0.0,
-        "economic_loss_inr": 59.0,
-        "geometry_wkt": "LINESTRING (77.57119 13.006416, 77.5711813 13.0067922, 77.571172 13.0071967)"
-      },
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            77.57119,
-            13.006416
-          ],
-          [
-            77.5711813,
-            13.0067922
-          ],
-          [
-            77.571172,
-            13.0071967
+            77.5768287,
+            12.9640775
           ]
         ]
       }
@@ -10575,7 +10267,7 @@
       "type": "Feature",
       "properties": {
         "segment_id": "osm_way_1039251546",
-        "target_hour": "2026-06-19 18:00:00",
+        "target_hour": "2026-06-19 19:00:00",
         "police_station": "Hennuru",
         "junction_name": "No Junction",
         "road_class": "primary",
@@ -10749,190 +10441,90 @@
     {
       "type": "Feature",
       "properties": {
-        "segment_id": "osm_way_33834052",
-        "target_hour": "2026-06-19 18:00:00",
-        "police_station": "Hennuru",
+        "segment_id": "osm_way_39541581",
+        "target_hour": "2026-06-19 19:00:00",
+        "police_station": "Malleshwaram",
         "junction_name": "No Junction",
         "road_class": "primary",
         "road_width_m": 12.0,
-        "predicted_total": 0.0009122059592747725,
-        "traffic_interruption_0_100": 2.1071284828089176e-06,
-        "parking_risk_0_100": 0.020269189061694615,
+        "predicted_total": 0.0009121546401971505,
+        "traffic_interruption_0_100": 2.106788554723238e-06,
+        "parking_risk_0_100": 0.020268048868887778,
         "eps": 4.45,
         "priority_band": "Low",
         "recommended_action": "Monitor",
         "recommended_force_units": 0,
         "map_matching_mode": "osm_overpass_nearest_road",
-        "road_name": "Thanisandra Main Road",
+        "road_name": "Chord Road",
         "osm_highway": "primary",
         "count_two_wheeler": 0.0004335535147313102,
         "count_car": 0.0003027482341877666,
         "count_auto": 0.0001206672953700487,
         "count_light_commercial": 3.228047183237317e-05,
         "count_heavy": 1.7138703923427646e-05,
-        "count_other": 5.8177392298461725e-06,
+        "count_other": 5.76642015222415e-06,
         "live_congestion_multiplier": 1.0,
-        "clearance_m": 11.999697802159831,
+        "clearance_m": 11.999697826536392,
         "emergency_gridlock_flag": false,
         "confidence_band": "Low",
         "hotspot_probability": 0.0,
         "economic_loss_inr": 59.0,
-        "geometry_wkt": "LINESTRING (77.6329353 13.0561615, 77.6329047 13.0561097, 77.6328788 13.0560826, 77.632771 13.0560344, 77.6324644 13.0559175, 77.6324331 13.0558866, 77.6323971 13.0558367, 77.6323576 13.0557855, 77.6323409 13.0557639, 77.6322956 13.0556757, 77.632221 13.0555329, 77.6321456 13.055346, 77.6320727 13.055066, 77.6320443 13.0548491, 77.6319467 13.0542743, 77.6319307 13.0542183, 77.6318595 13.0539699, 77.6317693 13.053739, 77.6316629 13.0534665, 77.6315644 13.0532145, 77.6315208 13.0531241, 77.6314435 13.0529196, 77.6313576 13.0527085, 77.6313092 13.0526001, 77.6312126 13.0523841, 77.6311729 13.0522475, 77.6311366 13.052077, 77.6310515 13.0515923, 77.630977 13.0513518, 77.6308963 13.05115, 77.6306123 13.0506799, 77.6305027 13.0504979, 77.6304879 13.0504731, 77.6298764 13.0492808, 77.629697 13.0490136, 77.6292973 13.0484182, 77.6291741 13.0482339, 77.628676 13.0474772)"
+        "geometry_wkt": "LINESTRING (77.5535192 13.0126123, 77.5533055 13.0125061, 77.5530445 13.0123707, 77.5529373 13.0123272, 77.5528562 13.0123161, 77.5526518 13.0122237, 77.5526166 13.0122066, 77.5521297 13.0119918, 77.5519588 13.011911, 77.551769 13.011816, 77.5516172 13.01174, 77.5514206 13.0116202, 77.5510168 13.0113956)"
       },
       "geometry": {
         "type": "LineString",
         "coordinates": [
           [
-            77.6329353,
-            13.0561615
+            77.5535192,
+            13.0126123
           ],
           [
-            77.6329047,
-            13.0561097
+            77.5533055,
+            13.0125061
           ],
           [
-            77.6328788,
-            13.0560826
+            77.5530445,
+            13.0123707
           ],
           [
-            77.632771,
-            13.0560344
+            77.5529373,
+            13.0123272
           ],
           [
-            77.6324644,
-            13.0559175
+            77.5528562,
+            13.0123161
           ],
           [
-            77.6324331,
-            13.0558866
+            77.5526518,
+            13.0122237
           ],
           [
-            77.6323971,
-            13.0558367
+            77.5526166,
+            13.0122066
           ],
           [
-            77.6323576,
-            13.0557855
+            77.5521297,
+            13.0119918
           ],
           [
-            77.6323409,
-            13.0557639
+            77.5519588,
+            13.011911
           ],
           [
-            77.6322956,
-            13.0556757
+            77.551769,
+            13.011816
           ],
           [
-            77.632221,
-            13.0555329
+            77.5516172,
+            13.01174
           ],
           [
-            77.6321456,
-            13.055346
+            77.5514206,
+            13.0116202
           ],
           [
-            77.6320727,
-            13.055066
-          ],
-          [
-            77.6320443,
-            13.0548491
-          ],
-          [
-            77.6319467,
-            13.0542743
-          ],
-          [
-            77.6319307,
-            13.0542183
-          ],
-          [
-            77.6318595,
-            13.0539699
-          ],
-          [
-            77.6317693,
-            13.053739
-          ],
-          [
-            77.6316629,
-            13.0534665
-          ],
-          [
-            77.6315644,
-            13.0532145
-          ],
-          [
-            77.6315208,
-            13.0531241
-          ],
-          [
-            77.6314435,
-            13.0529196
-          ],
-          [
-            77.6313576,
-            13.0527085
-          ],
-          [
-            77.6313092,
-            13.0526001
-          ],
-          [
-            77.6312126,
-            13.0523841
-          ],
-          [
-            77.6311729,
-            13.0522475
-          ],
-          [
-            77.6311366,
-            13.052077
-          ],
-          [
-            77.6310515,
-            13.0515923
-          ],
-          [
-            77.630977,
-            13.0513518
-          ],
-          [
-            77.6308963,
-            13.05115
-          ],
-          [
-            77.6306123,
-            13.0506799
-          ],
-          [
-            77.6305027,
-            13.0504979
-          ],
-          [
-            77.6304879,
-            13.0504731
-          ],
-          [
-            77.6298764,
-            13.0492808
-          ],
-          [
-            77.629697,
-            13.0490136
-          ],
-          [
-            77.6292973,
-            13.0484182
-          ],
-          [
-            77.6291741,
-            13.0482339
-          ],
-          [
-            77.628676,
-            13.0474772
+            77.5510168,
+            13.0113956
           ]
         ]
       }
@@ -10941,7 +10533,7 @@
       "type": "Feature",
       "properties": {
         "segment_id": "osm_way_543470389",
-        "target_hour": "2026-06-19 18:00:00",
+        "target_hour": "2026-06-19 19:00:00",
         "police_station": "Jeevanbheemanagar",
         "junction_name": "No Junction",
         "road_class": "primary",
@@ -11023,9 +10615,9 @@
     {
       "type": "Feature",
       "properties": {
-        "segment_id": "osm_way_1261359822",
-        "target_hour": "2026-06-19 18:00:00",
-        "police_station": "Banaswadi",
+        "segment_id": "osm_way_1096797091",
+        "target_hour": "2026-06-19 19:00:00",
+        "police_station": "Ashok Nagar",
         "junction_name": "No Junction",
         "road_class": "primary",
         "road_width_m": 12.0,
@@ -11037,7 +10629,7 @@
         "recommended_action": "Monitor",
         "recommended_force_units": 0,
         "map_matching_mode": "osm_overpass_nearest_road",
-        "road_name": "Swamy Vivekananda Road",
+        "road_name": "Residency Road",
         "osm_highway": "primary",
         "count_two_wheeler": 0.0004335535147313102,
         "count_car": 0.0003027482341877666,
@@ -11051,38 +10643,38 @@
         "confidence_band": "Low",
         "hotspot_probability": 0.0,
         "economic_loss_inr": 59.0,
-        "geometry_wkt": "LINESTRING (77.6649578 12.9948703, 77.6648398 12.9948212, 77.6645137 12.9946854, 77.6643182 12.9945936, 77.6640375 12.9944609, 77.6635092 12.9942131, 77.6628135 12.9938818)"
+        "geometry_wkt": "LINESTRING (77.6048071 12.9709016, 77.6048987 12.9709466, 77.6049264 12.9709593, 77.6052741 12.9711189, 77.6055157 12.9712302, 77.6060274 12.9714386, 77.6061084 12.9714769)"
       },
       "geometry": {
         "type": "LineString",
         "coordinates": [
           [
-            77.6649578,
-            12.9948703
+            77.6048071,
+            12.9709016
           ],
           [
-            77.6648398,
-            12.9948212
+            77.6048987,
+            12.9709466
           ],
           [
-            77.6645137,
-            12.9946854
+            77.6049264,
+            12.9709593
           ],
           [
-            77.6643182,
-            12.9945936
+            77.6052741,
+            12.9711189
           ],
           [
-            77.6640375,
-            12.9944609
+            77.6055157,
+            12.9712302
           ],
           [
-            77.6635092,
-            12.9942131
+            77.6060274,
+            12.9714386
           ],
           [
-            77.6628135,
-            12.9938818
+            77.6061084,
+            12.9714769
           ]
         ]
       }
@@ -11091,7 +10683,7 @@
       "type": "Feature",
       "properties": {
         "segment_id": "osm_way_114922746",
-        "target_hour": "2026-06-19 18:00:00",
+        "target_hour": "2026-06-19 19:00:00",
         "police_station": "HAL Old Airport",
         "junction_name": "No Junction",
         "road_class": "primary",
@@ -11226,7 +10818,7 @@
       "type": "Feature",
       "properties": {
         "segment_id": "osm_way_1062970360",
-        "target_hour": "2026-06-19 18:00:00",
+        "target_hour": "2026-06-19 19:00:00",
         "police_station": "HAL Old Airport",
         "junction_name": "No Junction",
         "road_class": "primary",
@@ -11309,7 +10901,7 @@
       "type": "Feature",
       "properties": {
         "segment_id": "osm_way_38684970",
-        "target_hour": "2026-06-19 18:00:00",
+        "target_hour": "2026-06-19 19:00:00",
         "police_station": "Upparpet",
         "junction_name": "BTP045 - Danvanthri Road Junction",
         "road_class": "primary",
@@ -11448,7 +11040,7 @@
       "type": "Feature",
       "properties": {
         "segment_id": "osm_way_107221160",
-        "target_hour": "2026-06-19 18:00:00",
+        "target_hour": "2026-06-19 19:00:00",
         "police_station": "Malleshwaram",
         "junction_name": "No Junction",
         "road_class": "primary",
@@ -11499,7 +11091,7 @@
       "type": "Feature",
       "properties": {
         "segment_id": "osm_way_170932623",
-        "target_hour": "2026-06-19 18:00:00",
+        "target_hour": "2026-06-19 19:00:00",
         "police_station": "Magadi Road",
         "junction_name": "No Junction",
         "road_class": "primary",
@@ -11697,87 +11289,8 @@
     {
       "type": "Feature",
       "properties": {
-        "segment_id": "osm_way_190144809",
-        "target_hour": "2026-06-19 18:00:00",
-        "police_station": "City Market",
-        "junction_name": "BTP082 - KR Market Junction",
-        "road_class": "primary",
-        "road_width_m": 12.0,
-        "predicted_total": 0.0009117774740393451,
-        "traffic_interruption_0_100": 2.104291130233804e-06,
-        "parking_risk_0_100": 0.020259669097133504,
-        "eps": 4.45,
-        "priority_band": "Low",
-        "recommended_action": "Monitor",
-        "recommended_force_units": 0,
-        "map_matching_mode": "osm_overpass_nearest_road",
-        "road_name": "Krishna Rajendra Road",
-        "osm_highway": "primary",
-        "count_two_wheeler": 0.0004335535147313102,
-        "count_car": 0.0003027482341877666,
-        "count_auto": 0.0001206672953700487,
-        "count_light_commercial": 3.228047183237317e-05,
-        "count_heavy": 1.7138703923427646e-05,
-        "count_other": 5.389253994418719e-06,
-        "live_congestion_multiplier": 1.0,
-        "clearance_m": 11.999698005690318,
-        "emergency_gridlock_flag": false,
-        "confidence_band": "Low",
-        "hotspot_probability": 0.0,
-        "economic_loss_inr": 59.0,
-        "geometry_wkt": "LINESTRING (77.5750888 12.9612109, 77.5752198 12.9614394, 77.575278 12.9615264, 77.5756456 12.9621081, 77.5757939 12.9622247, 77.5758651 12.9622807, 77.5760093 12.9624076, 77.5763578 12.9630539, 77.5766564 12.9637557, 77.5767121 12.9638866)"
-      },
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            77.5750888,
-            12.9612109
-          ],
-          [
-            77.5752198,
-            12.9614394
-          ],
-          [
-            77.575278,
-            12.9615264
-          ],
-          [
-            77.5756456,
-            12.9621081
-          ],
-          [
-            77.5757939,
-            12.9622247
-          ],
-          [
-            77.5758651,
-            12.9622807
-          ],
-          [
-            77.5760093,
-            12.9624076
-          ],
-          [
-            77.5763578,
-            12.9630539
-          ],
-          [
-            77.5766564,
-            12.9637557
-          ],
-          [
-            77.5767121,
-            12.9638866
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
         "segment_id": "osm_way_503401195",
-        "target_hour": "2026-06-19 18:00:00",
+        "target_hour": "2026-06-19 19:00:00",
         "police_station": "Malleshwaram",
         "junction_name": "No Junction",
         "road_class": "primary",
@@ -11856,7 +11369,7 @@
       "type": "Feature",
       "properties": {
         "segment_id": "osm_way_1062970359",
-        "target_hour": "2026-06-19 18:00:00",
+        "target_hour": "2026-06-19 19:00:00",
         "police_station": "HAL Old Airport",
         "junction_name": "No Junction",
         "road_class": "primary",
@@ -11919,7 +11432,7 @@
       "type": "Feature",
       "properties": {
         "segment_id": "osm_way_760543009",
-        "target_hour": "2026-06-19 18:00:00",
+        "target_hour": "2026-06-19 19:00:00",
         "police_station": "City Market",
         "junction_name": "BTP082 - KR Market Junction",
         "road_class": "primary",
@@ -11986,7 +11499,7 @@
       "type": "Feature",
       "properties": {
         "segment_id": "osm_way_107221158",
-        "target_hour": "2026-06-19 18:00:00",
+        "target_hour": "2026-06-19 19:00:00",
         "police_station": "Malleshwaram",
         "junction_name": "No Junction",
         "road_class": "primary",
@@ -12177,7 +11690,7 @@
       "type": "Feature",
       "properties": {
         "segment_id": "osm_way_36897684",
-        "target_hour": "2026-06-19 18:00:00",
+        "target_hour": "2026-06-19 19:00:00",
         "police_station": "City Market",
         "junction_name": "BTP082 - KR Market Junction",
         "road_class": "primary",
@@ -12240,7 +11753,7 @@
       "type": "Feature",
       "properties": {
         "segment_id": "osm_way_503491597",
-        "target_hour": "2026-06-19 18:00:00",
+        "target_hour": "2026-06-19 19:00:00",
         "police_station": "Malleshwaram",
         "junction_name": "No Junction",
         "road_class": "primary",
@@ -12291,7 +11804,7 @@
       "type": "Feature",
       "properties": {
         "segment_id": "osm_way_36958057",
-        "target_hour": "2026-06-19 18:00:00",
+        "target_hour": "2026-06-19 19:00:00",
         "police_station": "Chamarajpet",
         "junction_name": "BTP048 - Shanthala Junction",
         "road_class": "primary",
@@ -12361,8 +11874,67 @@
     {
       "type": "Feature",
       "properties": {
+        "segment_id": "osm_way_172891308",
+        "target_hour": "2026-06-19 19:00:00",
+        "police_station": "City Market",
+        "junction_name": "BTP082 - KR Market Junction",
+        "road_class": "primary",
+        "road_width_m": 12.0,
+        "predicted_total": 0.0009117774740393451,
+        "traffic_interruption_0_100": 2.104291130233804e-06,
+        "parking_risk_0_100": 0.020259669097133504,
+        "eps": 4.45,
+        "priority_band": "Low",
+        "recommended_action": "Monitor",
+        "recommended_force_units": 0,
+        "map_matching_mode": "osm_overpass_nearest_road",
+        "road_name": "Sir Mirza Ismail Chowk Flyover",
+        "osm_highway": "primary",
+        "count_two_wheeler": 0.0004335535147313102,
+        "count_car": 0.0003027482341877666,
+        "count_auto": 0.0001206672953700487,
+        "count_light_commercial": 3.228047183237317e-05,
+        "count_heavy": 1.7138703923427646e-05,
+        "count_other": 5.389253994418719e-06,
+        "live_congestion_multiplier": 1.0,
+        "clearance_m": 11.999698005690318,
+        "emergency_gridlock_flag": false,
+        "confidence_band": "Low",
+        "hotspot_probability": 0.0,
+        "economic_loss_inr": 59.0,
+        "geometry_wkt": "LINESTRING (77.5746306 12.9646603, 77.5751914 12.9649325, 77.5753803 12.9649723, 77.575503 12.9649591, 77.576242 12.9646321)"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            77.5746306,
+            12.9646603
+          ],
+          [
+            77.5751914,
+            12.9649325
+          ],
+          [
+            77.5753803,
+            12.9649723
+          ],
+          [
+            77.575503,
+            12.9649591
+          ],
+          [
+            77.576242,
+            12.9646321
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
         "segment_id": "osm_way_503491598",
-        "target_hour": "2026-06-19 18:00:00",
+        "target_hour": "2026-06-19 19:00:00",
         "police_station": "Malleshwaram",
         "junction_name": "No Junction",
         "road_class": "primary",
@@ -12441,7 +12013,7 @@
       "type": "Feature",
       "properties": {
         "segment_id": "osm_way_688824225",
-        "target_hour": "2026-06-19 18:00:00",
+        "target_hour": "2026-06-19 19:00:00",
         "police_station": "City Market",
         "junction_name": "BTP104 - Medical College Circle",
         "road_class": "primary",
@@ -12536,7 +12108,7 @@
       "type": "Feature",
       "properties": {
         "segment_id": "osm_way_1351611846",
-        "target_hour": "2026-06-19 18:00:00",
+        "target_hour": "2026-06-19 19:00:00",
         "police_station": "Malleshwaram",
         "junction_name": "No Junction",
         "road_class": "primary",
@@ -12582,8 +12154,59 @@
     {
       "type": "Feature",
       "properties": {
+        "segment_id": "osm_way_172891303",
+        "target_hour": "2026-06-19 19:00:00",
+        "police_station": "City Market",
+        "junction_name": "BTP082 - KR Market Junction",
+        "road_class": "primary",
+        "road_width_m": 12.0,
+        "predicted_total": 0.0009117774740393451,
+        "traffic_interruption_0_100": 2.104291130233804e-06,
+        "parking_risk_0_100": 0.020259669097133504,
+        "eps": 4.45,
+        "priority_band": "Low",
+        "recommended_action": "Monitor",
+        "recommended_force_units": 0,
+        "map_matching_mode": "osm_overpass_nearest_road",
+        "road_name": "Sir Mirza Ismail Chowk Flyover",
+        "osm_highway": "primary",
+        "count_two_wheeler": 0.0004335535147313102,
+        "count_car": 0.0003027482341877666,
+        "count_auto": 0.0001206672953700487,
+        "count_light_commercial": 3.228047183237317e-05,
+        "count_heavy": 1.7138703923427646e-05,
+        "count_other": 5.389253994418719e-06,
+        "live_congestion_multiplier": 1.0,
+        "clearance_m": 11.999698005690318,
+        "emergency_gridlock_flag": false,
+        "confidence_band": "Low",
+        "hotspot_probability": 0.0,
+        "economic_loss_inr": 59.0,
+        "geometry_wkt": "LINESTRING (77.576242 12.9646321, 77.5764376 12.9645378, 77.576571 12.9644808)"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            77.576242,
+            12.9646321
+          ],
+          [
+            77.5764376,
+            12.9645378
+          ],
+          [
+            77.576571,
+            12.9644808
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
         "segment_id": "osm_way_23081608",
-        "target_hour": "2026-06-19 18:00:00",
+        "target_hour": "2026-06-19 19:00:00",
         "police_station": "City Market",
         "junction_name": "BTP080 - NR Road, SP Road Junction",
         "road_class": "primary",
@@ -12646,7 +12269,7 @@
       "type": "Feature",
       "properties": {
         "segment_id": "osm_way_1408299028",
-        "target_hour": "2026-06-19 18:00:00",
+        "target_hour": "2026-06-19 19:00:00",
         "police_station": "Shivajinagar",
         "junction_name": "No Junction",
         "road_class": "primary",
@@ -12709,7 +12332,7 @@
       "type": "Feature",
       "properties": {
         "segment_id": "osm_way_170931909",
-        "target_hour": "2026-06-19 18:00:00",
+        "target_hour": "2026-06-19 19:00:00",
         "police_station": "Magadi Road",
         "junction_name": "BTP074 - Leprosy Hospital Junction",
         "road_class": "primary",
@@ -12879,79 +12502,8 @@
     {
       "type": "Feature",
       "properties": {
-        "segment_id": "osm_way_154340363",
-        "target_hour": "2026-06-19 18:00:00",
-        "police_station": "City Market",
-        "junction_name": "BTP082 - KR Market Junction",
-        "road_class": "primary",
-        "road_width_m": 12.0,
-        "predicted_total": 0.0009117774740393451,
-        "traffic_interruption_0_100": 2.104291130233804e-06,
-        "parking_risk_0_100": 0.020259669097133504,
-        "eps": 4.45,
-        "priority_band": "Low",
-        "recommended_action": "Monitor",
-        "recommended_force_units": 0,
-        "map_matching_mode": "osm_overpass_nearest_road",
-        "road_name": "",
-        "osm_highway": "primary_link",
-        "count_two_wheeler": 0.0004335535147313102,
-        "count_car": 0.0003027482341877666,
-        "count_auto": 0.0001206672953700487,
-        "count_light_commercial": 3.228047183237317e-05,
-        "count_heavy": 1.7138703923427646e-05,
-        "count_other": 5.389253994418719e-06,
-        "live_congestion_multiplier": 1.0,
-        "clearance_m": 11.999698005690318,
-        "emergency_gridlock_flag": false,
-        "confidence_band": "Low",
-        "hotspot_probability": 0.0,
-        "economic_loss_inr": 59.0,
-        "geometry_wkt": "LINESTRING (77.576814 12.9640481, 77.5769326 12.9640022, 77.5770417 12.9639314, 77.5771228 12.9638753, 77.5771803 12.963804, 77.5772225 12.9637501, 77.5772576 12.9636025, 77.5773172 12.963461)"
-      },
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            77.576814,
-            12.9640481
-          ],
-          [
-            77.5769326,
-            12.9640022
-          ],
-          [
-            77.5770417,
-            12.9639314
-          ],
-          [
-            77.5771228,
-            12.9638753
-          ],
-          [
-            77.5771803,
-            12.963804
-          ],
-          [
-            77.5772225,
-            12.9637501
-          ],
-          [
-            77.5772576,
-            12.9636025
-          ],
-          [
-            77.5773172,
-            12.963461
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
         "segment_id": "osm_way_263812623",
-        "target_hour": "2026-06-19 18:00:00",
+        "target_hour": "2026-06-19 19:00:00",
         "police_station": "Halasur",
         "junction_name": "No Junction",
         "road_class": "primary",
@@ -13025,8 +12577,59 @@
     {
       "type": "Feature",
       "properties": {
+        "segment_id": "osm_way_1148389680",
+        "target_hour": "2026-06-19 19:00:00",
+        "police_station": "Malleshwaram",
+        "junction_name": "No Junction",
+        "road_class": "primary",
+        "road_width_m": 12.0,
+        "predicted_total": 0.0009117774740393451,
+        "traffic_interruption_0_100": 2.104291130233804e-06,
+        "parking_risk_0_100": 0.020259669097133504,
+        "eps": 4.45,
+        "priority_band": "Low",
+        "recommended_action": "Monitor",
+        "recommended_force_units": 0,
+        "map_matching_mode": "osm_overpass_nearest_road",
+        "road_name": "Sampige Road",
+        "osm_highway": "primary",
+        "count_two_wheeler": 0.0004335535147313102,
+        "count_car": 0.0003027482341877666,
+        "count_auto": 0.0001206672953700487,
+        "count_light_commercial": 3.228047183237317e-05,
+        "count_heavy": 1.7138703923427646e-05,
+        "count_other": 5.389253994418719e-06,
+        "live_congestion_multiplier": 1.0,
+        "clearance_m": 11.999698005690318,
+        "emergency_gridlock_flag": false,
+        "confidence_band": "Low",
+        "hotspot_probability": 0.0,
+        "economic_loss_inr": 59.0,
+        "geometry_wkt": "LINESTRING (77.57119 13.006416, 77.5711813 13.0067922, 77.571172 13.0071967)"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            77.57119,
+            13.006416
+          ],
+          [
+            77.5711813,
+            13.0067922
+          ],
+          [
+            77.571172,
+            13.0071967
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
         "segment_id": "osm_way_172891297",
-        "target_hour": "2026-06-19 18:00:00",
+        "target_hour": "2026-06-19 19:00:00",
         "police_station": "Halasuru Gate",
         "junction_name": "BTP082 - KR Market Junction",
         "road_class": "primary",
@@ -13085,7 +12688,7 @@
       "type": "Feature",
       "properties": {
         "segment_id": "osm_way_638541497",
-        "target_hour": "2026-06-19 18:00:00",
+        "target_hour": "2026-06-19 19:00:00",
         "police_station": "Halasur",
         "junction_name": "No Junction",
         "road_class": "primary",
@@ -13300,7 +12903,7 @@
       "type": "Feature",
       "properties": {
         "segment_id": "osm_way_244304928",
-        "target_hour": "2026-06-19 18:00:00",
+        "target_hour": "2026-06-19 19:00:00",
         "police_station": "Halasuru Gate",
         "junction_name": "BTP080 - NR Road, SP Road Junction",
         "road_class": "primary",
@@ -13363,7 +12966,7 @@
       "type": "Feature",
       "properties": {
         "segment_id": "osm_way_454013131",
-        "target_hour": "2026-06-19 18:00:00",
+        "target_hour": "2026-06-19 19:00:00",
         "police_station": "Chamarajpet",
         "junction_name": "BTP048 - Shanthala Junction",
         "road_class": "primary",
@@ -13422,7 +13025,7 @@
       "type": "Feature",
       "properties": {
         "segment_id": "osm_way_1055621395",
-        "target_hour": "2026-06-19 18:00:00",
+        "target_hour": "2026-06-19 19:00:00",
         "police_station": "Banaswadi",
         "junction_name": "No Junction",
         "road_class": "primary",
@@ -13521,7 +13124,7 @@
       "type": "Feature",
       "properties": {
         "segment_id": "osm_way_358326663",
-        "target_hour": "2026-06-19 18:00:00",
+        "target_hour": "2026-06-19 19:00:00",
         "police_station": "City Market",
         "junction_name": "BTP082 - KR Market Junction",
         "road_class": "primary",
@@ -13588,7 +13191,7 @@
       "type": "Feature",
       "properties": {
         "segment_id": "osm_way_1084450328",
-        "target_hour": "2026-06-19 18:00:00",
+        "target_hour": "2026-06-19 19:00:00",
         "police_station": "Mahadevapura",
         "junction_name": "No Junction",
         "road_class": "primary",
@@ -13662,8 +13265,87 @@
     {
       "type": "Feature",
       "properties": {
+        "segment_id": "osm_way_150357930",
+        "target_hour": "2026-06-19 19:00:00",
+        "police_station": "City Market",
+        "junction_name": "BTP082 - KR Market Junction",
+        "road_class": "primary",
+        "road_width_m": 12.0,
+        "predicted_total": 0.0009117774740393451,
+        "traffic_interruption_0_100": 2.104291130233804e-06,
+        "parking_risk_0_100": 0.020259669097133504,
+        "eps": 4.45,
+        "priority_band": "Low",
+        "recommended_action": "Monitor",
+        "recommended_force_units": 0,
+        "map_matching_mode": "osm_overpass_nearest_road",
+        "road_name": "Kalasipalya Main Road",
+        "osm_highway": "primary",
+        "count_two_wheeler": 0.0004335535147313102,
+        "count_car": 0.0003027482341877666,
+        "count_auto": 0.0001206672953700487,
+        "count_light_commercial": 3.228047183237317e-05,
+        "count_heavy": 1.7138703923427646e-05,
+        "count_other": 5.389253994418719e-06,
+        "live_congestion_multiplier": 1.0,
+        "clearance_m": 11.999698005690318,
+        "emergency_gridlock_flag": false,
+        "confidence_band": "Low",
+        "hotspot_probability": 0.0,
+        "economic_loss_inr": 59.0,
+        "geometry_wkt": "LINESTRING (77.5773314 12.9636047, 77.5773172 12.963461, 77.5773333 12.9633608, 77.5774882 12.9629219, 77.5775017 12.9628701, 77.5776272 12.9623895, 77.5776522 12.9622939, 77.5776867 12.9619334, 77.5777147 12.9616417, 77.5777156 12.9615581)"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            77.5773314,
+            12.9636047
+          ],
+          [
+            77.5773172,
+            12.963461
+          ],
+          [
+            77.5773333,
+            12.9633608
+          ],
+          [
+            77.5774882,
+            12.9629219
+          ],
+          [
+            77.5775017,
+            12.9628701
+          ],
+          [
+            77.5776272,
+            12.9623895
+          ],
+          [
+            77.5776522,
+            12.9622939
+          ],
+          [
+            77.5776867,
+            12.9619334
+          ],
+          [
+            77.5777147,
+            12.9616417
+          ],
+          [
+            77.5777156,
+            12.9615581
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
         "segment_id": "osm_way_8681855",
-        "target_hour": "2026-06-19 18:00:00",
+        "target_hour": "2026-06-19 19:00:00",
         "police_station": "Wilson Garden",
         "junction_name": "BTP192 - Urvashi Theater",
         "road_class": "primary",
@@ -13722,7 +13404,7 @@
       "type": "Feature",
       "properties": {
         "segment_id": "osm_way_503491600",
-        "target_hour": "2026-06-19 18:00:00",
+        "target_hour": "2026-06-19 19:00:00",
         "police_station": "Malleshwaram",
         "junction_name": "No Junction",
         "road_class": "primary",
@@ -13793,7 +13475,7 @@
       "type": "Feature",
       "properties": {
         "segment_id": "osm_way_142571618",
-        "target_hour": "2026-06-19 18:00:00",
+        "target_hour": "2026-06-19 19:00:00",
         "police_station": "Upparpet",
         "junction_name": "BTP057 - Anand Rao Junction",
         "road_class": "primary",
@@ -13928,7 +13610,7 @@
       "type": "Feature",
       "properties": {
         "segment_id": "osm_way_1278431120",
-        "target_hour": "2026-06-19 18:00:00",
+        "target_hour": "2026-06-19 19:00:00",
         "police_station": "Vijayanagara",
         "junction_name": "BTP020 - Hosahalli Metro Station",
         "road_class": "primary",
@@ -13979,7 +13661,7 @@
       "type": "Feature",
       "properties": {
         "segment_id": "osm_way_454013128",
-        "target_hour": "2026-06-19 18:00:00",
+        "target_hour": "2026-06-19 19:00:00",
         "police_station": "City Market",
         "junction_name": "BTP082 - KR Market Junction",
         "road_class": "primary",
@@ -14026,7 +13708,7 @@
       "type": "Feature",
       "properties": {
         "segment_id": "osm_way_172891307",
-        "target_hour": "2026-06-19 18:00:00",
+        "target_hour": "2026-06-19 19:00:00",
         "police_station": "V.V.Puram (C.Pet)",
         "junction_name": "BTP082 - KR Market Junction",
         "road_class": "primary",
@@ -14081,7 +13763,7 @@
       "type": "Feature",
       "properties": {
         "segment_id": "osm_way_55127541",
-        "target_hour": "2026-06-19 18:00:00",
+        "target_hour": "2026-06-19 19:00:00",
         "police_station": "Sheshadripuram",
         "junction_name": "No Junction",
         "road_class": "primary",
@@ -14160,7 +13842,7 @@
       "type": "Feature",
       "properties": {
         "segment_id": "osm_way_1135846622",
-        "target_hour": "2026-06-19 18:00:00",
+        "target_hour": "2026-06-19 19:00:00",
         "police_station": "HAL Old Airport",
         "junction_name": "No Junction",
         "road_class": "primary",
@@ -14243,7 +13925,7 @@
       "type": "Feature",
       "properties": {
         "segment_id": "osm_way_648492112",
-        "target_hour": "2026-06-19 18:00:00",
+        "target_hour": "2026-06-19 19:00:00",
         "police_station": "HAL Old Airport",
         "junction_name": "No Junction",
         "road_class": "primary",
@@ -14402,7 +14084,7 @@
       "type": "Feature",
       "properties": {
         "segment_id": "osm_way_1014042913",
-        "target_hour": "2026-06-19 18:00:00",
+        "target_hour": "2026-06-19 19:00:00",
         "police_station": "City Market",
         "junction_name": "BTP082 - KR Market Junction",
         "road_class": "primary",
@@ -14453,7 +14135,7 @@
       "type": "Feature",
       "properties": {
         "segment_id": "osm_way_184764818",
-        "target_hour": "2026-06-19 18:00:00",
+        "target_hour": "2026-06-19 19:00:00",
         "police_station": "Jalahalli",
         "junction_name": "No Junction",
         "road_class": "primary",
@@ -14568,7 +14250,7 @@
       "type": "Feature",
       "properties": {
         "segment_id": "osm_way_53856198",
-        "target_hour": "2026-06-19 18:00:00",
+        "target_hour": "2026-06-19 19:00:00",
         "police_station": "Sheshadripuram",
         "junction_name": "No Junction",
         "road_class": "primary",
@@ -14635,7 +14317,7 @@
       "type": "Feature",
       "properties": {
         "segment_id": "osm_way_154340361",
-        "target_hour": "2026-06-19 18:00:00",
+        "target_hour": "2026-06-19 19:00:00",
         "police_station": "Halasuru Gate",
         "junction_name": "BTP076 - Hudson Circle",
         "road_class": "primary",
@@ -14742,7 +14424,7 @@
       "type": "Feature",
       "properties": {
         "segment_id": "osm_way_37338256",
-        "target_hour": "2026-06-19 18:00:00",
+        "target_hour": "2026-06-19 19:00:00",
         "police_station": "V.V.Puram (C.Pet)",
         "junction_name": "BTP105 - Shivasankara Circle",
         "road_class": "primary",
@@ -14889,7 +14571,7 @@
       "type": "Feature",
       "properties": {
         "segment_id": "osm_way_28631881",
-        "target_hour": "2026-06-19 18:00:00",
+        "target_hour": "2026-06-19 19:00:00",
         "police_station": "Upparpet",
         "junction_name": "BTP045 - Danvanthri Road Junction",
         "road_class": "primary",
@@ -14972,7 +14654,7 @@
       "type": "Feature",
       "properties": {
         "segment_id": "osm_way_111814614",
-        "target_hour": "2026-06-19 18:00:00",
+        "target_hour": "2026-06-19 19:00:00",
         "police_station": "Madiwala",
         "junction_name": "BTP137 - Madiwala Traffic PS Junction",
         "road_class": "primary",
@@ -15063,7 +14745,7 @@
       "type": "Feature",
       "properties": {
         "segment_id": "osm_way_173571200",
-        "target_hour": "2026-06-19 18:00:00",
+        "target_hour": "2026-06-19 19:00:00",
         "police_station": "Pulikeshinagar(F.Town)",
         "junction_name": "No Junction",
         "road_class": "primary",
@@ -15282,7 +14964,7 @@
       "type": "Feature",
       "properties": {
         "segment_id": "osm_way_753677213",
-        "target_hour": "2026-06-19 18:00:00",
+        "target_hour": "2026-06-19 19:00:00",
         "police_station": "Bellandur",
         "junction_name": "No Junction",
         "road_class": "primary",
@@ -15617,7 +15299,7 @@
       "type": "Feature",
       "properties": {
         "segment_id": "osm_way_362206700",
-        "target_hour": "2026-06-19 18:00:00",
+        "target_hour": "2026-06-19 19:00:00",
         "police_station": "Cubbon Park",
         "junction_name": "BTP047 - Vidhan Soudha Metro Station",
         "road_class": "primary",
@@ -15752,7 +15434,7 @@
       "type": "Feature",
       "properties": {
         "segment_id": "osm_way_647478364",
-        "target_hour": "2026-06-19 18:00:00",
+        "target_hour": "2026-06-19 19:00:00",
         "police_station": "HAL Old Airport",
         "junction_name": "No Junction",
         "road_class": "primary",
@@ -15895,6 +15577,232 @@
           [
             77.7184342,
             12.965484
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": "osm_way_1167923454",
+        "target_hour": "2026-06-19 19:00:00",
+        "police_station": "City Market",
+        "junction_name": "BTP118 - Basappa Circle",
+        "road_class": "primary",
+        "road_width_m": 12.0,
+        "predicted_total": 0.0009117774740393451,
+        "traffic_interruption_0_100": 2.104291130233804e-06,
+        "parking_risk_0_100": 0.020259669097133504,
+        "eps": 4.45,
+        "priority_band": "Low",
+        "recommended_action": "Monitor",
+        "recommended_force_units": 0,
+        "map_matching_mode": "osm_overpass_nearest_road",
+        "road_name": "Nawab Hyder Ali Khan Road",
+        "osm_highway": "primary",
+        "count_two_wheeler": 0.0004335535147313102,
+        "count_car": 0.0003027482341877666,
+        "count_auto": 0.0001206672953700487,
+        "count_light_commercial": 3.228047183237317e-05,
+        "count_heavy": 1.7138703923427646e-05,
+        "count_other": 5.389253994418719e-06,
+        "live_congestion_multiplier": 1.0,
+        "clearance_m": 11.999698005690318,
+        "emergency_gridlock_flag": false,
+        "confidence_band": "Low",
+        "hotspot_probability": 0.0,
+        "economic_loss_inr": 59.0,
+        "geometry_wkt": "LINESTRING (77.5774389 12.9569922, 77.5774667 12.9571459, 77.5774768 12.9572692, 77.57748 12.9572934, 77.5775036 12.9575399, 77.57751 12.9576056, 77.5775646 12.9580047, 77.577609 12.9583291, 77.5776314 12.9584929, 77.5776465 12.9586617, 77.5776501 12.9587015, 77.5776494 12.9588543)"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            77.5774389,
+            12.9569922
+          ],
+          [
+            77.5774667,
+            12.9571459
+          ],
+          [
+            77.5774768,
+            12.9572692
+          ],
+          [
+            77.57748,
+            12.9572934
+          ],
+          [
+            77.5775036,
+            12.9575399
+          ],
+          [
+            77.57751,
+            12.9576056
+          ],
+          [
+            77.5775646,
+            12.9580047
+          ],
+          [
+            77.577609,
+            12.9583291
+          ],
+          [
+            77.5776314,
+            12.9584929
+          ],
+          [
+            77.5776465,
+            12.9586617
+          ],
+          [
+            77.5776501,
+            12.9587015
+          ],
+          [
+            77.5776494,
+            12.9588543
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": "osm_way_503385154",
+        "target_hour": "2026-06-19 19:00:00",
+        "police_station": "Magadi Road",
+        "junction_name": "BTP067 - Jai Muni Rao Circle",
+        "road_class": "primary",
+        "road_width_m": 12.0,
+        "predicted_total": 0.0009117774740393451,
+        "traffic_interruption_0_100": 2.104291130233804e-06,
+        "parking_risk_0_100": 0.020259669097133504,
+        "eps": 4.45,
+        "priority_band": "Low",
+        "recommended_action": "Monitor",
+        "recommended_force_units": 0,
+        "map_matching_mode": "osm_overpass_nearest_road",
+        "road_name": "Magadi Road",
+        "osm_highway": "primary",
+        "count_two_wheeler": 0.0004335535147313102,
+        "count_car": 0.0003027482341877666,
+        "count_auto": 0.0001206672953700487,
+        "count_light_commercial": 3.228047183237317e-05,
+        "count_heavy": 1.7138703923427646e-05,
+        "count_other": 5.389253994418719e-06,
+        "live_congestion_multiplier": 1.0,
+        "clearance_m": 11.999698005690318,
+        "emergency_gridlock_flag": false,
+        "confidence_band": "Low",
+        "hotspot_probability": 0.0,
+        "economic_loss_inr": 59.0,
+        "geometry_wkt": "LINESTRING (77.5379237 12.9802342, 77.5380461 12.9801834, 77.5386239 12.9799526, 77.538706 12.9799133, 77.5392183 12.9796774, 77.5392643 12.9796569, 77.5392953 12.9796432, 77.5393653 12.9796121, 77.539988 12.979335, 77.5405292 12.9791077, 77.5406689 12.9790377, 77.540847 12.9789652, 77.5411146 12.9788685, 77.5414002 12.978774, 77.5414686 12.9787522, 77.5416007 12.97871, 77.5416964 12.9786943, 77.5419327 12.9786555, 77.5422753 12.9785908, 77.5425316 12.9785476, 77.5426214 12.978533, 77.5427848 12.9785071, 77.5428776 12.9784885, 77.5430997 12.978459, 77.5435049 12.9784051)"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            77.5379237,
+            12.9802342
+          ],
+          [
+            77.5380461,
+            12.9801834
+          ],
+          [
+            77.5386239,
+            12.9799526
+          ],
+          [
+            77.538706,
+            12.9799133
+          ],
+          [
+            77.5392183,
+            12.9796774
+          ],
+          [
+            77.5392643,
+            12.9796569
+          ],
+          [
+            77.5392953,
+            12.9796432
+          ],
+          [
+            77.5393653,
+            12.9796121
+          ],
+          [
+            77.539988,
+            12.979335
+          ],
+          [
+            77.5405292,
+            12.9791077
+          ],
+          [
+            77.5406689,
+            12.9790377
+          ],
+          [
+            77.540847,
+            12.9789652
+          ],
+          [
+            77.5411146,
+            12.9788685
+          ],
+          [
+            77.5414002,
+            12.978774
+          ],
+          [
+            77.5414686,
+            12.9787522
+          ],
+          [
+            77.5416007,
+            12.97871
+          ],
+          [
+            77.5416964,
+            12.9786943
+          ],
+          [
+            77.5419327,
+            12.9786555
+          ],
+          [
+            77.5422753,
+            12.9785908
+          ],
+          [
+            77.5425316,
+            12.9785476
+          ],
+          [
+            77.5426214,
+            12.978533
+          ],
+          [
+            77.5427848,
+            12.9785071
+          ],
+          [
+            77.5428776,
+            12.9784885
+          ],
+          [
+            77.5430997,
+            12.978459
+          ],
+          [
+            77.5435049,
+            12.9784051
           ]
         ]
       }

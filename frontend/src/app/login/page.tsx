@@ -1,9 +1,138 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import { useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { ShieldAlert, User, Lock, ArrowRight, Activity, Terminal } from "lucide-react";
+import Map from "react-map-gl/maplibre";
+import DeckGL from "@deck.gl/react";
+import { ArcLayer, ScatterplotLayer } from "@deck.gl/layers";
+import "maplibre-gl/dist/maplibre-gl.css";
+
+const MAP_STYLE = "https://basemaps.cartocdn.com/gl/dark-matter-gl-style/style.json";
+const CENTER = [77.5946, 12.9716]; // Bangalore
+
+// Generate fake tactical nodes and dispatch events
+const generateSimulationData = () => {
+  const hubs = Array.from({ length: 5 }).map(() => [
+    CENTER[0] + (Math.random() - 0.5) * 0.1,
+    CENTER[1] + (Math.random() - 0.5) * 0.1
+  ]);
+  
+  const hotspots = Array.from({ length: 40 }).map(() => ({
+    position: [
+      CENTER[0] + (Math.random() - 0.5) * 0.25,
+      CENTER[1] + (Math.random() - 0.5) * 0.25
+    ],
+    hub: hubs[Math.floor(Math.random() * hubs.length)],
+    delay: Math.random() * 5000,
+    isActive: Math.random() > 0.5
+  }));
+
+  return { hubs, hotspots };
+};
+
+function TacticalBackground() {
+  const [viewState, setViewState] = useState({
+    longitude: CENTER[0],
+    latitude: CENTER[1],
+    zoom: 12.5,
+    pitch: 50,
+    bearing: 0
+  });
+  
+  const [time, setTime] = useState(0);
+  const data = useMemo(() => generateSimulationData(), []);
+
+  useEffect(() => {
+    let animationId: number;
+    let startTime = Date.now();
+    const animate = () => {
+      setTime(Date.now() - startTime);
+      setViewState(prev => ({
+        ...prev,
+        bearing: (prev.bearing + 0.05) % 360,
+      }));
+      animationId = requestAnimationFrame(animate);
+    };
+    animationId = requestAnimationFrame(animate);
+    return () => cancelAnimationFrame(animationId);
+  }, []);
+
+  // Filter arcs to only those that should be firing right now based on time
+  const activeArcs = data.hotspots.filter(h => h.isActive && (time % 4000) > (h.delay % 4000) && (time % 4000) < (h.delay % 4000) + 1500);
+
+  const layers = [
+    // The Command Hubs (Blue)
+    new ScatterplotLayer({
+      id: 'hubs-layer',
+      data: data.hubs.map(h => ({ position: h })),
+      getPosition: (d: any) => d.position,
+      getFillColor: [59, 130, 246, 255],
+      getRadius: 150,
+      radiusMinPixels: 4,
+      stroked: true,
+      getLineColor: [255, 255, 255, 200],
+      getLineWidth: 2,
+    }),
+
+    // The Violation Hotspots (Pulsing Red)
+    new ScatterplotLayer({
+      id: 'hotspots-layer',
+      data: data.hotspots,
+      getPosition: (d: any) => d.position,
+      getFillColor: [244, 63, 94, 200],
+      getRadius: (d: any) => {
+        const pulse = Math.sin((time - d.delay) / 150) * 40;
+        return Math.max(10, 60 + pulse);
+      },
+      radiusMinPixels: 2,
+      updateTriggers: {
+        getRadius: [time]
+      },
+      transitions: {
+        getRadius: { type: 'spring', stiffness: 0.1, damping: 0.5 }
+      }
+    }),
+
+    // Live Dispatch Arcs (Firing continuously)
+    new ArcLayer({
+      id: 'dispatch-arcs',
+      data: activeArcs,
+      getSourcePosition: (d: any) => d.hub,
+      getTargetPosition: (d: any) => d.position,
+      getSourceColor: [59, 130, 246, 255],
+      getTargetColor: [244, 63, 94, 255],
+      getWidth: 6,
+      widthMinPixels: 3,
+      getHeight: 0.8,
+      tilt: 15,
+      transitions: {
+        getSourceColor: 500,
+        getTargetColor: 500
+      }
+    })
+  ];
+
+  return (
+    <div className="absolute inset-0 z-0 bg-[#060910] overflow-hidden">
+      <DeckGL
+        initialViewState={viewState}
+        layers={layers}
+        controller={false}
+      >
+        <Map
+          mapStyle={MAP_STYLE}
+          reuseMaps
+          attributionControl={false}
+        />
+      </DeckGL>
+      
+      {/* Soft gradient to keep the login panel readable without obscuring the map */}
+      <div className="absolute inset-0 bg-gradient-to-r from-[#060910] via-[#060910]/80 to-transparent pointer-events-none" />
+    </div>
+  );
+}
 
 export default function LoginPage() {
   const router = useRouter();
@@ -17,7 +146,6 @@ export default function LoginPage() {
     setIsAuthenticating(true);
     setError(false);
 
-    // Simulate network delay for effect
     setTimeout(() => {
       if (username === "admin" && password === "praveg2026") {
         sessionStorage.setItem("praveg_auth", "true");
@@ -26,66 +154,47 @@ export default function LoginPage() {
         setError(true);
         setIsAuthenticating(false);
       }
-    }, 1200);
+    }, 1500);
   };
 
   return (
-    <main className="relative min-h-screen flex items-center justify-center bg-[#060910] overflow-hidden selection:bg-blue-500/30">
-      {/* Dynamic Background Elements */}
-      <div className="absolute inset-0 z-0 flex items-center justify-center">
-        <div className="absolute w-[800px] h-[800px] bg-blue-600/10 rounded-full blur-[120px] animate-pulse" style={{ animationDuration: '4s' }} />
-        <div className="absolute w-[600px] h-[600px] bg-rose-600/5 rounded-full blur-[100px] -translate-x-1/3 -translate-y-1/3" />
-        
-        {/* Tech Grid */}
-        <div
-          className="absolute inset-0 opacity-[0.03]"
-          style={{
-            backgroundImage: `linear-gradient(rgba(255, 255, 255, 1) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, 1) 1px, transparent 1px)`,
-            backgroundSize: "40px 40px",
-            backgroundPosition: "center center",
-          }}
-        />
-        
-        {/* Scanline overlay */}
-        <div
-          className="absolute inset-0 opacity-[0.02] pointer-events-none"
-          style={{
-            backgroundImage: "repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(255,255,255,1) 2px, rgba(255,255,255,1) 3px)",
-          }}
-        />
-      </div>
+    <main className="relative min-h-screen flex items-center bg-[#060910] overflow-hidden selection:bg-blue-500/30">
+      
+      {/* TACTICAL MAP BACKGROUND (Clear map with live animations) */}
+      <TacticalBackground />
 
-      <motion.div 
-        initial={{ opacity: 0, y: 30 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, ease: "easeOut" }}
-        className="relative z-10 w-full max-w-md p-8 sm:p-10"
-      >
-        <div className="absolute inset-0 bg-[#0B0F1A]/80 backdrop-blur-2xl rounded-3xl border border-white/5 shadow-[0_0_80px_rgba(0,0,0,0.8)] pointer-events-none" />
+      {/* LEFT SIDE: LOGIN PANEL */}
+      <div className="relative z-10 w-full lg:w-[500px] xl:w-[600px] h-full min-h-screen flex flex-col justify-center px-8 sm:px-16 pointer-events-none">
         
-        <div className="relative z-10">
-          {/* Logo & Header */}
-          <div className="flex flex-col items-center mb-10">
+        <motion.div 
+          initial={{ opacity: 0, x: -50 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+          className="w-full max-w-[400px] relative pointer-events-auto"
+        >
+          {/* Header */}
+          <div className="relative z-10 flex items-center gap-4 mb-10">
             <motion.div 
-              initial={{ scale: 0 }}
-              animate={{ scale: 1 }}
-              transition={{ delay: 0.3, type: "spring", stiffness: 200 }}
-              className="relative w-16 h-16 rounded-2xl bg-gradient-to-br from-blue-500/20 to-blue-600/5 border border-blue-500/30 flex items-center justify-center mb-6 shadow-[0_0_30px_rgba(59,130,246,0.2)]"
+              initial={{ rotate: -90, scale: 0 }}
+              animate={{ rotate: 0, scale: 1 }}
+              transition={{ delay: 0.4, type: "spring", stiffness: 200 }}
+              className="relative w-14 h-14 rounded-xl bg-blue-500/10 border border-blue-500/30 flex items-center justify-center shadow-[0_0_30px_rgba(59,130,246,0.3)] backdrop-blur-md"
             >
-              <ShieldAlert className="w-8 h-8 text-blue-400" />
-              <div className="absolute top-0 right-0 w-2 h-2 rounded-full bg-rose-500 animate-ping" />
+              <ShieldAlert className="w-7 h-7 text-blue-400" />
+              <div className="absolute -top-1 -right-1 w-3 h-3 rounded-full bg-rose-500 border-2 border-[#060910] animate-pulse" />
             </motion.div>
-            
-            <h1 className="text-3xl font-bold text-white tracking-widest mb-2 font-heading text-center">PRAVEG</h1>
-            <p className="text-[10px] text-blue-400 font-mono tracking-[0.2em] uppercase text-center opacity-80">
-              Predictive Routing & Violation Enforcement Grid
-            </p>
+            <div>
+              <h1 className="text-3xl font-bold text-white tracking-[0.2em] font-heading leading-tight drop-shadow-lg">PRAVEG</h1>
+              <p className="text-[10px] text-blue-400 font-mono tracking-[0.2em] uppercase mt-1">Predictive Routing & Violation Enforcement Grid</p>
+            </div>
           </div>
 
-          <form onSubmit={handleLogin} className="space-y-5">
-            {/* Username Input */}
-            <div className="space-y-1.5">
-              <label className="text-[10px] font-mono tracking-widest text-zinc-500 uppercase ml-1">Operator ID</label>
+          <form onSubmit={handleLogin} className="relative z-10 space-y-6 bg-[#0B0F1A]/70 backdrop-blur-xl p-8 rounded-2xl border border-white/5 shadow-2xl">
+            <div className="space-y-2">
+              <label className="text-[10px] font-mono tracking-[0.15em] text-zinc-500 uppercase flex items-center justify-between">
+                <span>Operator ID</span>
+                <span className="text-rose-500/80">REQ</span>
+              </label>
               <div className="relative group">
                 <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
                   <User className="h-4 w-4 text-zinc-500 group-focus-within:text-blue-400 transition-colors" />
@@ -94,16 +203,18 @@ export default function LoginPage() {
                   type="text"
                   value={username}
                   onChange={(e) => setUsername(e.target.value)}
-                  className="block w-full pl-11 pr-4 py-3.5 bg-black/40 border border-white/10 rounded-xl text-sm text-white placeholder-zinc-600 focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-transparent transition-all font-mono"
+                  className="block w-full pl-12 pr-4 py-3.5 bg-black/40 border border-white/10 rounded-xl text-sm text-white placeholder-zinc-700 focus:outline-none focus:ring-1 focus:ring-blue-500/50 focus:border-blue-500/50 transition-all font-mono hover:bg-black/60"
                   placeholder="Enter Operator ID"
                   disabled={isAuthenticating}
                 />
               </div>
             </div>
 
-            {/* Password Input */}
-            <div className="space-y-1.5">
-              <label className="text-[10px] font-mono tracking-widest text-zinc-500 uppercase ml-1">Access Code</label>
+            <div className="space-y-2">
+              <label className="text-[10px] font-mono tracking-[0.15em] text-zinc-500 uppercase flex items-center justify-between">
+                <span>Access Code</span>
+                <span className="text-rose-500/80">REQ</span>
+              </label>
               <div className="relative group">
                 <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
                   <Lock className="h-4 w-4 text-zinc-500 group-focus-within:text-blue-400 transition-colors" />
@@ -112,7 +223,7 @@ export default function LoginPage() {
                   type="password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  className="block w-full pl-11 pr-4 py-3.5 bg-black/40 border border-white/10 rounded-xl text-sm text-white placeholder-zinc-600 focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-transparent transition-all font-mono"
+                  className="block w-full pl-12 pr-4 py-3.5 bg-black/40 border border-white/10 rounded-xl text-sm text-white placeholder-zinc-700 focus:outline-none focus:ring-1 focus:ring-blue-500/50 focus:border-blue-500/50 transition-all font-mono hover:bg-black/60"
                   placeholder="••••••••••"
                   disabled={isAuthenticating}
                 />
@@ -125,10 +236,12 @@ export default function LoginPage() {
                   initial={{ opacity: 0, height: 0 }}
                   animate={{ opacity: 1, height: "auto" }}
                   exit={{ opacity: 0, height: 0 }}
-                  className="text-[11px] font-mono text-rose-400 bg-rose-500/10 border border-rose-500/20 px-3 py-2 rounded flex items-center justify-center gap-2"
+                  className="overflow-hidden"
                 >
-                  <Activity className="w-3 h-3" />
-                  ACCESS DENIED. INVALID CREDENTIALS.
+                  <div className="text-[10px] font-mono text-rose-400 bg-rose-500/10 border border-rose-500/30 px-4 py-3 rounded-xl flex items-center gap-3 mt-4">
+                    <Activity className="w-4 h-4 flex-shrink-0" />
+                    ACCESS DENIED. UNAUTHORIZED CREDENTIALS.
+                  </div>
                 </motion.div>
               )}
             </AnimatePresence>
@@ -136,22 +249,22 @@ export default function LoginPage() {
             <button
               type="submit"
               disabled={isAuthenticating}
-              className="relative w-full group overflow-hidden rounded-xl mt-4"
+              className="relative w-full group overflow-hidden rounded-xl mt-8 shadow-[0_10px_20px_-10px_rgba(59,130,246,0.3)]"
             >
-              <div className="absolute inset-0 bg-gradient-to-r from-blue-600 to-blue-400 opacity-90 transition-opacity group-hover:opacity-100" />
-              <div className="absolute -inset-[100%] bg-white/20 blur-[20px] rounded-full translate-x-[-150%] skew-x-[45deg] group-hover:translate-x-[150%] transition-transform duration-700 ease-out" />
+              <div className="absolute inset-0 bg-blue-600 opacity-90 transition-opacity group-hover:opacity-100 group-disabled:bg-zinc-800 group-disabled:opacity-50" />
+              <div className="absolute inset-0 bg-[linear-gradient(45deg,transparent_25%,rgba(255,255,255,0.2)_50%,transparent_75%)] bg-[length:250%_250%,100%_100%] bg-[position:200%_0,0_0] bg-no-repeat transition-[background-position_0s_ease] hover:bg-[position:-200%_0,0_0] duration-[1500ms]" />
               
-              <div className="relative flex items-center justify-center py-3.5 px-4">
+              <div className="relative flex items-center justify-center py-4 px-4">
                 {isAuthenticating ? (
                   <div className="flex items-center gap-3">
                     <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
-                    <span className="text-xs font-mono font-bold tracking-widest text-white uppercase">Authenticating...</span>
+                    <span className="text-[11px] font-mono font-bold tracking-[0.2em] text-white uppercase">Establishing Uplink...</span>
                   </div>
                 ) : (
                   <div className="flex items-center gap-3">
-                    <Terminal className="w-4 h-4 text-white/80" />
-                    <span className="text-sm font-bold tracking-[0.15em] text-white uppercase">Initialize System</span>
-                    <ArrowRight className="w-4 h-4 text-white/80 group-hover:translate-x-1 transition-transform" />
+                    <Terminal className="w-4 h-4 text-white/90" />
+                    <span className="text-[11px] font-bold font-mono tracking-[0.2em] text-white uppercase">Initialize System</span>
+                    <ArrowRight className="w-4 h-4 text-white/90 group-hover:translate-x-1.5 transition-transform" />
                   </div>
                 )}
               </div>
@@ -159,22 +272,19 @@ export default function LoginPage() {
           </form>
 
           {/* Prototype Credentials Hint */}
-          <motion.div 
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 1 }}
-            className="mt-8 flex flex-col items-center gap-1 opacity-60 hover:opacity-100 transition-opacity"
-          >
-            <span className="text-[9px] text-zinc-500 font-mono uppercase tracking-widest border-b border-zinc-700 pb-1 mb-1">
+          <div className="relative z-10 mt-8 flex flex-col items-center gap-2">
+            <span className="text-[9px] text-zinc-500 font-mono uppercase tracking-[0.2em]">
               Prototype Test Credentials
             </span>
-            <div className="flex items-center gap-4 text-[10px] font-mono text-zinc-400">
+            <div className="flex items-center gap-4 text-[10px] font-mono text-zinc-400 bg-white/[0.02] px-4 py-2 rounded-lg border border-white/5">
               <span>ID: <strong className="text-white">admin</strong></span>
+              <div className="w-px h-3 bg-zinc-700" />
               <span>PWD: <strong className="text-white">praveg2026</strong></span>
             </div>
-          </motion.div>
-        </div>
-      </motion.div>
+          </div>
+        </motion.div>
+      </div>
+
     </main>
   );
 }

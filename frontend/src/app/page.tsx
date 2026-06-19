@@ -147,19 +147,7 @@ export default function Home() {
 
         {/* Right: Global Stats */}
         <div className="flex items-center gap-8 h-full py-2">
-          {/* Active Hotspots */}
-          <div className="flex flex-col items-end justify-center">
-            <span className="text-[10px] text-zinc-500 font-bold uppercase tracking-[0.12em] mb-0.5">Roads Needing Action</span>
-            <div className="flex items-baseline gap-2">
-              <span className="text-2xl font-bold font-mono text-white leading-none relative">
-                {stats.hotspots}
-                <span className="absolute -inset-2 bg-rose-500/20 blur-md rounded-full animate-pulse -z-10" />
-              </span>
-              <span className="text-rose-500 text-xs font-bold font-mono uppercase tracking-wider drop-shadow-[0_0_8px_rgba(244,63,94,0.4)]">Urgent</span>
-            </div>
-          </div>
-          
-          <div className="w-[1px] h-full bg-white/10" />
+
 
           {/* Economic Bleed */}
           <div className="flex flex-col items-end justify-center">

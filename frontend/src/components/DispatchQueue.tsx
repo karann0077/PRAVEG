@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import { useMapStore } from "@/store/useMapStore";
-import { AlertTriangle, Map, Navigation, CheckCircle, AlertCircle, XCircle, ChevronLeft, ChevronRight, ShieldAlert, Crosshair } from "lucide-react";
+import { AlertTriangle, Map, Navigation, CheckCircle, AlertCircle, XCircle, ChevronLeft, ChevronRight, ShieldAlert, Crosshair, Activity } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
 function PriorityBadge({ score }: { score: number }) {
@@ -166,12 +166,16 @@ export default function DispatchQueue() {
                     exit={{ opacity: 0, scale: 0.95 }}
                     transition={{ delay: idx * 0.03, duration: 0.3 }}
                     onClick={() => handleClick(feature)}
-                    className={`group relative cursor-pointer overflow-hidden rounded-xl transition-all duration-300 ${
+                    className={`group relative cursor-pointer overflow-hidden rounded-xl transition-all duration-300 border ${
                       isSelected 
-                        ? 'bg-blue-900/20 border-blue-500/40 shadow-[0_0_20px_rgba(59,130,246,0.15)]' 
-                        : 'bg-white/[0.02] border-white/5 hover:bg-white/[0.04] hover:border-white/10'
-                    } border`}
+                        ? 'bg-[#060D1A] border-cyan-500/50 shadow-[0_0_30px_rgba(34,211,238,0.15)] pl-5' 
+                        : 'bg-white/[0.02] border-white/5 hover:bg-white/[0.04] hover:border-white/10 pl-4'
+                    }`}
                   >
+                    {/* Active State Cyan Edge */}
+                    {isSelected && (
+                      <div className="absolute left-0 top-0 bottom-0 w-1.5 bg-cyan-400 shadow-[0_0_15px_rgba(34,211,238,0.8)]" />
+                    )}
                     {/* Status Background Glow */}
                     {isCritical && (
                       <div className="absolute top-0 right-0 w-32 h-32 bg-rose-500/10 blur-[50px] rounded-full pointer-events-none -translate-y-1/2 translate-x-1/2" />
@@ -200,11 +204,10 @@ export default function DispatchQueue() {
                             <span className="text-zinc-600">|</span>
                             <ConfidenceBadge band={confidence_band} />
                           </div>
-                          <div className="flex items-center gap-2">
-                            <span className="text-[13px] text-zinc-300 font-mono">
-                              <span className={`font-bold ${isCritical ? 'text-rose-400' : 'text-amber-400'}`}>
-                                {Math.round(p.predicted_total || 0)}
-                              </span> veh expected
+                          <div className="flex items-center gap-1.5 mt-0.5 bg-white/5 px-2 py-1 rounded-md border border-white/5 w-max">
+                            <Activity className={`w-3.5 h-3.5 ${isCritical ? 'text-rose-400' : 'text-cyan-400'}`} />
+                            <span className="text-[9px] text-zinc-400 font-mono tracking-widest uppercase">
+                              Est. Load: <span className={`font-bold text-xs ${isCritical ? 'text-rose-400 drop-shadow-[0_0_5px_rgba(244,63,94,0.5)]' : 'text-cyan-400 drop-shadow-[0_0_5px_rgba(34,211,238,0.5)]'}`}>{Math.round(p.predicted_total || 0)}</span> veh
                             </span>
                           </div>
                         </div>
