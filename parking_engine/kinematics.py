@@ -116,6 +116,8 @@ def generate_ripples(predictions_df: pd.DataFrame, road_graph=None) -> list:
     scoring.write_geojson() was fixed to include it in properties.
     """
     ripples = []
+    if predictions_df.empty or "eps" not in predictions_df.columns:
+        return ripples
     bottlenecks = predictions_df[predictions_df["eps"] >= 70]
 
     if bottlenecks.empty:
