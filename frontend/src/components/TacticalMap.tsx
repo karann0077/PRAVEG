@@ -226,7 +226,7 @@ export default function TacticalMap() {
           if (eps >= 80) return [220, 38, 38, 120]; // Deep Red
           if (eps >= 60) return [249, 115, 22, 100]; // Orange
           if (eps >= 40) return [234, 179, 8, 80]; // Yellow
-          return [0, 255, 100, 80]; // Green glow
+          return [34, 197, 94, 60]; // Green glow
         },
         lineCapRounded: true,
         lineJointRounded: true,
@@ -261,7 +261,7 @@ export default function TacticalMap() {
           if (eps >= 80) return [220, 38, 38, 255]; // Deep Red
           if (eps >= 60) return [249, 115, 22, 255]; // Orange
           if (eps >= 40) return [234, 179, 8, 255]; // Yellow
-          return [0, 255, 100, 150]; // Green
+          return [34, 197, 94, 255]; // Green
         },
         lineCapRounded: true,
         lineJointRounded: true,
