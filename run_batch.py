@@ -20,28 +20,33 @@ from datetime import datetime
 from pathlib import Path
 
 
+import pandas as pd
+
 MODEL_PATH = "artifacts/parking_model_v3_ensemble/model.joblib"
 OUT_DIR = Path("artifacts/predictions")
 TOP_K = 2500
 
+from parking_engine.predict import run_prediction
 
-def run_hourly_predictions(today: str) -> None:
+
+def run_hourly_predictions(today: str, bundle: dict = None) -> None:
+    if bundle is None:
+        from parking_engine.modeling import load_bundle
+        bundle = load_bundle(MODEL_PATH)
+        
     for hr in range(24):
         dt = f"{today} {hr:02d}:00"
         out_csv = OUT_DIR / f"predictions_{hr:02d}.csv"
         out_geo = OUT_DIR / f"predictions_{hr:02d}.geojson"
         print(f"[batch] Generating predictions for {dt}...")
-        subprocess.run(
-            [
-                "python3", "-m", "parking_engine.predict",
-                "--datetime", dt,
-                "--top-k", str(TOP_K),
-                "--model", MODEL_PATH,
-                "--skip-live-traffic",          # batch uses pure ML, no live API needed
-                "--out-csv", str(out_csv),
-                "--out-geojson", str(out_geo),
-            ],
-            check=True,
+        
+        run_prediction(
+            bundle=bundle,
+            target_hour=pd.Timestamp(dt),
+            top_k=TOP_K,
+            out_csv=out_csv,
+            out_geojson=out_geo,
+            skip_live_traffic=True,
         )
 
 
@@ -97,18 +102,18 @@ def generate_ripples() -> None:
     process_all_hours()
 
 
-if __name__ == "__main__":
+def run_all_batches(bundle: dict = None) -> None:
     today = datetime.now().strftime("%Y-%m-%d")
-    OUT_DIR.mkdir(parents=True, exist_ok=True)
-
-    print(f"=== PRAVEG Batch Pipeline — {today} ===")
-    run_hourly_predictions(today)
-
-    # print("\n=== Recalibrating EPS scaling constants ===")
-    # recalibrate_from_batch()
-
-    print("\n=== Generating ripple overlays (BUG-7 FIX) ===")
+    run_hourly_predictions(today, bundle)
+    recalibrate_from_batch()
     generate_ripples()
 
     print("\n=== Batch complete ===")
+
+if __name__ == "__main__":
+    import sys
+    if "--recalibrate" in sys.argv:
+        recalibrate_from_batch()
+    else:
+        run_all_batches()
 

@@ -35,17 +35,24 @@ def parse_args() -> argparse.Namespace:
     return parser.parse_args()
 
 
-def main() -> None:
-    args = parse_args()
-    bundle = load_bundle(args.model)
+def run_prediction(
+    bundle: dict,
+    target_hour: pd.Timestamp,
+    top_k: int,
+    out_csv: Path,
+    out_geojson: Path,
+    skip_live_traffic: bool = False,
+    live_congestion_multiplier: float = 1.0,
+    lat: float = None,
+    lon: float = None,
+) -> None:
     context = bundle["context"]
     model = bundle["model"]
-    target_hour = pd.Timestamp(args.datetime).floor("h")
 
-    if (args.lat is None) ^ (args.lon is None):
+    if (lat is None) ^ (lon is None):
         raise SystemExit("Pass both --lat and --lon, or neither.")
-    if args.lat is not None and args.lon is not None:
-        base_rows = create_location_row(context, target_hour, args.lat, args.lon)
+    if lat is not None and lon is not None:
+        base_rows = create_location_row(context, target_hour, lat, lon)
     else:
         base_rows = create_future_rows(context, target_hour)
 
@@ -57,8 +64,8 @@ def main() -> None:
     predicted["predicted_total"] = predicted[target_cols].sum(axis=1)
     
     # Fetch live traffic multipliers from MapmyIndia API for top 15% segments
-    if args.skip_live_traffic:
-        live_multipliers = args.live_congestion_multiplier
+    if skip_live_traffic:
+        live_multipliers = live_congestion_multiplier
     else:
         live_multipliers = enrich_with_live_traffic(predicted)
     
@@ -67,13 +74,37 @@ def main() -> None:
         calibration=bundle.get("calibration", {}),
         live_congestion_multiplier=live_multipliers,
     )
-    top = scored.head(args.top_k).copy()
+    top = scored.head(top_k).copy()
 
-    out_csv = Path(args.out_csv)
-    out_geojson = Path(args.out_geojson)
     out_csv.parent.mkdir(parents=True, exist_ok=True)
     top.to_csv(out_csv, index=False)
     write_geojson(top, out_geojson, grid_size_deg=context.grid_size_deg)
+
+
+def main() -> None:
+    args = parse_args()
+    bundle = load_bundle(args.model)
+    target_hour = pd.Timestamp(args.datetime).floor("h")
+
+    out_csv = Path(args.out_csv)
+    out_geojson = Path(args.out_geojson)
+
+    run_prediction(
+        bundle=bundle,
+        target_hour=target_hour,
+        top_k=args.top_k,
+        out_csv=out_csv,
+        out_geojson=out_geojson,
+        skip_live_traffic=args.skip_live_traffic,
+        live_congestion_multiplier=args.live_congestion_multiplier,
+        lat=args.lat,
+        lon=args.lon,
+    )
+
+    # Note: CLI output printing was removed from run_prediction to keep it clean.
+    # To restore it for CLI, you could read the saved CSV and print here.
+    print(f"\nSaved CSV: {out_csv}")
+    print(f"Saved GeoJSON: {out_geojson}")
 
     display_cols = [
         "target_hour",

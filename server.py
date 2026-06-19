@@ -94,24 +94,24 @@ async def lifespan(app: FastAPI):
     Path("artifacts").mkdir(exist_ok=True)
     _get_db()   # Pre-warm the main-thread connection
 
-    print("Starting live_traffic_daemon.py in background...")
-    daemon_process = subprocess.Popen(["python", "live_traffic_daemon.py"])
+    print("Starting live_traffic_daemon.py in background thread...")
+    from live_traffic_daemon import run_live_daemon
+    from run_batch import run_all_batches
+    
+    daemon_thread = threading.Thread(target=run_live_daemon, args=(model_bundle,), daemon=True)
+    daemon_thread.start()
 
     print("Starting run_batch.py in background thread...")
     def run_batch_bg():
         try:
-            subprocess.run(["python", "run_batch.py"], check=True)
+            run_all_batches(bundle=model_bundle)
         except Exception as e:
             print("Error running batch predictions:", e)
     threading.Thread(target=run_batch_bg, daemon=True).start()
 
     yield
 
-    print("Terminating background processes...")
-    try:
-        daemon_process.terminate()
-    except:
-        pass
+    print("Server shutting down...")
 
     if hasattr(_db_local, "conn") and _db_local.conn:
         _db_local.conn.close()

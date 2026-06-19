@@ -27,15 +27,18 @@ from __future__ import annotations
 import json
 import logging
 import os
-import subprocess
+import os
 import time
 from datetime import datetime
 from pathlib import Path
 
+import pandas as pd
 import requests
 from dotenv import load_dotenv
 
 load_dotenv()
+
+from parking_engine.predict import run_prediction
 
 logging.basicConfig(
     level=logging.INFO,
@@ -178,8 +181,12 @@ def process_live_ripples() -> int:
 
 # ── Main daemon loop ──────────────────────────────────────────────────────────
 
-def run_live_daemon() -> None:
-    log.info("PRAVEG Live Traffic Daemon starting...")
+def run_live_daemon(bundle: dict = None) -> None:
+    log.info("PRAVEG Live Traffic Daemon starting (Threaded Mode)...")
+    
+    if bundle is None:
+        from parking_engine.modeling import load_bundle
+        bundle = load_bundle(MODEL_PATH)
 
     prev_geo: dict = {"features": []}
     if LIVE_GEO.exists():
@@ -199,23 +206,17 @@ def run_live_daemon() -> None:
             log.info("Weather: rainfall=%.1f mm, raining=%s", weather["rainfall_mm"], bool(weather["is_raining"]))
 
             # ── 2. Run ML prediction ──────────────────────────────────────────
-            env = os.environ.copy()
-            # Pass weather into subprocess via env vars for predict.py to consume
-            env["LIVE_RAINFALL_MM"] = str(weather["rainfall_mm"])
-            env["LIVE_IS_RAINING"] = str(weather["is_raining"])
+            # Pass weather into os.environ for features.py to consume
+            os.environ["LIVE_RAINFALL_MM"] = str(weather["rainfall_mm"])
+            os.environ["LIVE_IS_RAINING"] = str(weather["is_raining"])
 
-            subprocess.run(
-                [
-                    "python3", "-m", "parking_engine.predict",
-                    "--datetime", dt_str,
-                    "--top-k", str(TOP_K),
-                    "--model", MODEL_PATH,
-                    "--out-csv", str(LIVE_CSV),
-                    "--out-geojson", str(LIVE_GEO),
-                    # DO NOT pass --skip-live-traffic so Mappls is tried if keys exist
-                ],
-                check=True,
-                env=env,
+            run_prediction(
+                bundle=bundle,
+                target_hour=pd.Timestamp(dt_str),
+                top_k=TOP_K,
+                out_csv=LIVE_CSV,
+                out_geojson=LIVE_GEO,
+                skip_live_traffic=False,
             )
 
             # ── 3. Apply live congestion signal to predictions in-place ───────
@@ -237,9 +238,9 @@ def run_live_daemon() -> None:
                 )
             prev_geo = new_geo
 
-        except subprocess.CalledProcessError as exc:
-            log.error("Prediction subprocess failed: %s", exc)
         except Exception as exc:
+            import traceback
+            traceback.print_exc()
             log.error("Daemon loop error: %s", exc)
 
         time.sleep(LOOP_INTERVAL_S)
