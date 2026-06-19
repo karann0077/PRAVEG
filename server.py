@@ -86,8 +86,7 @@ async def lifespan(app: FastAPI):
 
     model_path = MODEL_DIR / "model.joblib"
     if not model_path.exists():
-        print(f"ERROR: Model bundle not found at {model_path}")
-        return
+        raise RuntimeError(f"Model bundle not found at {model_path}")
     print(f"Loading bundle from {model_path}...")
     model_bundle = load_bundle(model_path)
     print("Model loaded. Context segments:", len(model_bundle["context"].selected_segments))
