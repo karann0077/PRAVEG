@@ -42,7 +42,7 @@ const MAP_STYLES = {
 };
 
 export default function TacticalMap() {
-  const { viewState, setViewState, selectedEdge, setSelectedEdge, mapStyle, targetHour, isSimulatingResolution, geoData, setGeoData, activeLayerMode, setSelectedHeatmapZone, heatmapWeightMode, isBuildingRoute, nearestStation, patrolRouteGeometry } = useMapStore();
+  const { viewState, setViewState, selectedEdge, setSelectedEdge, mapStyle, targetHour, isSimulatingResolution, geoData, setGeoData, activeLayerMode, showRipples, setSelectedHeatmapZone, heatmapWeightMode, isBuildingRoute, nearestStation, patrolRouteGeometry } = useMapStore();
   const [poiData, setPoiData] = useState<any>(null);
   const [loading, setLoading] = useState(true);
   const [dashOffset, setDashOffset] = useState(0);
@@ -89,29 +89,15 @@ export default function TacticalMap() {
 
   // --- TURF.JS GEOMETRY CHUNKING (HEATMAP INTERPOLATION) ---
   const heatmapPoints = useMemo(() => {
-    if (!isTrafficBlockage || !geoData || !geoData.features) return [];
+    if (!isTrafficBlockage || !geoData || !geoData.mapFeatures) return [];
     const points: any[] = [];
-    geoData.features.forEach((f: any) => {
+    geoData.mapFeatures.forEach((f: any) => {
       const eps = f.properties?.eps ?? 0;
       const econLoss = f.properties?.economic_loss || (eps * 15000); // Derive economic bleed if missing
       const estVehicles = f.properties?.predicted_total || Math.floor(eps / 2);
       const weight = heatmapWeightMode === 'violation_density' ? estVehicles : econLoss;
       
       try {
-        const line = turf.lineString(f.geometry.coordinates);
-        const chunks = turf.lineChunk(line, 0.05, { units: 'kilometers' });
-        chunks.features.forEach((chunk: any) => {
-           const coord = chunk.geometry.coordinates[0];
-           points.push({
-             position: coord,
-             eps: eps,
-             economic_loss: econLoss,
-             vehicles: estVehicles,
-             weight: weight,
-             segment_id: f.properties?.segment_id
-           });
-        });
-      } catch (err) {
         let coord = f.geometry.coordinates[0];
         while (Array.isArray(coord) && Array.isArray(coord[0])) coord = coord[0];
         if (Array.isArray(coord)) {
@@ -203,12 +189,15 @@ export default function TacticalMap() {
 
       !isTrafficBlockage && new GeoJsonLayer({
         id: "traffic-glow",
-        data: geoData,
+        data: geoData?.mapFeatures || [],
         pickable: false,
         stroked: true,
         filled: false,
         lineWidthUnits: "pixels",
-        getLineWidth: 12,
+        getLineWidth: (d: any) => {
+          const eps = d.properties?.eps ?? 0;
+          return 2 + (eps / 15) + 6; // Glow is wider
+        },
         getLineColor: (d: any) => {
           const eps = d.properties?.eps ?? 0;
           
@@ -216,26 +205,22 @@ export default function TacticalMap() {
             if (selectedEdge.properties?.segment_id === d.properties.segment_id) {
               return isSimulatingResolution ? [16, 185, 129, 100] : [34, 211, 238, 100];
             }
-            if (d.properties.is_ripple && d.properties.source_bottleneck === selectedEdge.properties?.segment_id) {
-               return isSimulatingResolution ? [16, 185, 129, 80] : [255, 42, 95, 80];
-            }
             return [30, 30, 30, 0]; 
           }
-          if (d.properties?.is_ripple) return [0,0,0,0];
           
-          if (eps >= 80) return [220, 38, 38, 120]; // Deep Red
-          if (eps >= 60) return [249, 115, 22, 100]; // Orange
-          if (eps >= 40) return [234, 179, 8, 80]; // Yellow
+          if (eps >= 75) return [225, 29, 72, 120]; // Deep Red
+          if (eps >= 50) return [249, 115, 22, 100]; // Orange
+          if (eps >= 25) return [234, 179, 8, 80]; // Yellow
           return [34, 197, 94, 60]; // Green glow
         },
         lineCapRounded: true,
         lineJointRounded: true,
-        updateTriggers: { getLineColor: [geoData, selectedEdge, isSimulatingResolution, activeLayerMode] },
+        updateTriggers: { getLineColor: [geoData, selectedEdge, isSimulatingResolution, activeLayerMode], getLineWidth: [geoData] },
       }),
 
       !isTrafficBlockage && new GeoJsonLayer({
         id: "traffic-core",
-        data: geoData,
+        data: geoData?.mapFeatures || [],
         pickable: true,
         autoHighlight: true,
         highlightColor: [255, 255, 255, 200],
@@ -243,7 +228,10 @@ export default function TacticalMap() {
         filled: false,
         lineWidthUnits: "pixels",
         lineWidthMinPixels: 1,
-        getLineWidth: 2,
+        getLineWidth: (d: any) => {
+          const eps = d.properties?.eps ?? 0;
+          return 2 + (eps / 15);
+        },
         getLineColor: (d: any) => {
           const eps = d.properties?.eps ?? 0;
 
@@ -251,16 +239,12 @@ export default function TacticalMap() {
             if (selectedEdge.properties?.segment_id === d.properties.segment_id) {
               return isSimulatingResolution ? [16, 185, 129, 255] : [255, 255, 255, 255];
             }
-            if (d.properties.is_ripple && d.properties.source_bottleneck === selectedEdge.properties?.segment_id) {
-               return isSimulatingResolution ? [16, 185, 129, 255] : [255, 100, 140, 255];
-            }
             return [100, 100, 100, 50];
           }
-          if (d.properties?.is_ripple) return [0,0,0,0];
           
-          if (eps >= 80) return [220, 38, 38, 255]; // Deep Red
-          if (eps >= 60) return [249, 115, 22, 255]; // Orange
-          if (eps >= 40) return [234, 179, 8, 255]; // Yellow
+          if (eps >= 75) return [225, 29, 72, 255]; // Deep Red
+          if (eps >= 50) return [249, 115, 22, 255]; // Orange
+          if (eps >= 25) return [234, 179, 8, 255]; // Yellow
           return [34, 197, 94, 255]; // Green
         },
         lineCapRounded: true,
@@ -269,7 +253,26 @@ export default function TacticalMap() {
           setSelectedEdge(info.object ? info.object : null);
           return true;
         },
-        updateTriggers: { getLineColor: [geoData, selectedEdge, isSimulatingResolution, activeLayerMode] },
+        updateTriggers: { getLineColor: [geoData, selectedEdge, isSimulatingResolution, activeLayerMode], getLineWidth: [geoData] },
+      }),
+
+      showRipples && new GeoJsonLayer({
+        id: "traffic-ripples",
+        data: geoData?.rippleFeatures || [],
+        pickable: false,
+        stroked: true,
+        filled: false,
+        lineWidthUnits: "pixels",
+        getLineWidth: 2,
+        getLineColor: (d: any) => {
+          if (selectedEdge && d.properties?.source_bottleneck === selectedEdge.properties?.segment_id) {
+             return isSimulatingResolution ? [16, 185, 129, 150] : [255, 100, 140, 150];
+          }
+          return [255, 42, 95, 80]; // Faint red ripple
+        },
+        lineCapRounded: true,
+        lineJointRounded: true,
+        updateTriggers: { getLineColor: [geoData, selectedEdge, isSimulatingResolution] },
       }),
     
     // TSP Patrol Route - Outer Glow (wide, soft)

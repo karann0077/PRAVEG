@@ -58,7 +58,10 @@ export default function DispatchQueue() {
       return;
     }
     setLoading(false);
-    if (geoData && geoData.features) {
+    if (geoData && geoData.queueFeatures) {
+      setQueue(geoData.queueFeatures);
+    } else if (geoData && geoData.features) {
+      // Fallback just in case
       const features = (geoData.features || [])
         .filter((f: any) => !f.properties.is_ripple)
         .sort((a: any, b: any) => b.properties.eps - a.properties.eps)

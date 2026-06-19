@@ -11,6 +11,8 @@ interface MapState {
   setIsSimulatingResolution: (val: boolean) => void;
   activeLayerMode: 'action_roads' | 'traffic_blockage' | 'patrol_route' | 'all_predictions';
   setActiveLayerMode: (mode: 'action_roads' | 'traffic_blockage' | 'patrol_route' | 'all_predictions') => void;
+  showRipples: boolean;
+  setShowRipples: (val: boolean) => void;
   isSimulationActive: boolean;
   setIsSimulationActive: (val: boolean) => void;
   isBuildingRoute: boolean;
@@ -56,6 +58,8 @@ export const useMapStore = create<MapState>((set) => ({
   setIsSimulatingResolution: (val) => set({ isSimulatingResolution: val }),
   activeLayerMode: 'action_roads',
   setActiveLayerMode: (mode) => set({ activeLayerMode: mode }),
+  showRipples: false,
+  setShowRipples: (val) => set({ showRipples: val }),
   isSimulationActive: false,
   setIsSimulationActive: (val) => set({ isSimulationActive: val }),
   isBuildingRoute: false,

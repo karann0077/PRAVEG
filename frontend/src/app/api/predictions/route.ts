@@ -77,19 +77,34 @@ export async function GET(request: Request) {
       );
     }
 
-    const combinedFeatures = [
-      ...(baseData.features || []),
-      ...(rippleData.features || []),
-    ];
+    // ── Deduplicate for Queue ─────────────────────────────────────────────
+    const seen = new Set();
+    const uniqueFeatures = [];
+    for (const f of baseData.features || []) {
+      const segId = f.properties.segment_id;
+      if (!seen.has(segId)) {
+        seen.add(segId);
+        uniqueFeatures.push(f);
+      }
+    }
+
+    const mapFeatures = (baseData.features || []).slice(0, 25);
+    const queueFeatures = uniqueFeatures.slice(0, 15);
+    const rippleFeatures = rippleData.features || [];
 
     const response = NextResponse.json({
       type: "FeatureCollection",
-      features: combinedFeatures,
+      mapFeatures,
+      queueFeatures,
+      rippleFeatures,
+      // Keep features for backwards compatibility if needed, but we shouldn't need it
+      features: mapFeatures,
       // FIX-NEW: metadata for frontend change detection
       _meta: {
         hour,
-        feature_count: combinedFeatures.length,
-        ripple_count: rippleData.features?.length ?? 0,
+        map_count: mapFeatures.length,
+        queue_count: queueFeatures.length,
+        ripple_count: rippleFeatures.length,
         last_modified: lastModified?.toISOString() ?? null,
       },
     });
