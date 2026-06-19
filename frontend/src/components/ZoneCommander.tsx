@@ -21,9 +21,9 @@ export default function ZoneCommander() {
             <div>
               <div className="flex items-center gap-2 text-rose-500 mb-1">
                 <AlertTriangle className="w-5 h-5" />
-                <h2 className="text-sm font-bold tracking-widest uppercase">Zone Commander</h2>
+                <h2 className="text-sm font-bold tracking-widest uppercase">Area Summary</h2>
               </div>
-              <p className="text-slate-300 text-xs">Critical Heatmap Blob Selected</p>
+              <p className="text-slate-300 text-xs">Selected Area</p>
             </div>
             <button onClick={() => setSelectedHeatmapZone(null)} className="text-slate-400 hover:text-white transition-colors">
               <X className="w-5 h-5" />
@@ -35,7 +35,7 @@ export default function ZoneCommander() {
               <div className="bg-slate-800/50 p-4 rounded-lg border border-slate-700/50">
                 <div className="text-slate-400 text-[10px] uppercase tracking-widest mb-1 flex items-center gap-2">
                   <AlertTriangle className="w-3 h-3 text-rose-400" />
-                  Choked Roads
+                  Problem Roads
                 </div>
                 <div className="text-2xl font-bold text-white">{selectedHeatmapZone.totalSegments}</div>
               </div>
@@ -43,7 +43,7 @@ export default function ZoneCommander() {
               <div className="bg-slate-800/50 p-4 rounded-lg border border-slate-700/50">
                 <div className="text-slate-400 text-[10px] uppercase tracking-widest mb-1 flex items-center gap-2">
                   <Car className="w-3 h-3 text-yellow-400" />
-                  Est. Vehicles
+                  Illegally Parked
                 </div>
                 <div className="text-2xl font-bold text-white">{selectedHeatmapZone.totalVehicles}</div>
               </div>
@@ -52,7 +52,7 @@ export default function ZoneCommander() {
             <div className="bg-slate-800/50 p-4 rounded-lg border border-rose-500/30 shadow-[inset_0_0_20px_rgba(225,29,72,0.1)]">
               <div className="text-rose-400 text-[10px] uppercase tracking-widest mb-1 flex items-center gap-2">
                 <IndianRupee className="w-3 h-3" />
-                Total Economic Bleed
+                Revenue Loss
               </div>
               <div className="text-3xl font-black text-rose-500 flex items-baseline gap-1">
                 ₹{((selectedHeatmapZone.totalEconomicLoss || 0) / 100000).toFixed(1)}L <span className="text-sm font-medium text-rose-400/70">/ hr</span>
@@ -63,12 +63,12 @@ export default function ZoneCommander() {
               <div className="bg-emerald-500/10 p-4 rounded-lg border border-emerald-500/30">
                 <div className="text-emerald-400 text-[10px] uppercase tracking-widest mb-2 flex items-center gap-2">
                   <MapPin className="w-3 h-3" />
-                  Recommended Staging Area
+                  Best approach point
                 </div>
                 <div className="text-sm text-emerald-100 font-mono">
                   {selectedHeatmapZone.stagingArea[1].toFixed(4)}, {selectedHeatmapZone.stagingArea[0].toFixed(4)}
                 </div>
-                <p className="text-emerald-400/70 text-xs mt-1">Deploy squad outside the blast radius to avoid getting stuck.</p>
+                <p className="text-emerald-400/70 text-xs mt-1">Approach from here to avoid traffic.</p>
               </div>
             )}
           </div>

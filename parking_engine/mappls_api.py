@@ -42,28 +42,32 @@ def fetch_live_congestion(
 ) -> float:
     """Query MapmyIndia Advanced Routing/Distance Matrix API for real-time congestion."""
     
-    # We query a tiny bounding route to ensure it forces a route evaluation on the segment.
+    # We query a small route (approx 500m-1km) to ensure it forces a route evaluation on the segment.
     start_point = f"{lon},{lat}"
-    end_point = f"{lon+0.0002},{lat+0.0002}"
-    url = f"https://apis.mappls.com/advancedmaps/v1/{rest_key}/distance_matrix/driving/{start_point};{end_point}"
+    end_point = f"{lon+0.005},{lat+0.005}"
     
     headers = {}
     if token:
         headers["Authorization"] = f"bearer {token}"
 
     try:
-        response = requests.get(url, headers=headers, timeout=5)
-        response.raise_for_status()
-        data = response.json()
+        # Fetch Free-Flow Duration (rtype=0)
+        url_free = f"https://apis.mappls.com/advancedmaps/v1/{rest_key}/distance_matrix/driving/{start_point};{end_point}?rtype=0"
+        resp_free = requests.get(url_free, headers=headers, timeout=5)
+        resp_free.raise_for_status()
+        data_free = resp_free.json()
         
-        # Mappls distance matrix returns 'durations' and 'durations_in_traffic' matrices
-        # We assume the first matrix element [0][1] represents start -> end
-        if "durations" in data and "durations_in_traffic" in data:
-            duration = data["durations"][0][1]
-            duration_in_traffic = data["durations_in_traffic"][0][1]
-            
-            if duration > 0 and duration_in_traffic > 0:
-                return float(duration_in_traffic / duration)
+        # Fetch Live Traffic Duration (rtype=1)
+        url_traf = f"https://apis.mappls.com/advancedmaps/v1/{rest_key}/distance_matrix/driving/{start_point};{end_point}?rtype=1"
+        resp_traf = requests.get(url_traf, headers=headers, timeout=5)
+        resp_traf.raise_for_status()
+        data_traf = resp_traf.json()
+        
+        dur_free = data_free.get("results", {}).get("durations", [[0, 0]])[0][1]
+        dur_traf = data_traf.get("results", {}).get("durations", [[0, 0]])[0][1]
+        
+        if dur_free > 0 and dur_traf > 0:
+            return float(dur_traf / dur_free)
     except Exception as e:
         logger.warning(f"Failed to fetch live traffic for {lon},{lat}: {e}")
         

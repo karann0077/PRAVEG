@@ -42,7 +42,7 @@ const MAP_STYLES = {
 };
 
 export default function TacticalMap() {
-  const { viewState, setViewState, selectedEdge, setSelectedEdge, mapStyle, targetHour, isSimulatingResolution, geoData, setGeoData, activeLayerMode, setSelectedHeatmapZone } = useMapStore();
+  const { viewState, setViewState, selectedEdge, setSelectedEdge, mapStyle, targetHour, isSimulatingResolution, geoData, setGeoData, activeLayerMode, setSelectedHeatmapZone, heatmapWeightMode } = useMapStore();
   const [poiData, setPoiData] = useState<any>(null);
   const [loading, setLoading] = useState(true);
   const [dashOffset, setDashOffset] = useState(0);
@@ -96,7 +96,8 @@ export default function TacticalMap() {
       // and shows the natural ambient traffic density even during calm hours.
       
       const econLoss = f.properties?.economic_loss || (eps * 15000); // Derive economic bleed if missing
-      const estVehicles = f.properties?.count_car || Math.floor(eps / 2);
+      const estVehicles = f.properties?.predicted_total || Math.floor(eps / 2);
+      const weight = heatmapWeightMode === 'violation_density' ? estVehicles : econLoss;
       
       try {
         // Some GeoJSON might have multi geometries, try standard lineString first
@@ -110,6 +111,7 @@ export default function TacticalMap() {
              eps: eps,
              economic_loss: econLoss,
              vehicles: estVehicles,
+             weight: weight,
              segment_id: f.properties?.segment_id
            });
         });
@@ -123,13 +125,14 @@ export default function TacticalMap() {
              eps: eps,
              economic_loss: econLoss,
              vehicles: estVehicles,
+             weight: weight,
              segment_id: f.properties?.segment_id
            });
         }
       }
     });
     return points;
-  }, [geoData, isHeatmap]);
+  }, [geoData, isHeatmap, heatmapWeightMode]);
 
   const layers = useMemo(() => {
     let dispatchRouteData = [];
@@ -168,7 +171,7 @@ export default function TacticalMap() {
         id: 'heatmap-layer',
         data: heatmapPoints,
         getPosition: (d: any) => d.position,
-        getWeight: (d: any) => d.economic_loss,
+        getWeight: (d: any) => d.weight,
         radiusPixels: 20, // Tighter radius for precision KDE
         intensity: 2,   // Higher intensity
         threshold: 0.05,
@@ -210,6 +213,7 @@ export default function TacticalMap() {
            } else {
               setSelectedHeatmapZone(null);
            }
+           return true;
         }
       }),
 
@@ -277,6 +281,7 @@ export default function TacticalMap() {
         lineJointRounded: true,
         onClick: (info: any) => {
           setSelectedEdge(info.object ? { ...info.object.properties, geometry: info.object.geometry } : null);
+          return true;
         },
         updateTriggers: { getLineColor: [geoData, selectedEdge, isSimulatingResolution] },
       }),
@@ -351,7 +356,7 @@ export default function TacticalMap() {
         getCursor={({ isDragging, isHovering }: any) =>
           isDragging ? "grabbing" : isHovering ? "pointer" : "grab"
         }
-        style={{ position: "absolute", inset: 0 }}
+        style={{ position: "absolute", inset: "0" }}
       >
         <Map
           mapStyle={currentStyle as any}

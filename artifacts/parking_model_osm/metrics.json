@@ -1,42 +1,42 @@
 {
-  "total_mae": 1.072184479313032,
-  "total_rmse": 2.528144170375692,
-  "total_wape": 0.9769316009993334,
-  "hotspot_roc_auc": 0.841429035343062,
-  "hotspot_average_precision": 0.742056202111266,
-  "top_1pct_violation_capture": 0.052088106803531604,
-  "top_5pct_violation_capture": 0.17596920538905692,
-  "top_10pct_violation_capture": 0.30779335838450494,
+  "total_mae": 1.072676087280791,
+  "total_rmse": 2.5110916837830457,
+  "total_wape": 0.9773795345110314,
+  "hotspot_roc_auc": 0.8435513096082327,
+  "hotspot_average_precision": 0.7423442741269377,
+  "top_1pct_violation_capture": 0.051079949897656796,
+  "top_5pct_violation_capture": 0.17709956313200745,
+  "top_10pct_violation_capture": 0.30809886047719426,
   "by_target": {
     "count_two_wheeler": {
-      "mae": 0.6190471848749162,
-      "rmse": 1.9028986491740545,
-      "wape": 1.1824697251757637
+      "mae": 0.6149111228924276,
+      "rmse": 1.879397357643845,
+      "wape": 1.1745692481277477
     },
     "count_car": {
-      "mae": 0.41580447361159273,
-      "rmse": 1.0942957126889106,
-      "wape": 1.1409852263746207
+      "mae": 0.4131094545379599,
+      "rmse": 1.0904932094550062,
+      "wape": 1.1335899789856154
     },
     "count_auto": {
-      "mae": 0.19422025467506732,
-      "rmse": 0.678839204333984,
-      "wape": 1.2747841319726854
+      "mae": 0.19444746632740542,
+      "rmse": 0.6441113350698427,
+      "wape": 1.276275458453976
     },
     "count_light_commercial": {
-      "mae": 0.051344094196286515,
-      "rmse": 0.24019467614927856,
-      "wape": 1.340926102805819
+      "mae": 0.057186173890272696,
+      "rmse": 0.24079244466171107,
+      "wape": 1.4935005571605806
     },
     "count_heavy": {
-      "mae": 0.0258083852782936,
-      "rmse": 0.17633306837700116,
-      "wape": 1.5870826617012508
+      "mae": 0.02657654117107237,
+      "rmse": 0.17370029472447793,
+      "wape": 1.6343202895406876
     },
     "count_other": {
-      "mae": 0.003011306348656948,
-      "rmse": 0.05460266792501558,
-      "wape": 1.1368634411227023
+      "mae": 0.004108798709747184,
+      "rmse": 0.05481730177973341,
+      "wape": 1.551201538205187
     }
   },
   "train_rows": 187062,
@@ -62,7 +62,10 @@
     "dow_cos",
     "month_sin",
     "month_cos",
-    "days_since_start",
+    "day_of_year_norm",
+    "is_weekday_peak",
+    "is_weekend_peak",
+    "hour_bucket",
     "segment_total_events",
     "segment_event_rate",
     "segment_rank_pct",
@@ -106,6 +109,7 @@
     "segment_id",
     "police_station",
     "junction_bucket",
-    "road_class"
+    "road_class",
+    "hour_bucket"
   ]
 }

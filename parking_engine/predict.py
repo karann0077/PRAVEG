@@ -6,6 +6,9 @@ import argparse
 from pathlib import Path
 
 import pandas as pd
+from dotenv import load_dotenv
+
+load_dotenv()
 
 from .features import add_features, create_future_rows, create_location_row
 from .modeling import load_bundle, predict_feature_frame

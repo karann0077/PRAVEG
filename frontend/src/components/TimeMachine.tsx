@@ -58,7 +58,7 @@ export default function TimeMachine() {
             exit={{ opacity: 0, scale: 0.8 }}
             onClick={handleOpen}
             className="w-10 h-10 flex items-center justify-center bg-slate-900/90 hover:bg-slate-800 text-cyan-400 rounded-xl border border-cyan-500/30 shadow-[0_0_15px_rgba(34,211,238,0.2)] backdrop-blur-xl transition-all"
-            title="Time Machine (Future Simulator)"
+            title="Forecast (Future)"
           >
             <Clock className="w-5 h-5" />
           </motion.button>
@@ -75,7 +75,7 @@ export default function TimeMachine() {
             <div className="flex items-center justify-between px-5 py-4 border-b border-slate-800/60 bg-gradient-to-r from-cyan-950/40 to-transparent">
               <div className="flex items-center gap-2 text-cyan-400">
                 <Clock className="w-5 h-5" />
-                <span className="font-mono font-bold uppercase tracking-widest text-sm">Future Simulator</span>
+                <span className="font-mono font-bold uppercase tracking-widest text-sm">Forecast</span>
               </div>
               <button onClick={handleClose} className="text-slate-400 hover:text-white transition-colors">
                 <X className="w-5 h-5" />
@@ -84,7 +84,7 @@ export default function TimeMachine() {
 
             <div className="p-5">
               <div className="flex justify-between items-end mb-6">
-                <div className="text-xs text-slate-400 font-mono uppercase tracking-widest">Target Horizon</div>
+                <div className="text-xs text-slate-400 font-mono uppercase tracking-widest">Looking Ahead</div>
                 <div className="text-2xl font-bold font-mono text-white">
                   {targetHour === "live" ? "LIVE" : `${targetHour}:00`}
                 </div>
@@ -119,7 +119,7 @@ export default function TimeMachine() {
               
               <div className="mt-6 p-3 bg-rose-500/10 border border-rose-500/20 rounded-lg">
                 <p className="text-[10px] text-rose-300 font-mono leading-relaxed">
-                  <span className="font-bold">NOTE:</span> 3HR interval sampling allows the AI sufficient time to compile robust incident correlations across localized enforcement zones.
+                  <span className="font-bold">NOTE:</span> Predictions are available in 3-hour intervals for the next 12 hours based on historical trends.
                 </p>
               </div>
             </div>

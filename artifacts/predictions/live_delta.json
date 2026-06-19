@@ -1,6 +1,240 @@
 {
-  "timestamp": "2026-06-18T15:40:35.806494",
-  "escalated": [],
-  "deescalated": [],
-  "total_changed": 0
+  "timestamp": "2026-06-19T10:35:54.063776",
+  "escalated": [
+    {
+      "segment_id": "osm_way_131683873",
+      "old_eps": 74.5,
+      "new_eps": 99.4,
+      "old_band": "Orange Line",
+      "new_band": "Red Line",
+      "road_name": "Hospital Cross Road"
+    },
+    {
+      "segment_id": "osm_way_1096483601",
+      "old_eps": 80.5,
+      "new_eps": 88.2,
+      "old_band": "Orange Line",
+      "new_band": "Red Line",
+      "road_name": ""
+    },
+    {
+      "segment_id": "osm_way_1091226939",
+      "old_eps": 59.2,
+      "new_eps": 75.2,
+      "old_band": "Watchlist",
+      "new_band": "Orange Line",
+      "road_name": "GKVK Road"
+    },
+    {
+      "segment_id": "osm_way_36957712",
+      "old_eps": 50.4,
+      "new_eps": 69.3,
+      "old_band": "Watchlist",
+      "new_band": "Orange Line",
+      "road_name": "Subedar Chatram Road"
+    },
+    {
+      "segment_id": "osm_way_114922746",
+      "old_eps": 58.7,
+      "new_eps": 67.3,
+      "old_band": "Watchlist",
+      "new_band": "Orange Line",
+      "road_name": "New Horizon College Road"
+    },
+    {
+      "segment_id": "osm_way_142664922",
+      "old_eps": 45.3,
+      "new_eps": 60.7,
+      "old_band": "Watchlist",
+      "new_band": "Orange Line",
+      "road_name": "Main Guard Cross Road"
+    },
+    {
+      "segment_id": "osm_way_732012742",
+      "old_eps": 42.0,
+      "new_eps": 60.5,
+      "old_band": "Watchlist",
+      "new_band": "Orange Line",
+      "road_name": "Dr. Rajkumar Road"
+    },
+    {
+      "segment_id": "osm_way_45245305",
+      "old_eps": 38.1,
+      "new_eps": 57.5,
+      "old_band": "Low",
+      "new_band": "Watchlist",
+      "road_name": ""
+    },
+    {
+      "segment_id": "osm_way_36912474",
+      "old_eps": 39.9,
+      "new_eps": 40.3,
+      "old_band": "Low",
+      "new_band": "Watchlist",
+      "road_name": "North Park Road"
+    }
+  ],
+  "deescalated": [
+    {
+      "segment_id": "osm_way_732016014",
+      "old_eps": 88.2,
+      "new_eps": 82.4,
+      "old_band": "Red Line",
+      "new_band": "Orange Line",
+      "road_name": "4th Main Road"
+    },
+    {
+      "segment_id": "osm_way_133126061",
+      "old_eps": 85.1,
+      "new_eps": 74.6,
+      "old_band": "Red Line",
+      "new_band": "Orange Line",
+      "road_name": "Service Road"
+    },
+    {
+      "segment_id": "osm_way_38674067",
+      "old_eps": 89.3,
+      "new_eps": 60.1,
+      "old_band": "Red Line",
+      "new_band": "Orange Line",
+      "road_name": "4th Main Road"
+    },
+    {
+      "segment_id": "osm_way_26139254",
+      "old_eps": 88.2,
+      "new_eps": 55.2,
+      "old_band": "Red Line",
+      "new_band": "Watchlist",
+      "road_name": ""
+    },
+    {
+      "segment_id": "osm_way_735411628",
+      "old_eps": 83.0,
+      "new_eps": 52.8,
+      "old_band": "Orange Line",
+      "new_band": "Watchlist",
+      "road_name": ""
+    },
+    {
+      "segment_id": "osm_way_207478098",
+      "old_eps": 79.1,
+      "new_eps": 51.3,
+      "old_band": "Orange Line",
+      "new_band": "Watchlist",
+      "road_name": "W H Hanumanthappa Road"
+    },
+    {
+      "segment_id": "osm_way_548524980",
+      "old_eps": 77.0,
+      "new_eps": 48.7,
+      "old_band": "Orange Line",
+      "new_band": "Watchlist",
+      "road_name": "6th Cross Road"
+    },
+    {
+      "segment_id": "osm_way_1096483603",
+      "old_eps": 86.7,
+      "new_eps": 40.5,
+      "old_band": "Red Line",
+      "new_band": "Watchlist",
+      "road_name": ""
+    },
+    {
+      "segment_id": "osm_way_1357130528",
+      "old_eps": 80.1,
+      "new_eps": 39.8,
+      "old_band": "Orange Line",
+      "new_band": "Low",
+      "road_name": "80 Feet Road"
+    },
+    {
+      "segment_id": "osm_way_691961205",
+      "old_eps": 47.5,
+      "new_eps": 39.7,
+      "old_band": "Watchlist",
+      "new_band": "Low",
+      "road_name": ""
+    },
+    {
+      "segment_id": "osm_way_95664215",
+      "old_eps": 41.0,
+      "new_eps": 38.0,
+      "old_band": "Watchlist",
+      "new_band": "Low",
+      "road_name": "WOC"
+    },
+    {
+      "segment_id": "osm_way_503151939",
+      "old_eps": 84.8,
+      "new_eps": 36.9,
+      "old_band": "Orange Line",
+      "new_band": "Low",
+      "road_name": ""
+    },
+    {
+      "segment_id": "osm_way_735127391",
+      "old_eps": 63.6,
+      "new_eps": 34.0,
+      "old_band": "Orange Line",
+      "new_band": "Low",
+      "road_name": ""
+    },
+    {
+      "segment_id": "osm_way_1207956701",
+      "old_eps": 60.4,
+      "new_eps": 33.5,
+      "old_band": "Orange Line",
+      "new_band": "Low",
+      "road_name": "B.V.K. Iyengar Road"
+    },
+    {
+      "segment_id": "osm_way_503401195",
+      "old_eps": 42.5,
+      "new_eps": 32.5,
+      "old_band": "Watchlist",
+      "new_band": "Low",
+      "road_name": "Sampige Road"
+    },
+    {
+      "segment_id": "osm_way_38684970",
+      "old_eps": 41.6,
+      "new_eps": 32.4,
+      "old_band": "Watchlist",
+      "new_band": "Low",
+      "road_name": "Dhanvanthari Road"
+    },
+    {
+      "segment_id": "osm_way_1183888770",
+      "old_eps": 43.1,
+      "new_eps": 32.3,
+      "old_band": "Watchlist",
+      "new_band": "Low",
+      "road_name": "Chord Road"
+    },
+    {
+      "segment_id": "osm_way_1304379337",
+      "old_eps": 44.2,
+      "new_eps": 31.3,
+      "old_band": "Watchlist",
+      "new_band": "Low",
+      "road_name": "Subedar Chatram Road"
+    },
+    {
+      "segment_id": "osm_way_36987774",
+      "old_eps": 49.7,
+      "new_eps": 30.8,
+      "old_band": "Watchlist",
+      "new_band": "Low",
+      "road_name": ""
+    },
+    {
+      "segment_id": "osm_way_72099282",
+      "old_eps": 51.3,
+      "new_eps": 29.9,
+      "old_band": "Watchlist",
+      "new_band": "Low",
+      "road_name": "Dickenson Road"
+    }
+  ],
+  "total_changed": 33
 }

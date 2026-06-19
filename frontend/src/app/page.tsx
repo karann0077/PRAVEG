@@ -13,8 +13,8 @@ function BottomPillToggles() {
   const { activeLayerMode, setActiveLayerMode } = useMapStore();
   
   const buttons = [
-    { id: "tactical", label: "Tactical Lines", icon: <AlignLeft className="w-4 h-4" /> },
-    { id: "heatmap", label: "Heatmap", icon: <Activity className="w-4 h-4" /> }
+    { id: "tactical", label: "Problem Roads", icon: <AlignLeft className="w-4 h-4" /> },
+    { id: "heatmap", label: "Heat Map", icon: <Activity className="w-4 h-4" /> }
   ] as const;
 
   return (
@@ -37,6 +37,35 @@ function BottomPillToggles() {
           </button>
         );
       })}
+    </div>
+  );
+}
+
+function HeatmapWeightToggle() {
+  const { activeLayerMode, heatmapWeightMode, setHeatmapWeightMode } = useMapStore();
+  
+  if (activeLayerMode !== 'heatmap') return null;
+
+  return (
+    <div className="absolute bottom-8 left-[600px] z-40 flex items-center p-1 bg-[#0B0F1A]/90 backdrop-blur-md rounded-lg border border-white/5 shadow-2xl">
+      <div className="flex bg-black/40 rounded-md p-0.5">
+        <button
+          onClick={() => setHeatmapWeightMode('violation_density')}
+          className={`px-3 py-1.5 rounded text-[10px] font-bold uppercase tracking-widest transition-colors ${
+            heatmapWeightMode === 'violation_density' ? "bg-rose-500/20 text-rose-400 border border-rose-500/30" : "text-zinc-500 hover:text-zinc-300"
+          }`}
+        >
+          Violation Count
+        </button>
+        <button
+          onClick={() => setHeatmapWeightMode('congestion_impact')}
+          className={`px-3 py-1.5 rounded text-[10px] font-bold uppercase tracking-widest transition-colors ${
+            heatmapWeightMode === 'congestion_impact' ? "bg-amber-500/20 text-amber-400 border border-amber-500/30" : "text-zinc-500 hover:text-zinc-300"
+          }`}
+        >
+          Congestion Impact
+        </button>
+      </div>
     </div>
   );
 }
@@ -94,7 +123,29 @@ function MapControls() {
 }
 
 export default function Home() {
+  const { geoData } = useMapStore();
   const [time, setTime] = useState("");
+
+  const stats = React.useMemo(() => {
+    let hotspots = 0;
+    let bleed = 0;
+    if (geoData?.features) {
+      geoData.features.forEach((f: any) => {
+        if (!f.properties.is_ripple) {
+          hotspots++;
+        }
+        if (f.properties.eps > 0) {
+           // Estimate bleed: ~50 Rs per delayed vehicle hr, approx 500 cars per high-eps spot
+           const eps = f.properties.eps || 0;
+           bleed += (eps / 100) * 500 * 50; 
+        }
+      });
+    }
+    return {
+      hotspots: hotspots || 0,
+      bleedLakhs: bleed > 0 ? (bleed / 100000).toFixed(1) : "0.0"
+    };
+  }, [geoData]);
 
   useEffect(() => {
     const update = () =>
@@ -137,13 +188,13 @@ export default function Home() {
         <div className="flex items-center gap-8 h-full py-2">
           {/* Active Hotspots */}
           <div className="flex flex-col items-end justify-center">
-            <span className="text-[10px] text-zinc-500 font-bold uppercase tracking-[0.12em] mb-0.5">Active Hotspots</span>
+            <span className="text-[10px] text-zinc-500 font-bold uppercase tracking-[0.12em] mb-0.5">Problem Areas</span>
             <div className="flex items-baseline gap-2">
               <span className="text-2xl font-bold font-mono text-white leading-none relative">
-                142
+                {stats.hotspots}
                 <span className="absolute -inset-2 bg-rose-500/20 blur-md rounded-full animate-pulse -z-10" />
               </span>
-              <span className="text-rose-500 text-xs font-bold font-mono uppercase tracking-wider drop-shadow-[0_0_8px_rgba(244,63,94,0.4)]">Critical</span>
+              <span className="text-rose-500 text-xs font-bold font-mono uppercase tracking-wider drop-shadow-[0_0_8px_rgba(244,63,94,0.4)]">Urgent</span>
             </div>
           </div>
           
@@ -151,9 +202,9 @@ export default function Home() {
 
           {/* Economic Bleed */}
           <div className="flex flex-col items-end justify-center">
-            <span className="text-[10px] text-zinc-500 font-bold uppercase tracking-[0.12em] mb-0.5">Economic Bleed</span>
+            <span className="text-[10px] text-zinc-500 font-bold uppercase tracking-[0.12em] mb-0.5">Revenue Loss</span>
             <div className="flex items-baseline gap-1.5 text-amber-500">
-              <span className="text-2xl font-bold font-mono leading-none drop-shadow-[0_0_8px_rgba(245,158,11,0.4)]">₹4.2L</span>
+              <span className="text-2xl font-bold font-mono leading-none drop-shadow-[0_0_8px_rgba(245,158,11,0.4)]">₹{stats.bleedLakhs}L</span>
               <span className="text-xs font-mono">/ hr</span>
               <ArrowUpRight className="w-3.5 h-3.5 text-rose-500 ml-1" />
             </div>
@@ -169,6 +220,7 @@ export default function Home() {
 
       {/* LAYER 3: BOTTOM CENTER TOGGLES (z-40) */}
       <BottomPillToggles />
+      <HeatmapWeightToggle />
 
       {/* Map controls (z-20) */}
       <MapControls />

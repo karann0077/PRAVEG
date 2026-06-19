@@ -34,10 +34,13 @@ from shapely import wkt
 from .config import (
     CATEGORICAL_COLUMNS,
     FEATURE_COLUMNS,
+    HOUR_BUCKET_MAP,
     PEAK_HOURS,
     ROAD_WIDTH_BY_CLASS_M,
     TARGET_COLUMNS,
     VEHICLE_TYPE_TO_CLASS,
+    WEEKDAY_PEAK_HOURS,
+    WEEKEND_PEAK_HOURS,
 )
 
 
@@ -214,7 +217,7 @@ def sample_zero_rows(
     selected_segments: list[str],
     start_hour: pd.Timestamp,
     end_hour: pd.Timestamp,
-    zero_multiplier: float = 1.5,
+    zero_multiplier: float = 0.5,
     random_state: int = 42,
 ) -> pd.DataFrame:
     rng = np.random.default_rng(random_state)
@@ -338,6 +341,10 @@ def build_feature_context(
 
     category_levels = {}
     for col in CATEGORICAL_COLUMNS:
+        if col == "hour_bucket":
+            levels = sorted(set(HOUR_BUCKET_MAP.values()))
+            category_levels[col] = levels
+            continue
         levels = sorted(segment_metadata[col].fillna("Unknown").astype(str).unique().tolist())
         if "Unknown" not in levels:
             levels.append("Unknown")
@@ -395,10 +402,20 @@ def add_features(base_rows: pd.DataFrame, context: FeatureContext) -> pd.DataFra
     # ── FIX BUG-10: Replace days_since_start with annual modular cycle ──────
     # days_since_start grew to ~730 days in 2026, far outside training range.
     # day_of_year_norm (0–1) wraps annually and stays within [0, 1] always.
-    frame["days_since_start"] = (
-        (frame["target_hour"] - context.start_hour) / pd.Timedelta(days=1)
-    ).astype(float)
-    frame["day_of_year_norm"] = frame["day_of_year"] / 365.0  # NEW: stable modular feature
+    frame["day_of_year_norm"] = frame["day_of_year"] / 365.0
+
+    # ── NEW: Weekday vs Weekend peak distinction ─────────────────────────────
+    # Parking patterns differ dramatically: office areas spike Mon-Fri 8-10 AM,
+    # market/temple areas spike Sat-Sun 10 AM-1 PM.
+    frame["is_weekday_peak"] = (
+        (~frame["day_of_week"].isin([5, 6])) & frame["hour"].isin(WEEKDAY_PEAK_HOURS)
+    ).astype(int)
+    frame["is_weekend_peak"] = (
+        frame["day_of_week"].isin([5, 6]) & frame["hour"].isin(WEEKEND_PEAK_HOURS)
+    ).astype(int)
+
+    # ── NEW: Hour bucket categorical ─────────────────────────────────────────
+    frame["hour_bucket"] = frame["hour"].map(HOUR_BUCKET_MAP).fillna("midday")
 
     frame = frame.merge(context.stats["segment_hour_mean"], on=["segment_id", "hour"], how="left")
     frame = frame.merge(
@@ -492,14 +509,23 @@ def _add_lag_features_from_history(frame: pd.DataFrame, context: FeatureContext)
     frame = frame.merge(lag168_df, on=["segment_id", "day_of_week", "hour"], how="left")
 
     # lag_2h and lag_3h: scale from lag_1h estimate
-    for col in ["lag_1h_total", "lag_24h_total", "lag_168h_total"]:
+    # lag_2h and lag_3h: use actual historical means at shifted hours
+    lag2_df = stats["segment_hour_lag"].copy()
+    lag2_df = lag2_df.rename(columns={"hist_lag_hour_mean": "lag_2h_total"})
+    lag2_df["hour"] = (lag2_df["hour"] + 2) % 24
+    frame = frame.merge(lag2_df, on=["segment_id", "hour"], how="left")
+
+    lag3_df = stats["segment_hour_lag"].copy()
+    lag3_df = lag3_df.rename(columns={"hist_lag_hour_mean": "lag_3h_total"})
+    lag3_df["hour"] = (lag3_df["hour"] + 3) % 24
+    frame = frame.merge(lag3_df, on=["segment_id", "hour"], how="left")
+
+    # Fill all lag columns
+    for col in ["lag_1h_total", "lag_2h_total", "lag_3h_total", "lag_24h_total", "lag_168h_total"]:
         if col in frame.columns:
             frame[col] = frame[col].fillna(0.0)
         else:
             frame[col] = 0.0
-
-    frame["lag_2h_total"] = frame["lag_1h_total"] * 0.9
-    frame["lag_3h_total"] = frame["lag_1h_total"] * 0.8
 
     # Per-class lags from dow_hour_mean
     dow_class_df = stats.get("segment_dow_lag")

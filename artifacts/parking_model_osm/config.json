@@ -19,7 +19,10 @@
     "dow_cos",
     "month_sin",
     "month_cos",
-    "days_since_start",
+    "day_of_year_norm",
+    "is_weekday_peak",
+    "is_weekend_peak",
+    "hour_bucket",
     "segment_total_events",
     "segment_event_rate",
     "segment_rank_pct",
@@ -63,7 +66,8 @@
     "segment_id",
     "police_station",
     "junction_bucket",
-    "road_class"
+    "road_class",
+    "hour_bucket"
   ],
   "calibration": {
     "count_p95": 10.0,

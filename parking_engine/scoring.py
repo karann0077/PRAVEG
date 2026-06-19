@@ -200,6 +200,137 @@ def score_predictions(
     return frame.sort_values(["eps", "predicted_total"], ascending=False).reset_index(drop=True)
 
 
+# ── Traffic volume estimates by road class (vehicles/hour) ───────────────────
+ROAD_CLASS_TRAFFIC_VOLUME = {
+    "motorway": 5000, "trunk": 5000, "primary": 3000,
+    "secondary": 1500, "tertiary": 500, "residential": 200,
+    "living_street": 100, "unknown": 500,
+}
+
+
+def compute_resolution_impact(row: dict) -> dict:
+    """Compute before/after enforcement impact for a single segment.
+
+    Returns realistic traffic flow improvement metrics when illegal
+    parking is resolved, not just zeroed-out values.
+    """
+    road_width = float(row.get("road_width_m", 6.0))
+    parked_width = float(row.get("expected_parked_width_m", 0.0))
+    eps = float(row.get("eps", 0.0))
+    road_class = str(row.get("road_class", "unknown")).lower()
+    live_mult = float(row.get("live_congestion_multiplier", 1.0))
+
+    # Before enforcement
+    clearance_before = max(0.0, road_width - parked_width)
+    lanes_before = max(0, int(clearance_before / 3.0))
+    choke_pct = min(100.0, (parked_width / max(road_width, 1.0)) * 100.0)
+
+    # Estimate speed reduction from road choke (empirical model)
+    # When 30% of road is blocked, speed drops ~40%. At 60%, speed drops ~80%.
+    speed_reduction_pct = min(95.0, choke_pct * 1.3 + eps * 0.15)
+    base_speed_kmh = {"primary": 40, "secondary": 35, "tertiary": 25, "residential": 20}.get(road_class, 30)
+    speed_before = max(5.0, base_speed_kmh * (1.0 - speed_reduction_pct / 100.0))
+
+    # After enforcement — full road restored
+    clearance_after = road_width
+    lanes_after = max(1, int(road_width / 3.0))
+    speed_after = base_speed_kmh  # free-flow speed restored
+
+    # Traffic volume and economic impact
+    traffic_vol = ROAD_CLASS_TRAFFIC_VOLUME.get(road_class, 500)
+    cost_per_delayed_vehicle = 50  # ₹50 per vehicle-hour delay (fuel + time)
+    econ_loss_before = (speed_reduction_pct / 100.0) * traffic_vol * cost_per_delayed_vehicle
+    econ_loss_after = 0.0  # enforcement clears the blockage
+    econ_savings = econ_loss_before - econ_loss_after
+
+    # Cascade effect: how many downstream segments benefit
+    # Estimate based on road class connectivity
+    cascade_segments = {"primary": 8, "secondary": 5, "tertiary": 3, "residential": 1}.get(road_class, 2)
+
+    return {
+        "before": {
+            "clearance_m": round(clearance_before, 1),
+            "lanes_available": lanes_before,
+            "choke_percent": round(choke_pct, 0),
+            "speed_kmh": round(speed_before, 0),
+            "economic_loss_per_hr": round(econ_loss_before, 0),
+            "eps": round(eps, 1),
+        },
+        "after": {
+            "clearance_m": round(clearance_after, 1),
+            "lanes_available": lanes_after,
+            "choke_percent": 0,
+            "speed_kmh": round(speed_after, 0),
+            "economic_loss_per_hr": 0,
+            "eps": 0,
+        },
+        "improvement": {
+            "speed_recovery_kmh": round(speed_after - speed_before, 0),
+            "speed_recovery_pct": round((speed_after - speed_before) / max(1, speed_before) * 100, 0),
+            "lanes_restored": lanes_after - lanes_before,
+            "economic_savings_per_hr": round(econ_savings, 0),
+            "cascade_segments_helped": cascade_segments,
+        },
+    }
+
+
+def compute_enforcement_priority(row: dict) -> dict:
+    """Compute weighted enforcement priority score for dispatch ranking.
+
+    Factors:
+    - EPS severity (40%): how bad is the violation
+    - Economic impact (25%): how much money is being lost
+    - Accessibility (20%): can a tow truck reach this (clearance > 2.5m)?
+    - Cascade potential (15%): resolving this helps downstream roads
+    """
+    eps = float(row.get("eps", 0))
+    road_class = str(row.get("road_class", "unknown")).lower()
+    clearance = float(row.get("clearance_after_predicted_load_m", 6.0))
+
+    # Severity component (0-100)
+    severity = min(100, eps)
+
+    # Economic component (0-100) based on road class traffic volume
+    traffic_vol = ROAD_CLASS_TRAFFIC_VOLUME.get(road_class, 500)
+    econ_score = min(100.0, (traffic_vol / 5000.0) * 100.0 * (eps / 100.0))
+
+    # Accessibility (0-100): tow trucks need ~2.5m clearance
+    if clearance > 4.0:
+        access_score = 100.0  # easy access
+    elif clearance > 2.5:
+        access_score = 70.0   # tight but possible
+    elif clearance > 1.5:
+        access_score = 40.0   # very difficult
+    else:
+        access_score = 15.0   # near-impossible, foot patrol only
+
+    # Cascade potential (0-100)
+    cascade_map = {"primary": 90, "secondary": 65, "tertiary": 40, "residential": 20}
+    cascade_score = cascade_map.get(road_class, 30)
+
+    # Weighted priority
+    priority = (0.40 * severity + 0.25 * econ_score + 0.20 * access_score + 0.15 * cascade_score)
+    priority = min(100.0, max(0.0, priority))
+
+    # Human-readable urgency label
+    if priority >= 75:
+        urgency = "Immediate"
+    elif priority >= 50:
+        urgency = "Within 30 min"
+    else:
+        urgency = "Can Wait"
+
+    return {
+        "priority_score": round(priority, 1),
+        "urgency": urgency,
+        "components": {
+            "severity": round(severity, 1),
+            "economic_impact": round(econ_score, 1),
+            "accessibility": round(access_score, 1),
+            "cascade_potential": round(cascade_score, 1),
+        },
+    }
+
 def write_geojson(predictions: pd.DataFrame, path: str | Path, grid_size_deg: float) -> None:
     """Write scored predictions as GeoJSON LineString features.
 

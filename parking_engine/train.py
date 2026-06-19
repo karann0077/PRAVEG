@@ -20,6 +20,25 @@ from .modeling import save_bundle, train_model
 from .osm_roads import fetch_osm_roads_for_events, match_events_to_osm_roads
 from .scoring import calibrate_scoring
 
+# V2 context modules — integrate real data into previously-zero feature columns
+try:
+    from .weather_context import fetch_bengaluru_hourly_weather, merge_weather_context
+    HAS_WEATHER = True
+except Exception:
+    HAS_WEATHER = False
+
+try:
+    from .spatial_context import build_spatial_context_features
+    HAS_SPATIAL = True
+except Exception:
+    HAS_SPATIAL = False
+
+try:
+    from .parking_supply import compute_legal_parking_overflow
+    HAS_PARKING = True
+except Exception:
+    HAS_PARKING = False
+
 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description=__doc__)
@@ -101,6 +120,39 @@ def main() -> None:
         zero_multiplier=args.zero_multiplier,
         random_state=args.random_state,
     )
+
+    # ── V2: Integrate spatial context (dist_to_metro_m, dist_to_commercial_m) ──
+    if HAS_SPATIAL:
+        print("Integrating spatial context features (metro/commercial distances)...")
+        try:
+            spatial_features = build_spatial_context_features(
+                segment_metadata, allow_network=True
+            )
+            segment_metadata = segment_metadata.merge(
+                spatial_features, on="segment_id", how="left", suffixes=("", "_spatial")
+            )
+            for col in ["dist_to_metro_m", "dist_to_commercial_m"]:
+                if col in segment_metadata.columns:
+                    segment_metadata[col] = segment_metadata[col].fillna(5000.0)
+            print(f"  Spatial context: {len(spatial_features)} segments enriched")
+        except Exception as exc:
+            print(f"  Spatial context failed (non-fatal): {exc}")
+
+    # ── V2: Integrate parking supply (dist_to_legal_parking, overflow_risk) ───
+    if HAS_PARKING:
+        print("Integrating legal parking supply features...")
+        try:
+            parking_features = compute_legal_parking_overflow(segment_metadata)
+            segment_metadata = segment_metadata.merge(
+                parking_features, on="segment_id", how="left", suffixes=("", "_parking")
+            )
+            for col in ["dist_to_legal_parking_m", "legal_parking_capacity", "overflow_risk_index"]:
+                if col in segment_metadata.columns:
+                    segment_metadata[col] = segment_metadata[col].fillna(0.0)
+            print(f"  Parking supply: {len(parking_features)} segments enriched")
+        except Exception as exc:
+            print(f"  Parking supply failed (non-fatal): {exc}")
+
     print(f"Training frame rows: {len(training_rows):,} ({len(counts):,} positive segment-hours)")
 
     context = build_feature_context(

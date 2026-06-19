@@ -70,6 +70,23 @@ VEHICLE_TYPE_TO_CLASS = {
 
 PEAK_HOURS = {8, 9, 10, 17, 18, 19, 20}
 
+# Weekday peaks: office rush (Mon-Fri)
+WEEKDAY_PEAK_HOURS = {8, 9, 10, 17, 18, 19, 20}
+# Weekend peaks: markets, temples, shopping (Sat-Sun) — shifted later morning, longer evening
+WEEKEND_PEAK_HOURS = {10, 11, 12, 13, 17, 18, 19, 20, 21}
+
+# Human-readable time buckets for tree model to split on
+HOUR_BUCKET_MAP = {
+    0: "late_night", 1: "late_night", 2: "late_night", 3: "late_night",
+    4: "early_morning", 5: "early_morning",
+    6: "morning", 7: "morning",
+    8: "morning_rush", 9: "morning_rush", 10: "morning_rush",
+    11: "midday", 12: "midday", 13: "midday", 14: "midday",
+    15: "afternoon", 16: "afternoon",
+    17: "evening_rush", 18: "evening_rush", 19: "evening_rush", 20: "evening_rush",
+    21: "night", 22: "night", 23: "late_night",
+}
+
 FEATURE_COLUMNS = [
     "segment_id",
     "police_station",
@@ -90,7 +107,10 @@ FEATURE_COLUMNS = [
     "dow_cos",
     "month_sin",
     "month_cos",
-    "days_since_start",
+    "day_of_year_norm",
+    "is_weekday_peak",
+    "is_weekend_peak",
+    "hour_bucket",
     "segment_total_events",
     "segment_event_rate",
     "segment_rank_pct",
@@ -123,5 +143,5 @@ FEATURE_COLUMNS = [
     "active_event_count",
 ]
 
-CATEGORICAL_COLUMNS = ["segment_id", "police_station", "junction_bucket", "road_class"]
+CATEGORICAL_COLUMNS = ["segment_id", "police_station", "junction_bucket", "road_class", "hour_bucket"]
 

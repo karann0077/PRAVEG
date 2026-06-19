@@ -40,7 +40,12 @@ from parking_engine.features import (
 )
 from parking_engine.mappls_api import enrich_with_live_traffic
 from parking_engine.modeling import load_bundle, predict_feature_frame
-from parking_engine.scoring import score_predictions, write_geojson
+from parking_engine.scoring import (
+    compute_enforcement_priority,
+    compute_resolution_impact,
+    score_predictions,
+    write_geojson,
+)
 
 # ── Module-level singletons ─────────────────────────────────────────────────
 model_bundle: dict | None = None
@@ -261,6 +266,90 @@ def metrics_endpoint():
     if not metrics_path.exists():
         raise HTTPException(status_code=404, detail="Metrics not found.")
     return json.loads(metrics_path.read_text())
+
+
+# ── /resolve_impact  (NEW — Phase 2) ─────────────────────────────────────────
+@app.get("/resolve_impact")
+def resolve_impact_endpoint(
+    segment_id: str = Query(..., description="Segment ID to simulate resolution for"),
+):
+    """Compute before/after traffic impact if enforcement resolves this segment."""
+    if model_bundle is None:
+        raise HTTPException(status_code=503, detail="Model not loaded")
+
+    context: FeatureContext = model_bundle["context"]
+    meta = context.segment_metadata
+    segment_row = meta[meta["segment_id"].astype(str) == str(segment_id)]
+
+    if segment_row.empty:
+        raise HTTPException(status_code=404, detail=f"Segment {segment_id} not found")
+
+    row_dict = segment_row.iloc[0].to_dict()
+
+    # Try to load latest prediction data for this segment
+    predictions_dir = Path("artifacts/predictions")
+    live_path = predictions_dir / "predictions_live.geojson"
+    if live_path.exists():
+        try:
+            geo = json.loads(live_path.read_text())
+            for feat in geo.get("features", []):
+                if str(feat.get("properties", {}).get("segment_id", "")) == str(segment_id):
+                    row_dict.update(feat["properties"])
+                    break
+        except Exception:
+            pass
+
+    impact = compute_resolution_impact(row_dict)
+    priority = compute_enforcement_priority(row_dict)
+    return {"segment_id": segment_id, "impact": impact, "priority": priority}
+
+
+# ── /nearest_station  (NEW — Phase 3) ────────────────────────────────────────
+@app.get("/nearest_station")
+def nearest_station_endpoint(
+    segment_id: str = Query(..., description="Segment ID to find nearest station for"),
+):
+    """Find the nearest police station for a segment and estimate response time."""
+    if model_bundle is None:
+        raise HTTPException(status_code=503, detail="Model not loaded")
+
+    context: FeatureContext = model_bundle["context"]
+    meta = context.segment_metadata
+    segment_row = meta[meta["segment_id"].astype(str) == str(segment_id)]
+
+    if segment_row.empty:
+        raise HTTPException(status_code=404, detail=f"Segment {segment_id} not found")
+
+    row = segment_row.iloc[0]
+    station_name = str(row.get("police_station", "Unknown"))
+    seg_lat = float(row.get("lat_center", 0))
+    seg_lon = float(row.get("lon_center", 0))
+
+    # Estimate station location: centroid of all segments under this station
+    station_segments = meta[meta["police_station"].astype(str) == station_name]
+    if not station_segments.empty:
+        station_lat = float(station_segments["lat_center"].mean())
+        station_lon = float(station_segments["lon_center"].mean())
+    else:
+        station_lat, station_lon = seg_lat, seg_lon
+
+    # Haversine distance
+    import math
+    dlat = math.radians(station_lat - seg_lat)
+    dlon = math.radians(station_lon - seg_lon)
+    a = math.sin(dlat / 2) ** 2 + math.cos(math.radians(seg_lat)) * math.cos(math.radians(station_lat)) * math.sin(dlon / 2) ** 2
+    distance_m = 2 * 6_371_000 * math.asin(math.sqrt(a))
+
+    # ETA at city average speed (15 km/h in congested Bengaluru)
+    eta_minutes = max(3, round((distance_m / 1000.0) / 15.0 * 60.0))
+
+    return {
+        "segment_id": segment_id,
+        "station_name": station_name,
+        "distance_m": round(distance_m, 0),
+        "eta_minutes": eta_minutes,
+        "station_location": {"lat": station_lat, "lon": station_lon},
+    }
 
 
 if __name__ == "__main__":

@@ -26,13 +26,25 @@ interface MapState {
   flyTo: (longitude: number, latitude: number, zoom?: number) => void;
   geoData: any | null;
   setGeoData: (data: any | null) => void;
+
+  // Resolution impact data from backend
+  resolutionImpact: any | null;
+  setResolutionImpact: (data: any | null) => void;
+
+  // Nearest station info
+  nearestStation: any | null;
+  setNearestStation: (data: any | null) => void;
+
+  // Heatmap weight mode toggle
+  heatmapWeightMode: 'violation_density' | 'congestion_impact';
+  setHeatmapWeightMode: (mode: 'violation_density' | 'congestion_impact') => void;
 }
 
 export const useMapStore = create<MapState>((set) => ({
   targetHour: "live",
   setTargetHour: (hour) => set({ targetHour: hour }),
   selectedEdge: null,
-  setSelectedEdge: (edge) => set({ selectedEdge: edge }),
+  setSelectedEdge: (edge) => set({ selectedEdge: edge, resolutionImpact: null, nearestStation: null }),
   selectedHeatmapZone: null,
   setSelectedHeatmapZone: (zone) => set({ selectedHeatmapZone: zone }),
   isSimulatingResolution: false,
@@ -63,4 +75,11 @@ export const useMapStore = create<MapState>((set) => ({
     })),
   geoData: null,
   setGeoData: (data) => set({ geoData: data }),
+
+  resolutionImpact: null,
+  setResolutionImpact: (data) => set({ resolutionImpact: data }),
+  nearestStation: null,
+  setNearestStation: (data) => set({ nearestStation: data }),
+  heatmapWeightMode: 'violation_density',
+  setHeatmapWeightMode: (mode) => set({ heatmapWeightMode: mode }),
 }));

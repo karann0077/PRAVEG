@@ -5,21 +5,19 @@ import { useMapStore } from "@/store/useMapStore";
 import { AlertTriangle, Crosshair, Map, Navigation, CheckCircle, AlertCircle, XCircle, ChevronLeft, ChevronRight } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
-function EPSPill({ eps }: { eps: number }) {
+function PriorityPill({ eps }: { eps: number }) {
   const bg =
-    eps >= 90 ? "bg-[#ef4444]/20 text-[#ef4444] border-[#ef4444]/30" :
-    eps >= 70 ? "bg-[#f97316]/20 text-[#f97316] border-[#f97316]/30" :
-    eps >= 50 ? "bg-[#eab308]/20 text-[#eab308] border-[#eab308]/30" :
-    eps >= 30 ? "bg-[#facc15]/20 text-[#facc15] border-[#facc15]/30" :
-    "bg-[#22c55e]/20 text-[#22c55e] border-[#22c55e]/30";
+    eps >= 80 ? "bg-[#ef4444]/20 text-[#ef4444] border-[#ef4444]/30" :
+    eps >= 60 ? "bg-[#f97316]/20 text-[#f97316] border-[#f97316]/30" :
+    eps >= 40 ? "bg-[#eab308]/20 text-[#eab308] border-[#eab308]/30" :
+    "bg-zinc-800 text-zinc-400 border-zinc-700";
   const label =
-    eps >= 90 ? "CRITICAL" :
-    eps >= 70 ? "HIGH" :
-    eps >= 50 ? "MEDIUM" :
-    eps >= 30 ? "WATCH" :
-    "CLEAR";
+    eps >= 80 ? "🔴 Urgent" :
+    eps >= 60 ? "🟠 High" :
+    eps >= 40 ? "🟡 Moderate" :
+    "⚪ Low";
   return (
-    <div className={`${bg} border text-[10px] font-bold uppercase tracking-wider px-1.5 py-0.5 rounded-[6px] flex items-center`}>
+    <div className={`${bg} border text-[10px] font-bold tracking-wider px-2 py-0.5 rounded-[6px] flex items-center shadow-inner`}>
       {label}
     </div>
   );
@@ -87,8 +85,8 @@ export default function DispatchQueue() {
               <AlertTriangle className="w-4 h-4 text-[#3b82f6]" />
             </div>
             <div>
-              <p className="text-white font-heading font-bold text-sm tracking-widest uppercase">Active Dispatch</p>
-              <p className="text-zinc-500 text-[11px] font-mono mt-0.5">{queue.length} critical segments pending</p>
+              <p className="text-white font-heading font-bold text-sm tracking-widest uppercase">Alerts</p>
+              <p className="text-zinc-500 text-[11px] font-mono mt-0.5">{queue.length} roads need attention</p>
             </div>
           </div>
           <div className="flex flex-col items-end gap-1">
@@ -106,7 +104,7 @@ export default function DispatchQueue() {
             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
             <span className="relative inline-flex rounded-full h-2 w-2 bg-white"></span>
           </span>
-          Optimize patrol route
+          Plan Best Route
         </button>
       </div>
 
@@ -161,26 +159,34 @@ export default function DispatchQueue() {
                         </div>
 
                         <div className="flex items-center justify-between gap-3 relative z-0">
-                          <div className="flex items-center gap-3 min-w-0">
-                            {/* Sequence Number */}
-                            <span className="text-zinc-700 text-[10px] font-mono flex-shrink-0 w-4">
-                              {String(idx + 1).padStart(2, "0")}
-                            </span>
-                            
-                            {/* Severity Dot */}
-                            <div className="relative flex items-center justify-center flex-shrink-0">
-                              {isCritical && <span className={`absolute inset-0 rounded-full animate-ping opacity-50 ${dotColor}`} />}
-                              <span className={`w-2 h-2 rounded-full ${dotColor}`} />
+                          <div className="flex flex-col flex-1 min-w-0">
+                            {/* Segment Name & Sequence */}
+                            <div className="flex items-center gap-2 mb-1">
+                              <span className="text-zinc-500 text-[10px] font-mono flex-shrink-0">
+                                #{String(idx + 1).padStart(2, "0")}
+                              </span>
+                              <div className="relative flex items-center justify-center flex-shrink-0">
+                                {isCritical && <span className={`absolute inset-0 rounded-full animate-ping opacity-50 ${dotColor}`} />}
+                                <span className={`w-2 h-2 rounded-full ${dotColor}`} />
+                              </div>
+                              <p className="text-zinc-200 text-[13px] font-bold leading-tight truncate">
+                                {p.road_name || (p.junction_name !== "No Junction" ? p.junction_name : null) || p.police_station || "Unknown"}
+                              </p>
                             </div>
-
-                            {/* Segment Name */}
-                            <p className="text-zinc-200 text-[14px] font-medium leading-tight truncate">
-                              {p.road_name || (p.junction_name !== "No Junction" ? p.junction_name : null) || p.police_station || "Unknown"}
-                            </p>
+                            
+                            {/* Stats Line */}
+                            <div className="flex items-center gap-3 pl-6">
+                              <span className="text-[10px] text-zinc-400 font-mono">
+                                {p.police_station} Station
+                              </span>
+                              <span className="text-[10px] text-zinc-500 font-mono flex items-center gap-1">
+                                Est. vehicles: <strong className="text-zinc-300">{Math.round(p.predicted_total || 0)}</strong>
+                              </span>
+                            </div>
                           </div>
                           
                           <div className="flex items-center gap-3">
-                            <EPSPill eps={eps} />
+                            <PriorityPill eps={eps} />
                           </div>
                         </div>
                       </motion.div>

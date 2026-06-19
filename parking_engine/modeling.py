@@ -17,23 +17,31 @@ from .features import FeatureContext, add_features, apply_category_levels
 
 
 def make_model(
-    n_estimators: int = 350,
-    learning_rate: float = 0.045,
-    num_leaves: int = 63,
+    n_estimators: int = 400,
+    learning_rate: float = 0.04,
+    num_leaves: int = 47,
     random_state: int = 42,
 ) -> RegressorChain:
-    """Create the multi-output LightGBM count forecaster using RegressorChain."""
+    """Create the multi-output LightGBM count forecaster using RegressorChain.
+
+    Hyperparameter tuning notes (v2):
+    - num_leaves reduced 63→47: fewer leaves reduces overfitting on zero-heavy data.
+    - min_child_samples raised 25→40: requires more evidence before splitting.
+    - min_split_gain added: prevents splits that don't meaningfully reduce loss.
+    - n_estimators raised 350→400 to compensate for slower learning from above.
+    """
 
     base = LGBMRegressor(
         objective="poisson",
         n_estimators=n_estimators,
         learning_rate=learning_rate,
         num_leaves=num_leaves,
-        subsample=0.88,
-        colsample_bytree=0.88,
-        reg_alpha=0.05,
-        reg_lambda=0.35,
-        min_child_samples=25,
+        subsample=0.85,
+        colsample_bytree=0.85,
+        reg_alpha=0.08,
+        reg_lambda=0.5,
+        min_child_samples=40,
+        min_split_gain=0.01,
         random_state=random_state,
         n_jobs=-1,
         verbosity=-1,
