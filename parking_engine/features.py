@@ -624,13 +624,6 @@ def add_features(base_rows: pd.DataFrame, context: FeatureContext) -> pd.DataFra
     ]:
         frame[col] = frame[col].fillna(0.0)
 
-    # ── V3: Enhanced recurrence and enforcement ────────────────────────────
-    # For rolling averages, we use the global segment_event_rate as the static prior.
-    # The actual rolling dynamic counts are updated in lag_features.
-    if "segment_event_rate" in frame.columns:
-        frame["rolling_7d_mean"] = frame["segment_event_rate"]
-        frame["rolling_28d_mean"] = frame["segment_event_rate"]
-        
     # Road vulnerability scoring logic
     if "road_class" in frame.columns and "road_width_m" in frame.columns:
         # Default multiplier based on class
@@ -643,6 +636,50 @@ def add_features(base_rows: pd.DataFrame, context: FeatureContext) -> pd.DataFra
 
     # ── FIX BUG-8: Historical distribution-based lag (works for future dates) ─
     frame = _add_lag_features_from_history(frame, context)
+
+    # ── V4: Dynamic Hawkes-style decay and Spatial Spillover ────────────────
+    # Hawkes decay: exponentially decaying importance of recent lag events
+    frame["hawkes_decay_intensity"] = (
+        frame["lag_1h_total"] * np.exp(-0.5) +
+        frame["lag_2h_total"] * np.exp(-1.0) +
+        frame["lag_3h_total"] * np.exp(-1.5)
+    )
+
+    # Spatial Spillover: sum of lag_1h_total from physical nearest neighbors
+    from scipy.spatial import KDTree
+    if "lat_center" in frame.columns and "lon_center" in frame.columns and len(frame) > 0:
+        # Build tree for the current hour slice to find spatial neighbors
+        # We group by hour if multiple hours are present (e.g. in training)
+        spillover_scores = []
+        for _, hour_group in frame.groupby("target_hour"):
+            lats = hour_group["lat_center"].to_numpy()
+            lons = hour_group["lon_center"].to_numpy()
+            lags = hour_group["lag_1h_total"].fillna(0).to_numpy()
+            
+            # Simple Euclidean approximation for <1km distances
+            # 0.005 degrees is approx 500 meters
+            tree = KDTree(np.c_[lats, lons])
+            # Query pairs within 0.005 deg
+            pairs = tree.query_pairs(r=0.005)
+            
+            scores = np.zeros(len(hour_group))
+            for i, j in pairs:
+                scores[i] += lags[j]
+                scores[j] += lags[i]
+            
+            hour_group_copy = hour_group.copy()
+            hour_group_copy["_spillover"] = scores
+            spillover_scores.append(hour_group_copy[["segment_id", "target_hour", "_spillover"]])
+        
+        if spillover_scores:
+            spill_df = pd.concat(spillover_scores)
+            frame = frame.merge(spill_df, on=["segment_id", "target_hour"], how="left")
+            frame["neighbor_spillover_score"] = frame["_spillover"].fillna(0.0)
+            frame = frame.drop(columns=["_spillover"])
+        else:
+            frame["neighbor_spillover_score"] = 0.0
+    else:
+        frame["neighbor_spillover_score"] = 0.0
 
     # ── FIX BUG-9: Inject live weather from environment variables ────────────
     frame = _inject_live_weather(frame)

@@ -243,8 +243,8 @@ FEATURE_COLUMNS = [
     "city_hour_mean",
     "city_dow_hour_mean",
     # ── V3: Enhanced recurrence ──
-    "rolling_7d_mean",
-    "rolling_28d_mean",
+    "hawkes_decay_intensity",
+    "neighbor_spillover_score",
     "segment_severity_mean",
     "segment_dominant_vehicle_footprint",
     # ── Lag features ──

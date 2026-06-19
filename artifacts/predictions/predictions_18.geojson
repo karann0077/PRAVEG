@@ -4,46 +4,46 @@
     {
       "type": "Feature",
       "properties": {
-        "segment_id": "osm_way_1197001100",
+        "segment_id": "grid_12935_77615",
         "target_hour": "2026-06-20 18:00:00",
         "police_station": "Adugodi",
         "junction_name": "BTP135 - UCO Bank Junction",
-        "road_class": "secondary",
-        "road_width_m": 9.0,
-        "predicted_total": 2.0729509515417295,
-        "traffic_interruption_0_100": 18.823870689144726,
-        "parking_risk_0_100": 36.91301937753867,
-        "eps": 38.47,
+        "road_class": "primary",
+        "road_width_m": 12.0,
+        "predicted_total": 3.0422406717200596,
+        "traffic_interruption_0_100": 27.875670986565883,
+        "parking_risk_0_100": 49.137968438628434,
+        "eps": 43.37,
         "priority_band": "Watchlist",
         "recommended_action": "Monitor",
-        "recommended_force_units": 0,
-        "map_matching_mode": "osm_overpass_nearest_road",
-        "road_name": "1st Main Road",
-        "osm_highway": "tertiary",
-        "count_two_wheeler": 0.9327915974905904,
-        "count_car": 0.9895685366590573,
-        "count_auto": 0.12151102843250458,
-        "count_light_commercial": 0.024217512889318147,
-        "count_heavy": 0.004036197590097279,
-        "count_other": 0.0008260784801615949,
+        "recommended_force_units": 2,
+        "map_matching_mode": "grid_fallback",
+        "road_name": "",
+        "osm_highway": "",
+        "count_two_wheeler": 1.4835738875959206,
+        "count_car": 1.3741727709878229,
+        "count_auto": 0.15549561466484313,
+        "count_light_commercial": 0.025283578753975425,
+        "count_heavy": 0.00312590832775625,
+        "count_other": 0.0005889113897409293,
         "live_congestion_multiplier": 1.0,
-        "clearance_m": 8.286964555725268,
+        "clearance_m": 10.983167450388821,
         "emergency_gridlock_flag": false,
         "confidence_band": "Medium",
-        "hotspot_probability": 0.4426229508196721,
-        "economic_loss_inr": 956.0,
-        "geometry_wkt": "LINESTRING (77.6152534 12.9359344, 77.6148855 12.9364563)"
+        "hotspot_probability": 0.4117647058823529,
+        "economic_loss_inr": 1856.0,
+        "geometry_wkt": ""
       },
       "geometry": {
         "type": "LineString",
         "coordinates": [
           [
-            77.6152534,
-            12.9359344
+            77.61507999999999,
+            12.935500000000001
           ],
           [
-            77.6148855,
-            12.9364563
+            77.61592,
+            12.935500000000001
           ]
         ]
       }

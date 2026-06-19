@@ -4,78 +4,46 @@
     {
       "type": "Feature",
       "properties": {
-        "segment_id": "osm_way_190144809",
+        "segment_id": "grid_12964_77575",
         "target_hour": "2026-06-20 22:00:00",
         "police_station": "City Market",
         "junction_name": "BTP082 - KR Market Junction",
         "road_class": "primary",
         "road_width_m": 12.0,
-        "predicted_total": 9.116545500059821,
-        "traffic_interruption_0_100": 79.79091889172432,
-        "parking_risk_0_100": 86.8124765956151,
-        "eps": 54.61,
+        "predicted_total": 11.610415142574944,
+        "traffic_interruption_0_100": 99.32193350651653,
+        "parking_risk_0_100": 92.42329861025262,
+        "eps": 67.69,
         "priority_band": "Orange Line",
-        "recommended_action": "Monitor (Low Confidence)",
+        "recommended_action": "Preventative dispatch",
         "recommended_force_units": 2,
-        "map_matching_mode": "osm_overpass_nearest_road",
-        "road_name": "Krishna Rajendra Road",
-        "osm_highway": "primary",
-        "count_two_wheeler": 2.5545539933669765,
-        "count_car": 4.729816586113839,
-        "count_auto": 1.123130747312231,
-        "count_light_commercial": 0.6855570933245473,
-        "count_heavy": 0.022756653899276447,
-        "count_other": 0.0007304260429517148,
+        "map_matching_mode": "grid_fallback",
+        "road_name": "",
+        "osm_highway": "",
+        "count_two_wheeler": 1.3710767566625366,
+        "count_car": 6.2422346393076715,
+        "count_auto": 0.81923899961766,
+        "count_light_commercial": 3.173958486898062,
+        "count_heavy": 0.003193661375320714,
+        "count_other": 0.0007125987136943296,
         "live_congestion_multiplier": 1.0,
-        "clearance_m": 8.468074723979509,
+        "clearance_m": 6.667030025871261,
         "emergency_gridlock_flag": false,
-        "confidence_band": "Medium",
-        "hotspot_probability": 0.725,
-        "economic_loss_inr": 7580.0,
-        "geometry_wkt": "LINESTRING (77.5750888 12.9612109, 77.5752198 12.9614394, 77.575278 12.9615264, 77.5756456 12.9621081, 77.5757939 12.9622247, 77.5758651 12.9622807, 77.5760093 12.9624076, 77.5763578 12.9630539, 77.5766564 12.9637557, 77.5767121 12.9638866)"
+        "confidence_band": "High",
+        "hotspot_probability": 1.0,
+        "economic_loss_inr": 18505.0,
+        "geometry_wkt": ""
       },
       "geometry": {
         "type": "LineString",
         "coordinates": [
           [
-            77.5750888,
-            12.9612109
+            77.57508,
+            12.964500000000001
           ],
           [
-            77.5752198,
-            12.9614394
-          ],
-          [
-            77.575278,
-            12.9615264
-          ],
-          [
-            77.5756456,
-            12.9621081
-          ],
-          [
-            77.5757939,
-            12.9622247
-          ],
-          [
-            77.5758651,
-            12.9622807
-          ],
-          [
-            77.5760093,
-            12.9624076
-          ],
-          [
-            77.5763578,
-            12.9630539
-          ],
-          [
-            77.5766564,
-            12.9637557
-          ],
-          [
-            77.5767121,
-            12.9638866
+            77.57592000000001,
+            12.964500000000001
           ]
         ]
       }
@@ -83,58 +51,46 @@
     {
       "type": "Feature",
       "properties": {
-        "segment_id": "osm_way_172891308",
+        "segment_id": "grid_12963_77576",
         "target_hour": "2026-06-20 22:00:00",
         "police_station": "City Market",
         "junction_name": "BTP082 - KR Market Junction",
         "road_class": "primary",
         "road_width_m": 12.0,
-        "predicted_total": 6.430555770958645,
-        "traffic_interruption_0_100": 54.6834091498134,
-        "parking_risk_0_100": 76.04546179748417,
-        "eps": 45.55,
-        "priority_band": "Watchlist",
-        "recommended_action": "Monitor",
+        "predicted_total": 16.477584963106004,
+        "traffic_interruption_0_100": 99.90997856321583,
+        "parking_risk_0_100": 97.43108241090476,
+        "eps": 63.79,
+        "priority_band": "Orange Line",
+        "recommended_action": "Preventative dispatch",
         "recommended_force_units": 2,
-        "map_matching_mode": "osm_overpass_nearest_road",
-        "road_name": "Sir Mirza Ismail Chowk Flyover",
-        "osm_highway": "primary",
-        "count_two_wheeler": 2.153672306382757,
-        "count_car": 3.374134677481491,
-        "count_auto": 0.2721519221804925,
-        "count_light_commercial": 0.623625800104595,
-        "count_heavy": 0.006249037034576095,
-        "count_other": 0.0007220277747332563,
+        "map_matching_mode": "grid_fallback",
+        "road_name": "",
+        "osm_highway": "",
+        "count_two_wheeler": 3.9227498659120412,
+        "count_car": 9.024729279255723,
+        "count_auto": 3.126098326116115,
+        "count_light_commercial": 0.3999881889068765,
+        "count_heavy": 0.003836081942266318,
+        "count_other": 0.00018322097297893632,
         "live_congestion_multiplier": 1.0,
-        "clearance_m": 9.515112519885466,
+        "clearance_m": 5.680147971337293,
         "emergency_gridlock_flag": false,
-        "confidence_band": "Medium",
-        "hotspot_probability": 0.725,
-        "economic_loss_inr": 4452.0,
-        "geometry_wkt": "LINESTRING (77.5746306 12.9646603, 77.5751914 12.9649325, 77.5753803 12.9649723, 77.575503 12.9649591, 77.576242 12.9646321)"
+        "confidence_band": "High",
+        "hotspot_probability": 0.8709677419354839,
+        "economic_loss_inr": 31039.0,
+        "geometry_wkt": ""
       },
       "geometry": {
         "type": "LineString",
         "coordinates": [
           [
-            77.5746306,
-            12.9646603
+            77.57607999999999,
+            12.9635
           ],
           [
-            77.5751914,
-            12.9649325
-          ],
-          [
-            77.5753803,
-            12.9649723
-          ],
-          [
-            77.575503,
-            12.9649591
-          ],
-          [
-            77.576242,
-            12.9646321
+            77.57692,
+            12.9635
           ]
         ]
       }
@@ -142,70 +98,46 @@
     {
       "type": "Feature",
       "properties": {
-        "segment_id": "osm_way_154340363",
+        "segment_id": "grid_12964_77576",
         "target_hour": "2026-06-20 22:00:00",
         "police_station": "City Market",
         "junction_name": "BTP082 - KR Market Junction",
         "road_class": "primary",
         "road_width_m": 12.0,
-        "predicted_total": 4.534917150060578,
-        "traffic_interruption_0_100": 33.31963967252115,
-        "parking_risk_0_100": 63.49640242945457,
-        "eps": 34.89,
-        "priority_band": "Low",
-        "recommended_action": "Monitor",
-        "recommended_force_units": 0,
-        "map_matching_mode": "osm_overpass_nearest_road",
+        "predicted_total": 14.655983215627575,
+        "traffic_interruption_0_100": 97.71294927704251,
+        "parking_risk_0_100": 96.14918418073451,
+        "eps": 63.79,
+        "priority_band": "Orange Line",
+        "recommended_action": "Preventative dispatch",
+        "recommended_force_units": 2,
+        "map_matching_mode": "grid_fallback",
         "road_name": "",
-        "osm_highway": "primary_link",
-        "count_two_wheeler": 1.0379498801597147,
-        "count_car": 1.9867994942146483,
-        "count_auto": 0.968631496043717,
-        "count_light_commercial": 0.5323729200051234,
-        "count_heavy": 0.008444927693292668,
-        "count_other": 0.0007184319440825804,
+        "osm_highway": "",
+        "count_two_wheeler": 8.064325049090742,
+        "count_car": 3.394975623057972,
+        "count_auto": 1.701036214401537,
+        "count_light_commercial": 1.4917576148375213,
+        "count_heavy": 0.0037157056668251135,
+        "count_other": 0.0001730085729775303,
         "live_congestion_multiplier": 1.0,
-        "clearance_m": 10.221930140824865,
+        "clearance_m": 7.36142678326164,
         "emergency_gridlock_flag": false,
-        "confidence_band": "Medium",
-        "hotspot_probability": 0.5676229508196721,
-        "economic_loss_inr": 2835.0,
-        "geometry_wkt": "LINESTRING (77.576814 12.9640481, 77.5769326 12.9640022, 77.5770417 12.9639314, 77.5771228 12.9638753, 77.5771803 12.963804, 77.5772225 12.9637501, 77.5772576 12.9636025, 77.5773172 12.963461)"
+        "confidence_band": "High",
+        "hotspot_probability": 0.8709677419354839,
+        "economic_loss_inr": 13008.0,
+        "geometry_wkt": ""
       },
       "geometry": {
         "type": "LineString",
         "coordinates": [
           [
-            77.576814,
-            12.9640481
+            77.57607999999999,
+            12.964500000000001
           ],
           [
-            77.5769326,
-            12.9640022
-          ],
-          [
-            77.5770417,
-            12.9639314
-          ],
-          [
-            77.5771228,
-            12.9638753
-          ],
-          [
-            77.5771803,
-            12.963804
-          ],
-          [
-            77.5772225,
-            12.9637501
-          ],
-          [
-            77.5772576,
-            12.9636025
-          ],
-          [
-            77.5773172,
-            12.963461
+            77.57692,
+            12.964500000000001
           ]
         ]
       }
@@ -213,133 +145,46 @@
     {
       "type": "Feature",
       "properties": {
-        "segment_id": "osm_way_172891296",
+        "segment_id": "grid_12963_77577",
         "target_hour": "2026-06-20 22:00:00",
         "police_station": "City Market",
         "junction_name": "BTP082 - KR Market Junction",
         "road_class": "primary",
         "road_width_m": 12.0,
-        "predicted_total": 3.1911729505323048,
-        "traffic_interruption_0_100": 16.97410106938423,
-        "parking_risk_0_100": 50.793750321084715,
-        "eps": 30.05,
-        "priority_band": "Low",
-        "recommended_action": "Monitor",
-        "recommended_force_units": 0,
-        "map_matching_mode": "osm_overpass_nearest_road",
-        "road_name": "Krishna Rajendra Road",
-        "osm_highway": "primary",
-        "count_two_wheeler": 0.952461976674096,
-        "count_car": 1.195474783865097,
-        "count_auto": 0.6158377588246623,
-        "count_light_commercial": 0.42047948412642383,
-        "count_heavy": 0.006243851111109181,
-        "count_other": 0.0006750959309165304,
-        "live_congestion_multiplier": 1.0,
-        "clearance_m": 10.795354933549145,
-        "emergency_gridlock_flag": false,
-        "confidence_band": "Medium",
-        "hotspot_probability": 0.5676229508196721,
-        "economic_loss_inr": 1861.0,
-        "geometry_wkt": "LINESTRING (77.576814 12.9640481, 77.5768287 12.9640775, 77.5768931 12.9642064)"
-      },
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            77.576814,
-            12.9640481
-          ],
-          [
-            77.5768287,
-            12.9640775
-          ],
-          [
-            77.5768931,
-            12.9642064
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "segment_id": "osm_way_358326661",
-        "target_hour": "2026-06-20 22:00:00",
-        "police_station": "City Market",
-        "junction_name": "BTP082 - KR Market Junction",
-        "road_class": "residential",
-        "road_width_m": 6.0,
-        "predicted_total": 2.691119203234392,
-        "traffic_interruption_0_100": 21.76532614246305,
-        "parking_risk_0_100": 45.0104208995079,
-        "eps": 25.57,
-        "priority_band": "Low",
-        "recommended_action": "Monitor",
-        "recommended_force_units": 0,
-        "map_matching_mode": "osm_overpass_nearest_road",
+        "predicted_total": 7.2059771115704985,
+        "traffic_interruption_0_100": 82.9209031793184,
+        "parking_risk_0_100": 79.83714724347004,
+        "eps": 51.15,
+        "priority_band": "Orange Line",
+        "recommended_action": "Preventative dispatch",
+        "recommended_force_units": 2,
+        "map_matching_mode": "grid_fallback",
         "road_name": "",
-        "osm_highway": "residential",
-        "count_two_wheeler": 2.091455892347,
-        "count_car": 0.3969356994059955,
-        "count_auto": 0.12700382243105682,
-        "count_light_commercial": 0.07179295645480752,
-        "count_heavy": 0.0036271809771180994,
-        "count_other": 0.0003036516184141221,
+        "osm_highway": "",
+        "count_two_wheeler": 0.7386066967190623,
+        "count_car": 4.430879403134385,
+        "count_auto": 1.0057169479943375,
+        "count_light_commercial": 1.0203530299161658,
+        "count_heavy": 0.009731809703131712,
+        "count_other": 0.0006892241034165511,
         "live_congestion_multiplier": 1.0,
-        "clearance_m": 5.308105269907271,
+        "clearance_m": 8.827396886111242,
         "emergency_gridlock_flag": false,
-        "confidence_band": "Medium",
-        "hotspot_probability": 0.5676229508196721,
-        "economic_loss_inr": 270.0,
-        "geometry_wkt": "LINESTRING (77.5751583 12.9653247, 77.5752691 12.9652476, 77.5754223 12.9651102, 77.5755492 12.9650447, 77.5757772 12.9649353, 77.5759548 12.964847, 77.5760883 12.9647807, 77.5763807 12.9646422, 77.5764903 12.9645877, 77.5765981 12.9645388, 77.5769693 12.9643772)"
+        "confidence_band": "High",
+        "hotspot_probability": 0.7357142857142858,
+        "economic_loss_inr": 6338.0,
+        "geometry_wkt": ""
       },
       "geometry": {
         "type": "LineString",
         "coordinates": [
           [
-            77.5751583,
-            12.9653247
+            77.57708,
+            12.9635
           ],
           [
-            77.5752691,
-            12.9652476
-          ],
-          [
-            77.5754223,
-            12.9651102
-          ],
-          [
-            77.5755492,
-            12.9650447
-          ],
-          [
-            77.5757772,
-            12.9649353
-          ],
-          [
-            77.5759548,
-            12.964847
-          ],
-          [
-            77.5760883,
-            12.9647807
-          ],
-          [
-            77.5763807,
-            12.9646422
-          ],
-          [
-            77.5764903,
-            12.9645877
-          ],
-          [
-            77.5765981,
-            12.9645388
-          ],
-          [
-            77.5769693,
-            12.9643772
+            77.57792,
+            12.9635
           ]
         ]
       }
@@ -347,86 +192,93 @@
     {
       "type": "Feature",
       "properties": {
-        "segment_id": "osm_way_1207956704",
+        "segment_id": "grid_12965_77573",
+        "target_hour": "2026-06-20 22:00:00",
+        "police_station": "Chamarajpet",
+        "junction_name": "BTP083 - AS Char Street, Mysore Road",
+        "road_class": "primary",
+        "road_width_m": 12.0,
+        "predicted_total": 3.421346124913868,
+        "traffic_interruption_0_100": 32.2082073372931,
+        "parking_risk_0_100": 53.2473449274226,
+        "eps": 34.72,
+        "priority_band": "Low",
+        "recommended_action": "Monitor",
+        "recommended_force_units": 0,
+        "map_matching_mode": "grid_fallback",
+        "road_name": "",
+        "osm_highway": "",
+        "count_two_wheeler": 0.588627916509142,
+        "count_car": 0.9349715742028013,
+        "count_auto": 0.6680528621776656,
+        "count_light_commercial": 1.1988745058408816,
+        "count_heavy": 0.028474203314850306,
+        "count_other": 0.002345062868527025,
+        "live_congestion_multiplier": 1.0,
+        "clearance_m": 10.51207076086839,
+        "emergency_gridlock_flag": false,
+        "confidence_band": "Medium",
+        "hotspot_probability": 0.6507936507936508,
+        "economic_loss_inr": 2369.0,
+        "geometry_wkt": ""
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            77.57307999999999,
+            12.9655
+          ],
+          [
+            77.57392,
+            12.9655
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": "grid_12964_77574",
         "target_hour": "2026-06-20 22:00:00",
         "police_station": "City Market",
-        "junction_name": "BTP082 - KR Market Junction",
+        "junction_name": "BTP083 - AS Char Street, Mysore Road",
         "road_class": "secondary",
         "road_width_m": 9.0,
-        "predicted_total": 1.7657599309468714,
-        "traffic_interruption_0_100": 10.131758038903493,
-        "parking_risk_0_100": 32.45600993876647,
-        "eps": 18.72,
+        "predicted_total": 2.8657922370366156,
+        "traffic_interruption_0_100": 38.237696516066286,
+        "parking_risk_0_100": 47.104013488054704,
+        "eps": 34.13,
         "priority_band": "Low",
         "recommended_action": "Monitor",
         "recommended_force_units": 0,
-        "map_matching_mode": "osm_overpass_nearest_road",
+        "map_matching_mode": "grid_fallback",
         "road_name": "",
-        "osm_highway": "secondary",
-        "count_two_wheeler": 0.42329476289234697,
-        "count_car": 0.5275901865849398,
-        "count_auto": 0.4782701885150454,
-        "count_light_commercial": 0.32902613456334123,
-        "count_heavy": 0.006728449604368812,
-        "count_other": 0.0008502087868291836,
+        "osm_highway": "",
+        "count_two_wheeler": 0.40262787392437666,
+        "count_car": 1.938541716295019,
+        "count_auto": 0.2433835068276059,
+        "count_light_commercial": 0.27553925672894786,
+        "count_heavy": 0.005150359368226756,
+        "count_other": 0.0005495238924398228,
         "live_congestion_multiplier": 1.0,
-        "clearance_m": 8.315330528735789,
+        "clearance_m": 7.757523640198618,
         "emergency_gridlock_flag": false,
-        "confidence_band": "Low",
-        "hotspot_probability": 0.37185929648241206,
-        "economic_loss_inr": 726.0,
-        "geometry_wkt": "LINESTRING (77.5737399 12.9646124, 77.5737953 12.9646178, 77.574128 12.9646417, 77.5743856 12.9646646, 77.5747423 12.9647369, 77.5751432 12.9647831, 77.5753067 12.9647853, 77.5754733 12.9647728, 77.5757342 12.9646996, 77.5760931 12.964523, 77.5765912 12.9643144, 77.5768931 12.9642064)"
+        "confidence_band": "High",
+        "hotspot_probability": 0.7357142857142858,
+        "economic_loss_inr": 1497.0,
+        "geometry_wkt": ""
       },
       "geometry": {
         "type": "LineString",
         "coordinates": [
           [
-            77.5737399,
-            12.9646124
+            77.57408,
+            12.964500000000001
           ],
           [
-            77.5737953,
-            12.9646178
-          ],
-          [
-            77.574128,
-            12.9646417
-          ],
-          [
-            77.5743856,
-            12.9646646
-          ],
-          [
-            77.5747423,
-            12.9647369
-          ],
-          [
-            77.5751432,
-            12.9647831
-          ],
-          [
-            77.5753067,
-            12.9647853
-          ],
-          [
-            77.5754733,
-            12.9647728
-          ],
-          [
-            77.5757342,
-            12.9646996
-          ],
-          [
-            77.5760931,
-            12.964523
-          ],
-          [
-            77.5765912,
-            12.9643144
-          ],
-          [
-            77.5768931,
-            12.9642064
+            77.57492,
+            12.964500000000001
           ]
         ]
       }
@@ -434,162 +286,46 @@
     {
       "type": "Feature",
       "properties": {
-        "segment_id": "osm_way_23515292",
+        "segment_id": "grid_12965_77579",
         "target_hour": "2026-06-20 22:00:00",
         "police_station": "Halasuru Gate",
-        "junction_name": "BTP080 - NR Road, SP Road Junction",
-        "road_class": "residential",
-        "road_width_m": 6.0,
-        "predicted_total": 1.5993503247830103,
-        "traffic_interruption_0_100": 14.375337767193807,
-        "parking_risk_0_100": 29.911480832507287,
-        "eps": 17.98,
+        "junction_name": "BTP082 - KR Market Junction",
+        "road_class": "primary",
+        "road_width_m": 12.0,
+        "predicted_total": 3.634768919488252,
+        "traffic_interruption_0_100": 31.82254141516463,
+        "parking_risk_0_100": 55.41293656521602,
+        "eps": 31.66,
         "priority_band": "Low",
         "recommended_action": "Monitor",
         "recommended_force_units": 0,
-        "map_matching_mode": "osm_overpass_nearest_road",
-        "road_name": "SP Road",
-        "osm_highway": "residential",
-        "count_two_wheeler": 0.6833832477782706,
-        "count_car": 0.33125038414142777,
-        "count_auto": 0.3220904467940791,
-        "count_light_commercial": 0.254953362897709,
-        "count_heavy": 0.006988258049147893,
-        "count_other": 0.0006846251223759975,
+        "map_matching_mode": "grid_fallback",
+        "road_name": "",
+        "osm_highway": "",
+        "count_two_wheeler": 1.0993180838175092,
+        "count_car": 0.7703981632039919,
+        "count_auto": 0.49719920964103553,
+        "count_light_commercial": 1.2573838001330948,
+        "count_heavy": 0.009549407287475843,
+        "count_other": 0.0009202554051449497,
         "live_congestion_multiplier": 1.0,
-        "clearance_m": 5.449834274437834,
+        "clearance_m": 10.522967591450433,
         "emergency_gridlock_flag": false,
-        "confidence_band": "Low",
-        "hotspot_probability": 0.37185929648241206,
-        "economic_loss_inr": 199.0,
-        "geometry_wkt": "LINESTRING (77.5840668 12.9647596, 77.5837518 12.9647255, 77.5835646 12.9647222, 77.5834394 12.9647185, 77.5831927 12.9647052, 77.5829023 12.9647016, 77.5827336 12.9647024, 77.5823333 12.9646933, 77.5818693 12.9647132, 77.5815779 12.9647332, 77.5813921 12.9647639, 77.5811735 12.9648001, 77.5807952 12.9648399, 77.5805042 12.9648607, 77.5804244 12.96487, 77.5801928 12.9649069, 77.5799292 12.9649516, 77.5799033 12.9649602, 77.5796875 12.9650317, 77.5794464 12.9651123, 77.579399 12.9651282, 77.5792533 12.9651788, 77.5792337 12.9651886, 77.5790669 12.965272, 77.5789263 12.9653209, 77.5787988 12.9653652, 77.5787771 12.9653714, 77.5784599 12.9654626, 77.5780812 12.9656848, 77.5777969 12.9658168, 77.5776159 12.9658707)"
+        "confidence_band": "Medium",
+        "hotspot_probability": 0.5483870967741935,
+        "economic_loss_inr": 2288.0,
+        "geometry_wkt": ""
       },
       "geometry": {
         "type": "LineString",
         "coordinates": [
           [
-            77.5840668,
-            12.9647596
+            77.57907999999999,
+            12.9655
           ],
           [
-            77.5837518,
-            12.9647255
-          ],
-          [
-            77.5835646,
-            12.9647222
-          ],
-          [
-            77.5834394,
-            12.9647185
-          ],
-          [
-            77.5831927,
-            12.9647052
-          ],
-          [
-            77.5829023,
-            12.9647016
-          ],
-          [
-            77.5827336,
-            12.9647024
-          ],
-          [
-            77.5823333,
-            12.9646933
-          ],
-          [
-            77.5818693,
-            12.9647132
-          ],
-          [
-            77.5815779,
-            12.9647332
-          ],
-          [
-            77.5813921,
-            12.9647639
-          ],
-          [
-            77.5811735,
-            12.9648001
-          ],
-          [
-            77.5807952,
-            12.9648399
-          ],
-          [
-            77.5805042,
-            12.9648607
-          ],
-          [
-            77.5804244,
-            12.96487
-          ],
-          [
-            77.5801928,
-            12.9649069
-          ],
-          [
-            77.5799292,
-            12.9649516
-          ],
-          [
-            77.5799033,
-            12.9649602
-          ],
-          [
-            77.5796875,
-            12.9650317
-          ],
-          [
-            77.5794464,
-            12.9651123
-          ],
-          [
-            77.579399,
-            12.9651282
-          ],
-          [
-            77.5792533,
-            12.9651788
-          ],
-          [
-            77.5792337,
-            12.9651886
-          ],
-          [
-            77.5790669,
-            12.965272
-          ],
-          [
-            77.5789263,
-            12.9653209
-          ],
-          [
-            77.5787988,
-            12.9653652
-          ],
-          [
-            77.5787771,
-            12.9653714
-          ],
-          [
-            77.5784599,
-            12.9654626
-          ],
-          [
-            77.5780812,
-            12.9656848
-          ],
-          [
-            77.5777969,
-            12.9658168
-          ],
-          [
-            77.5776159,
-            12.9658707
+            77.57992,
+            12.9655
           ]
         ]
       }
@@ -597,50 +333,46 @@
     {
       "type": "Feature",
       "properties": {
-        "segment_id": "osm_way_688824224",
+        "segment_id": "grid_12962_77576",
         "target_hour": "2026-06-20 22:00:00",
         "police_station": "City Market",
         "junction_name": "BTP082 - KR Market Junction",
         "road_class": "primary",
         "road_width_m": 12.0,
-        "predicted_total": 1.5978667169840737,
-        "traffic_interruption_0_100": 4.918428193455471,
-        "parking_risk_0_100": 29.888369495442678,
-        "eps": 15.47,
+        "predicted_total": 2.6841906437347034,
+        "traffic_interruption_0_100": 23.46782913395823,
+        "parking_risk_0_100": 44.92568933747002,
+        "eps": 27.82,
         "priority_band": "Low",
         "recommended_action": "Monitor",
         "recommended_force_units": 0,
-        "map_matching_mode": "osm_overpass_nearest_road",
-        "road_name": "NR Road",
-        "osm_highway": "primary",
-        "count_two_wheeler": 0.39576933348941956,
-        "count_car": 0.5806031295541483,
-        "count_auto": 0.341657373918823,
-        "count_light_commercial": 0.27185659045673516,
-        "count_heavy": 0.006706545184938474,
-        "count_other": 0.0012737443800092969,
+        "map_matching_mode": "grid_fallback",
+        "road_name": "",
+        "osm_highway": "",
+        "count_two_wheeler": 0.16101971459380912,
+        "count_car": 1.4920980965088182,
+        "count_auto": 0.40395882050448767,
+        "count_light_commercial": 0.6072244479270308,
+        "count_heavy": 0.01923706970902299,
+        "count_other": 0.0006524944915348624,
         "live_congestion_multiplier": 1.0,
-        "clearance_m": 11.37273917777694,
+        "clearance_m": 10.765794756823205,
         "emergency_gridlock_flag": false,
-        "confidence_band": "Low",
-        "hotspot_probability": 0.2518518518518518,
-        "economic_loss_inr": 876.0,
-        "geometry_wkt": "LINESTRING (77.5774654 12.963912, 77.5773816 12.9639364, 77.5768287 12.9640775)"
+        "confidence_band": "Medium",
+        "hotspot_probability": 0.5,
+        "economic_loss_inr": 1859.0,
+        "geometry_wkt": ""
       },
       "geometry": {
         "type": "LineString",
         "coordinates": [
           [
-            77.5774654,
-            12.963912
+            77.57607999999999,
+            12.9625
           ],
           [
-            77.5773816,
-            12.9639364
-          ],
-          [
-            77.5768287,
-            12.9640775
+            77.57692,
+            12.9625
           ]
         ]
       }

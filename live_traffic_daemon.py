@@ -51,7 +51,7 @@ LIVE_GEO = Path("artifacts/predictions/predictions_live.geojson")
 LIVE_CSV = Path("artifacts/predictions/predictions_live.csv")
 LIVE_RIPPLES = Path("artifacts/predictions/ripples_live.geojson")
 LIVE_DELTA = Path("artifacts/predictions/live_delta.json")
-MODEL_PATH = os.environ.get("MODEL_PATH", "artifacts/parking_model_v3_ensemble/model.joblib")
+MODEL_PATH = os.environ.get("MODEL_PATH", "artifacts/parking_model/model.joblib")
 TOP_K = 2500
 LOOP_INTERVAL_S = 60  # re-run every 60 s
 

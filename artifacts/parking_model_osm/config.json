@@ -70,8 +70,8 @@
     "hour_bucket"
   ],
   "calibration": {
-    "count_p95": 1.5650376759184943,
-    "interruption_p95": 0.5
+    "count_p95": 7.360683947815261,
+    "interruption_p95": 1.1041025921722891
   },
   "training_summary": {
     "data_path": "dataset/jan to may police violation_anonymized791b166.csv",

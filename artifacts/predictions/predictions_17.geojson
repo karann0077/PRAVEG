@@ -4,206 +4,46 @@
     {
       "type": "Feature",
       "properties": {
-        "segment_id": "osm_way_23046218",
+        "segment_id": "grid_12953_77543",
         "target_hour": "2026-06-20 17:00:00",
         "police_station": "Byatarayanapura",
         "junction_name": "BTP095 - Satellite Bus Stand, Mysore Road",
-        "road_class": "trunk",
-        "road_width_m": 15.0,
-        "predicted_total": 3.3902910313326866,
-        "traffic_interruption_0_100": 18.71538077437944,
-        "parking_risk_0_100": 52.92358281017544,
-        "eps": 56.36,
-        "priority_band": "Orange Line",
-        "recommended_action": "Monitor (Low Confidence)",
-        "recommended_force_units": 2,
-        "map_matching_mode": "osm_overpass_nearest_road",
-        "road_name": "Mysore Road",
-        "osm_highway": "trunk",
-        "count_two_wheeler": 1.4390863220471388,
-        "count_car": 1.464394674465985,
-        "count_auto": 0.339653411811894,
-        "count_light_commercial": 0.05947159008596135,
-        "count_heavy": 0.08538464025530113,
-        "count_other": 0.002300392666406599,
+        "road_class": "primary",
+        "road_width_m": 12.0,
+        "predicted_total": 5.469087237015383,
+        "traffic_interruption_0_100": 61.05614911041091,
+        "parking_risk_0_100": 70.33946226105896,
+        "eps": 80.67,
+        "priority_band": "Red Line",
+        "recommended_action": "Immediate dispatch",
+        "recommended_force_units": 3,
+        "map_matching_mode": "grid_fallback",
+        "road_name": "",
+        "osm_highway": "",
+        "count_two_wheeler": 2.8067677962062056,
+        "count_car": 1.8298758952427596,
+        "count_auto": 0.7374851614818723,
+        "count_light_commercial": 0.05982982794045675,
+        "count_heavy": 0.03469604591852514,
+        "count_other": 0.00043251022556423937,
         "live_congestion_multiplier": 1.0,
-        "clearance_m": 13.815419039398448,
+        "clearance_m": 10.272612689766893,
         "emergency_gridlock_flag": false,
-        "confidence_band": "Medium",
-        "hotspot_probability": 0.5676229508196721,
-        "economic_loss_inr": 4472.0,
-        "geometry_wkt": "LINESTRING (77.5558935 12.9594911, 77.5553713 12.9587002, 77.5551776 12.9585085, 77.5549925 12.9583548, 77.5547933 12.9582334, 77.5545203 12.9581353, 77.5535149 12.957797, 77.552906 12.9576065, 77.5528552 12.9575906, 77.5521923 12.9573974, 77.5521321 12.957379, 77.5520423 12.9573516, 77.5519578 12.9573259, 77.550674 12.9569346, 77.5501506 12.9568678, 77.54977 12.9568192, 77.5494805 12.9567733, 77.5488129 12.9566489, 77.5486252 12.9566139, 77.5484465 12.9565806, 77.5483784 12.9565689, 77.5481654 12.9565322, 77.5477826 12.9564663, 77.5471786 12.9563571, 77.547146 12.9563457, 77.546847 12.9562407, 77.546516 12.9560697, 77.5465009 12.9560624, 77.5463943 12.956011, 77.5463139 12.9559725, 77.5456581 12.9555797, 77.5453304 12.9553448, 77.5450617 12.9551505, 77.5448116 12.9549276, 77.544192 12.9543756, 77.5441607 12.9543479, 77.5441041 12.9543014, 77.5436268 12.953944, 77.543325 12.9538044, 77.5431336 12.9537366, 77.5430487 12.9537065, 77.5429189 12.9536716)"
+        "confidence_band": "High",
+        "hotspot_probability": 0.8709677419354839,
+        "economic_loss_inr": 3891.0,
+        "geometry_wkt": ""
       },
       "geometry": {
         "type": "LineString",
         "coordinates": [
           [
-            77.5558935,
-            12.9594911
+            77.54307999999999,
+            12.9535
           ],
           [
-            77.5553713,
-            12.9587002
-          ],
-          [
-            77.5551776,
-            12.9585085
-          ],
-          [
-            77.5549925,
-            12.9583548
-          ],
-          [
-            77.5547933,
-            12.9582334
-          ],
-          [
-            77.5545203,
-            12.9581353
-          ],
-          [
-            77.5535149,
-            12.957797
-          ],
-          [
-            77.552906,
-            12.9576065
-          ],
-          [
-            77.5528552,
-            12.9575906
-          ],
-          [
-            77.5521923,
-            12.9573974
-          ],
-          [
-            77.5521321,
-            12.957379
-          ],
-          [
-            77.5520423,
-            12.9573516
-          ],
-          [
-            77.5519578,
-            12.9573259
-          ],
-          [
-            77.550674,
-            12.9569346
-          ],
-          [
-            77.5501506,
-            12.9568678
-          ],
-          [
-            77.54977,
-            12.9568192
-          ],
-          [
-            77.5494805,
-            12.9567733
-          ],
-          [
-            77.5488129,
-            12.9566489
-          ],
-          [
-            77.5486252,
-            12.9566139
-          ],
-          [
-            77.5484465,
-            12.9565806
-          ],
-          [
-            77.5483784,
-            12.9565689
-          ],
-          [
-            77.5481654,
-            12.9565322
-          ],
-          [
-            77.5477826,
-            12.9564663
-          ],
-          [
-            77.5471786,
-            12.9563571
-          ],
-          [
-            77.547146,
-            12.9563457
-          ],
-          [
-            77.546847,
-            12.9562407
-          ],
-          [
-            77.546516,
-            12.9560697
-          ],
-          [
-            77.5465009,
-            12.9560624
-          ],
-          [
-            77.5463943,
-            12.956011
-          ],
-          [
-            77.5463139,
-            12.9559725
-          ],
-          [
-            77.5456581,
-            12.9555797
-          ],
-          [
-            77.5453304,
-            12.9553448
-          ],
-          [
-            77.5450617,
-            12.9551505
-          ],
-          [
-            77.5448116,
-            12.9549276
-          ],
-          [
-            77.544192,
-            12.9543756
-          ],
-          [
-            77.5441607,
-            12.9543479
-          ],
-          [
-            77.5441041,
-            12.9543014
-          ],
-          [
-            77.5436268,
-            12.953944
-          ],
-          [
-            77.543325,
-            12.9538044
-          ],
-          [
-            77.5431336,
-            12.9537366
-          ],
-          [
-            77.5430487,
-            12.9537065
-          ],
-          [
-            77.5429189,
-            12.9536716
+            77.54392,
+            12.9535
           ]
         ]
       }
@@ -211,348 +51,46 @@
     {
       "type": "Feature",
       "properties": {
-        "segment_id": "osm_way_763290544",
-        "target_hour": "2026-06-20 17:00:00",
-        "police_station": "Shivajinagar",
-        "junction_name": "BTP211 - Central Street Junction",
-        "road_class": "secondary",
-        "road_width_m": 9.0,
-        "predicted_total": 2.340541530093501,
-        "traffic_interruption_0_100": 20.84295158428713,
-        "parking_risk_0_100": 40.55509923402339,
-        "eps": 46.26,
-        "priority_band": "Watchlist",
-        "recommended_action": "Monitor",
-        "recommended_force_units": 2,
-        "map_matching_mode": "osm_overpass_nearest_road",
-        "road_name": "Central Street",
-        "osm_highway": "tertiary",
-        "count_two_wheeler": 1.1792473420045217,
-        "count_car": 0.8694046751019928,
-        "count_auto": 0.24886475267295244,
-        "count_light_commercial": 0.03498701794347715,
-        "count_heavy": 0.00704831481643882,
-        "count_other": 0.0009894275541180116,
-        "live_congestion_multiplier": 1.0,
-        "clearance_m": 8.24513334827055,
-        "emergency_gridlock_flag": false,
-        "confidence_band": "Medium",
-        "hotspot_probability": 0.5676229508196721,
-        "economic_loss_inr": 1084.0,
-        "geometry_wkt": "LINESTRING (77.602489 12.979386, 77.6024922 12.9793967, 77.6026142 12.9798034, 77.6027297 12.9801815, 77.6028946 12.9807067, 77.6029061 12.9807434, 77.6029194 12.9807819, 77.6030982 12.9813001, 77.6032484 12.9817403, 77.6033222 12.981954)"
-      },
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            77.602489,
-            12.979386
-          ],
-          [
-            77.6024922,
-            12.9793967
-          ],
-          [
-            77.6026142,
-            12.9798034
-          ],
-          [
-            77.6027297,
-            12.9801815
-          ],
-          [
-            77.6028946,
-            12.9807067
-          ],
-          [
-            77.6029061,
-            12.9807434
-          ],
-          [
-            77.6029194,
-            12.9807819
-          ],
-          [
-            77.6030982,
-            12.9813001
-          ],
-          [
-            77.6032484,
-            12.9817403
-          ],
-          [
-            77.6033222,
-            12.981954
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "segment_id": "osm_way_38540557",
-        "target_hour": "2026-06-20 17:00:00",
-        "police_station": "City Market",
-        "junction_name": "BTP082 - KR Market Junction",
-        "road_class": "secondary",
-        "road_width_m": 9.0,
-        "predicted_total": 2.715356667899696,
-        "traffic_interruption_0_100": 17.14176243655818,
-        "parking_risk_0_100": 45.305804253994,
-        "eps": 39.19,
-        "priority_band": "Watchlist",
-        "recommended_action": "Monitor",
-        "recommended_force_units": 0,
-        "map_matching_mode": "osm_overpass_nearest_road",
-        "road_name": "Avenue Road",
-        "osm_highway": "tertiary",
-        "count_two_wheeler": 2.1819677657772774,
-        "count_car": 0.28126537519752304,
-        "count_auto": 0.15269760078351072,
-        "count_light_commercial": 0.09455609295187843,
-        "count_heavy": 0.004353673964846485,
-        "count_other": 0.0005161592246592731,
-        "live_congestion_multiplier": 1.0,
-        "clearance_m": 8.322933856214886,
-        "emergency_gridlock_flag": false,
-        "confidence_band": "Medium",
-        "hotspot_probability": 0.44715447154471544,
-        "economic_loss_inr": 927.0,
-        "geometry_wkt": "LINESTRING (77.5780029 12.9667354, 77.5782442 12.9672301, 77.5783238 12.9673956, 77.5783862 12.9675185, 77.5784993 12.9677275, 77.578642 12.9680027, 77.5787883 12.9682515, 77.5789181 12.9684724, 77.5789314 12.968495, 77.5792711 12.9690729, 77.5794823 12.9694251, 77.579646 12.9696979, 77.5797448 12.9699194, 77.5801092 12.9706928, 77.5801631 12.9708072, 77.5803345 12.9711532, 77.5804317 12.9713552, 77.5805686 12.9716766, 77.5806946 12.971902, 77.580905 12.9722961, 77.5810037 12.972481, 77.5810308 12.9727807, 77.5810224 12.9729254, 77.5810205 12.9729583, 77.5810182 12.9729983, 77.5810143 12.9730658)"
-      },
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            77.5780029,
-            12.9667354
-          ],
-          [
-            77.5782442,
-            12.9672301
-          ],
-          [
-            77.5783238,
-            12.9673956
-          ],
-          [
-            77.5783862,
-            12.9675185
-          ],
-          [
-            77.5784993,
-            12.9677275
-          ],
-          [
-            77.578642,
-            12.9680027
-          ],
-          [
-            77.5787883,
-            12.9682515
-          ],
-          [
-            77.5789181,
-            12.9684724
-          ],
-          [
-            77.5789314,
-            12.968495
-          ],
-          [
-            77.5792711,
-            12.9690729
-          ],
-          [
-            77.5794823,
-            12.9694251
-          ],
-          [
-            77.579646,
-            12.9696979
-          ],
-          [
-            77.5797448,
-            12.9699194
-          ],
-          [
-            77.5801092,
-            12.9706928
-          ],
-          [
-            77.5801631,
-            12.9708072
-          ],
-          [
-            77.5803345,
-            12.9711532
-          ],
-          [
-            77.5804317,
-            12.9713552
-          ],
-          [
-            77.5805686,
-            12.9716766
-          ],
-          [
-            77.5806946,
-            12.971902
-          ],
-          [
-            77.580905,
-            12.9722961
-          ],
-          [
-            77.5810037,
-            12.972481
-          ],
-          [
-            77.5810308,
-            12.9727807
-          ],
-          [
-            77.5810224,
-            12.9729254
-          ],
-          [
-            77.5810205,
-            12.9729583
-          ],
-          [
-            77.5810182,
-            12.9729983
-          ],
-          [
-            77.5810143,
-            12.9730658
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "segment_id": "osm_way_38754833",
+        "segment_id": "grid_12841_77676",
         "target_hour": "2026-06-20 17:00:00",
         "police_station": "Electronic City",
         "junction_name": "No Junction",
         "road_class": "secondary",
         "road_width_m": 9.0,
-        "predicted_total": 1.7134696540007268,
-        "traffic_interruption_0_100": 8.82236899181449,
-        "parking_risk_0_100": 31.666566811407414,
-        "eps": 26.64,
-        "priority_band": "Low",
-        "recommended_action": "Monitor",
-        "recommended_force_units": 0,
-        "map_matching_mode": "osm_overpass_nearest_road",
+        "predicted_total": 5.430882534473849,
+        "traffic_interruption_0_100": 84.376652487803,
+        "parking_risk_0_100": 70.08657427411677,
+        "eps": 80.31,
+        "priority_band": "Red Line",
+        "recommended_action": "Immediate dispatch",
+        "recommended_force_units": 3,
+        "map_matching_mode": "grid_fallback",
         "road_name": "",
-        "osm_highway": "tertiary",
-        "count_two_wheeler": 1.2385366823832697,
-        "count_car": 0.367509276376171,
-        "count_auto": 0.049313443128284555,
-        "count_light_commercial": 0.017494126803651474,
-        "count_heavy": 0.039215276304606285,
-        "count_other": 0.001400849004743992,
+        "osm_highway": "",
+        "count_two_wheeler": 2.8411940608334967,
+        "count_car": 2.0764379144316423,
+        "count_auto": 0.1942419713209853,
+        "count_light_commercial": 0.09398409302321532,
+        "count_heavy": 0.22335914339329685,
+        "count_other": 0.0016653514712126048,
         "live_congestion_multiplier": 1.0,
-        "clearance_m": 8.525484432440626,
+        "clearance_m": 7.1823091991561325,
         "emergency_gridlock_flag": false,
-        "confidence_band": "Low",
-        "hotspot_probability": 0.28695652173913044,
-        "economic_loss_inr": 608.0,
-        "geometry_wkt": "LINESTRING (77.6736514 12.8445877, 77.6744217 12.8435827, 77.6746089 12.8433279, 77.674875 12.8429781, 77.6753036 12.8424952, 77.6755029 12.8422706, 77.6756444 12.8420928, 77.6757726 12.8419317, 77.6758261 12.841854, 77.6760768 12.8414893, 77.6763335 12.8411174, 77.6763774 12.8410532, 77.6768187 12.8404161, 77.6769959 12.8401603, 77.6770889 12.8400385, 77.6770986 12.8400267, 77.677166 12.8399443, 77.677864 12.8390913, 77.6781064 12.8387952, 77.6784098 12.8383795, 77.6785554 12.8381484, 77.6786365 12.8380013)"
+        "confidence_band": "High",
+        "hotspot_probability": 0.8709677419354839,
+        "economic_loss_inr": 3100.0,
+        "geometry_wkt": ""
       },
       "geometry": {
         "type": "LineString",
         "coordinates": [
           [
-            77.6736514,
-            12.8445877
+            77.67608,
+            12.8415
           ],
           [
-            77.6744217,
-            12.8435827
-          ],
-          [
-            77.6746089,
-            12.8433279
-          ],
-          [
-            77.674875,
-            12.8429781
-          ],
-          [
-            77.6753036,
-            12.8424952
-          ],
-          [
-            77.6755029,
-            12.8422706
-          ],
-          [
-            77.6756444,
-            12.8420928
-          ],
-          [
-            77.6757726,
-            12.8419317
-          ],
-          [
-            77.6758261,
-            12.841854
-          ],
-          [
-            77.6760768,
-            12.8414893
-          ],
-          [
-            77.6763335,
-            12.8411174
-          ],
-          [
-            77.6763774,
-            12.8410532
-          ],
-          [
-            77.6768187,
-            12.8404161
-          ],
-          [
-            77.6769959,
-            12.8401603
-          ],
-          [
-            77.6770889,
-            12.8400385
-          ],
-          [
-            77.6770986,
-            12.8400267
-          ],
-          [
-            77.677166,
-            12.8399443
-          ],
-          [
-            77.677864,
-            12.8390913
-          ],
-          [
-            77.6781064,
-            12.8387952
-          ],
-          [
-            77.6784098,
-            12.8383795
-          ],
-          [
-            77.6785554,
-            12.8381484
-          ],
-          [
-            77.6786365,
-            12.8380013
+            77.67692000000001,
+            12.8415
           ]
         ]
       }
@@ -560,126 +98,187 @@
     {
       "type": "Feature",
       "properties": {
-        "segment_id": "osm_way_760106566",
+        "segment_id": "grid_12980_77602",
+        "target_hour": "2026-06-20 17:00:00",
+        "police_station": "Shivajinagar",
+        "junction_name": "BTP211 - Central Street Junction",
+        "road_class": "secondary",
+        "road_width_m": 9.0,
+        "predicted_total": 3.2268558083185646,
+        "traffic_interruption_0_100": 46.09379458145943,
+        "parking_risk_0_100": 51.182389558075535,
+        "eps": 56.46,
+        "priority_band": "Orange Line",
+        "recommended_action": "Monitor (Low Confidence)",
+        "recommended_force_units": 2,
+        "map_matching_mode": "grid_fallback",
+        "road_name": "",
+        "osm_highway": "",
+        "count_two_wheeler": 1.5598679673092501,
+        "count_car": 1.2050798507247595,
+        "count_auto": 0.4060624942160509,
+        "count_light_commercial": 0.04786062813471961,
+        "count_heavy": 0.005892120207833135,
+        "count_other": 0.002092747725950962,
+        "live_congestion_multiplier": 1.0,
+        "clearance_m": 7.951299372341291,
+        "emergency_gridlock_flag": false,
+        "confidence_band": "Medium",
+        "hotspot_probability": 0.6666666666666666,
+        "economic_loss_inr": 1544.0,
+        "geometry_wkt": ""
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            77.60208,
+            12.980500000000001
+          ],
+          [
+            77.60292000000001,
+            12.980500000000001
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": "grid_12971_77580",
+        "target_hour": "2026-06-20 17:00:00",
+        "police_station": "Halasuru Gate",
+        "junction_name": "BTP038 - Mysore Bank Junction",
+        "road_class": "secondary",
+        "road_width_m": 9.0,
+        "predicted_total": 3.0087076857072677,
+        "traffic_interruption_0_100": 21.191677589450787,
+        "parking_risk_0_100": 48.75754036846707,
+        "eps": 50.45,
+        "priority_band": "Orange Line",
+        "recommended_action": "Monitor (Low Confidence)",
+        "recommended_force_units": 2,
+        "map_matching_mode": "grid_fallback",
+        "road_name": "",
+        "osm_highway": "",
+        "count_two_wheeler": 2.808669194777296,
+        "count_car": 0.10273560067952002,
+        "count_auto": 0.06522564309653117,
+        "count_light_commercial": 0.020029947721650284,
+        "count_heavy": 0.011845738683355561,
+        "count_other": 0.00020156074891478708,
+        "live_congestion_multiplier": 1.0,
+        "clearance_m": 8.348955725275532,
+        "emergency_gridlock_flag": false,
+        "confidence_band": "Medium",
+        "hotspot_probability": 0.6507936507936508,
+        "economic_loss_inr": 1021.0,
+        "geometry_wkt": ""
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            77.58008,
+            12.9715
+          ],
+          [
+            77.58092,
+            12.9715
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": "grid_12840_77676",
+        "target_hour": "2026-06-20 17:00:00",
+        "police_station": "Electronic City",
+        "junction_name": "No Junction",
+        "road_class": "secondary",
+        "road_width_m": 9.0,
+        "predicted_total": 3.37982279646,
+        "traffic_interruption_0_100": 54.099762652823436,
+        "parking_risk_0_100": 52.81394266817758,
+        "eps": 43.72,
+        "priority_band": "Watchlist",
+        "recommended_action": "Monitor",
+        "recommended_force_units": 2,
+        "map_matching_mode": "grid_fallback",
+        "road_name": "",
+        "osm_highway": "",
+        "count_two_wheeler": 1.6762578664492713,
+        "count_car": 1.3284316348854317,
+        "count_auto": 0.0915216307945896,
+        "count_light_commercial": 0.03941636033766718,
+        "count_heavy": 0.24338342875523838,
+        "count_other": 0.000811875237801333,
+        "live_congestion_multiplier": 1.0,
+        "clearance_m": 7.822749593508306,
+        "emergency_gridlock_flag": false,
+        "confidence_band": "Medium",
+        "hotspot_probability": 0.3945945945945946,
+        "economic_loss_inr": 1539.0,
+        "geometry_wkt": ""
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            77.67608,
+            12.8405
+          ],
+          [
+            77.67692000000001,
+            12.8405
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": "grid_12915_77585",
         "target_hour": "2026-06-20 17:00:00",
         "police_station": "J.P. Nagar",
         "junction_name": "BTP177 - Aurobindo Circle, ORR",
-        "road_class": "secondary",
-        "road_width_m": 9.0,
-        "predicted_total": 1.2029675370946205,
-        "traffic_interruption_0_100": 6.184495551571101,
-        "parking_risk_0_100": 23.457658863063592,
-        "eps": 21.15,
+        "road_class": "primary",
+        "road_width_m": 12.0,
+        "predicted_total": 1.771908741835626,
+        "traffic_interruption_0_100": 10.790359350420587,
+        "parking_risk_0_100": 32.54823918474171,
+        "eps": 24.8,
         "priority_band": "Low",
         "recommended_action": "Monitor",
         "recommended_force_units": 0,
-        "map_matching_mode": "osm_overpass_nearest_road",
-        "road_name": "24th Main Road",
-        "osm_highway": "secondary",
-        "count_two_wheeler": 0.6203115288094487,
-        "count_car": 0.4524995737031761,
-        "count_auto": 0.08006393670533882,
-        "count_light_commercial": 0.03950216566629626,
-        "count_heavy": 0.009951787808633527,
-        "count_other": 0.0006385444017271857,
+        "map_matching_mode": "grid_fallback",
+        "road_name": "",
+        "osm_highway": "",
+        "count_two_wheeler": 0.7964314355297653,
+        "count_car": 0.6725826662799478,
+        "count_auto": 0.21329494402380092,
+        "count_light_commercial": 0.06749353304808768,
+        "count_heavy": 0.020967523922623583,
+        "count_other": 0.0011386390314006283,
         "live_congestion_multiplier": 1.0,
-        "clearance_m": 8.605493901375313,
+        "clearance_m": 11.398937564011066,
         "emergency_gridlock_flag": false,
         "confidence_band": "Low",
-        "hotspot_probability": 0.21804511278195488,
-        "economic_loss_inr": 486.0,
-        "geometry_wkt": "LINESTRING (77.5856722 12.910537, 77.5856745 12.9106606, 77.5856807 12.911004, 77.5856838 12.9111708, 77.5856923 12.9116363, 77.5857029 12.9122153, 77.585711 12.9126602, 77.5857156 12.9129124, 77.5857198 12.9131373, 77.585726 12.913477, 77.585732 12.9138052, 77.5857333 12.9138797, 77.585735 12.9139694, 77.5857407 12.9142851, 77.5857492 12.9147446, 77.5857512 12.9148555, 77.5857573 12.9151927, 77.5857679 12.915771, 77.5857733 12.9160658, 77.5857882 12.9168772, 77.5857891 12.9169287, 77.58579 12.9169759)"
+        "hotspot_probability": 0.19393939393939394,
+        "economic_loss_inr": 996.0,
+        "geometry_wkt": ""
       },
       "geometry": {
         "type": "LineString",
         "coordinates": [
           [
-            77.5856722,
-            12.910537
+            77.58507999999999,
+            12.9155
           ],
           [
-            77.5856745,
-            12.9106606
-          ],
-          [
-            77.5856807,
-            12.911004
-          ],
-          [
-            77.5856838,
-            12.9111708
-          ],
-          [
-            77.5856923,
-            12.9116363
-          ],
-          [
-            77.5857029,
-            12.9122153
-          ],
-          [
-            77.585711,
-            12.9126602
-          ],
-          [
-            77.5857156,
-            12.9129124
-          ],
-          [
-            77.5857198,
-            12.9131373
-          ],
-          [
-            77.585726,
-            12.913477
-          ],
-          [
-            77.585732,
-            12.9138052
-          ],
-          [
-            77.5857333,
-            12.9138797
-          ],
-          [
-            77.585735,
-            12.9139694
-          ],
-          [
-            77.5857407,
-            12.9142851
-          ],
-          [
-            77.5857492,
-            12.9147446
-          ],
-          [
-            77.5857512,
-            12.9148555
-          ],
-          [
-            77.5857573,
-            12.9151927
-          ],
-          [
-            77.5857679,
-            12.915771
-          ],
-          [
-            77.5857733,
-            12.9160658
-          ],
-          [
-            77.5857882,
-            12.9168772
-          ],
-          [
-            77.5857891,
-            12.9169287
-          ],
-          [
-            77.58579,
-            12.9169759
+            77.58592,
+            12.9155
           ]
         ]
       }
@@ -687,50 +286,93 @@
     {
       "type": "Feature",
       "properties": {
-        "segment_id": "osm_way_332775565",
+        "segment_id": "grid_12995_77696",
         "target_hour": "2026-06-20 17:00:00",
-        "police_station": "Adugodi",
-        "junction_name": "BTP135 - UCO Bank Junction",
-        "road_class": "secondary",
-        "road_width_m": 9.0,
-        "predicted_total": 1.1751767165331906,
-        "traffic_interruption_0_100": 5.662054253667259,
-        "parking_risk_0_100": 22.98349076385684,
-        "eps": 17.13,
+        "police_station": "Mahadevapura",
+        "junction_name": "No Junction",
+        "road_class": "primary",
+        "road_width_m": 12.0,
+        "predicted_total": 1.334839185638082,
+        "traffic_interruption_0_100": 8.4775650940786,
+        "parking_risk_0_100": 25.668170187758843,
+        "eps": 23.57,
         "priority_band": "Low",
         "recommended_action": "Monitor",
         "recommended_force_units": 0,
-        "map_matching_mode": "osm_overpass_nearest_road",
-        "road_name": "80 Feet Road",
-        "osm_highway": "secondary",
-        "count_two_wheeler": 0.6321202406759785,
-        "count_car": 0.464083289818175,
-        "count_auto": 0.06181287447884721,
-        "count_light_commercial": 0.013190077429303438,
-        "count_heavy": 0.0030515516778279687,
-        "count_other": 0.0009186824530583006,
+        "map_matching_mode": "grid_fallback",
+        "road_name": "",
+        "osm_highway": "",
+        "count_two_wheeler": 0.2554487054851506,
+        "count_car": 0.6716271160774251,
+        "count_auto": 0.3049441534819201,
+        "count_light_commercial": 0.07892658621556876,
+        "count_heavy": 0.019855258150464163,
+        "count_other": 0.004037366227553246,
         "live_congestion_multiplier": 1.0,
-        "clearance_m": 8.623043027717905,
+        "clearance_m": 11.470574075054728,
         "emergency_gridlock_flag": false,
         "confidence_band": "Low",
-        "hotspot_probability": 0.14985590778097982,
-        "economic_loss_inr": 435.0,
-        "geometry_wkt": "LINESTRING (77.6152742 12.9359065, 77.6154589 12.9360055, 77.6156251 12.9360828)"
+        "hotspot_probability": 0.1972318339100346,
+        "economic_loss_inr": 893.0,
+        "geometry_wkt": ""
       },
       "geometry": {
         "type": "LineString",
         "coordinates": [
           [
-            77.6152742,
-            12.9359065
+            77.69608,
+            12.9955
           ],
           [
-            77.6154589,
-            12.9360055
+            77.69692,
+            12.9955
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": "grid_12935_77615",
+        "target_hour": "2026-06-20 17:00:00",
+        "police_station": "Adugodi",
+        "junction_name": "BTP135 - UCO Bank Junction",
+        "road_class": "primary",
+        "road_width_m": 12.0,
+        "predicted_total": 1.4215636106703544,
+        "traffic_interruption_0_100": 7.002327493411309,
+        "parking_risk_0_100": 27.086984556753745,
+        "eps": 17.56,
+        "priority_band": "Low",
+        "recommended_action": "Monitor",
+        "recommended_force_units": 0,
+        "map_matching_mode": "grid_fallback",
+        "road_name": "",
+        "osm_highway": "",
+        "count_two_wheeler": 0.6610783323431413,
+        "count_car": 0.619434724468874,
+        "count_auto": 0.11429576360441472,
+        "count_light_commercial": 0.02199793116203798,
+        "count_heavy": 0.0043769080723101645,
+        "count_other": 0.0003799510195762492,
+        "live_congestion_multiplier": 1.0,
+        "clearance_m": 11.520732438837749,
+        "emergency_gridlock_flag": false,
+        "confidence_band": "Low",
+        "hotspot_probability": 0.09883720930232558,
+        "economic_loss_inr": 742.0,
+        "geometry_wkt": ""
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            77.61507999999999,
+            12.935500000000001
           ],
           [
-            77.6156251,
-            12.9360828
+            77.61592,
+            12.935500000000001
           ]
         ]
       }

@@ -4,641 +4,46 @@
     {
       "type": "Feature",
       "properties": {
-        "segment_id": "osm_way_1286177342",
-        "target_hour": "2026-06-20 02:00:00",
-        "police_station": "Electronic City",
-        "junction_name": "No Junction",
-        "road_class": "secondary",
-        "road_width_m": 9.0,
-        "predicted_total": 24.818224328360312,
-        "traffic_interruption_0_100": 87.05087377509119,
-        "parking_risk_0_100": 99.59747206301337,
-        "eps": 35.39,
-        "priority_band": "Watchlist",
-        "recommended_action": "Monitor",
-        "recommended_force_units": 0,
-        "map_matching_mode": "osm_overpass_nearest_road",
-        "road_name": "",
-        "osm_highway": "tertiary",
-        "count_two_wheeler": 22.888485887608514,
-        "count_car": 1.475728818247489,
-        "count_auto": 0.2973884075242236,
-        "count_light_commercial": 0.08130217238371464,
-        "count_heavy": 0.05873032020568505,
-        "count_other": 0.016588722390684586,
-        "live_congestion_multiplier": 1.0,
-        "clearance_m": 3.531877300975461,
-        "emergency_gridlock_flag": false,
-        "confidence_band": "Medium",
-        "hotspot_probability": 0.725,
-        "economic_loss_inr": 26794.0,
-        "geometry_wkt": "LINESTRING (77.6913318 12.8154892, 77.6911722 12.8158188, 77.6911096 12.8159274, 77.6908643 12.8162252, 77.6907632 12.8163524, 77.690352 12.8168701, 77.6901681 12.8171017, 77.6900157 12.8172935, 77.6888526 12.8187579)"
-      },
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            77.6913318,
-            12.8154892
-          ],
-          [
-            77.6911722,
-            12.8158188
-          ],
-          [
-            77.6911096,
-            12.8159274
-          ],
-          [
-            77.6908643,
-            12.8162252
-          ],
-          [
-            77.6907632,
-            12.8163524
-          ],
-          [
-            77.690352,
-            12.8168701
-          ],
-          [
-            77.6901681,
-            12.8171017
-          ],
-          [
-            77.6900157,
-            12.8172935
-          ],
-          [
-            77.6888526,
-            12.8187579
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "segment_id": "osm_way_137954894",
-        "target_hour": "2026-06-20 02:00:00",
-        "police_station": "Vijayanagara",
-        "junction_name": "BTP016 - 5th Main Road, RPC Layout",
-        "road_class": "secondary",
-        "road_width_m": 9.0,
-        "predicted_total": 9.5785988723304,
-        "traffic_interruption_0_100": 73.05927316006861,
-        "parking_risk_0_100": 88.09935430411858,
-        "eps": 27.97,
-        "priority_band": "Low",
-        "recommended_action": "Monitor",
-        "recommended_force_units": 0,
-        "map_matching_mode": "osm_overpass_nearest_road",
-        "road_name": "5th Main Road",
-        "osm_highway": "secondary",
-        "count_two_wheeler": 0.687867847899516,
-        "count_car": 7.7335411504019484,
-        "count_auto": 0.4655115561619132,
-        "count_light_commercial": 0.41402101742393027,
-        "count_heavy": 0.2727585158177374,
-        "count_other": 0.004898784625355795,
-        "live_congestion_multiplier": 1.0,
-        "clearance_m": 4.620021085229216,
-        "emergency_gridlock_flag": false,
-        "confidence_band": "High",
-        "hotspot_probability": 0.7837837837837837,
-        "economic_loss_inr": 10352.0,
-        "geometry_wkt": "LINESTRING (77.5356403 12.9659702, 77.5356817 12.9659558, 77.5359487 12.9658633, 77.5362465 12.9657602, 77.5375462 12.9653099, 77.5377106 12.9652529, 77.5379281 12.9651776, 77.538189 12.9650872)"
-      },
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            77.5356403,
-            12.9659702
-          ],
-          [
-            77.5356817,
-            12.9659558
-          ],
-          [
-            77.5359487,
-            12.9658633
-          ],
-          [
-            77.5362465,
-            12.9657602
-          ],
-          [
-            77.5375462,
-            12.9653099
-          ],
-          [
-            77.5377106,
-            12.9652529
-          ],
-          [
-            77.5379281,
-            12.9651776
-          ],
-          [
-            77.538189,
-            12.9650872
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "segment_id": "osm_way_103269863",
-        "target_hour": "2026-06-20 02:00:00",
-        "police_station": "HSR Layout",
-        "junction_name": "No Junction",
-        "road_class": "motorway",
-        "road_width_m": 15.0,
-        "predicted_total": 7.986539584918636,
-        "traffic_interruption_0_100": 24.102690723381702,
-        "parking_risk_0_100": 83.04803745377981,
-        "eps": 25.63,
-        "priority_band": "Low",
-        "recommended_action": "Monitor",
-        "recommended_force_units": 0,
-        "map_matching_mode": "osm_overpass_nearest_road",
-        "road_name": "Electronic City Flyover",
-        "osm_highway": "motorway",
-        "count_two_wheeler": 2.451895049311261,
-        "count_car": 2.2781625337829063,
-        "count_auto": 0.7233796286917428,
-        "count_light_commercial": 1.4086275863000048,
-        "count_heavy": 1.1188792229265343,
-        "count_other": 0.005595563906186372,
-        "live_congestion_multiplier": 1.0,
-        "clearance_m": 11.652505157385862,
-        "emergency_gridlock_flag": false,
-        "confidence_band": "Medium",
-        "hotspot_probability": 0.75,
-        "economic_loss_inr": 9501.0,
-        "geometry_wkt": "LINESTRING (77.6698904 12.8467491, 77.6703131 12.8469612, 77.6704618 12.8470542, 77.6705444 12.8471165, 77.6705935 12.8471581, 77.670644 12.8472034, 77.6706931 12.8472549, 77.6707274 12.8473023, 77.6707651 12.8473604, 77.6707881 12.8474104, 77.6708023 12.8474803, 77.6708099 12.8475426, 77.6708062 12.8476193, 77.6707976 12.8476859, 77.6707748 12.8477578, 77.6707535 12.8477989, 77.6706781 12.8479318, 77.6705806 12.848096, 77.6702864 12.8484798, 77.667198 12.8523861, 77.6660868 12.8537852, 77.665718 12.8542525, 77.6648472 12.8553562, 77.6646906 12.8555459, 77.6641168 12.8562284, 77.6634588 12.8570598, 77.6622258 12.8586685, 77.6609625 12.8602365, 77.6598751 12.8616011, 77.658076 12.8638821, 77.6563844 12.8660037, 77.6554214 12.8672114, 77.6531186 12.8701257, 77.6510374 12.8727788, 77.6508845 12.8729694, 77.6507299 12.8731544, 77.6504208 12.8735164, 77.6502581 12.8736949, 77.6501061 12.8738614, 77.6498086 12.8741943, 77.6495046 12.8745256, 77.6493194 12.8747336, 77.649131 12.8749377, 77.6487884 12.8753178, 77.6477185 12.8765491, 77.6473108 12.8770943, 77.646793 12.8778983, 77.642852 12.8843135, 77.6423815 12.8850793, 77.6412187 12.8869721, 77.6383252 12.8916725, 77.6376842 12.8927142, 77.6361018 12.8952859, 77.6346378 12.8976548, 77.6330387 12.9002933, 77.6325784 12.9010482, 77.6323896 12.9013577, 77.6323479 12.9014258, 77.6318032 12.9023158, 77.6316213 12.9026148, 77.6286187 12.9074453, 77.6283396 12.9079036)"
-      },
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            77.6698904,
-            12.8467491
-          ],
-          [
-            77.6703131,
-            12.8469612
-          ],
-          [
-            77.6704618,
-            12.8470542
-          ],
-          [
-            77.6705444,
-            12.8471165
-          ],
-          [
-            77.6705935,
-            12.8471581
-          ],
-          [
-            77.670644,
-            12.8472034
-          ],
-          [
-            77.6706931,
-            12.8472549
-          ],
-          [
-            77.6707274,
-            12.8473023
-          ],
-          [
-            77.6707651,
-            12.8473604
-          ],
-          [
-            77.6707881,
-            12.8474104
-          ],
-          [
-            77.6708023,
-            12.8474803
-          ],
-          [
-            77.6708099,
-            12.8475426
-          ],
-          [
-            77.6708062,
-            12.8476193
-          ],
-          [
-            77.6707976,
-            12.8476859
-          ],
-          [
-            77.6707748,
-            12.8477578
-          ],
-          [
-            77.6707535,
-            12.8477989
-          ],
-          [
-            77.6706781,
-            12.8479318
-          ],
-          [
-            77.6705806,
-            12.848096
-          ],
-          [
-            77.6702864,
-            12.8484798
-          ],
-          [
-            77.667198,
-            12.8523861
-          ],
-          [
-            77.6660868,
-            12.8537852
-          ],
-          [
-            77.665718,
-            12.8542525
-          ],
-          [
-            77.6648472,
-            12.8553562
-          ],
-          [
-            77.6646906,
-            12.8555459
-          ],
-          [
-            77.6641168,
-            12.8562284
-          ],
-          [
-            77.6634588,
-            12.8570598
-          ],
-          [
-            77.6622258,
-            12.8586685
-          ],
-          [
-            77.6609625,
-            12.8602365
-          ],
-          [
-            77.6598751,
-            12.8616011
-          ],
-          [
-            77.658076,
-            12.8638821
-          ],
-          [
-            77.6563844,
-            12.8660037
-          ],
-          [
-            77.6554214,
-            12.8672114
-          ],
-          [
-            77.6531186,
-            12.8701257
-          ],
-          [
-            77.6510374,
-            12.8727788
-          ],
-          [
-            77.6508845,
-            12.8729694
-          ],
-          [
-            77.6507299,
-            12.8731544
-          ],
-          [
-            77.6504208,
-            12.8735164
-          ],
-          [
-            77.6502581,
-            12.8736949
-          ],
-          [
-            77.6501061,
-            12.8738614
-          ],
-          [
-            77.6498086,
-            12.8741943
-          ],
-          [
-            77.6495046,
-            12.8745256
-          ],
-          [
-            77.6493194,
-            12.8747336
-          ],
-          [
-            77.649131,
-            12.8749377
-          ],
-          [
-            77.6487884,
-            12.8753178
-          ],
-          [
-            77.6477185,
-            12.8765491
-          ],
-          [
-            77.6473108,
-            12.8770943
-          ],
-          [
-            77.646793,
-            12.8778983
-          ],
-          [
-            77.642852,
-            12.8843135
-          ],
-          [
-            77.6423815,
-            12.8850793
-          ],
-          [
-            77.6412187,
-            12.8869721
-          ],
-          [
-            77.6383252,
-            12.8916725
-          ],
-          [
-            77.6376842,
-            12.8927142
-          ],
-          [
-            77.6361018,
-            12.8952859
-          ],
-          [
-            77.6346378,
-            12.8976548
-          ],
-          [
-            77.6330387,
-            12.9002933
-          ],
-          [
-            77.6325784,
-            12.9010482
-          ],
-          [
-            77.6323896,
-            12.9013577
-          ],
-          [
-            77.6323479,
-            12.9014258
-          ],
-          [
-            77.6318032,
-            12.9023158
-          ],
-          [
-            77.6316213,
-            12.9026148
-          ],
-          [
-            77.6286187,
-            12.9074453
-          ],
-          [
-            77.6283396,
-            12.9079036
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "segment_id": "osm_way_30413416",
-        "target_hour": "2026-06-20 02:00:00",
-        "police_station": "K.G. Halli",
-        "junction_name": "No Junction",
-        "road_class": "residential",
-        "road_width_m": 6.0,
-        "predicted_total": 5.466525455063807,
-        "traffic_interruption_0_100": 74.2151350383311,
-        "parking_risk_0_100": 70.32257215826311,
-        "eps": 25.3,
-        "priority_band": "Low",
-        "recommended_action": "Monitor",
-        "recommended_force_units": 0,
-        "map_matching_mode": "osm_overpass_nearest_road",
-        "road_name": "5th Cross Road",
-        "osm_highway": "residential",
-        "count_two_wheeler": 0.10373612720063945,
-        "count_car": 2.5123054509903007,
-        "count_auto": 0.11244828453884348,
-        "count_light_commercial": 0.8047890200460229,
-        "count_heavy": 1.9240920190110455,
-        "count_other": 0.009154553276954629,
-        "live_congestion_multiplier": 1.0,
-        "clearance_m": 3.0316000811741586,
-        "emergency_gridlock_flag": false,
-        "confidence_band": "High",
-        "hotspot_probability": 0.9090909090909091,
-        "economic_loss_inr": 2488.0,
-        "geometry_wkt": "LINESTRING (77.6242865 13.0336754, 77.6243524 13.0339248, 77.6245085 13.0342574, 77.624602 13.0344, 77.6247297 13.0346531, 77.6250367 13.0352225, 77.6251549 13.0354663, 77.6253339 13.0358356, 77.6254227 13.0360309, 77.6256083 13.0364014, 77.6256353 13.03656)"
-      },
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            77.6242865,
-            13.0336754
-          ],
-          [
-            77.6243524,
-            13.0339248
-          ],
-          [
-            77.6245085,
-            13.0342574
-          ],
-          [
-            77.624602,
-            13.0344
-          ],
-          [
-            77.6247297,
-            13.0346531
-          ],
-          [
-            77.6250367,
-            13.0352225
-          ],
-          [
-            77.6251549,
-            13.0354663
-          ],
-          [
-            77.6253339,
-            13.0358356
-          ],
-          [
-            77.6254227,
-            13.0360309
-          ],
-          [
-            77.6256083,
-            13.0364014
-          ],
-          [
-            77.6256353,
-            13.03656
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "segment_id": "osm_way_467074967",
-        "target_hour": "2026-06-20 02:00:00",
-        "police_station": "Kodigehalli",
-        "junction_name": "No Junction",
-        "road_class": "secondary",
-        "road_width_m": 9.0,
-        "predicted_total": 6.939452721246853,
-        "traffic_interruption_0_100": 49.30558775069952,
-        "parking_risk_0_100": 78.60687558752805,
-        "eps": 24.98,
-        "priority_band": "Low",
-        "recommended_action": "Monitor",
-        "recommended_force_units": 0,
-        "map_matching_mode": "osm_overpass_nearest_road",
-        "road_name": "",
-        "osm_highway": "tertiary",
-        "count_two_wheeler": 0.47875872985103424,
-        "count_car": 5.7863850700624,
-        "count_auto": 0.328732045259595,
-        "count_light_commercial": 0.2798001826400406,
-        "count_heavy": 0.05184689232012778,
-        "count_other": 0.013929801113655854,
-        "live_congestion_multiplier": 1.0,
-        "clearance_m": 5.847675190485692,
-        "emergency_gridlock_flag": false,
-        "confidence_band": "High",
-        "hotspot_probability": 0.9090909090909091,
-        "economic_loss_inr": 4851.0,
-        "geometry_wkt": "LINESTRING (77.5712654 13.047299, 77.5715654 13.0473226, 77.5721125 13.0473605, 77.5727007 13.0473853, 77.5729648 13.0473973, 77.5731401 13.0473996, 77.5734496 13.0474075)"
-      },
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            77.5712654,
-            13.047299
-          ],
-          [
-            77.5715654,
-            13.0473226
-          ],
-          [
-            77.5721125,
-            13.0473605
-          ],
-          [
-            77.5727007,
-            13.0473853
-          ],
-          [
-            77.5729648,
-            13.0473973
-          ],
-          [
-            77.5731401,
-            13.0473996
-          ],
-          [
-            77.5734496,
-            13.0474075
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "segment_id": "osm_way_1293978356",
+        "segment_id": "grid_12977_77580",
         "target_hour": "2026-06-20 02:00:00",
         "police_station": "Upparpet",
         "junction_name": "BTP044 - Sagar Theatre Junction",
-        "road_class": "residential",
-        "road_width_m": 6.0,
-        "predicted_total": 4.2422412925441755,
-        "traffic_interruption_0_100": 58.220930855800425,
-        "parking_risk_0_100": 61.043334054845985,
-        "eps": 23.42,
+        "road_class": "primary",
+        "road_width_m": 12.0,
+        "predicted_total": 4.5248492445246065,
+        "traffic_interruption_0_100": 23.245485135668563,
+        "parking_risk_0_100": 63.414641051342166,
+        "eps": 22.01,
         "priority_band": "Low",
         "recommended_action": "Monitor",
         "recommended_force_units": 0,
-        "map_matching_mode": "osm_overpass_nearest_road",
+        "map_matching_mode": "grid_fallback",
         "road_name": "",
-        "osm_highway": "service",
-        "count_two_wheeler": 0.1137135065521684,
-        "count_car": 1.2432495042807887,
-        "count_auto": 0.27060414290235313,
-        "count_light_commercial": 0.2306125995938063,
-        "count_heavy": 2.3756589633057916,
-        "count_other": 0.008402575909267624,
+        "osm_highway": "",
+        "count_two_wheeler": 0.3134497141551416,
+        "count_car": 2.4008689393200147,
+        "count_auto": 0.32400591163363174,
+        "count_light_commercial": 0.4334202855877,
+        "count_heavy": 1.047088238806821,
+        "count_other": 0.006016155021297426,
         "live_congestion_multiplier": 1.0,
-        "clearance_m": 3.617995643240822,
+        "clearance_m": 9.758913696638558,
         "emergency_gridlock_flag": false,
         "confidence_band": "High",
-        "hotspot_probability": 0.9090909090909091,
-        "economic_loss_inr": 1431.0,
-        "geometry_wkt": "LINESTRING (77.5809765 12.9772443, 77.5809471 12.9772016, 77.5807727 12.9773111, 77.5805273 12.9774697, 77.580495 12.9774891)"
+        "hotspot_probability": 0.8709677419354839,
+        "economic_loss_inr": 3328.0,
+        "geometry_wkt": ""
       },
       "geometry": {
         "type": "LineString",
         "coordinates": [
           [
-            77.5809765,
-            12.9772443
+            77.58008,
+            12.977500000000001
           ],
           [
-            77.5809471,
-            12.9772016
-          ],
-          [
-            77.5807727,
-            12.9773111
-          ],
-          [
-            77.5805273,
-            12.9774697
-          ],
-          [
-            77.580495,
-            12.9774891
+            77.58092,
+            12.977500000000001
           ]
         ]
       }
@@ -646,624 +51,46 @@
     {
       "type": "Feature",
       "properties": {
-        "segment_id": "osm_way_1369862144",
-        "target_hour": "2026-06-20 02:00:00",
-        "police_station": "Kodigehalli",
-        "junction_name": "No Junction",
-        "road_class": "secondary",
-        "road_width_m": 9.0,
-        "predicted_total": 5.782685163433161,
-        "traffic_interruption_0_100": 37.83150627660975,
-        "parking_risk_0_100": 72.33607995942411,
-        "eps": 23.04,
-        "priority_band": "Low",
-        "recommended_action": "Monitor",
-        "recommended_force_units": 0,
-        "map_matching_mode": "osm_overpass_nearest_road",
-        "road_name": "60 Feet Road",
-        "osm_highway": "tertiary",
-        "count_two_wheeler": 0.4833903675646921,
-        "count_car": 4.7283574264928525,
-        "count_auto": 0.14129594110303562,
-        "count_light_commercial": 0.38529981295612004,
-        "count_heavy": 0.03210203928329571,
-        "count_other": 0.012239576033164222,
-        "live_congestion_multiplier": 1.0,
-        "clearance_m": 6.363203451444806,
-        "emergency_gridlock_flag": false,
-        "confidence_band": "High",
-        "hotspot_probability": 0.9090909090909091,
-        "economic_loss_inr": 3548.0,
-        "geometry_wkt": "LINESTRING (77.59212 13.0629838, 77.592307 13.0628916)"
-      },
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            77.59212,
-            13.0629838
-          ],
-          [
-            77.592307,
-            13.0628916
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "segment_id": "osm_way_419803427",
-        "target_hour": "2026-06-20 02:00:00",
-        "police_station": "Kodigehalli",
-        "junction_name": "No Junction",
-        "road_class": "secondary",
-        "road_width_m": 9.0,
-        "predicted_total": 6.507366830984165,
-        "traffic_interruption_0_100": 27.66545419076798,
-        "parking_risk_0_100": 76.45087492443483,
-        "eps": 22.0,
-        "priority_band": "Low",
-        "recommended_action": "Monitor",
-        "recommended_force_units": 0,
-        "map_matching_mode": "osm_overpass_nearest_road",
-        "road_name": "60 Feet Road",
-        "osm_highway": "tertiary",
-        "count_two_wheeler": 3.2995951121536793,
-        "count_car": 2.9385422081731596,
-        "count_auto": 0.13893923527613838,
-        "count_light_commercial": 0.10754714862204659,
-        "count_heavy": 0.017241666353620688,
-        "count_other": 0.005501460405520942,
-        "live_congestion_multiplier": 1.0,
-        "clearance_m": 6.823458289942115,
-        "emergency_gridlock_flag": false,
-        "confidence_band": "High",
-        "hotspot_probability": 0.9166666666666666,
-        "economic_loss_inr": 2658.0,
-        "geometry_wkt": "LINESTRING (77.5868327 13.0637166, 77.5873424 13.0637263, 77.5886009 13.063748, 77.5888213 13.0637526, 77.5897114 13.063751, 77.5900542 13.0637459, 77.5903159 13.0636698, 77.5905901 13.0635904, 77.5910304 13.0634629, 77.5912502 13.0633863)"
-      },
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            77.5868327,
-            13.0637166
-          ],
-          [
-            77.5873424,
-            13.0637263
-          ],
-          [
-            77.5886009,
-            13.063748
-          ],
-          [
-            77.5888213,
-            13.0637526
-          ],
-          [
-            77.5897114,
-            13.063751
-          ],
-          [
-            77.5900542,
-            13.0637459
-          ],
-          [
-            77.5903159,
-            13.0636698
-          ],
-          [
-            77.5905901,
-            13.0635904
-          ],
-          [
-            77.5910304,
-            13.0634629
-          ],
-          [
-            77.5912502,
-            13.0633863
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "segment_id": "osm_way_23029284",
-        "target_hour": "2026-06-20 02:00:00",
-        "police_station": "Ashok Nagar",
-        "junction_name": "No Junction",
-        "road_class": "secondary",
-        "road_width_m": 9.0,
-        "predicted_total": 9.537272883990896,
-        "traffic_interruption_0_100": 31.653043685403905,
-        "parking_risk_0_100": 87.98956071809776,
-        "eps": 21.76,
-        "priority_band": "Low",
-        "recommended_action": "Monitor",
-        "recommended_force_units": 0,
-        "map_matching_mode": "osm_overpass_nearest_road",
-        "road_name": "Brigade Road",
-        "osm_highway": "secondary",
-        "count_two_wheeler": 7.724942817540931,
-        "count_car": 1.3673874538709925,
-        "count_auto": 0.3664828261683178,
-        "count_light_commercial": 0.061157646582410796,
-        "count_heavy": 0.013786198715806915,
-        "count_other": 0.0035159411124382626,
-        "live_congestion_multiplier": 1.0,
-        "clearance_m": 6.64059872941982,
-        "emergency_gridlock_flag": false,
-        "confidence_band": "High",
-        "hotspot_probability": 0.7837837837837837,
-        "economic_loss_inr": 2976.0,
-        "geometry_wkt": "LINESTRING (77.6069998 12.9713033, 77.6069397 12.9710935, 77.6069092 12.9709787, 77.6068998 12.9709431, 77.6066833 12.9702587, 77.6066431 12.9701373, 77.6066207 12.9700696, 77.6066075 12.9700254, 77.6065914 12.9699693, 77.606509 12.969687, 77.6064575 12.969532, 77.6063807 12.9692869, 77.6063626 12.9692295, 77.6062608 12.9687502, 77.6062449 12.968562, 77.6062418 12.9684742)"
-      },
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            77.6069998,
-            12.9713033
-          ],
-          [
-            77.6069397,
-            12.9710935
-          ],
-          [
-            77.6069092,
-            12.9709787
-          ],
-          [
-            77.6068998,
-            12.9709431
-          ],
-          [
-            77.6066833,
-            12.9702587
-          ],
-          [
-            77.6066431,
-            12.9701373
-          ],
-          [
-            77.6066207,
-            12.9700696
-          ],
-          [
-            77.6066075,
-            12.9700254
-          ],
-          [
-            77.6065914,
-            12.9699693
-          ],
-          [
-            77.606509,
-            12.969687
-          ],
-          [
-            77.6064575,
-            12.969532
-          ],
-          [
-            77.6063807,
-            12.9692869
-          ],
-          [
-            77.6063626,
-            12.9692295
-          ],
-          [
-            77.6062608,
-            12.9687502
-          ],
-          [
-            77.6062449,
-            12.968562
-          ],
-          [
-            77.6062418,
-            12.9684742
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "segment_id": "osm_way_1051193582",
-        "target_hour": "2026-06-20 02:00:00",
-        "police_station": "High ground",
-        "junction_name": "BTP032 - Windsor Circle",
-        "road_class": "secondary",
-        "road_width_m": 9.0,
-        "predicted_total": 9.476896076614532,
-        "traffic_interruption_0_100": 23.76236278268855,
-        "parking_risk_0_100": 87.82732993682632,
-        "eps": 20.16,
-        "priority_band": "Low",
-        "recommended_action": "Monitor",
-        "recommended_force_units": 0,
-        "map_matching_mode": "osm_overpass_nearest_road",
-        "road_name": "",
-        "osm_highway": "unclassified",
-        "count_two_wheeler": 9.05485736425497,
-        "count_car": 0.25545493286277626,
-        "count_auto": 0.14500778121698982,
-        "count_light_commercial": 0.01593565277953269,
-        "count_heavy": 0.0048939143119909375,
-        "count_other": 0.00074643118827325,
-        "live_congestion_multiplier": 1.0,
-        "clearance_m": 7.00786130567821,
-        "emergency_gridlock_flag": false,
-        "confidence_band": "Medium",
-        "hotspot_probability": 0.75,
-        "economic_loss_inr": 2328.0,
-        "geometry_wkt": "LINESTRING (77.5889057 12.9935385, 77.5889486 12.9936715, 77.5890128 12.9938281, 77.5890591 12.9939334, 77.5891532 12.9941471, 77.5892593 12.9943704, 77.5893844 12.9946335, 77.5894565 12.9947852, 77.5895709 12.995026)"
-      },
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            77.5889057,
-            12.9935385
-          ],
-          [
-            77.5889486,
-            12.9936715
-          ],
-          [
-            77.5890128,
-            12.9938281
-          ],
-          [
-            77.5890591,
-            12.9939334
-          ],
-          [
-            77.5891532,
-            12.9941471
-          ],
-          [
-            77.5892593,
-            12.9943704
-          ],
-          [
-            77.5893844,
-            12.9946335
-          ],
-          [
-            77.5894565,
-            12.9947852
-          ],
-          [
-            77.5895709,
-            12.995026
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "segment_id": "osm_way_548524980",
-        "target_hour": "2026-06-20 02:00:00",
-        "police_station": "Upparpet",
-        "junction_name": "BTP058 - Subbanna Junction",
-        "road_class": "secondary",
-        "road_width_m": 9.0,
-        "predicted_total": 5.008234329188293,
-        "traffic_interruption_0_100": 24.09191458125929,
-        "parking_risk_0_100": 67.14088354958324,
-        "eps": 19.18,
-        "priority_band": "Low",
-        "recommended_action": "Monitor",
-        "recommended_force_units": 0,
-        "map_matching_mode": "osm_overpass_nearest_road",
-        "road_name": "6th Cross Road",
-        "osm_highway": "tertiary",
-        "count_two_wheeler": 1.307832889591349,
-        "count_car": 3.232660828301423,
-        "count_auto": 0.2384095575770597,
-        "count_light_commercial": 0.20130547455483908,
-        "count_heavy": 0.02487707110220517,
-        "count_other": 0.003148508061416083,
-        "live_congestion_multiplier": 1.0,
-        "clearance_m": 6.992020137011371,
-        "emergency_gridlock_flag": false,
-        "confidence_band": "High",
-        "hotspot_probability": 0.7837837837837837,
-        "economic_loss_inr": 2337.0,
-        "geometry_wkt": "LINESTRING (77.5814238 12.9788635, 77.5813476 12.9788978, 77.581298 12.9789125, 77.5798959 12.979021, 77.5795785 12.9790472, 77.5783025 12.9791192, 77.5771746 12.9791906, 77.5771507 12.9791846, 77.5771002 12.9791649)"
-      },
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            77.5814238,
-            12.9788635
-          ],
-          [
-            77.5813476,
-            12.9788978
-          ],
-          [
-            77.581298,
-            12.9789125
-          ],
-          [
-            77.5798959,
-            12.979021
-          ],
-          [
-            77.5795785,
-            12.9790472
-          ],
-          [
-            77.5783025,
-            12.9791192
-          ],
-          [
-            77.5771746,
-            12.9791906
-          ],
-          [
-            77.5771507,
-            12.9791846
-          ],
-          [
-            77.5771002,
-            12.9791649
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "segment_id": "osm_way_45297816",
+        "segment_id": "grid_13005_77568",
         "target_hour": "2026-06-20 02:00:00",
         "police_station": "Malleshwaram",
         "junction_name": "No Junction",
         "road_class": "secondary",
         "road_width_m": 9.0,
-        "predicted_total": 6.7214699581389645,
-        "traffic_interruption_0_100": 22.425231688540826,
-        "parking_risk_0_100": 77.54506986299116,
-        "eps": 19.17,
+        "predicted_total": 6.726617761567575,
+        "traffic_interruption_0_100": 22.467614580174843,
+        "parking_risk_0_100": 77.5707426351151,
+        "eps": 21.66,
         "priority_band": "Low",
         "recommended_action": "Monitor",
         "recommended_force_units": 0,
-        "map_matching_mode": "osm_overpass_nearest_road",
-        "road_name": "15th Cross Road",
-        "osm_highway": "tertiary",
-        "count_two_wheeler": 4.466078986203317,
-        "count_car": 1.8592401688949296,
-        "count_auto": 0.30832441341587435,
-        "count_light_commercial": 0.07610345485606766,
-        "count_heavy": 0.007780319432356502,
-        "count_other": 0.003942615336419213,
-        "live_congestion_multiplier": 1.0,
-        "clearance_m": 7.072750251716016,
-        "emergency_gridlock_flag": false,
-        "confidence_band": "High",
-        "hotspot_probability": 0.7586206896551724,
-        "economic_loss_inr": 2213.0,
-        "geometry_wkt": "LINESTRING (77.5739373 13.0054147, 77.5735864 13.0054169, 77.5731541 13.0054296, 77.5726761 13.0054391, 77.5721695 13.0054428, 77.5720693 13.005444, 77.5718896 13.0054416, 77.5716925 13.005441, 77.5716653 13.0054409, 77.5712594 13.0054368, 77.5712126 13.0054364, 77.5707973 13.0054389, 77.5704825 13.005453, 77.5704247 13.0054575, 77.5699421 13.005474, 77.5696025 13.005489, 77.5692916 13.005499, 77.569237 13.0054989, 77.5691959 13.0055008, 77.5681646 13.0055491, 77.5676058 13.0055706, 77.5673945 13.0055722, 77.567161 13.0055745, 77.5671399 13.005576, 77.566987 13.0055872, 77.5669593 13.0055908, 77.5667143 13.0056226, 77.5664784 13.0056255, 77.5659447 13.0056292)"
-      },
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            77.5739373,
-            13.0054147
-          ],
-          [
-            77.5735864,
-            13.0054169
-          ],
-          [
-            77.5731541,
-            13.0054296
-          ],
-          [
-            77.5726761,
-            13.0054391
-          ],
-          [
-            77.5721695,
-            13.0054428
-          ],
-          [
-            77.5720693,
-            13.005444
-          ],
-          [
-            77.5718896,
-            13.0054416
-          ],
-          [
-            77.5716925,
-            13.005441
-          ],
-          [
-            77.5716653,
-            13.0054409
-          ],
-          [
-            77.5712594,
-            13.0054368
-          ],
-          [
-            77.5712126,
-            13.0054364
-          ],
-          [
-            77.5707973,
-            13.0054389
-          ],
-          [
-            77.5704825,
-            13.005453
-          ],
-          [
-            77.5704247,
-            13.0054575
-          ],
-          [
-            77.5699421,
-            13.005474
-          ],
-          [
-            77.5696025,
-            13.005489
-          ],
-          [
-            77.5692916,
-            13.005499
-          ],
-          [
-            77.569237,
-            13.0054989
-          ],
-          [
-            77.5691959,
-            13.0055008
-          ],
-          [
-            77.5681646,
-            13.0055491
-          ],
-          [
-            77.5676058,
-            13.0055706
-          ],
-          [
-            77.5673945,
-            13.0055722
-          ],
-          [
-            77.567161,
-            13.0055745
-          ],
-          [
-            77.5671399,
-            13.005576
-          ],
-          [
-            77.566987,
-            13.0055872
-          ],
-          [
-            77.5669593,
-            13.0055908
-          ],
-          [
-            77.5667143,
-            13.0056226
-          ],
-          [
-            77.5664784,
-            13.0056255
-          ],
-          [
-            77.5659447,
-            13.0056292
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "segment_id": "osm_way_1103060973",
-        "target_hour": "2026-06-20 02:00:00",
-        "police_station": "High ground",
-        "junction_name": "BTP032 - Windsor Circle",
-        "road_class": "residential",
-        "road_width_m": 6.0,
-        "predicted_total": 7.921232782269541,
-        "traffic_interruption_0_100": 32.85284534552099,
-        "parking_risk_0_100": 82.80022616899744,
-        "eps": 19.08,
-        "priority_band": "Low",
-        "recommended_action": "Monitor",
-        "recommended_force_units": 0,
-        "map_matching_mode": "osm_overpass_nearest_road",
+        "map_matching_mode": "grid_fallback",
         "road_name": "",
-        "osm_highway": "service",
-        "count_two_wheeler": 7.805809629688346,
-        "count_car": 0.05066573934482275,
-        "count_auto": 0.053577321626754694,
-        "count_light_commercial": 0.009634295083527204,
-        "count_heavy": 0.0011574612310389094,
-        "count_other": 0.00038833529505122186,
+        "osm_highway": "",
+        "count_two_wheeler": 5.4666744936446205,
+        "count_car": 0.912178670993537,
+        "count_auto": 0.31382399124574945,
+        "count_light_commercial": 0.026228969149659425,
+        "count_heavy": 0.006368739546079603,
+        "count_other": 0.0013428969879286797,
         "live_congestion_multiplier": 1.0,
-        "clearance_m": 4.390882689606491,
+        "clearance_m": 7.351528221359005,
         "emergency_gridlock_flag": false,
         "confidence_band": "High",
-        "hotspot_probability": 0.7837837837837837,
-        "economic_loss_inr": 706.0,
-        "geometry_wkt": "LINESTRING (77.588641 12.9923482, 77.5885927 12.9923568, 77.5885738 12.9923602, 77.5885396 12.9923647, 77.5884978 12.9923324, 77.5884376 12.9919131, 77.5883959 12.9915916, 77.5883895 12.9915686, 77.5883788 12.9915472, 77.588365 12.9915289, 77.5883481 12.9915133, 77.5883286 12.9915008, 77.5881355 12.9915191)"
+        "hotspot_probability": 1.0,
+        "economic_loss_inr": 1852.0,
+        "geometry_wkt": ""
       },
       "geometry": {
         "type": "LineString",
         "coordinates": [
           [
-            77.588641,
-            12.9923482
+            77.56808,
+            13.0055
           ],
           [
-            77.5885927,
-            12.9923568
-          ],
-          [
-            77.5885738,
-            12.9923602
-          ],
-          [
-            77.5885396,
-            12.9923647
-          ],
-          [
-            77.5884978,
-            12.9923324
-          ],
-          [
-            77.5884376,
-            12.9919131
-          ],
-          [
-            77.5883959,
-            12.9915916
-          ],
-          [
-            77.5883895,
-            12.9915686
-          ],
-          [
-            77.5883788,
-            12.9915472
-          ],
-          [
-            77.588365,
-            12.9915289
-          ],
-          [
-            77.5883481,
-            12.9915133
-          ],
-          [
-            77.5883286,
-            12.9915008
-          ],
-          [
-            77.5881355,
-            12.9915191
+            77.56892,
+            13.0055
           ]
         ]
       }
@@ -1271,2019 +98,281 @@
     {
       "type": "Feature",
       "properties": {
-        "segment_id": "osm_way_36957712",
+        "segment_id": "grid_13191_77646",
+        "target_hour": "2026-06-20 02:00:00",
+        "police_station": "Chikkajala",
+        "junction_name": "No Junction",
+        "road_class": "secondary",
+        "road_width_m": 9.0,
+        "predicted_total": 4.230627096931894,
+        "traffic_interruption_0_100": 29.71947160663808,
+        "parking_risk_0_100": 60.94265967413829,
+        "eps": 19.92,
+        "priority_band": "Low",
+        "recommended_action": "Monitor",
+        "recommended_force_units": 0,
+        "map_matching_mode": "grid_fallback",
+        "road_name": "",
+        "osm_highway": "",
+        "count_two_wheeler": 0.3189938785284751,
+        "count_car": 3.717300307134252,
+        "count_auto": 0.022074834550688198,
+        "count_light_commercial": 0.10508890019108738,
+        "count_heavy": 0.06643897666006186,
+        "count_other": 0.0007301998673296047,
+        "live_congestion_multiplier": 1.0,
+        "clearance_m": 7.059350959800664,
+        "emergency_gridlock_flag": false,
+        "confidence_band": "High",
+        "hotspot_probability": 0.8709677419354839,
+        "economic_loss_inr": 2245.0,
+        "geometry_wkt": ""
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            77.64608,
+            13.1915
+          ],
+          [
+            77.64692000000001,
+            13.1915
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": "grid_12991_77538",
+        "target_hour": "2026-06-20 02:00:00",
+        "police_station": "Vijayanagara",
+        "junction_name": "BTP207 - 8th Main Road Basaveshwara Nagar",
+        "road_class": "primary",
+        "road_width_m": 12.0,
+        "predicted_total": 7.485762140657583,
+        "traffic_interruption_0_100": 18.279103754243987,
+        "parking_risk_0_100": 81.05258542726122,
+        "eps": 19.59,
+        "priority_band": "Low",
+        "recommended_action": "Monitor",
+        "recommended_force_units": 0,
+        "map_matching_mode": "grid_fallback",
+        "road_name": "",
+        "osm_highway": "",
+        "count_two_wheeler": 5.774395215776612,
+        "count_car": 1.563365330942596,
+        "count_auto": 0.10033005149880772,
+        "count_light_commercial": 0.03730410580211665,
+        "count_heavy": 0.006513836137596563,
+        "count_other": 0.0038536004998538163,
+        "live_congestion_multiplier": 1.0,
+        "clearance_m": 10.042400843346746,
+        "emergency_gridlock_flag": false,
+        "confidence_band": "High",
+        "hotspot_probability": 0.7357142857142858,
+        "economic_loss_inr": 2781.0,
+        "geometry_wkt": ""
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            77.53808,
+            12.9915
+          ],
+          [
+            77.53892,
+            12.9915
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": "grid_13062_77592",
+        "target_hour": "2026-06-20 02:00:00",
+        "police_station": "Kodigehalli",
+        "junction_name": "No Junction",
+        "road_class": "primary",
+        "road_width_m": 12.0,
+        "predicted_total": 3.9923986509881293,
+        "traffic_interruption_0_100": 16.330074460460754,
+        "parking_risk_0_100": 58.81926764141402,
+        "eps": 18.11,
+        "priority_band": "Low",
+        "recommended_action": "Monitor",
+        "recommended_force_units": 0,
+        "map_matching_mode": "grid_fallback",
+        "road_name": "",
+        "osm_highway": "",
+        "count_two_wheeler": 0.32627860582761525,
+        "count_car": 3.1818508242339343,
+        "count_auto": 0.07879932386305612,
+        "count_light_commercial": 0.3407259725417053,
+        "count_heavy": 0.06199760410738422,
+        "count_other": 0.0027463204144342864,
+        "live_congestion_multiplier": 1.0,
+        "clearance_m": 10.16023497798973,
+        "emergency_gridlock_flag": false,
+        "confidence_band": "High",
+        "hotspot_probability": 0.7357142857142858,
+        "economic_loss_inr": 2558.0,
+        "geometry_wkt": ""
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            77.59208,
+            13.0625
+          ],
+          [
+            77.59292,
+            13.0625
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": "grid_12987_77549",
+        "target_hour": "2026-06-20 02:00:00",
+        "police_station": "Vijayanagara",
+        "junction_name": "BTP018 - Dhobi Ghat Junction",
+        "road_class": "secondary",
+        "road_width_m": 9.0,
+        "predicted_total": 3.2564521066118006,
+        "traffic_interruption_0_100": 14.009161732849218,
+        "parking_risk_0_100": 51.502407269128916,
+        "eps": 17.59,
+        "priority_band": "Low",
+        "recommended_action": "Monitor",
+        "recommended_force_units": 0,
+        "map_matching_mode": "grid_fallback",
+        "road_name": "",
+        "osm_highway": "",
+        "count_two_wheeler": 0.9536586025031458,
+        "count_car": 1.926177703600825,
+        "count_auto": 0.21510016995103418,
+        "count_light_commercial": 0.11532387831001611,
+        "count_heavy": 0.03265124891095359,
+        "count_other": 0.013540503335826022,
+        "live_congestion_multiplier": 1.0,
+        "clearance_m": 7.730460034149996,
+        "emergency_gridlock_flag": false,
+        "confidence_band": "High",
+        "hotspot_probability": 0.8709677419354839,
+        "economic_loss_inr": 1325.0,
+        "geometry_wkt": ""
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            77.54907999999999,
+            12.9875
+          ],
+          [
+            77.54992,
+            12.9875
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": "grid_12977_77576",
+        "target_hour": "2026-06-20 02:00:00",
+        "police_station": "Upparpet",
+        "junction_name": "BTP040 - Elite Junction",
+        "road_class": "primary",
+        "road_width_m": 12.0,
+        "predicted_total": 5.160479708707396,
+        "traffic_interruption_0_100": 9.588409020491806,
+        "parking_risk_0_100": 68.23398786622798,
+        "eps": 16.17,
+        "priority_band": "Low",
+        "recommended_action": "Monitor",
+        "recommended_force_units": 0,
+        "map_matching_mode": "grid_fallback",
+        "road_name": "",
+        "osm_highway": "",
+        "count_two_wheeler": 3.832222367894796,
+        "count_car": 1.0173598894370435,
+        "count_auto": 0.18268702309423085,
+        "count_light_commercial": 0.11533726821006449,
+        "count_heavy": 0.010429956104824434,
+        "count_other": 0.00244320396643835,
+        "live_congestion_multiplier": 1.0,
+        "clearance_m": 10.616677373859838,
+        "emergency_gridlock_flag": false,
+        "confidence_band": "Medium",
+        "hotspot_probability": 0.6666666666666666,
+        "economic_loss_inr": 1842.0,
+        "geometry_wkt": ""
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            77.57607999999999,
+            12.977500000000001
+          ],
+          [
+            77.57692,
+            12.977500000000001
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": "grid_12977_77575",
         "target_hour": "2026-06-20 02:00:00",
         "police_station": "Upparpet",
         "junction_name": "BTP040 - Elite Junction",
         "road_class": "secondary",
         "road_width_m": 9.0,
-        "predicted_total": 5.757248350205805,
-        "traffic_interruption_0_100": 24.073862352130426,
-        "parking_risk_0_100": 72.1792633938534,
-        "eps": 19.06,
-        "priority_band": "Low",
-        "recommended_action": "Monitor",
-        "recommended_force_units": 0,
-        "map_matching_mode": "osm_overpass_nearest_road",
-        "road_name": "Subedar Chatram Road",
-        "osm_highway": "tertiary",
-        "count_two_wheeler": 2.114693901549733,
-        "count_car": 2.3446292544313905,
-        "count_auto": 1.1134540124302799,
-        "count_light_commercial": 0.1323405420262838,
-        "count_heavy": 0.044259896402549036,
-        "count_other": 0.00787074336556948,
-        "live_congestion_multiplier": 1.0,
-        "clearance_m": 6.992886422369887,
-        "emergency_gridlock_flag": false,
-        "confidence_band": "Medium",
-        "hotspot_probability": 0.75,
-        "economic_loss_inr": 2333.0,
-        "geometry_wkt": "LINESTRING (77.5750712 12.9790093, 77.5750959 12.9789184, 77.5751065 12.9788837, 77.5753273 12.9781782, 77.5754995 12.9777026, 77.5756652 12.9772165, 77.5756806 12.9771586, 77.5756976 12.9770902, 77.5757338 12.9766699, 77.5757767 12.976155, 77.5757909 12.9760778, 77.5758211 12.9759617, 77.5758576 12.9758588, 77.5759144 12.9757236, 77.5759921 12.9756394, 77.5760561 12.975533, 77.5760632 12.9755044, 77.5760617 12.9754284, 77.5760653 12.9753626, 77.5760588 12.9752631, 77.5760832 12.9751678)"
-      },
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            77.5750712,
-            12.9790093
-          ],
-          [
-            77.5750959,
-            12.9789184
-          ],
-          [
-            77.5751065,
-            12.9788837
-          ],
-          [
-            77.5753273,
-            12.9781782
-          ],
-          [
-            77.5754995,
-            12.9777026
-          ],
-          [
-            77.5756652,
-            12.9772165
-          ],
-          [
-            77.5756806,
-            12.9771586
-          ],
-          [
-            77.5756976,
-            12.9770902
-          ],
-          [
-            77.5757338,
-            12.9766699
-          ],
-          [
-            77.5757767,
-            12.976155
-          ],
-          [
-            77.5757909,
-            12.9760778
-          ],
-          [
-            77.5758211,
-            12.9759617
-          ],
-          [
-            77.5758576,
-            12.9758588
-          ],
-          [
-            77.5759144,
-            12.9757236
-          ],
-          [
-            77.5759921,
-            12.9756394
-          ],
-          [
-            77.5760561,
-            12.975533
-          ],
-          [
-            77.5760632,
-            12.9755044
-          ],
-          [
-            77.5760617,
-            12.9754284
-          ],
-          [
-            77.5760653,
-            12.9753626
-          ],
-          [
-            77.5760588,
-            12.9752631
-          ],
-          [
-            77.5760832,
-            12.9751678
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "segment_id": "osm_way_111867016",
-        "target_hour": "2026-06-20 02:00:00",
-        "police_station": "Upparpet",
-        "junction_name": "BTP040 - Elite Junction",
-        "road_class": "residential",
-        "road_width_m": 6.0,
-        "predicted_total": 6.285034029499117,
-        "traffic_interruption_0_100": 43.19973104888229,
-        "parking_risk_0_100": 75.25815456848507,
-        "eps": 19.02,
-        "priority_band": "Low",
-        "recommended_action": "Monitor",
-        "recommended_force_units": 0,
-        "map_matching_mode": "osm_overpass_nearest_road",
-        "road_name": "3rd Cross Road",
-        "osm_highway": "residential",
-        "count_two_wheeler": 3.785750530586991,
-        "count_car": 1.9342410479257532,
-        "count_auto": 0.33488572996222926,
-        "count_light_commercial": 0.21002543315678973,
-        "count_heavy": 0.014386371205163907,
-        "count_other": 0.005744916662191559,
-        "live_congestion_multiplier": 1.0,
-        "clearance_m": 4.082402933117093,
-        "emergency_gridlock_flag": false,
-        "confidence_band": "Medium",
-        "hotspot_probability": 0.75,
-        "economic_loss_inr": 930.0,
-        "geometry_wkt": "LINESTRING (77.5772549 12.977612, 77.5772044 12.9776077, 77.5764745 12.9775456)"
-      },
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            77.5772549,
-            12.977612
-          ],
-          [
-            77.5772044,
-            12.9776077
-          ],
-          [
-            77.5764745,
-            12.9775456
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "segment_id": "osm_way_325436715",
-        "target_hour": "2026-06-20 02:00:00",
-        "police_station": "High ground",
-        "junction_name": "BTP032 - Windsor Circle",
-        "road_class": "secondary",
-        "road_width_m": 9.0,
-        "predicted_total": 7.557785315065459,
-        "traffic_interruption_0_100": 15.254195417020167,
-        "parking_risk_0_100": 81.35342770219516,
-        "eps": 18.66,
-        "priority_band": "Low",
-        "recommended_action": "Monitor",
-        "recommended_force_units": 0,
-        "map_matching_mode": "osm_overpass_nearest_road",
-        "road_name": "Palace Road",
-        "osm_highway": "tertiary",
-        "count_two_wheeler": 7.372167713201174,
-        "count_car": 0.1117304440393771,
-        "count_auto": 0.0566269492799723,
-        "count_light_commercial": 0.014473276014468232,
-        "count_heavy": 0.002345963307842685,
-        "count_other": 0.0004409692226253729,
-        "live_congestion_multiplier": 1.0,
-        "clearance_m": 7.444034267685906,
-        "emergency_gridlock_flag": false,
-        "confidence_band": "High",
-        "hotspot_probability": 0.7837837837837837,
-        "economic_loss_inr": 1689.0,
-        "geometry_wkt": "LINESTRING (77.5885678 12.9907672, 77.588569 12.990801, 77.5885524 12.9910347, 77.5885422 12.9911615, 77.588534 12.9914522, 77.5885847 12.9918899, 77.5886182 12.9921712, 77.588641 12.9923482, 77.5886772 12.9925216, 77.5887034 12.9926113, 77.5887587 12.9928206, 77.5887916 12.9929279, 77.5888436 12.9930735, 77.5888735 12.9931271)"
-      },
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            77.5885678,
-            12.9907672
-          ],
-          [
-            77.588569,
-            12.990801
-          ],
-          [
-            77.5885524,
-            12.9910347
-          ],
-          [
-            77.5885422,
-            12.9911615
-          ],
-          [
-            77.588534,
-            12.9914522
-          ],
-          [
-            77.5885847,
-            12.9918899
-          ],
-          [
-            77.5886182,
-            12.9921712
-          ],
-          [
-            77.588641,
-            12.9923482
-          ],
-          [
-            77.5886772,
-            12.9925216
-          ],
-          [
-            77.5887034,
-            12.9926113
-          ],
-          [
-            77.5887587,
-            12.9928206
-          ],
-          [
-            77.5887916,
-            12.9929279
-          ],
-          [
-            77.5888436,
-            12.9930735
-          ],
-          [
-            77.5888735,
-            12.9931271
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "segment_id": "osm_way_376662041",
-        "target_hour": "2026-06-20 02:00:00",
-        "police_station": "Mahadevapura",
-        "junction_name": "No Junction",
-        "road_class": "trunk",
-        "road_width_m": 15.0,
-        "predicted_total": 4.3613905805743345,
-        "traffic_interruption_0_100": 7.920824822697748,
-        "parking_risk_0_100": 62.06127799925299,
-        "eps": 18.63,
-        "priority_band": "Low",
-        "recommended_action": "Monitor",
-        "recommended_force_units": 0,
-        "map_matching_mode": "osm_overpass_nearest_road",
-        "road_name": "Outer Ring Road",
-        "osm_highway": "trunk",
-        "count_two_wheeler": 0.3106170442551597,
-        "count_car": 2.610296148233168,
-        "count_auto": 1.240246521299942,
-        "count_light_commercial": 0.04853565466539394,
-        "count_heavy": 0.14887879577934524,
-        "count_other": 0.0028164163413248186,
-        "live_congestion_multiplier": 1.0,
-        "clearance_m": 13.168888784864427,
-        "emergency_gridlock_flag": false,
-        "confidence_band": "Medium",
-        "hotspot_probability": 0.725,
-        "economic_loss_inr": 4456.0,
-        "geometry_wkt": "LINESTRING (77.6693888 12.9970148, 77.6696003 12.9972142, 77.6699533 12.9973963, 77.6701123 12.9974686, 77.670498 12.997625, 77.6706449 12.9976937, 77.6708406 12.9977854, 77.6715413 12.9981135, 77.671595 12.9981386, 77.6717284 12.9981983, 77.6721315 12.9983785, 77.6730545 12.9988173, 77.6733556 12.9989605, 77.673488 12.9990235, 77.6736621 12.999116, 77.6741325 12.9993332, 77.6754253 12.9999607, 77.6762539 13.0003526, 77.6763894 13.0003982, 77.6765114 13.0004176, 77.6766034 13.0004202, 77.6767791 13.0004154, 77.6775323 13.0003968, 77.677766 13.000391, 77.6779586 13.0003626, 77.6780619 13.0003548, 77.6782002 13.0003513, 77.6783496 13.0003599, 77.6788948 13.0003961, 77.6791245 13.0004114)"
-      },
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            77.6693888,
-            12.9970148
-          ],
-          [
-            77.6696003,
-            12.9972142
-          ],
-          [
-            77.6699533,
-            12.9973963
-          ],
-          [
-            77.6701123,
-            12.9974686
-          ],
-          [
-            77.670498,
-            12.997625
-          ],
-          [
-            77.6706449,
-            12.9976937
-          ],
-          [
-            77.6708406,
-            12.9977854
-          ],
-          [
-            77.6715413,
-            12.9981135
-          ],
-          [
-            77.671595,
-            12.9981386
-          ],
-          [
-            77.6717284,
-            12.9981983
-          ],
-          [
-            77.6721315,
-            12.9983785
-          ],
-          [
-            77.6730545,
-            12.9988173
-          ],
-          [
-            77.6733556,
-            12.9989605
-          ],
-          [
-            77.673488,
-            12.9990235
-          ],
-          [
-            77.6736621,
-            12.999116
-          ],
-          [
-            77.6741325,
-            12.9993332
-          ],
-          [
-            77.6754253,
-            12.9999607
-          ],
-          [
-            77.6762539,
-            13.0003526
-          ],
-          [
-            77.6763894,
-            13.0003982
-          ],
-          [
-            77.6765114,
-            13.0004176
-          ],
-          [
-            77.6766034,
-            13.0004202
-          ],
-          [
-            77.6767791,
-            13.0004154
-          ],
-          [
-            77.6775323,
-            13.0003968
-          ],
-          [
-            77.677766,
-            13.000391
-          ],
-          [
-            77.6779586,
-            13.0003626
-          ],
-          [
-            77.6780619,
-            13.0003548
-          ],
-          [
-            77.6782002,
-            13.0003513
-          ],
-          [
-            77.6783496,
-            13.0003599
-          ],
-          [
-            77.6788948,
-            13.0003961
-          ],
-          [
-            77.6791245,
-            13.0004114
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "segment_id": "osm_way_1278975050",
-        "target_hour": "2026-06-20 02:00:00",
-        "police_station": "Vijayanagara",
-        "junction_name": "BTP016 - 5th Main Road, RPC Layout",
-        "road_class": "secondary",
-        "road_width_m": 9.0,
-        "predicted_total": 6.19994741352176,
-        "traffic_interruption_0_100": 17.04304076744346,
-        "parking_risk_0_100": 74.78588153715643,
-        "eps": 17.73,
-        "priority_band": "Low",
-        "recommended_action": "Monitor",
-        "recommended_force_units": 0,
-        "map_matching_mode": "osm_overpass_nearest_road",
-        "road_name": "5th Main Road",
-        "osm_highway": "secondary",
-        "count_two_wheeler": 4.5597583970641695,
-        "count_car": 1.178486394108603,
-        "count_auto": 0.3415935494852696,
-        "count_light_commercial": 0.09505654538073158,
-        "count_heavy": 0.02228051966003637,
-        "count_other": 0.002772007822950149,
-        "live_congestion_multiplier": 1.0,
-        "clearance_m": 7.346792824714021,
-        "emergency_gridlock_flag": false,
-        "confidence_band": "Medium",
-        "hotspot_probability": 0.725,
-        "economic_loss_inr": 1804.0,
-        "geometry_wkt": "LINESTRING (77.538189 12.9650872, 77.5385739 12.9649567, 77.5391349 12.964763, 77.5395405 12.9646229, 77.540567 12.9643633, 77.5410181 12.9642473)"
-      },
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            77.538189,
-            12.9650872
-          ],
-          [
-            77.5385739,
-            12.9649567
-          ],
-          [
-            77.5391349,
-            12.964763
-          ],
-          [
-            77.5395405,
-            12.9646229
-          ],
-          [
-            77.540567,
-            12.9643633
-          ],
-          [
-            77.5410181,
-            12.9642473
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "segment_id": "osm_way_762500477",
-        "target_hour": "2026-06-20 02:00:00",
-        "police_station": "Byatarayanapura",
-        "junction_name": "BTP096 - Gali Anjaneya Temple",
-        "road_class": "trunk",
-        "road_width_m": 15.0,
-        "predicted_total": 4.655584505451541,
-        "traffic_interruption_0_100": 5.304146655323194,
-        "parking_risk_0_100": 64.46223792894159,
-        "eps": 17.61,
-        "priority_band": "Low",
-        "recommended_action": "Monitor",
-        "recommended_force_units": 0,
-        "map_matching_mode": "osm_overpass_nearest_road",
-        "road_name": "Mysore Road",
-        "osm_highway": "trunk",
-        "count_two_wheeler": 2.155495180259943,
-        "count_car": 1.070516313585019,
-        "count_auto": 1.1529637387740181,
-        "count_light_commercial": 0.05724826997581499,
-        "count_heavy": 0.20954143770034486,
-        "count_other": 0.009819565156401268,
-        "live_congestion_multiplier": 1.0,
-        "clearance_m": 13.511908516702963,
-        "emergency_gridlock_flag": false,
-        "confidence_band": "Medium",
-        "hotspot_probability": 0.7159763313609466,
-        "economic_loss_inr": 3572.0,
-        "geometry_wkt": "LINESTRING (77.5413464 12.9526256, 77.5412415 12.9525247, 77.541172 12.9524578, 77.5409799 12.9523148, 77.5400626 12.9517658, 77.5399645 12.9516986, 77.5398793 12.9516402, 77.5397362 12.951542, 77.5395045 12.9513907, 77.5392009 12.9511854)"
-      },
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            77.5413464,
-            12.9526256
-          ],
-          [
-            77.5412415,
-            12.9525247
-          ],
-          [
-            77.541172,
-            12.9524578
-          ],
-          [
-            77.5409799,
-            12.9523148
-          ],
-          [
-            77.5400626,
-            12.9517658
-          ],
-          [
-            77.5399645,
-            12.9516986
-          ],
-          [
-            77.5398793,
-            12.9516402
-          ],
-          [
-            77.5397362,
-            12.951542
-          ],
-          [
-            77.5395045,
-            12.9513907
-          ],
-          [
-            77.5392009,
-            12.9511854
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "segment_id": "osm_way_172886625",
-        "target_hour": "2026-06-20 02:00:00",
-        "police_station": "Banaswadi",
-        "junction_name": "No Junction",
-        "road_class": "trunk",
-        "road_width_m": 15.0,
-        "predicted_total": 3.2259423377587346,
-        "traffic_interruption_0_100": 3.9440058071242845,
-        "parking_risk_0_100": 51.17247889666765,
-        "eps": 17.44,
-        "priority_band": "Low",
-        "recommended_action": "Monitor",
-        "recommended_force_units": 0,
-        "map_matching_mode": "osm_overpass_nearest_road",
-        "road_name": "Tin Factory Flyover",
-        "osm_highway": "trunk",
-        "count_two_wheeler": 0.2941217157191471,
-        "count_car": 1.3730697147617845,
-        "count_auto": 1.366670146582407,
-        "count_light_commercial": 0.01544565045940729,
-        "count_heavy": 0.17528616638939828,
-        "count_other": 0.001348943846590903,
-        "live_congestion_multiplier": 1.0,
-        "clearance_m": 13.721341739210642,
-        "emergency_gridlock_flag": false,
-        "confidence_band": "High",
-        "hotspot_probability": 0.7837837837837837,
-        "economic_loss_inr": 3082.0,
-        "geometry_wkt": "LINESTRING (77.6764202 13.0002705, 77.6779879 13.0011459, 77.678347 13.0013541)"
-      },
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            77.6764202,
-            13.0002705
-          ],
-          [
-            77.6779879,
-            13.0011459
-          ],
-          [
-            77.678347,
-            13.0013541
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "segment_id": "osm_way_1047549754",
-        "target_hour": "2026-06-20 02:00:00",
-        "police_station": "Rajajinagar",
-        "junction_name": "BTP170 - Dr. Bheem Rao Palace, Chord Road",
-        "road_class": "primary",
-        "road_width_m": 12.0,
-        "predicted_total": 3.237400120815387,
-        "traffic_interruption_0_100": 8.33804776882986,
-        "parking_risk_0_100": 51.29664412178509,
-        "eps": 17.24,
-        "priority_band": "Low",
-        "recommended_action": "Monitor",
-        "recommended_force_units": 0,
-        "map_matching_mode": "osm_overpass_nearest_road",
-        "road_name": "Shivanagar Flyover",
-        "osm_highway": "primary",
-        "count_two_wheeler": 0.21901908000560033,
-        "count_car": 2.1193820190727166,
-        "count_auto": 0.287381595519198,
-        "count_light_commercial": 0.4513982485124834,
-        "count_heavy": 0.143375044194566,
-        "count_other": 0.016844133510823086,
-        "live_congestion_multiplier": 1.0,
-        "clearance_m": 10.495341971356813,
-        "emergency_gridlock_flag": false,
-        "confidence_band": "High",
-        "hotspot_probability": 0.7586206896551724,
-        "economic_loss_inr": 2034.0,
-        "geometry_wkt": "LINESTRING (77.5509678 12.9910273, 77.5506818 12.990109, 77.5502948 12.9888794, 77.5496007 12.9866561)"
-      },
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            77.5509678,
-            12.9910273
-          ],
-          [
-            77.5506818,
-            12.990109
-          ],
-          [
-            77.5502948,
-            12.9888794
-          ],
-          [
-            77.5496007,
-            12.9866561
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "segment_id": "osm_way_1219833958",
-        "target_hour": "2026-06-20 02:00:00",
-        "police_station": "Wilson Garden",
-        "junction_name": "BTP123 - 10th Cross, Wilson Garden",
-        "road_class": "residential",
-        "road_width_m": 6.0,
-        "predicted_total": 3.3744343111944786,
-        "traffic_interruption_0_100": 31.40044207899637,
-        "parking_risk_0_100": 52.757406297739685,
-        "eps": 17.15,
-        "priority_band": "Low",
-        "recommended_action": "Monitor",
-        "recommended_force_units": 0,
-        "map_matching_mode": "osm_overpass_nearest_road",
-        "road_name": "",
-        "osm_highway": "service",
-        "count_two_wheeler": 0.1689011845673728,
-        "count_car": 2.2919808885609294,
-        "count_auto": 0.34444757952068483,
-        "count_light_commercial": 0.5091530512536299,
-        "count_heavy": 0.05505949712049112,
-        "count_other": 0.00489211017137047,
-        "live_congestion_multiplier": 1.0,
-        "clearance_m": 4.434707947745304,
-        "emergency_gridlock_flag": false,
-        "confidence_band": "High",
-        "hotspot_probability": 0.7586206896551724,
-        "economic_loss_inr": 669.0,
-        "geometry_wkt": "LINESTRING (77.5970612 12.9448706, 77.5971013 12.9446706, 77.5971222 12.9445733, 77.5971531 12.9443008)"
-      },
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            77.5970612,
-            12.9448706
-          ],
-          [
-            77.5971013,
-            12.9446706
-          ],
-          [
-            77.5971222,
-            12.9445733
-          ],
-          [
-            77.5971531,
-            12.9443008
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "segment_id": "osm_way_531278301",
-        "target_hour": "2026-06-20 02:00:00",
-        "police_station": "Rajajinagar",
-        "junction_name": "BTP011 - RR Kalyana Mantapa, Dr. Rajkumar Road",
-        "road_class": "secondary",
-        "road_width_m": 9.0,
-        "predicted_total": 3.3731551110920304,
-        "traffic_interruption_0_100": 16.70972237645708,
-        "parking_risk_0_100": 52.743974893067694,
-        "eps": 16.67,
-        "priority_band": "Low",
-        "recommended_action": "Monitor",
-        "recommended_force_units": 0,
-        "map_matching_mode": "osm_overpass_nearest_road",
-        "road_name": "17th Main (S. Nijalingappa Road)",
-        "osm_highway": "tertiary",
-        "count_two_wheeler": 0.11644053632308748,
-        "count_car": 2.3374134834408435,
-        "count_auto": 0.1457870416786078,
-        "count_light_commercial": 0.637375147766669,
-        "count_heavy": 0.13299647705077114,
-        "count_other": 0.003142424832050951,
-        "live_congestion_multiplier": 1.0,
-        "clearance_m": 7.364628627711374,
-        "emergency_gridlock_flag": false,
-        "confidence_band": "Medium",
-        "hotspot_probability": 0.7159763313609466,
-        "economic_loss_inr": 1765.0,
-        "geometry_wkt": "LINESTRING (77.5525989 12.9924181, 77.552636 12.9930084, 77.5526457 12.9931179)"
-      },
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            77.5525989,
-            12.9924181
-          ],
-          [
-            77.552636,
-            12.9930084
-          ],
-          [
-            77.5526457,
-            12.9931179
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "segment_id": "osm_way_370390351",
-        "target_hour": "2026-06-20 02:00:00",
-        "police_station": "Adugodi",
-        "junction_name": "No Junction",
-        "road_class": "secondary",
-        "road_width_m": 9.0,
-        "predicted_total": 4.7528977796462675,
-        "traffic_interruption_0_100": 13.791010857715602,
-        "parking_risk_0_100": 65.22249814119672,
-        "eps": 16.55,
-        "priority_band": "Low",
-        "recommended_action": "Monitor",
-        "recommended_force_units": 0,
-        "map_matching_mode": "osm_overpass_nearest_road",
-        "road_name": "80 Feet Road",
-        "osm_highway": "secondary",
-        "count_two_wheeler": 2.8046568623136214,
-        "count_car": 1.7978514968496657,
-        "count_auto": 0.11574109368213313,
-        "count_light_commercial": 0.01980784189246377,
-        "count_heavy": 0.013384011571726681,
-        "count_other": 0.0014564733366575326,
-        "live_congestion_multiplier": 1.0,
-        "clearance_m": 7.52669236964229,
-        "emergency_gridlock_flag": false,
-        "confidence_band": "Medium",
-        "hotspot_probability": 0.7159763313609466,
-        "economic_loss_inr": 1556.0,
-        "geometry_wkt": "LINESTRING (77.6330477 12.9303988, 77.6328892 12.9308166, 77.6325864 12.9314668, 77.6324379 12.9316389, 77.6320015 12.9320467, 77.6318336 12.93222, 77.6315035 12.9325276, 77.6309441 12.9330766, 77.6304016 12.9336336, 77.630379 12.9336568, 77.6303457 12.9336915, 77.630151 12.9339015, 77.6297442 12.9342983, 77.6297354 12.9343073, 77.6296147 12.934432, 77.6295795 12.9344684, 77.6293144 12.9347439, 77.6292645 12.9347948, 77.6287135 12.935357, 77.6280956 12.9359641, 77.62773 12.9363386, 77.6273532 12.9367444, 77.6270122 12.9371207, 77.626942 12.937197)"
-      },
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            77.6330477,
-            12.9303988
-          ],
-          [
-            77.6328892,
-            12.9308166
-          ],
-          [
-            77.6325864,
-            12.9314668
-          ],
-          [
-            77.6324379,
-            12.9316389
-          ],
-          [
-            77.6320015,
-            12.9320467
-          ],
-          [
-            77.6318336,
-            12.93222
-          ],
-          [
-            77.6315035,
-            12.9325276
-          ],
-          [
-            77.6309441,
-            12.9330766
-          ],
-          [
-            77.6304016,
-            12.9336336
-          ],
-          [
-            77.630379,
-            12.9336568
-          ],
-          [
-            77.6303457,
-            12.9336915
-          ],
-          [
-            77.630151,
-            12.9339015
-          ],
-          [
-            77.6297442,
-            12.9342983
-          ],
-          [
-            77.6297354,
-            12.9343073
-          ],
-          [
-            77.6296147,
-            12.934432
-          ],
-          [
-            77.6295795,
-            12.9344684
-          ],
-          [
-            77.6293144,
-            12.9347439
-          ],
-          [
-            77.6292645,
-            12.9347948
-          ],
-          [
-            77.6287135,
-            12.935357
-          ],
-          [
-            77.6280956,
-            12.9359641
-          ],
-          [
-            77.62773,
-            12.9363386
-          ],
-          [
-            77.6273532,
-            12.9367444
-          ],
-          [
-            77.6270122,
-            12.9371207
-          ],
-          [
-            77.626942,
-            12.937197
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "segment_id": "osm_way_95936742",
-        "target_hour": "2026-06-20 02:00:00",
-        "police_station": "Rajajinagar",
-        "junction_name": "BTP061 - Bhashyam Circle",
-        "road_class": "secondary",
-        "road_width_m": 9.0,
-        "predicted_total": 5.338960820193196,
-        "traffic_interruption_0_100": 11.662419885987575,
-        "parking_risk_0_100": 69.46924768816028,
-        "eps": 16.5,
-        "priority_band": "Low",
-        "recommended_action": "Monitor",
-        "recommended_force_units": 0,
-        "map_matching_mode": "osm_overpass_nearest_road",
-        "road_name": "Vatal Nagaraj Road",
-        "osm_highway": "secondary",
-        "count_two_wheeler": 4.208857470162273,
-        "count_car": 0.8510819327743367,
-        "count_auto": 0.23810495617850147,
-        "count_light_commercial": 0.03296566067584251,
-        "count_heavy": 0.0036792488518752296,
-        "count_other": 0.004271551550367056,
-        "live_congestion_multiplier": 1.0,
-        "clearance_m": 7.65320472351297,
-        "emergency_gridlock_flag": false,
-        "confidence_band": "Medium",
-        "hotspot_probability": 0.725,
-        "economic_loss_inr": 1402.0,
-        "geometry_wkt": "LINESTRING (77.5535337 12.9848613, 77.5534434 12.9849573, 77.5533083 12.9851062, 77.5530578 12.9853816, 77.5528484 12.9855852, 77.5526217 12.9857507, 77.5524989 12.9857985, 77.5523631 12.9858343, 77.5522166 12.9858461, 77.5520678 12.9858475, 77.5518557 12.9858494, 77.5516502 12.9858564, 77.5515272 12.9858644, 77.5512166 12.9858894, 77.5511286 12.9859536, 77.5510204 12.9861068, 77.5509537 12.9862904, 77.5509117 12.9866265, 77.5508809 12.9869479, 77.5508625 12.9871177, 77.5508492 12.9872961, 77.5508115 12.9874608, 77.5508053 12.987488)"
-      },
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            77.5535337,
-            12.9848613
-          ],
-          [
-            77.5534434,
-            12.9849573
-          ],
-          [
-            77.5533083,
-            12.9851062
-          ],
-          [
-            77.5530578,
-            12.9853816
-          ],
-          [
-            77.5528484,
-            12.9855852
-          ],
-          [
-            77.5526217,
-            12.9857507
-          ],
-          [
-            77.5524989,
-            12.9857985
-          ],
-          [
-            77.5523631,
-            12.9858343
-          ],
-          [
-            77.5522166,
-            12.9858461
-          ],
-          [
-            77.5520678,
-            12.9858475
-          ],
-          [
-            77.5518557,
-            12.9858494
-          ],
-          [
-            77.5516502,
-            12.9858564
-          ],
-          [
-            77.5515272,
-            12.9858644
-          ],
-          [
-            77.5512166,
-            12.9858894
-          ],
-          [
-            77.5511286,
-            12.9859536
-          ],
-          [
-            77.5510204,
-            12.9861068
-          ],
-          [
-            77.5509537,
-            12.9862904
-          ],
-          [
-            77.5509117,
-            12.9866265
-          ],
-          [
-            77.5508809,
-            12.9869479
-          ],
-          [
-            77.5508625,
-            12.9871177
-          ],
-          [
-            77.5508492,
-            12.9872961
-          ],
-          [
-            77.5508115,
-            12.9874608
-          ],
-          [
-            77.5508053,
-            12.987488
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "segment_id": "osm_way_23029710",
-        "target_hour": "2026-06-20 02:00:00",
-        "police_station": "Cubbon Park",
-        "junction_name": "BTP063 - Siddalingaiah Circle",
-        "road_class": "secondary",
-        "road_width_m": 9.0,
-        "predicted_total": 2.8482722920346277,
-        "traffic_interruption_0_100": 10.278197266054356,
-        "parking_risk_0_100": 46.89767100893025,
-        "eps": 16.23,
-        "priority_band": "Low",
-        "recommended_action": "Monitor",
-        "recommended_force_units": 0,
-        "map_matching_mode": "osm_overpass_nearest_road",
-        "road_name": "Vittal Mallya Road",
-        "osm_highway": "tertiary",
-        "count_two_wheeler": 0.30752657955746376,
-        "count_car": 1.9832023971299024,
-        "count_auto": 0.2588265559142116,
-        "count_light_commercial": 0.20754002964616564,
-        "count_heavy": 0.052832032143578664,
-        "count_other": 0.03834469764330581,
-        "live_congestion_multiplier": 1.0,
-        "clearance_m": 7.740464845459243,
-        "emergency_gridlock_flag": false,
-        "confidence_band": "High",
-        "hotspot_probability": 0.7837837837837837,
-        "economic_loss_inr": 1298.0,
-        "geometry_wkt": "LINESTRING (77.5977545 12.9712043, 77.5975875 12.9711533, 77.5974773 12.9711441, 77.5972453 12.9711293, 77.5971661 12.9711307, 77.5969022 12.9711388, 77.5968318 12.9711411, 77.5967599 12.9711448, 77.5967059 12.9711479, 77.5965637 12.9711636, 77.5964788 12.9711729, 77.596426 12.9711815, 77.596287 12.9712111, 77.5961913 12.9712419, 77.5959738 12.9713314, 77.5953784 12.9715852, 77.5952798 12.9716247, 77.5951136 12.971694, 77.5950442 12.971723, 77.5946974 12.9718482)"
-      },
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            77.5977545,
-            12.9712043
-          ],
-          [
-            77.5975875,
-            12.9711533
-          ],
-          [
-            77.5974773,
-            12.9711441
-          ],
-          [
-            77.5972453,
-            12.9711293
-          ],
-          [
-            77.5971661,
-            12.9711307
-          ],
-          [
-            77.5969022,
-            12.9711388
-          ],
-          [
-            77.5968318,
-            12.9711411
-          ],
-          [
-            77.5967599,
-            12.9711448
-          ],
-          [
-            77.5967059,
-            12.9711479
-          ],
-          [
-            77.5965637,
-            12.9711636
-          ],
-          [
-            77.5964788,
-            12.9711729
-          ],
-          [
-            77.596426,
-            12.9711815
-          ],
-          [
-            77.596287,
-            12.9712111
-          ],
-          [
-            77.5961913,
-            12.9712419
-          ],
-          [
-            77.5959738,
-            12.9713314
-          ],
-          [
-            77.5953784,
-            12.9715852
-          ],
-          [
-            77.5952798,
-            12.9716247
-          ],
-          [
-            77.5951136,
-            12.971694
-          ],
-          [
-            77.5950442,
-            12.971723
-          ],
-          [
-            77.5946974,
-            12.9718482
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "segment_id": "osm_way_114922746",
-        "target_hour": "2026-06-20 02:00:00",
-        "police_station": "HAL Old Airport",
-        "junction_name": "No Junction",
-        "road_class": "primary",
-        "road_width_m": 12.0,
-        "predicted_total": 5.134475072108975,
-        "traffic_interruption_0_100": 4.901454178821774,
-        "parking_risk_0_100": 68.04988674676571,
-        "eps": 16.11,
-        "priority_band": "Low",
-        "recommended_action": "Monitor",
-        "recommended_force_units": 0,
-        "map_matching_mode": "osm_overpass_nearest_road",
-        "road_name": "New Horizon College Road",
-        "osm_highway": "primary",
-        "count_two_wheeler": 4.705685360789251,
-        "count_car": 0.3344360674056226,
-        "count_auto": 0.04787906498636817,
-        "count_light_commercial": 0.03229043866154363,
-        "count_heavy": 0.013305953273041847,
-        "count_other": 0.0008781869931484167,
-        "live_congestion_multiplier": 1.0,
-        "clearance_m": 10.856812089024299,
-        "emergency_gridlock_flag": false,
-        "confidence_band": "Medium",
-        "hotspot_probability": 0.7159763313609466,
-        "economic_loss_inr": 1518.0,
-        "geometry_wkt": "LINESTRING (77.6904811 12.9346363, 77.6905042 12.9345893, 77.6906181 12.9343469, 77.6907098 12.9341396, 77.6908001 12.9339828, 77.6908823 12.9338732, 77.6909145 12.9338306, 77.6909498 12.9337781, 77.6909746 12.9337385, 77.6910704 12.933536, 77.6912202 12.9332556, 77.691629 12.9324882, 77.6917322 12.9322735, 77.6919062 12.932136, 77.6925399 12.9317692, 77.6932715 12.9314364, 77.6933405 12.9314134, 77.6934113 12.9313985, 77.6935022 12.9313927, 77.6944469 12.9313453, 77.6949182 12.9313358, 77.694964 12.9313349, 77.6949933 12.9313343, 77.6950507 12.9313312)"
-      },
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            77.6904811,
-            12.9346363
-          ],
-          [
-            77.6905042,
-            12.9345893
-          ],
-          [
-            77.6906181,
-            12.9343469
-          ],
-          [
-            77.6907098,
-            12.9341396
-          ],
-          [
-            77.6908001,
-            12.9339828
-          ],
-          [
-            77.6908823,
-            12.9338732
-          ],
-          [
-            77.6909145,
-            12.9338306
-          ],
-          [
-            77.6909498,
-            12.9337781
-          ],
-          [
-            77.6909746,
-            12.9337385
-          ],
-          [
-            77.6910704,
-            12.933536
-          ],
-          [
-            77.6912202,
-            12.9332556
-          ],
-          [
-            77.691629,
-            12.9324882
-          ],
-          [
-            77.6917322,
-            12.9322735
-          ],
-          [
-            77.6919062,
-            12.932136
-          ],
-          [
-            77.6925399,
-            12.9317692
-          ],
-          [
-            77.6932715,
-            12.9314364
-          ],
-          [
-            77.6933405,
-            12.9314134
-          ],
-          [
-            77.6934113,
-            12.9313985
-          ],
-          [
-            77.6935022,
-            12.9313927
-          ],
-          [
-            77.6944469,
-            12.9313453
-          ],
-          [
-            77.6949182,
-            12.9313358
-          ],
-          [
-            77.694964,
-            12.9313349
-          ],
-          [
-            77.6949933,
-            12.9313343
-          ],
-          [
-            77.6950507,
-            12.9313312
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "segment_id": "osm_way_24403215",
-        "target_hour": "2026-06-20 02:00:00",
-        "police_station": "Jeevanbheemanagar",
-        "junction_name": "No Junction",
-        "road_class": "secondary",
-        "road_width_m": 9.0,
-        "predicted_total": 3.237597881672194,
-        "traffic_interruption_0_100": 12.27175716340707,
-        "parking_risk_0_100": 51.29878443417428,
-        "eps": 15.92,
-        "priority_band": "Low",
-        "recommended_action": "Monitor",
-        "recommended_force_units": 0,
-        "map_matching_mode": "osm_overpass_nearest_road",
-        "road_name": "Jeevan Bhima Nagar Main Road",
-        "osm_highway": "secondary",
-        "count_two_wheeler": 0.4839865160647297,
-        "count_car": 2.297655440328897,
-        "count_auto": 0.2702475656889249,
-        "count_light_commercial": 0.10508123242686057,
-        "count_heavy": 0.052223605435971196,
-        "count_other": 0.028403521726810276,
-        "live_congestion_multiplier": 1.0,
-        "clearance_m": 7.616127178782866,
-        "emergency_gridlock_flag": false,
-        "confidence_band": "Medium",
-        "hotspot_probability": 0.725,
-        "economic_loss_inr": 1439.0,
-        "geometry_wkt": "LINESTRING (77.6577679 12.9672675, 77.6571671 12.967346, 77.656111 12.9674713, 77.6560356 12.9674802, 77.6559992 12.9674869, 77.6558157 12.9675091, 77.6546608 12.9676958, 77.6537788 12.9677978, 77.6527424 12.9679515, 77.6522713 12.9680255, 77.6519391 12.9680777, 77.6515898 12.9681471, 77.6514451 12.9681744, 77.6511306 12.968254, 77.6508126 12.9683226, 77.6506143 12.9683737, 77.6504272 12.9684299, 77.6500778 12.968525, 77.6499403 12.9685513, 77.6495815 12.9686142, 77.648744 12.968761, 77.6480677 12.9688551, 77.6480275 12.96886, 77.6479219 12.9688667, 77.6478925 12.968868, 77.6477344 12.9688574)"
-      },
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            77.6577679,
-            12.9672675
-          ],
-          [
-            77.6571671,
-            12.967346
-          ],
-          [
-            77.656111,
-            12.9674713
-          ],
-          [
-            77.6560356,
-            12.9674802
-          ],
-          [
-            77.6559992,
-            12.9674869
-          ],
-          [
-            77.6558157,
-            12.9675091
-          ],
-          [
-            77.6546608,
-            12.9676958
-          ],
-          [
-            77.6537788,
-            12.9677978
-          ],
-          [
-            77.6527424,
-            12.9679515
-          ],
-          [
-            77.6522713,
-            12.9680255
-          ],
-          [
-            77.6519391,
-            12.9680777
-          ],
-          [
-            77.6515898,
-            12.9681471
-          ],
-          [
-            77.6514451,
-            12.9681744
-          ],
-          [
-            77.6511306,
-            12.968254
-          ],
-          [
-            77.6508126,
-            12.9683226
-          ],
-          [
-            77.6506143,
-            12.9683737
-          ],
-          [
-            77.6504272,
-            12.9684299
-          ],
-          [
-            77.6500778,
-            12.968525
-          ],
-          [
-            77.6499403,
-            12.9685513
-          ],
-          [
-            77.6495815,
-            12.9686142
-          ],
-          [
-            77.648744,
-            12.968761
-          ],
-          [
-            77.6480677,
-            12.9688551
-          ],
-          [
-            77.6480275,
-            12.96886
-          ],
-          [
-            77.6479219,
-            12.9688667
-          ],
-          [
-            77.6478925,
-            12.968868
-          ],
-          [
-            77.6477344,
-            12.9688574
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "segment_id": "osm_way_27227897",
-        "target_hour": "2026-06-20 02:00:00",
-        "police_station": "Jeevanbheemanagar",
-        "junction_name": "No Junction",
-        "road_class": "residential",
-        "road_width_m": 6.0,
-        "predicted_total": 2.837286318459797,
-        "traffic_interruption_0_100": 21.261758351478356,
-        "parking_risk_0_100": 46.76787245900269,
-        "eps": 15.88,
-        "priority_band": "Low",
-        "recommended_action": "Monitor",
-        "recommended_force_units": 0,
-        "map_matching_mode": "osm_overpass_nearest_road",
-        "road_name": "KGA Road",
-        "osm_highway": "residential",
-        "count_two_wheeler": 0.2492862894664691,
-        "count_car": 2.0352073213399158,
-        "count_auto": 0.36330782174320525,
-        "count_light_commercial": 0.12337153196975505,
-        "count_heavy": 0.05487962064710426,
-        "count_other": 0.011233733293347519,
-        "live_congestion_multiplier": 1.0,
-        "clearance_m": 4.753397814786138,
-        "emergency_gridlock_flag": false,
-        "confidence_band": "Medium",
-        "hotspot_probability": 0.75,
-        "economic_loss_inr": 485.0,
-        "geometry_wkt": "LINESTRING (77.6460198 12.9600918, 77.6460141 12.9600435, 77.6459244 12.9598409, 77.645872 12.9597236, 77.6458156 12.9595952, 77.6457695 12.9594911, 77.6457266 12.9593943, 77.6457164 12.9593719, 77.6454826 12.95886, 77.6453844 12.9586692, 77.6453693 12.9586399, 77.6453117 12.9585281, 77.6452293 12.9583536, 77.6451306 12.9581442, 77.6449919 12.9578497, 77.6449513 12.9577636, 77.6449316 12.9577218, 77.6449239 12.9577054, 77.6449055 12.9576665, 77.6448507 12.9575745, 77.6447615 12.9574584)"
-      },
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            77.6460198,
-            12.9600918
-          ],
-          [
-            77.6460141,
-            12.9600435
-          ],
-          [
-            77.6459244,
-            12.9598409
-          ],
-          [
-            77.645872,
-            12.9597236
-          ],
-          [
-            77.6458156,
-            12.9595952
-          ],
-          [
-            77.6457695,
-            12.9594911
-          ],
-          [
-            77.6457266,
-            12.9593943
-          ],
-          [
-            77.6457164,
-            12.9593719
-          ],
-          [
-            77.6454826,
-            12.95886
-          ],
-          [
-            77.6453844,
-            12.9586692
-          ],
-          [
-            77.6453693,
-            12.9586399
-          ],
-          [
-            77.6453117,
-            12.9585281
-          ],
-          [
-            77.6452293,
-            12.9583536
-          ],
-          [
-            77.6451306,
-            12.9581442
-          ],
-          [
-            77.6449919,
-            12.9578497
-          ],
-          [
-            77.6449513,
-            12.9577636
-          ],
-          [
-            77.6449316,
-            12.9577218
-          ],
-          [
-            77.6449239,
-            12.9577054
-          ],
-          [
-            77.6449055,
-            12.9576665
-          ],
-          [
-            77.6448507,
-            12.9575745
-          ],
-          [
-            77.6447615,
-            12.9574584
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "segment_id": "osm_way_991531029",
-        "target_hour": "2026-06-20 02:00:00",
-        "police_station": "Vijayanagara",
-        "junction_name": "BTP208 - Havanur Circle",
-        "road_class": "secondary",
-        "road_width_m": 9.0,
-        "predicted_total": 4.246758627184274,
-        "traffic_interruption_0_100": 11.036197963155514,
-        "parking_risk_0_100": 61.08242116528755,
+        "predicted_total": 4.440898671573414,
+        "traffic_interruption_0_100": 18.614818072593298,
+        "parking_risk_0_100": 62.725709937491516,
         "eps": 15.86,
         "priority_band": "Low",
         "recommended_action": "Monitor",
         "recommended_force_units": 0,
-        "map_matching_mode": "osm_overpass_nearest_road",
-        "road_name": "Siddhaiah Puranik Road",
-        "osm_highway": "secondary",
-        "count_two_wheeler": 2.528868516891745,
-        "count_car": 1.5198983491659976,
-        "count_auto": 0.12288065540655244,
-        "count_light_commercial": 0.03750116294048658,
-        "count_heavy": 0.004474448894774383,
-        "count_other": 0.033135493884717565,
-        "live_congestion_multiplier": 1.0,
-        "clearance_m": 7.692127447693049,
-        "emergency_gridlock_flag": false,
-        "confidence_band": "Medium",
-        "hotspot_probability": 0.7159763313609466,
-        "economic_loss_inr": 1349.0,
-        "geometry_wkt": "LINESTRING (77.5374543 12.9879638, 77.5375427 12.9882898, 77.5378797 12.9896979, 77.5379829 12.9902012, 77.5380641 12.9905971, 77.5380841 12.9906609, 77.5381419 12.9908581, 77.5383986 12.9915696, 77.538523 12.9919287, 77.5386446 12.9922415, 77.5388724 12.9928866, 77.539025 12.9932666, 77.5390542 12.9933455, 77.5392538 12.9938837, 77.5395569 12.9947367, 77.5395862 12.9948191, 77.5397748 12.9953258, 77.5399002 12.9956822, 77.5399377 12.9957867, 77.5403077 12.9968204, 77.5403881 12.9968986)"
-      },
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            77.5374543,
-            12.9879638
-          ],
-          [
-            77.5375427,
-            12.9882898
-          ],
-          [
-            77.5378797,
-            12.9896979
-          ],
-          [
-            77.5379829,
-            12.9902012
-          ],
-          [
-            77.5380641,
-            12.9905971
-          ],
-          [
-            77.5380841,
-            12.9906609
-          ],
-          [
-            77.5381419,
-            12.9908581
-          ],
-          [
-            77.5383986,
-            12.9915696
-          ],
-          [
-            77.538523,
-            12.9919287
-          ],
-          [
-            77.5386446,
-            12.9922415
-          ],
-          [
-            77.5388724,
-            12.9928866
-          ],
-          [
-            77.539025,
-            12.9932666
-          ],
-          [
-            77.5390542,
-            12.9933455
-          ],
-          [
-            77.5392538,
-            12.9938837
-          ],
-          [
-            77.5395569,
-            12.9947367
-          ],
-          [
-            77.5395862,
-            12.9948191
-          ],
-          [
-            77.5397748,
-            12.9953258
-          ],
-          [
-            77.5399002,
-            12.9956822
-          ],
-          [
-            77.5399377,
-            12.9957867
-          ],
-          [
-            77.5403077,
-            12.9968204
-          ],
-          [
-            77.5403881,
-            12.9968986
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "segment_id": "osm_way_27932090",
-        "target_hour": "2026-06-20 02:00:00",
-        "police_station": "Mico Layout",
-        "junction_name": "No Junction",
-        "road_class": "secondary",
-        "road_width_m": 9.0,
-        "predicted_total": 2.4090023690877187,
-        "traffic_interruption_0_100": 7.700896233738619,
-        "parking_risk_0_100": 41.45262086492719,
-        "eps": 15.55,
-        "priority_band": "Low",
-        "recommended_action": "Monitor",
-        "recommended_force_units": 0,
-        "map_matching_mode": "osm_overpass_nearest_road",
-        "road_name": "Tavarekere Main Road",
-        "osm_highway": "secondary",
-        "count_two_wheeler": 0.17454148795088345,
-        "count_car": 1.886546615823909,
-        "count_auto": 0.20190908955797182,
-        "count_light_commercial": 0.1061060047455505,
-        "count_heavy": 0.034674505834391,
-        "count_other": 0.005224665175012582,
-        "live_congestion_multiplier": 1.0,
-        "clearance_m": 7.917330508307949,
-        "emergency_gridlock_flag": false,
-        "confidence_band": "High",
-        "hotspot_probability": 0.7837837837837837,
-        "economic_loss_inr": 1094.0,
-        "geometry_wkt": "LINESTRING (77.6098193 12.9309162, 77.6096711 12.9302428, 77.6096298 12.9300552, 77.6096083 12.9299576, 77.6095582 12.92973, 77.6095009 12.9294698, 77.6094466 12.9292229, 77.6094203 12.9291035, 77.6093916 12.9289799, 77.6093681 12.9288665, 77.6093339 12.9287181, 77.609264 12.9284531, 77.6092454 12.9283235, 77.6092122 12.9281229, 77.6091661 12.9278446, 77.6091639 12.9278312, 77.6091157 12.9275399, 77.6091103 12.9275071, 77.6090803 12.9273256, 77.6090767 12.9273041, 77.6090509 12.9271481, 77.6090297 12.9270198, 77.6089833 12.9267611, 77.608939 12.9264409, 77.6088705 12.9262122, 77.6087998 12.9259797, 77.6087788 12.9258902, 77.6087582 12.9258025)"
-      },
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            77.6098193,
-            12.9309162
-          ],
-          [
-            77.6096711,
-            12.9302428
-          ],
-          [
-            77.6096298,
-            12.9300552
-          ],
-          [
-            77.6096083,
-            12.9299576
-          ],
-          [
-            77.6095582,
-            12.92973
-          ],
-          [
-            77.6095009,
-            12.9294698
-          ],
-          [
-            77.6094466,
-            12.9292229
-          ],
-          [
-            77.6094203,
-            12.9291035
-          ],
-          [
-            77.6093916,
-            12.9289799
-          ],
-          [
-            77.6093681,
-            12.9288665
-          ],
-          [
-            77.6093339,
-            12.9287181
-          ],
-          [
-            77.609264,
-            12.9284531
-          ],
-          [
-            77.6092454,
-            12.9283235
-          ],
-          [
-            77.6092122,
-            12.9281229
-          ],
-          [
-            77.6091661,
-            12.9278446
-          ],
-          [
-            77.6091639,
-            12.9278312
-          ],
-          [
-            77.6091157,
-            12.9275399
-          ],
-          [
-            77.6091103,
-            12.9275071
-          ],
-          [
-            77.6090803,
-            12.9273256
-          ],
-          [
-            77.6090767,
-            12.9273041
-          ],
-          [
-            77.6090509,
-            12.9271481
-          ],
-          [
-            77.6090297,
-            12.9270198
-          ],
-          [
-            77.6089833,
-            12.9267611
-          ],
-          [
-            77.608939,
-            12.9264409
-          ],
-          [
-            77.6088705,
-            12.9262122
-          ],
-          [
-            77.6087998,
-            12.9259797
-          ],
-          [
-            77.6087788,
-            12.9258902
-          ],
-          [
-            77.6087582,
-            12.9258025
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "segment_id": "osm_way_691961205",
-        "target_hour": "2026-06-20 02:00:00",
-        "police_station": "Chikkajala",
-        "junction_name": "No Junction",
-        "road_class": "secondary",
-        "road_width_m": 9.0,
-        "predicted_total": 2.7585392508644415,
-        "traffic_interruption_0_100": 10.984489639078465,
-        "parking_risk_0_100": 45.82814660111647,
-        "eps": 15.48,
-        "priority_band": "Low",
-        "recommended_action": "Monitor",
-        "recommended_force_units": 0,
-        "map_matching_mode": "osm_overpass_nearest_road",
+        "map_matching_mode": "grid_fallback",
         "road_name": "",
-        "osm_highway": "secondary",
-        "count_two_wheeler": 0.031175009742757533,
-        "count_car": 2.682679005817173,
-        "count_auto": 0.007285742314643259,
-        "count_light_commercial": 0.03307233031662897,
-        "count_heavy": 0.003838908086780567,
-        "count_other": 0.00048825458645886246,
+        "osm_highway": "",
+        "count_two_wheeler": 1.9090379619296425,
+        "count_car": 1.6187301210819025,
+        "count_auto": 0.7758412893140305,
+        "count_light_commercial": 0.11243531308882988,
+        "count_heavy": 0.021631262629666574,
+        "count_other": 0.003222723529341655,
         "live_congestion_multiplier": 1.0,
-        "clearance_m": 7.695380802918995,
+        "clearance_m": 7.51690576166131,
         "emergency_gridlock_flag": false,
         "confidence_band": "Medium",
-        "hotspot_probability": 0.725,
-        "economic_loss_inr": 1341.0,
-        "geometry_wkt": "LINESTRING (77.6796151 13.183401, 77.679604 13.1835106, 77.6795877 13.1836568, 77.679763 13.1849192, 77.6797958 13.185087, 77.6798553 13.1854447, 77.6800105 13.1863767, 77.6803303 13.1877037, 77.6803591 13.1878525, 77.6805181 13.1893839, 77.6809545 13.1929041, 77.6809547 13.1929825, 77.6809588 13.1943464, 77.6809591 13.1944585, 77.6809426 13.1945832, 77.6809336 13.1946297, 77.6809284 13.1946555, 77.680911 13.194742)"
+        "hotspot_probability": 0.6666666666666666,
+        "economic_loss_inr": 1560.0,
+        "geometry_wkt": ""
       },
       "geometry": {
         "type": "LineString",
         "coordinates": [
           [
-            77.6796151,
-            13.183401
+            77.57508,
+            12.977500000000001
           ],
           [
-            77.679604,
-            13.1835106
-          ],
-          [
-            77.6795877,
-            13.1836568
-          ],
-          [
-            77.679763,
-            13.1849192
-          ],
-          [
-            77.6797958,
-            13.185087
-          ],
-          [
-            77.6798553,
-            13.1854447
-          ],
-          [
-            77.6800105,
-            13.1863767
-          ],
-          [
-            77.6803303,
-            13.1877037
-          ],
-          [
-            77.6803591,
-            13.1878525
-          ],
-          [
-            77.6805181,
-            13.1893839
-          ],
-          [
-            77.6809545,
-            13.1929041
-          ],
-          [
-            77.6809547,
-            13.1929825
-          ],
-          [
-            77.6809588,
-            13.1943464
-          ],
-          [
-            77.6809591,
-            13.1944585
-          ],
-          [
-            77.6809426,
-            13.1945832
-          ],
-          [
-            77.6809336,
-            13.1946297
-          ],
-          [
-            77.6809284,
-            13.1946555
-          ],
-          [
-            77.680911,
-            13.194742
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "segment_id": "osm_way_1219710438",
-        "target_hour": "2026-06-20 02:00:00",
-        "police_station": "Chikkajala",
-        "junction_name": "No Junction",
-        "road_class": "trunk",
-        "road_width_m": 15.0,
-        "predicted_total": 1.7552053496750808,
-        "traffic_interruption_0_100": 1.61054624506064,
-        "parking_risk_0_100": 32.29740211100495,
-        "eps": 15.34,
-        "priority_band": "Low",
-        "recommended_action": "Monitor",
-        "recommended_force_units": 0,
-        "map_matching_mode": "osm_overpass_nearest_road",
-        "road_name": "Ballari Road",
-        "osm_highway": "trunk",
-        "count_two_wheeler": 0.10844853987514357,
-        "count_car": 1.5302815290595735,
-        "count_auto": 0.022815259927531317,
-        "count_light_commercial": 0.0562131023565187,
-        "count_heavy": 0.0350338019258427,
-        "count_other": 0.0024131165304711005,
-        "live_congestion_multiplier": 1.0,
-        "clearance_m": 14.187770870786457,
-        "emergency_gridlock_flag": false,
-        "confidence_band": "High",
-        "hotspot_probability": 0.7837837837837837,
-        "economic_loss_inr": 2000.0,
-        "geometry_wkt": "LINESTRING (77.6461052 13.190818, 77.6461674 13.1908853, 77.646382 13.1911086, 77.6466433 13.191363, 77.6468547 13.1915564, 77.647114 13.1918211, 77.6476432 13.1922694)"
-      },
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            77.6461052,
-            13.190818
-          ],
-          [
-            77.6461674,
-            13.1908853
-          ],
-          [
-            77.646382,
-            13.1911086
-          ],
-          [
-            77.6466433,
-            13.191363
-          ],
-          [
-            77.6468547,
-            13.1915564
-          ],
-          [
-            77.647114,
-            13.1918211
-          ],
-          [
-            77.6476432,
-            13.1922694
+            77.57592000000001,
+            12.977500000000001
           ]
         ]
       }

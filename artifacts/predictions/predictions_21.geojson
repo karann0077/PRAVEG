@@ -4,78 +4,46 @@
     {
       "type": "Feature",
       "properties": {
-        "segment_id": "osm_way_190144809",
+        "segment_id": "grid_12963_77576",
         "target_hour": "2026-06-20 21:00:00",
         "police_station": "City Market",
         "junction_name": "BTP082 - KR Market Junction",
         "road_class": "primary",
         "road_width_m": 12.0,
-        "predicted_total": 3.762798395349234,
-        "traffic_interruption_0_100": 26.552955286049762,
-        "parking_risk_0_100": 56.66360709481144,
-        "eps": 47.6,
-        "priority_band": "Watchlist",
-        "recommended_action": "Monitor",
+        "predicted_total": 6.407801472495666,
+        "traffic_interruption_0_100": 65.65931157616858,
+        "parking_risk_0_100": 75.92402866184092,
+        "eps": 58.37,
+        "priority_band": "Orange Line",
+        "recommended_action": "Monitor (Low Confidence)",
         "recommended_force_units": 2,
-        "map_matching_mode": "osm_overpass_nearest_road",
-        "road_name": "Krishna Rajendra Road",
-        "osm_highway": "primary",
-        "count_two_wheeler": 0.8813984684837768,
-        "count_car": 1.8905100380591635,
-        "count_auto": 0.3726939409887066,
-        "count_light_commercial": 0.606434247263272,
-        "count_heavy": 0.011033777690288116,
-        "count_other": 0.0007279228640275014,
+        "map_matching_mode": "grid_fallback",
+        "road_name": "",
+        "osm_highway": "",
+        "count_two_wheeler": 2.012191530343296,
+        "count_car": 3.212793595852148,
+        "count_auto": 0.566402232830414,
+        "count_light_commercial": 0.6127645763988642,
+        "count_heavy": 0.003378390280985879,
+        "count_other": 0.0002711467899581995,
         "live_congestion_multiplier": 1.0,
-        "clearance_m": 10.44838509636833,
+        "clearance_m": 9.532739630394468,
         "emergency_gridlock_flag": false,
         "confidence_band": "Medium",
-        "hotspot_probability": 0.5676229508196721,
-        "economic_loss_inr": 2752.0,
-        "geometry_wkt": "LINESTRING (77.5750888 12.9612109, 77.5752198 12.9614394, 77.575278 12.9615264, 77.5756456 12.9621081, 77.5757939 12.9622247, 77.5758651 12.9622807, 77.5760093 12.9624076, 77.5763578 12.9630539, 77.5766564 12.9637557, 77.5767121 12.9638866)"
+        "hotspot_probability": 0.5483870967741935,
+        "economic_loss_inr": 4806.0,
+        "geometry_wkt": ""
       },
       "geometry": {
         "type": "LineString",
         "coordinates": [
           [
-            77.5750888,
-            12.9612109
+            77.57607999999999,
+            12.9635
           ],
           [
-            77.5752198,
-            12.9614394
-          ],
-          [
-            77.575278,
-            12.9615264
-          ],
-          [
-            77.5756456,
-            12.9621081
-          ],
-          [
-            77.5757939,
-            12.9622247
-          ],
-          [
-            77.5758651,
-            12.9622807
-          ],
-          [
-            77.5760093,
-            12.9624076
-          ],
-          [
-            77.5763578,
-            12.9630539
-          ],
-          [
-            77.5766564,
-            12.9637557
-          ],
-          [
-            77.5767121,
-            12.9638866
+            77.57692,
+            12.9635
           ]
         ]
       }
