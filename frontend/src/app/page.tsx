@@ -28,36 +28,6 @@ function BottomPillToggles() {
           Road Intelligence
         </div>
       </button>
-
-      <button
-        onClick={() => setActiveLayerMode("traffic_blockage")}
-        className={`px-4 py-2 rounded-full text-xs font-bold tracking-widest uppercase transition-all duration-300 ${
-          activeLayerMode === "traffic_blockage" 
-            ? "bg-rose-500 text-white shadow-[0_0_15px_rgba(244,63,94,0.5)]" 
-            : "text-zinc-400 hover:text-white hover:bg-white/5"
-        }`}
-      >
-        <div className="flex items-center gap-2">
-          <Hexagon className="w-3.5 h-3.5" />
-          Heat Density
-        </div>
-      </button>
-
-      <div className="w-px h-6 bg-white/10 mx-1" />
-
-      <button
-        onClick={() => setShowRipples(!showRipples)}
-        className={`px-4 py-2 rounded-full text-xs font-bold tracking-widest uppercase transition-all duration-300 ${
-          showRipples 
-            ? "bg-amber-500 text-white shadow-[0_0_15px_rgba(245,158,11,0.5)]" 
-            : "text-zinc-400 hover:text-white hover:bg-white/5"
-        }`}
-      >
-        <div className="flex items-center gap-2">
-          <Activity className="w-3.5 h-3.5" />
-          Ripple Propagation
-        </div>
-      </button>
     </div>
   );
 }

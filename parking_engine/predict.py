@@ -80,8 +80,7 @@ def run_prediction(
     )
     top = scored.head(top_k).copy()
 
-    # Filter out safe segments to prevent the map from rendering thousands of irrelevant green lines (abnormal graph fix)
-    top = top[top["eps"] >= 15]
+
 
     out_csv.parent.mkdir(parents=True, exist_ok=True)
     top.to_csv(out_csv, index=False)
