@@ -97,7 +97,6 @@ export default function TacticalMap() {
       const estVehicles = f.properties?.predicted_total || Math.floor(eps / 2);
       const weight = heatmapWeightMode === 'violation_density' ? estVehicles : econLoss;
       
-      try {
         let coord = f.geometry.coordinates[0];
         while (Array.isArray(coord) && Array.isArray(coord[0])) coord = coord[0];
         if (Array.isArray(coord)) {
@@ -110,7 +109,6 @@ export default function TacticalMap() {
              segment_id: f.properties?.segment_id
            });
         }
-      }
     });
     return points;
   }, [geoData, isTrafficBlockage, heatmapWeightMode]);
