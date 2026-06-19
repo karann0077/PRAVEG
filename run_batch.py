@@ -104,7 +104,9 @@ def generate_ripples() -> None:
 
 
 def run_all_batches(bundle: dict = None) -> None:
-    today = datetime.now().strftime("%Y-%m-%d")
+    import pytz
+    tz = pytz.timezone("Asia/Kolkata")
+    today = datetime.now(tz).strftime("%Y-%m-%d")
     run_hourly_predictions(today, bundle)
     recalibrate_from_batch()
     generate_ripples()

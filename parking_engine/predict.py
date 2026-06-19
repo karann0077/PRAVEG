@@ -11,6 +11,9 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
+import warnings
+warnings.filterwarnings("ignore", category=UserWarning, module="sklearn")
+
 from .features import add_features, create_future_rows, create_location_row
 from .modeling import load_bundle, predict_feature_frame
 from .scoring import score_predictions, write_geojson

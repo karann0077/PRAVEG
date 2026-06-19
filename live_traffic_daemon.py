@@ -198,7 +198,9 @@ def run_live_daemon(bundle: dict = None) -> None:
 
     while True:
         try:
-            now = datetime.now()
+            import pytz
+            tz = pytz.timezone("Asia/Kolkata")
+            now = datetime.now(tz)
             dt_str = now.strftime("%Y-%m-%d %H:00")
             log.info("Refreshing live predictions for %s", dt_str)
 
