@@ -373,26 +373,17 @@ def nearest_station_endpoint(
         a = math.sin(dlat / 2) ** 2 + math.cos(lat1) * math.cos(lat2) * math.sin(dlon / 2) ** 2
         return 2 * 6371000 * math.asin(math.sqrt(a))
         
-    station_name_meta = row.get("police_station", "")
+    distances = stations_df.apply(
+        lambda r: haversine(seg_lat, seg_lon, float(r["latitude"]), float(r["longitude"])), axis=1
+    )
     
-    assigned_station = stations_df[stations_df["station"] == station_name_meta]
-    
-    if not assigned_station.empty:
-        nearest_station = assigned_station.iloc[0]
-        # Still need to calculate distance for ETA
-        distance_m = haversine(seg_lat, seg_lon, float(nearest_station["latitude"]), float(nearest_station["longitude"]))
-    else:
-        # Fallback: Calculate Haversine distance to all stations
-        distances = stations_df.apply(
-            lambda r: haversine(seg_lat, seg_lon, float(r["latitude"]), float(r["longitude"])), axis=1
-        )
-        nearest_idx = distances.idxmin()
-        nearest_station = stations_df.loc[nearest_idx]
-        distance_m = float(distances.loc[nearest_idx])
+    nearest_idx = distances.idxmin()
+    nearest_station = stations_df.loc[nearest_idx]
     
     station_name = nearest_station["matched_name"]
     station_lat = float(nearest_station["latitude"])
     station_lon = float(nearest_station["longitude"])
+    distance_m = float(distances.loc[nearest_idx])
 
     # ETA at city average speed (15 km/h in congested Bengaluru)
     eta_minutes = max(3, round((distance_m / 1000.0) / 15.0 * 60.0))
