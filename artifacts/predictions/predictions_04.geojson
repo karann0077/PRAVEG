@@ -4,81 +4,34 @@
     {
       "type": "Feature",
       "properties": {
-        "segment_id": "grid_12960_77527",
-        "target_hour": "2026-06-20 04:00:00",
-        "police_station": "Byatarayanapura",
-        "junction_name": "No Junction",
-        "road_class": "primary",
-        "road_width_m": 12.0,
-        "predicted_total": 13.370184150295273,
-        "traffic_interruption_0_100": 31.614056968632553,
-        "parking_risk_0_100": 94.87557587637414,
-        "eps": 27.09,
-        "priority_band": "Low",
-        "recommended_action": "Monitor",
-        "recommended_force_units": 0,
-        "map_matching_mode": "grid_fallback",
-        "road_name": "",
-        "osm_highway": "",
-        "count_two_wheeler": 13.316957907711004,
-        "count_car": 0.03378585201486247,
-        "count_auto": 0.01887715764482825,
-        "count_light_commercial": 0.0003686038330090973,
-        "count_heavy": 0.00018045727136718303,
-        "count_other": 1.4171820202738757e-05,
-        "live_congestion_multiplier": 1.0,
-        "clearance_m": 9.314089086471204,
-        "emergency_gridlock_flag": false,
-        "confidence_band": "Medium",
-        "hotspot_probability": 0.6507936507936508,
-        "economic_loss_inr": 4335.0,
-        "geometry_wkt": ""
-      },
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            77.52708,
-            12.9605
-          ],
-          [
-            77.52792000000001,
-            12.9605
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
         "segment_id": "grid_13071_77588",
         "target_hour": "2026-06-20 04:00:00",
         "police_station": "Kodigehalli",
         "junction_name": "No Junction",
         "road_class": "secondary",
         "road_width_m": 9.0,
-        "predicted_total": 13.595639046499011,
-        "traffic_interruption_0_100": 51.53319777543533,
-        "parking_risk_0_100": 95.12598971906185,
-        "eps": 26.22,
+        "predicted_total": 13.484250869368449,
+        "traffic_interruption_0_100": 50.93943451173588,
+        "parking_risk_0_100": 95.00383812432085,
+        "eps": 24.27,
         "priority_band": "Low",
         "recommended_action": "Monitor",
         "recommended_force_units": 0,
         "map_matching_mode": "grid_fallback",
         "road_name": "",
         "osm_highway": "",
-        "count_two_wheeler": 13.345751407443535,
-        "count_car": 0.18430401172571215,
-        "count_auto": 0.053625035211660885,
-        "count_light_commercial": 0.01019577463704683,
-        "count_heavy": 0.001562008041550486,
-        "count_other": 0.00020080943950373338,
+        "count_two_wheeler": 13.246330625382257,
+        "count_car": 0.18780538676297573,
+        "count_auto": 0.03902644526616982,
+        "count_light_commercial": 0.009174918983505087,
+        "count_heavy": 0.0015879655359917176,
+        "count_other": 0.0003255274375486277,
         "live_congestion_multiplier": 1.0,
-        "clearance_m": 6.218903916370715,
+        "clearance_m": 6.242380339952884,
         "emergency_gridlock_flag": false,
         "confidence_band": "Medium",
-        "hotspot_probability": 0.6021485081373108,
-        "economic_loss_inr": 3940.0,
+        "hotspot_probability": 0.49148936170212776,
+        "economic_loss_inr": 3840.0,
         "geometry_wkt": ""
       },
       "geometry": {
@@ -98,81 +51,34 @@
     {
       "type": "Feature",
       "properties": {
-        "segment_id": "grid_12925_77608",
-        "target_hour": "2026-06-20 04:00:00",
-        "police_station": "Mico Layout",
-        "junction_name": "No Junction",
-        "road_class": "primary",
-        "road_width_m": 12.0,
-        "predicted_total": 3.410992915205176,
-        "traffic_interruption_0_100": 10.6939820135713,
-        "parking_risk_0_100": 53.13965664112237,
-        "eps": 24.55,
-        "priority_band": "Low",
-        "recommended_action": "Monitor",
-        "recommended_force_units": 0,
-        "map_matching_mode": "grid_fallback",
-        "road_name": "",
-        "osm_highway": "",
-        "count_two_wheeler": 0.5732221231807061,
-        "count_car": 2.1045508607838666,
-        "count_auto": 0.30081108957519326,
-        "count_light_commercial": 0.35788771753495746,
-        "count_heavy": 0.0689464337046136,
-        "count_other": 0.005574690425838817,
-        "live_congestion_multiplier": 1.0,
-        "clearance_m": 10.534681714936712,
-        "emergency_gridlock_flag": false,
-        "confidence_band": "High",
-        "hotspot_probability": 1.0,
-        "economic_loss_inr": 2124.0,
-        "geometry_wkt": ""
-      },
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            77.60808,
-            12.9255
-          ],
-          [
-            77.60892000000001,
-            12.9255
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
         "segment_id": "grid_12977_77576",
         "target_hour": "2026-06-20 04:00:00",
         "police_station": "Upparpet",
         "junction_name": "BTP040 - Elite Junction",
         "road_class": "primary",
         "road_width_m": 12.0,
-        "predicted_total": 6.5270271304218435,
-        "traffic_interruption_0_100": 12.925663911594432,
-        "parking_risk_0_100": 76.55353557911023,
-        "eps": 24.18,
+        "predicted_total": 8.045154720024337,
+        "traffic_interruption_0_100": 17.069378692767913,
+        "parking_risk_0_100": 83.26741483152519,
+        "eps": 22.89,
         "priority_band": "Low",
         "recommended_action": "Monitor",
         "recommended_force_units": 0,
         "map_matching_mode": "grid_fallback",
         "road_name": "",
         "osm_highway": "",
-        "count_two_wheeler": 5.271957697055495,
-        "count_car": 0.9154583641524244,
-        "count_auto": 0.2564451368785825,
-        "count_light_commercial": 0.0724480845628367,
-        "count_heavy": 0.009465627985307527,
-        "count_other": 0.0012522197871971139,
+        "count_two_wheeler": 6.872333965856021,
+        "count_car": 0.7621805377840298,
+        "count_auto": 0.35210742275666057,
+        "count_light_commercial": 0.04896094372094797,
+        "count_heavy": 0.007792234383062903,
+        "count_other": 0.0017796155236149977,
         "live_congestion_multiplier": 1.0,
-        "clearance_m": 10.37901595691796,
+        "clearance_m": 10.114999726623214,
         "emergency_gridlock_flag": false,
         "confidence_band": "High",
-        "hotspot_probability": 0.8709677419354839,
-        "economic_loss_inr": 2349.0,
+        "hotspot_probability": 0.6979166666666666,
+        "economic_loss_inr": 2737.0,
         "geometry_wkt": ""
       },
       "geometry": {
@@ -192,598 +98,34 @@
     {
       "type": "Feature",
       "properties": {
-        "segment_id": "grid_12982_77603",
-        "target_hour": "2026-06-20 04:00:00",
-        "police_station": "Shivajinagar",
-        "junction_name": "BTP211 - Central Street Junction",
-        "road_class": "secondary",
-        "road_width_m": 9.0,
-        "predicted_total": 4.948672578067072,
-        "traffic_interruption_0_100": 26.99541886275556,
-        "parking_risk_0_100": 66.70307106231827,
-        "eps": 24.06,
-        "priority_band": "Low",
-        "recommended_action": "Monitor",
-        "recommended_force_units": 0,
-        "map_matching_mode": "grid_fallback",
-        "road_name": "",
-        "osm_highway": "",
-        "count_two_wheeler": 0.4773346971419493,
-        "count_car": 1.765995950669261,
-        "count_auto": 2.628360559958205,
-        "count_light_commercial": 0.06879856697003203,
-        "count_heavy": 0.006066316152714913,
-        "count_other": 0.0021164871749096217,
-        "live_congestion_multiplier": 1.0,
-        "clearance_m": 7.16696018910218,
-        "emergency_gridlock_flag": false,
-        "confidence_band": "High",
-        "hotspot_probability": 0.8709677419354839,
-        "economic_loss_inr": 2149.0,
-        "geometry_wkt": ""
-      },
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            77.60307999999999,
-            12.9825
-          ],
-          [
-            77.60392,
-            12.9825
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "segment_id": "grid_12958_77577",
-        "target_hour": "2026-06-20 04:00:00",
-        "police_station": "City Market",
-        "junction_name": "BTP118 - Basappa Circle",
-        "road_class": "secondary",
-        "road_width_m": 9.0,
-        "predicted_total": 5.803660479462043,
-        "traffic_interruption_0_100": 31.09773077888043,
-        "parking_risk_0_100": 72.46472645206522,
-        "eps": 22.98,
-        "priority_band": "Low",
-        "recommended_action": "Monitor",
-        "recommended_force_units": 0,
-        "map_matching_mode": "grid_fallback",
-        "road_name": "",
-        "osm_highway": "",
-        "count_two_wheeler": 2.0791879761871597,
-        "count_car": 0.6623584699568534,
-        "count_auto": 2.0858039284830117,
-        "count_light_commercial": 0.6329856232671908,
-        "count_heavy": 0.33718040864741594,
-        "count_other": 0.006144072920413135,
-        "live_congestion_multiplier": 1.0,
-        "clearance_m": 7.0056034211394325,
-        "emergency_gridlock_flag": false,
-        "confidence_band": "High",
-        "hotspot_probability": 0.7357142857142858,
-        "economic_loss_inr": 2377.0,
-        "geometry_wkt": ""
-      },
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            77.57708,
-            12.9585
-          ],
-          [
-            77.57792,
-            12.9585
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "segment_id": "grid_13183_77679",
-        "target_hour": "2026-06-20 04:00:00",
-        "police_station": "Chikkajala",
-        "junction_name": "No Junction",
-        "road_class": "secondary",
-        "road_width_m": 9.0,
-        "predicted_total": 3.5924371042780234,
-        "traffic_interruption_0_100": 23.668316398329026,
-        "parking_risk_0_100": 54.991523914813854,
-        "eps": 22.73,
-        "priority_band": "Low",
-        "recommended_action": "Monitor",
-        "recommended_force_units": 0,
-        "map_matching_mode": "grid_fallback",
-        "road_name": "",
-        "osm_highway": "",
-        "count_two_wheeler": 0.0485634301152518,
-        "count_car": 3.484342278176359,
-        "count_auto": 0.004758401187086492,
-        "count_light_commercial": 0.0485261008352433,
-        "count_heavy": 0.006175308136060316,
-        "count_other": 7.15858280220595e-05,
-        "live_congestion_multiplier": 1.0,
-        "clearance_m": 7.301727789920362,
-        "emergency_gridlock_flag": false,
-        "confidence_band": "High",
-        "hotspot_probability": 0.8709677419354839,
-        "economic_loss_inr": 1936.0,
-        "geometry_wkt": ""
-      },
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            77.67908,
-            13.1835
-          ],
-          [
-            77.67992000000001,
-            13.1835
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "segment_id": "grid_12987_77549",
-        "target_hour": "2026-06-20 04:00:00",
-        "police_station": "Vijayanagara",
-        "junction_name": "BTP018 - Dhobi Ghat Junction",
-        "road_class": "secondary",
-        "road_width_m": 9.0,
-        "predicted_total": 4.228001013157441,
-        "traffic_interruption_0_100": 19.840847111335446,
-        "parking_risk_0_100": 60.91986016713851,
-        "eps": 22.43,
-        "priority_band": "Low",
-        "recommended_action": "Monitor",
-        "recommended_force_units": 0,
-        "map_matching_mode": "grid_fallback",
-        "road_name": "",
-        "osm_highway": "",
-        "count_two_wheeler": 1.6545072164130632,
-        "count_car": 2.3341997645457404,
-        "count_auto": 0.16459643370334714,
-        "count_light_commercial": 0.06097630863259866,
-        "count_heavy": 0.011719455795632437,
-        "count_other": 0.0020018340670589366,
-        "live_congestion_multiplier": 1.0,
-        "clearance_m": 7.463229932691815,
-        "emergency_gridlock_flag": false,
-        "confidence_band": "High",
-        "hotspot_probability": 0.8709677419354839,
-        "economic_loss_inr": 1715.0,
-        "geometry_wkt": ""
-      },
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            77.54907999999999,
-            12.9875
-          ],
-          [
-            77.54992,
-            12.9875
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "segment_id": "grid_12987_77559",
-        "target_hour": "2026-06-20 04:00:00",
-        "police_station": "Rajajinagar",
-        "junction_name": "BTP015 - Suguna Hospital, Dr. Rajkumar Road",
-        "road_class": "primary",
-        "road_width_m": 12.0,
-        "predicted_total": 3.196252481486351,
-        "traffic_interruption_0_100": 9.772133773372927,
-        "parking_risk_0_100": 50.849262244326134,
-        "eps": 22.03,
-        "priority_band": "Low",
-        "recommended_action": "Monitor",
-        "recommended_force_units": 0,
-        "map_matching_mode": "grid_fallback",
-        "road_name": "",
-        "osm_highway": "",
-        "count_two_wheeler": 0.3253262333651629,
-        "count_car": 2.5162262949347642,
-        "count_auto": 0.27185351570826655,
-        "count_light_commercial": 0.0631806263315946,
-        "count_heavy": 0.016661784496232537,
-        "count_other": 0.0030040266503304817,
-        "live_congestion_multiplier": 1.0,
-        "clearance_m": 10.602788937905643,
-        "emergency_gridlock_flag": false,
-        "confidence_band": "High",
-        "hotspot_probability": 0.8709677419354839,
-        "economic_loss_inr": 1976.0,
-        "geometry_wkt": ""
-      },
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            77.55908,
-            12.9875
-          ],
-          [
-            77.55992,
-            12.9875
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "segment_id": "grid_13012_77554",
-        "target_hour": "2026-06-20 04:00:00",
-        "police_station": "Malleshwaram",
-        "junction_name": "No Junction",
-        "road_class": "secondary",
-        "road_width_m": 9.0,
-        "predicted_total": 5.599169708936343,
-        "traffic_interruption_0_100": 25.515000775473084,
-        "parking_risk_0_100": 71.18459181015024,
-        "eps": 21.78,
-        "priority_band": "Low",
-        "recommended_action": "Monitor",
-        "recommended_force_units": 0,
-        "map_matching_mode": "grid_fallback",
-        "road_name": "",
-        "osm_highway": "",
-        "count_two_wheeler": 2.2593153103715444,
-        "count_car": 1.5171363902705914,
-        "count_auto": 1.7894874069815463,
-        "count_light_commercial": 0.022847943641384767,
-        "count_heavy": 0.008248821030269403,
-        "count_other": 0.002133836641005711,
-        "live_congestion_multiplier": 1.0,
-        "clearance_m": 7.226400871610209,
-        "emergency_gridlock_flag": false,
-        "confidence_band": "High",
-        "hotspot_probability": 0.7357142857142858,
-        "economic_loss_inr": 2028.0,
-        "geometry_wkt": ""
-      },
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            77.55408,
-            13.012500000000001
-          ],
-          [
-            77.55492000000001,
-            13.012500000000001
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "segment_id": "grid_12987_77580",
-        "target_hour": "2026-06-20 04:00:00",
-        "police_station": "High ground",
-        "junction_name": "BTP054 - Shivananda Circle",
-        "road_class": "secondary",
-        "road_width_m": 9.0,
-        "predicted_total": 3.1450678323159194,
-        "traffic_interruption_0_100": 17.726344123416215,
-        "parking_risk_0_100": 50.28701218289229,
-        "eps": 21.67,
-        "priority_band": "Low",
-        "recommended_action": "Monitor",
-        "recommended_force_units": 0,
-        "map_matching_mode": "grid_fallback",
-        "road_name": "",
-        "osm_highway": "",
-        "count_two_wheeler": 0.14871958759965673,
-        "count_car": 2.764368296823039,
-        "count_auto": 0.13731452028936006,
-        "count_light_commercial": 0.06732245481696109,
-        "count_heavy": 0.024749764960267817,
-        "count_other": 0.0025932078266345617,
-        "live_congestion_multiplier": 1.0,
-        "clearance_m": 7.5565243899335055,
-        "emergency_gridlock_flag": false,
-        "confidence_band": "High",
-        "hotspot_probability": 0.8709677419354839,
-        "economic_loss_inr": 1585.0,
-        "geometry_wkt": ""
-      },
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            77.58008,
-            12.9875
-          ],
-          [
-            77.58092,
-            12.9875
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "segment_id": "grid_13015_77555",
-        "target_hour": "2026-06-20 04:00:00",
-        "police_station": "Malleshwaram",
-        "junction_name": "No Junction",
-        "road_class": "primary",
-        "road_width_m": 12.0,
-        "predicted_total": 4.316031914251988,
-        "traffic_interruption_0_100": 14.84567967441004,
-        "parking_risk_0_100": 61.67693313847546,
-        "eps": 21.63,
-        "priority_band": "Low",
-        "recommended_action": "Monitor",
-        "recommended_force_units": 0,
-        "map_matching_mode": "grid_fallback",
-        "road_name": "",
-        "osm_highway": "",
-        "count_two_wheeler": 0.39183120972562513,
-        "count_car": 2.5186509143279117,
-        "count_auto": 1.3501641404938738,
-        "count_light_commercial": 0.032320637153789314,
-        "count_heavy": 0.020623978234163794,
-        "count_other": 0.002441034316623202,
-        "live_congestion_multiplier": 1.0,
-        "clearance_m": 10.253321784572577,
-        "emergency_gridlock_flag": false,
-        "confidence_band": "High",
-        "hotspot_probability": 0.7357142857142858,
-        "economic_loss_inr": 2488.0,
-        "geometry_wkt": ""
-      },
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            77.55507999999999,
-            13.0155
-          ],
-          [
-            77.55592,
-            13.0155
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "segment_id": "grid_13007_77571",
-        "target_hour": "2026-06-20 04:00:00",
-        "police_station": "Malleshwaram",
-        "junction_name": "No Junction",
-        "road_class": "secondary",
-        "road_width_m": 9.0,
-        "predicted_total": 4.61408460176732,
-        "traffic_interruption_0_100": 28.25009340381096,
-        "parking_risk_0_100": 64.13298566878728,
-        "eps": 21.61,
-        "priority_band": "Low",
-        "recommended_action": "Monitor",
-        "recommended_force_units": 0,
-        "map_matching_mode": "grid_fallback",
-        "road_name": "",
-        "osm_highway": "",
-        "count_two_wheeler": 0.9510828026182558,
-        "count_car": 3.28189612406038,
-        "count_auto": 0.3429565197190136,
-        "count_light_commercial": 0.0320235427352887,
-        "count_heavy": 0.005471467792037243,
-        "count_other": 0.0006541448423454912,
-        "live_congestion_multiplier": 1.0,
-        "clearance_m": 7.117141201701259,
-        "emergency_gridlock_flag": false,
-        "confidence_band": "High",
-        "hotspot_probability": 0.7357142857142858,
-        "economic_loss_inr": 2185.0,
-        "geometry_wkt": ""
-      },
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            77.57108,
-            13.0075
-          ],
-          [
-            77.57192,
-            13.0075
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "segment_id": "grid_13012_77552",
-        "target_hour": "2026-06-20 04:00:00",
-        "police_station": "Malleshwaram",
-        "junction_name": "No Junction",
-        "road_class": "secondary",
-        "road_width_m": 9.0,
-        "predicted_total": 4.359568073006111,
-        "traffic_interruption_0_100": 26.003043976388618,
-        "parking_risk_0_100": 62.045909641140916,
-        "eps": 21.2,
-        "priority_band": "Low",
-        "recommended_action": "Monitor",
-        "recommended_force_units": 0,
-        "map_matching_mode": "grid_fallback",
-        "road_name": "",
-        "osm_highway": "",
-        "count_two_wheeler": 0.7949666864994612,
-        "count_car": 3.0720883029985484,
-        "count_auto": 0.43628535098106797,
-        "count_light_commercial": 0.03379234874678195,
-        "count_heavy": 0.01808384958207075,
-        "count_other": 0.004351534198181612,
-        "live_congestion_multiplier": 1.0,
-        "clearance_m": 7.206719898205068,
-        "emergency_gridlock_flag": false,
-        "confidence_band": "High",
-        "hotspot_probability": 0.7357142857142858,
-        "economic_loss_inr": 2048.0,
-        "geometry_wkt": ""
-      },
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            77.55207999999999,
-            13.012500000000001
-          ],
-          [
-            77.55292,
-            13.012500000000001
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "segment_id": "grid_12973_77579",
-        "target_hour": "2026-06-20 04:00:00",
-        "police_station": "Upparpet",
-        "junction_name": "BTP044 - Sagar Theatre Junction",
-        "road_class": "secondary",
-        "road_width_m": 9.0,
-        "predicted_total": 7.455193790733498,
-        "traffic_interruption_0_100": 24.53873439843768,
-        "parking_risk_0_100": 80.923438121918,
-        "eps": 21.1,
-        "priority_band": "Low",
-        "recommended_action": "Monitor",
-        "recommended_force_units": 0,
-        "map_matching_mode": "grid_fallback",
-        "road_name": "",
-        "osm_highway": "",
-        "count_two_wheeler": 6.509490346258552,
-        "count_car": 0.4696734397098345,
-        "count_auto": 0.2612438809468627,
-        "count_light_commercial": 0.20413258704651152,
-        "count_heavy": 0.00926121682201777,
-        "count_other": 0.0013923199497202518,
-        "live_congestion_multiplier": 1.0,
-        "clearance_m": 7.266045405116214,
-        "emergency_gridlock_flag": false,
-        "confidence_band": "Medium",
-        "hotspot_probability": 0.6666666666666666,
-        "economic_loss_inr": 1962.0,
-        "geometry_wkt": ""
-      },
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            77.57907999999999,
-            12.9735
-          ],
-          [
-            77.57992,
-            12.9735
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "segment_id": "grid_13006_77571",
-        "target_hour": "2026-06-20 04:00:00",
-        "police_station": "Malleshwaram",
-        "junction_name": "No Junction",
-        "road_class": "secondary",
-        "road_width_m": 9.0,
-        "predicted_total": 4.1453632639235956,
-        "traffic_interruption_0_100": 24.408942793150967,
-        "parking_risk_0_100": 60.19556454951205,
-        "eps": 20.86,
-        "priority_band": "Low",
-        "recommended_action": "Monitor",
-        "recommended_force_units": 0,
-        "map_matching_mode": "grid_fallback",
-        "road_name": "",
-        "osm_highway": "",
-        "count_two_wheeler": 0.7652081846159612,
-        "count_car": 3.090266306167633,
-        "count_auto": 0.23749689498238202,
-        "count_light_commercial": 0.04451595446784137,
-        "count_heavy": 0.006927835407553871,
-        "count_other": 0.0009480882822243847,
-        "live_congestion_multiplier": 1.0,
-        "clearance_m": 7.271345268009933,
-        "emergency_gridlock_flag": false,
-        "confidence_band": "High",
-        "hotspot_probability": 0.7357142857142858,
-        "economic_loss_inr": 1951.0,
-        "geometry_wkt": ""
-      },
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            77.57108,
-            13.0065
-          ],
-          [
-            77.57192,
-            13.0065
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
         "segment_id": "grid_12938_77696",
         "target_hour": "2026-06-20 04:00:00",
         "police_station": "HAL Old Airport",
         "junction_name": "No Junction",
         "road_class": "primary",
         "road_width_m": 12.0,
-        "predicted_total": 4.2156475863558756,
-        "traffic_interruption_0_100": 11.547313146546024,
-        "parking_risk_0_100": 60.81242974265892,
-        "eps": 20.8,
+        "predicted_total": 4.269550132247068,
+        "traffic_interruption_0_100": 12.558089300994691,
+        "parking_risk_0_100": 61.27903178257852,
+        "eps": 21.7,
         "priority_band": "Low",
         "recommended_action": "Monitor",
         "recommended_force_units": 0,
         "map_matching_mode": "grid_fallback",
         "road_name": "",
         "osm_highway": "",
-        "count_two_wheeler": 1.189785272060945,
-        "count_car": 1.4595774374190524,
-        "count_auto": 1.2249353347231198,
-        "count_light_commercial": 0.29616681581899185,
-        "count_heavy": 0.029305107191226757,
-        "count_other": 0.015877619142539615,
+        "count_two_wheeler": 0.8680121375172065,
+        "count_car": 1.2940545730723676,
+        "count_auto": 1.622682609419631,
+        "count_light_commercial": 0.45424291565400016,
+        "count_heavy": 0.02726234089519642,
+        "count_other": 0.00329555568866602,
         "live_congestion_multiplier": 1.0,
-        "clearance_m": 10.473753571165823,
+        "clearance_m": 10.40387421519076,
         "emergency_gridlock_flag": false,
         "confidence_band": "High",
-        "hotspot_probability": 0.7357142857142858,
-        "economic_loss_inr": 2137.0,
+        "hotspot_probability": 0.7699115044247787,
+        "economic_loss_inr": 2259.0,
         "geometry_wkt": ""
       },
       "geometry": {
@@ -803,46 +145,140 @@
     {
       "type": "Feature",
       "properties": {
-        "segment_id": "grid_13005_77571",
+        "segment_id": "grid_12958_77577",
         "target_hour": "2026-06-20 04:00:00",
-        "police_station": "Malleshwaram",
+        "police_station": "City Market",
+        "junction_name": "BTP118 - Basappa Circle",
+        "road_class": "secondary",
+        "road_width_m": 9.0,
+        "predicted_total": 5.9697518470729225,
+        "traffic_interruption_0_100": 34.43840262770635,
+        "parking_risk_0_100": 73.4625043153433,
+        "eps": 21.65,
+        "priority_band": "Low",
+        "recommended_action": "Monitor",
+        "recommended_force_units": 0,
+        "map_matching_mode": "grid_fallback",
+        "road_name": "",
+        "osm_highway": "",
+        "count_two_wheeler": 1.3812578626098972,
+        "count_car": 0.6564120780050281,
+        "count_auto": 3.0116669725705423,
+        "count_light_commercial": 0.5528598349111513,
+        "count_heavy": 0.3655015964130361,
+        "count_other": 0.0020535025632675407,
+        "live_congestion_multiplier": 1.0,
+        "clearance_m": 6.876715067880268,
+        "emergency_gridlock_flag": false,
+        "confidence_band": "Medium",
+        "hotspot_probability": 0.6153846153846154,
+        "economic_loss_inr": 2563.0,
+        "geometry_wkt": ""
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            77.57708,
+            12.9585
+          ],
+          [
+            77.57792,
+            12.9585
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": "grid_12982_77603",
+        "target_hour": "2026-06-20 04:00:00",
+        "police_station": "Shivajinagar",
+        "junction_name": "BTP211 - Central Street Junction",
+        "road_class": "secondary",
+        "road_width_m": 9.0,
+        "predicted_total": 4.357329691498279,
+        "traffic_interruption_0_100": 20.920591994790872,
+        "parking_risk_0_100": 62.02702589296979,
+        "eps": 21.23,
+        "priority_band": "Low",
+        "recommended_action": "Monitor",
+        "recommended_force_units": 0,
+        "map_matching_mode": "grid_fallback",
+        "road_name": "",
+        "osm_highway": "",
+        "count_two_wheeler": 0.5339761827257398,
+        "count_car": 1.4209731670081196,
+        "count_auto": 2.320773005732656,
+        "count_light_commercial": 0.06083147920785801,
+        "count_heavy": 0.013325720971357303,
+        "count_other": 0.007450135852549261,
+        "live_congestion_multiplier": 1.0,
+        "clearance_m": 7.416812648557021,
+        "emergency_gridlock_flag": false,
+        "confidence_band": "High",
+        "hotspot_probability": 0.7699115044247787,
+        "economic_loss_inr": 1759.0,
+        "geometry_wkt": ""
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            77.60307999999999,
+            12.9825
+          ],
+          [
+            77.60392,
+            12.9825
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": "grid_13183_77679",
+        "target_hour": "2026-06-20 04:00:00",
+        "police_station": "Chikkajala",
         "junction_name": "No Junction",
         "road_class": "secondary",
         "road_width_m": 9.0,
-        "predicted_total": 3.912593697407187,
-        "traffic_interruption_0_100": 21.974138173242373,
-        "parking_risk_0_100": 58.08243632442799,
-        "eps": 20.43,
+        "predicted_total": 3.6496067036245816,
+        "traffic_interruption_0_100": 24.27549144977116,
+        "parking_risk_0_100": 55.55971072576258,
+        "eps": 21.17,
         "priority_band": "Low",
         "recommended_action": "Monitor",
         "recommended_force_units": 0,
         "map_matching_mode": "grid_fallback",
         "road_name": "",
         "osm_highway": "",
-        "count_two_wheeler": 0.588661859788723,
-        "count_car": 2.7737121176950135,
-        "count_auto": 0.4962709183239679,
-        "count_light_commercial": 0.042795175224304365,
-        "count_heavy": 0.007732449103241154,
-        "count_other": 0.0034211772719371777,
+        "count_two_wheeler": 0.04779758419571877,
+        "count_car": 3.5661298707401308,
+        "count_auto": 0.003357331329144942,
+        "count_light_commercial": 0.0315327171131225,
+        "count_heavy": 0.0007396378798471591,
+        "count_other": 4.9562366618064585e-05,
         "live_congestion_multiplier": 1.0,
-        "clearance_m": 7.372207946806583,
+        "clearance_m": 7.276802042791232,
         "emergency_gridlock_flag": false,
         "confidence_band": "High",
-        "hotspot_probability": 0.7357142857142858,
-        "economic_loss_inr": 1807.0,
+        "hotspot_probability": 0.7699115044247787,
+        "economic_loss_inr": 1948.0,
         "geometry_wkt": ""
       },
       "geometry": {
         "type": "LineString",
         "coordinates": [
           [
-            77.57108,
-            13.0055
+            77.67908,
+            13.1835
           ],
           [
-            77.57192,
-            13.0055
+            77.67992000000001,
+            13.1835
           ]
         ]
       }
@@ -850,140 +286,46 @@
     {
       "type": "Feature",
       "properties": {
-        "segment_id": "grid_12995_77668",
+        "segment_id": "grid_12987_77559",
         "target_hour": "2026-06-20 04:00:00",
-        "police_station": "Mahadevapura",
-        "junction_name": "No Junction",
+        "police_station": "Rajajinagar",
+        "junction_name": "BTP015 - Suguna Hospital, Dr. Rajkumar Road",
         "road_class": "primary",
         "road_width_m": 12.0,
-        "predicted_total": 4.783619758307196,
-        "traffic_interruption_0_100": 8.075217979440374,
-        "parking_risk_0_100": 65.45911920797937,
-        "eps": 20.05,
+        "predicted_total": 3.4596549921000213,
+        "traffic_interruption_0_100": 11.483284604019772,
+        "parking_risk_0_100": 53.643664749911515,
+        "eps": 20.92,
         "priority_band": "Low",
         "recommended_action": "Monitor",
         "recommended_force_units": 0,
         "map_matching_mode": "grid_fallback",
         "road_name": "",
         "osm_highway": "",
-        "count_two_wheeler": 3.235054149842899,
-        "count_car": 0.5921855204160207,
-        "count_auto": 0.8645512264185767,
-        "count_light_commercial": 0.05601231734612866,
-        "count_heavy": 0.0332014222820948,
-        "count_other": 0.002615122001477326,
+        "count_two_wheeler": 0.3162714899008786,
+        "count_car": 2.771721447188783,
+        "count_auto": 0.2914094787128461,
+        "count_light_commercial": 0.06044931546691083,
+        "count_heavy": 0.01739682645379459,
+        "count_other": 0.0024064343768077797,
         "live_congestion_multiplier": 1.0,
-        "clearance_m": 10.735691709339687,
+        "clearance_m": 10.478260584106053,
         "emergency_gridlock_flag": false,
         "confidence_band": "High",
-        "hotspot_probability": 0.7357142857142858,
-        "economic_loss_inr": 1752.0,
+        "hotspot_probability": 0.7699115044247787,
+        "economic_loss_inr": 2133.0,
         "geometry_wkt": ""
       },
       "geometry": {
         "type": "LineString",
         "coordinates": [
           [
-            77.66807999999999,
-            12.9955
+            77.55908,
+            12.9875
           ],
           [
-            77.66892,
-            12.9955
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "segment_id": "grid_12926_77586",
-        "target_hour": "2026-06-20 04:00:00",
-        "police_station": "Jayanagara",
-        "junction_name": "BTP226 - 33rd Cross, 11th Main, Jayanagar",
-        "road_class": "primary",
-        "road_width_m": 12.0,
-        "predicted_total": 3.1281567683192844,
-        "traffic_interruption_0_100": 6.385484549099241,
-        "parking_risk_0_100": 50.099838587449376,
-        "eps": 18.76,
-        "priority_band": "Low",
-        "recommended_action": "Monitor",
-        "recommended_force_units": 0,
-        "map_matching_mode": "grid_fallback",
-        "road_name": "",
-        "osm_highway": "",
-        "count_two_wheeler": 1.2892520270940755,
-        "count_car": 1.645974207925136,
-        "count_auto": 0.12822298178177968,
-        "count_light_commercial": 0.047822694785284225,
-        "count_heavy": 0.013442466323487336,
-        "count_other": 0.003442390409521856,
-        "live_congestion_multiplier": 1.0,
-        "clearance_m": 10.880768588681338,
-        "emergency_gridlock_flag": false,
-        "confidence_band": "High",
-        "hotspot_probability": 0.7357142857142858,
-        "economic_loss_inr": 1535.0,
-        "geometry_wkt": ""
-      },
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            77.58608,
-            12.9265
-          ],
-          [
-            77.58692,
-            12.9265
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "segment_id": "grid_12965_77573",
-        "target_hour": "2026-06-20 04:00:00",
-        "police_station": "Chamarajpet",
-        "junction_name": "BTP083 - AS Char Street, Mysore Road",
-        "road_class": "primary",
-        "road_width_m": 12.0,
-        "predicted_total": 2.9531701664276375,
-        "traffic_interruption_0_100": 5.258035954148332,
-        "parking_risk_0_100": 48.121204143864006,
-        "eps": 18.7,
-        "priority_band": "Low",
-        "recommended_action": "Monitor",
-        "recommended_force_units": 0,
-        "map_matching_mode": "grid_fallback",
-        "road_name": "",
-        "osm_highway": "",
-        "count_two_wheeler": 0.9969596205995864,
-        "count_car": 0.39463020503969937,
-        "count_auto": 1.0972775749657568,
-        "count_light_commercial": 0.43295894944959,
-        "count_heavy": 0.030440884595778605,
-        "count_other": 0.0009029317772266502,
-        "live_congestion_multiplier": 1.0,
-        "clearance_m": 10.987376653107402,
-        "emergency_gridlock_flag": false,
-        "confidence_band": "High",
-        "hotspot_probability": 0.75,
-        "economic_loss_inr": 1396.0,
-        "geometry_wkt": ""
-      },
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            77.57307999999999,
-            12.9655
-          ],
-          [
-            77.57392,
-            12.9655
+            77.55992,
+            12.9875
           ]
         ]
       }
@@ -997,28 +339,28 @@
         "junction_name": "No Junction",
         "road_class": "secondary",
         "road_width_m": 9.0,
-        "predicted_total": 2.8897322123396423,
-        "traffic_interruption_0_100": 13.019789208778498,
-        "parking_risk_0_100": 47.38467263149998,
-        "eps": 18.68,
+        "predicted_total": 3.7322974365325794,
+        "traffic_interruption_0_100": 19.43301739397215,
+        "parking_risk_0_100": 56.368875705335796,
+        "eps": 20.68,
         "priority_band": "Low",
         "recommended_action": "Monitor",
         "recommended_force_units": 0,
         "map_matching_mode": "grid_fallback",
         "road_name": "",
         "osm_highway": "",
-        "count_two_wheeler": 0.2150927989630858,
-        "count_car": 1.338132918511362,
-        "count_auto": 0.923411208892597,
-        "count_light_commercial": 0.2964931469060256,
-        "count_heavy": 0.0906796720784767,
-        "count_other": 0.025922466988095645,
+        "count_two_wheeler": 0.22321318690881586,
+        "count_car": 1.6485563076425398,
+        "count_auto": 1.5165917899682988,
+        "count_light_commercial": 0.2780016741807431,
+        "count_heavy": 0.04152352710606934,
+        "count_other": 0.024410950726112553,
         "live_congestion_multiplier": 1.0,
-        "clearance_m": 7.7795211428830715,
+        "clearance_m": 7.4809643278805575,
         "emergency_gridlock_flag": false,
         "confidence_band": "High",
-        "hotspot_probability": 0.7357142857142858,
-        "economic_loss_inr": 1282.0,
+        "hotspot_probability": 0.7699115044247787,
+        "economic_loss_inr": 1668.0,
         "geometry_wkt": ""
       },
       "geometry": {
@@ -1038,34 +380,222 @@
     {
       "type": "Feature",
       "properties": {
-        "segment_id": "grid_12998_77550",
+        "segment_id": "grid_12925_77608",
         "target_hour": "2026-06-20 04:00:00",
-        "police_station": "Malleshwaram",
-        "junction_name": "BTP182 - 19th Main Junction, Rajajinagar",
+        "police_station": "Mico Layout",
+        "junction_name": "No Junction",
         "road_class": "primary",
         "road_width_m": 12.0,
-        "predicted_total": 3.2325379787713806,
-        "traffic_interruption_0_100": 9.39842298700464,
-        "parking_risk_0_100": 51.24399287508069,
-        "eps": 18.57,
+        "predicted_total": 2.912912374688676,
+        "traffic_interruption_0_100": 7.766928223519976,
+        "parking_risk_0_100": 47.655005068312484,
+        "eps": 20.67,
         "priority_band": "Low",
         "recommended_action": "Monitor",
         "recommended_force_units": 0,
         "map_matching_mode": "grid_fallback",
         "road_name": "",
         "osm_highway": "",
-        "count_two_wheeler": 0.5288112116654579,
-        "count_car": 2.439750595725331,
-        "count_auto": 0.19556965144027363,
-        "count_light_commercial": 0.046183597821338754,
-        "count_heavy": 0.02015673387179206,
-        "count_other": 0.002066188247187519,
+        "count_two_wheeler": 0.47565810110676277,
+        "count_car": 1.9436334477644246,
+        "count_auto": 0.2619628750618666,
+        "count_light_commercial": 0.19659081065704023,
+        "count_heavy": 0.032710341665037695,
+        "count_other": 0.002356798433544184,
         "live_congestion_multiplier": 1.0,
-        "clearance_m": 10.631157202797938,
+        "clearance_m": 10.761083640229433,
+        "emergency_gridlock_flag": false,
+        "confidence_band": "High",
+        "hotspot_probability": 0.8285714285714286,
+        "economic_loss_inr": 1729.0,
+        "geometry_wkt": ""
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            77.60808,
+            12.9255
+          ],
+          [
+            77.60892000000001,
+            12.9255
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": "grid_12987_77549",
+        "target_hour": "2026-06-20 04:00:00",
+        "police_station": "Vijayanagara",
+        "junction_name": "BTP018 - Dhobi Ghat Junction",
+        "road_class": "secondary",
+        "road_width_m": 9.0,
+        "predicted_total": 3.956108443936021,
+        "traffic_interruption_0_100": 18.704884369429784,
+        "parking_risk_0_100": 58.48582329612142,
+        "eps": 20.48,
+        "priority_band": "Low",
+        "recommended_action": "Monitor",
+        "recommended_force_units": 0,
+        "map_matching_mode": "grid_fallback",
+        "road_name": "",
+        "osm_highway": "",
+        "count_two_wheeler": 1.3536859938683927,
+        "count_car": 2.344303126032974,
+        "count_auto": 0.1844017409404375,
+        "count_light_commercial": 0.05816394772595502,
+        "count_heavy": 0.011607245056147051,
+        "count_other": 0.003946390312114815,
+        "live_congestion_multiplier": 1.0,
+        "clearance_m": 7.512924735927842,
+        "emergency_gridlock_flag": false,
+        "confidence_band": "High",
+        "hotspot_probability": 0.7699115044247787,
+        "economic_loss_inr": 1625.0,
+        "geometry_wkt": ""
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            77.54907999999999,
+            12.9875
+          ],
+          [
+            77.54992,
+            12.9875
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": "grid_12960_77527",
+        "target_hour": "2026-06-20 04:00:00",
+        "police_station": "Byatarayanapura",
+        "junction_name": "No Junction",
+        "road_class": "primary",
+        "road_width_m": 12.0,
+        "predicted_total": 8.756288217255921,
+        "traffic_interruption_0_100": 15.14066074775392,
+        "parking_risk_0_100": 85.71330963810698,
+        "eps": 20.4,
+        "priority_band": "Low",
+        "recommended_action": "Monitor",
+        "recommended_force_units": 0,
+        "map_matching_mode": "grid_fallback",
+        "road_name": "",
+        "osm_highway": "",
+        "count_two_wheeler": 8.68389784582384,
+        "count_car": 0.03370167718603684,
+        "count_auto": 0.03844073777299021,
+        "count_light_commercial": 5.54515972892185e-05,
+        "count_heavy": 0.00017718267587897677,
+        "count_other": 1.5322199885114794e-05,
+        "live_congestion_multiplier": 1.0,
+        "clearance_m": 10.234564562942936,
         "emergency_gridlock_flag": false,
         "confidence_band": "Medium",
-        "hotspot_probability": 0.6666666666666666,
-        "economic_loss_inr": 1868.0,
+        "hotspot_probability": 0.5576923076923077,
+        "economic_loss_inr": 2491.0,
+        "geometry_wkt": ""
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            77.52708,
+            12.9605
+          ],
+          [
+            77.52792000000001,
+            12.9605
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": "grid_13015_77555",
+        "target_hour": "2026-06-20 04:00:00",
+        "police_station": "Malleshwaram",
+        "junction_name": "No Junction",
+        "road_class": "primary",
+        "road_width_m": 12.0,
+        "predicted_total": 3.9201238778048197,
+        "traffic_interruption_0_100": 13.236920441716272,
+        "parking_risk_0_100": 58.15252140577453,
+        "eps": 20.39,
+        "priority_band": "Low",
+        "recommended_action": "Monitor",
+        "recommended_force_units": 0,
+        "map_matching_mode": "grid_fallback",
+        "road_name": "",
+        "osm_highway": "",
+        "count_two_wheeler": 0.4449002071962703,
+        "count_car": 2.7239649253508675,
+        "count_auto": 0.6973141358030723,
+        "count_light_commercial": 0.03049414729208564,
+        "count_heavy": 0.020893161101457194,
+        "count_other": 0.0025573010610667047,
+        "live_congestion_multiplier": 1.0,
+        "clearance_m": 10.358180117470182,
+        "emergency_gridlock_flag": false,
+        "confidence_band": "High",
+        "hotspot_probability": 0.6979166666666666,
+        "economic_loss_inr": 2301.0,
+        "geometry_wkt": ""
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            77.55507999999999,
+            13.0155
+          ],
+          [
+            77.55592,
+            13.0155
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": "grid_12998_77550",
+        "target_hour": "2026-06-20 04:00:00",
+        "police_station": "Malleshwaram",
+        "junction_name": "BTP182 - 19th Main Junction, Rajajinagar",
+        "road_class": "primary",
+        "road_width_m": 12.0,
+        "predicted_total": 3.1239967418149885,
+        "traffic_interruption_0_100": 8.981914767877297,
+        "parking_risk_0_100": 50.053687037429384,
+        "eps": 20.1,
+        "priority_band": "Low",
+        "recommended_action": "Monitor",
+        "recommended_force_units": 0,
+        "map_matching_mode": "grid_fallback",
+        "road_name": "",
+        "osm_highway": "",
+        "count_two_wheeler": 0.4456986804336225,
+        "count_car": 2.44433586666375,
+        "count_auto": 0.1949465655451557,
+        "count_light_commercial": 0.027612396235569478,
+        "count_heavy": 0.010332744051885775,
+        "count_other": 0.0010704888850046196,
+        "live_congestion_multiplier": 1.0,
+        "clearance_m": 10.663341199756264,
+        "emergency_gridlock_flag": false,
+        "confidence_band": "High",
+        "hotspot_probability": 0.7699115044247787,
+        "economic_loss_inr": 1853.0,
         "geometry_wkt": ""
       },
       "geometry": {
@@ -1085,34 +615,363 @@
     {
       "type": "Feature",
       "properties": {
-        "segment_id": "grid_12959_77649",
+        "segment_id": "grid_12995_77668",
         "target_hour": "2026-06-20 04:00:00",
-        "police_station": "Jeevanbheemanagar",
+        "police_station": "Mahadevapura",
         "junction_name": "No Junction",
-        "road_class": "secondary",
-        "road_width_m": 9.0,
-        "predicted_total": 3.2874545224483507,
-        "traffic_interruption_0_100": 11.119099985042968,
-        "parking_risk_0_100": 51.83537952206193,
-        "eps": 18.49,
+        "road_class": "primary",
+        "road_width_m": 12.0,
+        "predicted_total": 4.293189744531799,
+        "traffic_interruption_0_100": 6.902562194790162,
+        "parking_risk_0_100": 61.48190925015391,
+        "eps": 20.07,
         "priority_band": "Low",
         "recommended_action": "Monitor",
         "recommended_force_units": 0,
         "map_matching_mode": "grid_fallback",
         "road_name": "",
         "osm_highway": "",
-        "count_two_wheeler": 0.854601156030821,
-        "count_car": 0.9248473526424276,
-        "count_auto": 1.4253724802788197,
-        "count_light_commercial": 0.06087212818141264,
-        "count_heavy": 0.0178559871151041,
-        "count_other": 0.0039054181997648695,
+        "count_two_wheeler": 2.7825143401897567,
+        "count_car": 0.5852469382340909,
+        "count_auto": 0.8180138756722194,
+        "count_light_commercial": 0.06069648647365466,
+        "count_heavy": 0.044674913764675014,
+        "count_other": 0.002043190197401989,
         "live_congestion_multiplier": 1.0,
-        "clearance_m": 7.8780682812240475,
+        "clearance_m": 10.834740637694228,
         "emergency_gridlock_flag": false,
         "confidence_band": "High",
-        "hotspot_probability": 0.7357142857142858,
-        "economic_loss_inr": 1170.0,
+        "hotspot_probability": 0.7699115044247787,
+        "economic_loss_inr": 1619.0,
+        "geometry_wkt": ""
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            77.66807999999999,
+            12.9955
+          ],
+          [
+            77.66892,
+            12.9955
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": "grid_13007_77571",
+        "target_hour": "2026-06-20 04:00:00",
+        "police_station": "Malleshwaram",
+        "junction_name": "No Junction",
+        "road_class": "secondary",
+        "road_width_m": 9.0,
+        "predicted_total": 5.174474320003857,
+        "traffic_interruption_0_100": 35.04226000013908,
+        "parking_risk_0_100": 68.33262396568975,
+        "eps": 19.91,
+        "priority_band": "Low",
+        "recommended_action": "Monitor",
+        "recommended_force_units": 0,
+        "map_matching_mode": "grid_fallback",
+        "road_name": "",
+        "osm_highway": "",
+        "count_two_wheeler": 0.9486171130505492,
+        "count_car": 3.8256796236361623,
+        "count_auto": 0.36390123767455074,
+        "count_light_commercial": 0.029732754358174882,
+        "count_heavy": 0.00590789358584469,
+        "count_other": 0.0006356976985750626,
+        "live_congestion_multiplier": 1.0,
+        "clearance_m": 6.853572432924912,
+        "emergency_gridlock_flag": false,
+        "confidence_band": "Medium",
+        "hotspot_probability": 0.5617977528089888,
+        "economic_loss_inr": 2571.0,
+        "geometry_wkt": ""
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            77.57108,
+            13.0075
+          ],
+          [
+            77.57192,
+            13.0075
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": "grid_13006_77571",
+        "target_hour": "2026-06-20 04:00:00",
+        "police_station": "Malleshwaram",
+        "junction_name": "No Junction",
+        "road_class": "secondary",
+        "road_width_m": 9.0,
+        "predicted_total": 4.607140469554899,
+        "traffic_interruption_0_100": 29.009722241501624,
+        "parking_risk_0_100": 64.07759509993512,
+        "eps": 19.71,
+        "priority_band": "Low",
+        "recommended_action": "Monitor",
+        "recommended_force_units": 0,
+        "map_matching_mode": "grid_fallback",
+        "road_name": "",
+        "osm_highway": "",
+        "count_two_wheeler": 0.8760428089130253,
+        "count_car": 3.416134545384703,
+        "count_auto": 0.2650279821528766,
+        "count_light_commercial": 0.04255800133671917,
+        "count_heavy": 0.004697056326996972,
+        "count_other": 0.0026800754405791856,
+        "live_congestion_multiplier": 1.0,
+        "clearance_m": 7.087196461744539,
+        "emergency_gridlock_flag": false,
+        "confidence_band": "Medium",
+        "hotspot_probability": 0.6153846153846154,
+        "economic_loss_inr": 2200.0,
+        "geometry_wkt": ""
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            77.57108,
+            13.0065
+          ],
+          [
+            77.57192,
+            13.0065
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": "grid_12987_77580",
+        "target_hour": "2026-06-20 04:00:00",
+        "police_station": "High ground",
+        "junction_name": "BTP054 - Shivananda Circle",
+        "road_class": "secondary",
+        "road_width_m": 9.0,
+        "predicted_total": 2.902174053113058,
+        "traffic_interruption_0_100": 15.107797427268011,
+        "parking_risk_0_100": 47.529945382321294,
+        "eps": 19.48,
+        "priority_band": "Low",
+        "recommended_action": "Monitor",
+        "recommended_force_units": 0,
+        "map_matching_mode": "grid_fallback",
+        "road_name": "",
+        "osm_highway": "",
+        "count_two_wheeler": 0.1754245174902597,
+        "count_car": 2.4750598823644396,
+        "count_auto": 0.14027728046742913,
+        "count_light_commercial": 0.07595468645926304,
+        "count_heavy": 0.0323970582511188,
+        "count_other": 0.0030606280805481386,
+        "live_congestion_multiplier": 1.0,
+        "clearance_m": 7.677485705311361,
+        "emergency_gridlock_flag": false,
+        "confidence_band": "High",
+        "hotspot_probability": 0.7699115044247787,
+        "economic_loss_inr": 1410.0,
+        "geometry_wkt": ""
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            77.58008,
+            12.9875
+          ],
+          [
+            77.58092,
+            12.9875
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": "grid_12965_77573",
+        "target_hour": "2026-06-20 04:00:00",
+        "police_station": "Chamarajpet",
+        "junction_name": "BTP083 - AS Char Street, Mysore Road",
+        "road_class": "primary",
+        "road_width_m": 12.0,
+        "predicted_total": 3.0599134448200567,
+        "traffic_interruption_0_100": 5.847898726899848,
+        "parking_risk_0_100": 49.337326302404186,
+        "eps": 19.3,
+        "priority_band": "Low",
+        "recommended_action": "Monitor",
+        "recommended_force_units": 0,
+        "map_matching_mode": "grid_fallback",
+        "road_name": "",
+        "osm_highway": "",
+        "count_two_wheeler": 0.8532908424414745,
+        "count_car": 0.4879066235101155,
+        "count_auto": 1.2956611069215824,
+        "count_light_commercial": 0.38178181391810073,
+        "count_heavy": 0.03961939962198388,
+        "count_other": 0.0016536584068000352,
+        "live_congestion_multiplier": 1.0,
+        "clearance_m": 10.930433685094458,
+        "emergency_gridlock_flag": false,
+        "confidence_band": "High",
+        "hotspot_probability": 0.7699115044247787,
+        "economic_loss_inr": 1480.0,
+        "geometry_wkt": ""
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            77.57307999999999,
+            12.9655
+          ],
+          [
+            77.57392,
+            12.9655
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": "grid_13012_77552",
+        "target_hour": "2026-06-20 04:00:00",
+        "police_station": "Malleshwaram",
+        "junction_name": "No Junction",
+        "road_class": "secondary",
+        "road_width_m": 9.0,
+        "predicted_total": 3.4672471030941927,
+        "traffic_interruption_0_100": 18.46522808035799,
+        "parking_risk_0_100": 53.72180824370072,
+        "eps": 19.08,
+        "priority_band": "Low",
+        "recommended_action": "Monitor",
+        "recommended_force_units": 0,
+        "map_matching_mode": "grid_fallback",
+        "road_name": "",
+        "osm_highway": "",
+        "count_two_wheeler": 0.4866461599711856,
+        "count_car": 2.625054217212749,
+        "count_auto": 0.2952000889282693,
+        "count_light_commercial": 0.03175084627019619,
+        "count_heavy": 0.025477220525894618,
+        "count_other": 0.003118570185897837,
+        "live_congestion_multiplier": 1.0,
+        "clearance_m": 7.523531735142523,
+        "emergency_gridlock_flag": false,
+        "confidence_band": "High",
+        "hotspot_probability": 0.6979166666666666,
+        "economic_loss_inr": 1593.0,
+        "geometry_wkt": ""
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            77.55207999999999,
+            13.012500000000001
+          ],
+          [
+            77.55292,
+            13.012500000000001
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": "grid_12926_77586",
+        "target_hour": "2026-06-20 04:00:00",
+        "police_station": "Jayanagara",
+        "junction_name": "BTP226 - 33rd Cross, 11th Main, Jayanagar",
+        "road_class": "primary",
+        "road_width_m": 12.0,
+        "predicted_total": 2.648988446831959,
+        "traffic_interruption_0_100": 5.213761313835585,
+        "parking_risk_0_100": 44.49316942004876,
+        "eps": 18.75,
+        "priority_band": "Low",
+        "recommended_action": "Monitor",
+        "recommended_force_units": 0,
+        "map_matching_mode": "grid_fallback",
+        "road_name": "",
+        "osm_highway": "",
+        "count_two_wheeler": 0.8625142189044162,
+        "count_car": 1.550079502646515,
+        "count_auto": 0.15233854568039698,
+        "count_light_commercial": 0.05593885202195537,
+        "count_heavy": 0.02521759304800556,
+        "count_other": 0.00289973453066962,
+        "live_congestion_multiplier": 1.0,
+        "clearance_m": 10.991765715819998,
+        "emergency_gridlock_flag": false,
+        "confidence_band": "High",
+        "hotspot_probability": 0.7699115044247787,
+        "economic_loss_inr": 1391.0,
+        "geometry_wkt": ""
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            77.58608,
+            12.9265
+          ],
+          [
+            77.58692,
+            12.9265
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": "grid_12959_77649",
+        "target_hour": "2026-06-20 04:00:00",
+        "police_station": "Jeevanbheemanagar",
+        "junction_name": "No Junction",
+        "road_class": "secondary",
+        "road_width_m": 9.0,
+        "predicted_total": 3.5829999883916073,
+        "traffic_interruption_0_100": 13.336342914804844,
+        "parking_risk_0_100": 54.89703593795898,
+        "eps": 18.41,
+        "priority_band": "Low",
+        "recommended_action": "Monitor",
+        "recommended_force_units": 0,
+        "map_matching_mode": "grid_fallback",
+        "road_name": "",
+        "osm_highway": "",
+        "count_two_wheeler": 0.8220665853924035,
+        "count_car": 1.035677582208865,
+        "count_auto": 1.6494481953793183,
+        "count_light_commercial": 0.05888597583763934,
+        "count_heavy": 0.011420083726621526,
+        "count_other": 0.0055015658467598896,
+        "live_congestion_multiplier": 1.0,
+        "clearance_m": 7.763673433567872,
+        "emergency_gridlock_flag": false,
+        "confidence_band": "High",
+        "hotspot_probability": 0.6979166666666666,
+        "economic_loss_inr": 1297.0,
         "geometry_wkt": ""
       },
       "geometry": {
@@ -1132,46 +991,46 @@
     {
       "type": "Feature",
       "properties": {
-        "segment_id": "grid_12963_77641",
+        "segment_id": "grid_13005_77571",
         "target_hour": "2026-06-20 04:00:00",
-        "police_station": "Jeevanbheemanagar",
-        "junction_name": "BTP148 - 17th Main, Doopanahalli Bus Stop",
-        "road_class": "primary",
-        "road_width_m": 12.0,
-        "predicted_total": 3.0447149465092376,
-        "traffic_interruption_0_100": 4.895688083795113,
-        "parking_risk_0_100": 49.165926672200165,
-        "eps": 18.24,
+        "police_station": "Malleshwaram",
+        "junction_name": "No Junction",
+        "road_class": "secondary",
+        "road_width_m": 9.0,
+        "predicted_total": 3.884091163170842,
+        "traffic_interruption_0_100": 21.58401028178345,
+        "parking_risk_0_100": 57.81609220710371,
+        "eps": 18.36,
         "priority_band": "Low",
         "recommended_action": "Monitor",
         "recommended_force_units": 0,
         "map_matching_mode": "grid_fallback",
         "road_name": "",
         "osm_highway": "",
-        "count_two_wheeler": 1.5218849115086401,
-        "count_car": 1.0788639755852723,
-        "count_auto": 0.3845220556182286,
-        "count_light_commercial": 0.04515484052348453,
-        "count_heavy": 0.009295274239598174,
-        "count_other": 0.004993889034013749,
+        "count_two_wheeler": 0.6580128769806243,
+        "count_car": 2.791436634620227,
+        "count_auto": 0.3855514274101166,
+        "count_light_commercial": 0.037869359865499205,
+        "count_heavy": 0.008030524923880828,
+        "count_other": 0.003190339370493672,
         "live_congestion_multiplier": 1.0,
-        "clearance_m": 11.023814902371445,
+        "clearance_m": 7.388650674926811,
         "emergency_gridlock_flag": false,
-        "confidence_band": "High",
-        "hotspot_probability": 0.7357142857142858,
-        "economic_loss_inr": 1342.0,
+        "confidence_band": "Medium",
+        "hotspot_probability": 0.6153846153846154,
+        "economic_loss_inr": 1757.0,
         "geometry_wkt": ""
       },
       "geometry": {
         "type": "LineString",
         "coordinates": [
           [
-            77.64108,
-            12.9635
+            77.57108,
+            13.0055
           ],
           [
-            77.64192000000001,
-            12.9635
+            77.57192,
+            13.0055
           ]
         ]
       }
@@ -1179,34 +1038,34 @@
     {
       "type": "Feature",
       "properties": {
-        "segment_id": "grid_13011_77554",
+        "segment_id": "grid_13012_77554",
         "target_hour": "2026-06-20 04:00:00",
         "police_station": "Malleshwaram",
         "junction_name": "No Junction",
-        "road_class": "primary",
-        "road_width_m": 12.0,
-        "predicted_total": 4.274179901930913,
-        "traffic_interruption_0_100": 8.841297682734838,
-        "parking_risk_0_100": 61.31884888857009,
-        "eps": 18.08,
+        "road_class": "secondary",
+        "road_width_m": 9.0,
+        "predicted_total": 5.052212326319627,
+        "traffic_interruption_0_100": 22.567649024682947,
+        "parking_risk_0_100": 67.46044794568226,
+        "eps": 18.22,
         "priority_band": "Low",
         "recommended_action": "Monitor",
         "recommended_force_units": 0,
         "map_matching_mode": "grid_fallback",
         "road_name": "",
         "osm_highway": "",
-        "count_two_wheeler": 1.7666977294091069,
-        "count_car": 0.8901421087728708,
-        "count_auto": 1.527943548574741,
-        "count_light_commercial": 0.048925253172108704,
-        "count_heavy": 0.03174923376735912,
-        "count_other": 0.008722028234726913,
+        "count_two_wheeler": 1.9601550560508396,
+        "count_car": 1.6226852872027282,
+        "count_auto": 1.4215193223708993,
+        "count_light_commercial": 0.03446647451716695,
+        "count_heavy": 0.009549919204140599,
+        "count_other": 0.0038362669738529875,
         "live_congestion_multiplier": 1.0,
-        "clearance_m": 10.674349313230033,
+        "clearance_m": 7.3473518004553515,
         "emergency_gridlock_flag": false,
         "confidence_band": "Medium",
-        "hotspot_probability": 0.6111111111111113,
-        "economic_loss_inr": 1799.0,
+        "hotspot_probability": 0.5617977528089888,
+        "economic_loss_inr": 1810.0,
         "geometry_wkt": ""
       },
       "geometry": {
@@ -1214,152 +1073,11 @@
         "coordinates": [
           [
             77.55408,
-            13.0115
+            13.012500000000001
           ],
           [
             77.55492000000001,
-            13.0115
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "segment_id": "grid_12977_77575",
-        "target_hour": "2026-06-20 04:00:00",
-        "police_station": "Upparpet",
-        "junction_name": "BTP040 - Elite Junction",
-        "road_class": "secondary",
-        "road_width_m": 9.0,
-        "predicted_total": 4.162311129782597,
-        "traffic_interruption_0_100": 13.739935587528562,
-        "parking_risk_0_100": 60.34519376923355,
-        "eps": 17.93,
-        "priority_band": "Low",
-        "recommended_action": "Monitor",
-        "recommended_force_units": 0,
-        "map_matching_mode": "grid_fallback",
-        "road_name": "",
-        "osm_highway": "",
-        "count_two_wheeler": 1.8937310014753888,
-        "count_car": 0.7060153489787915,
-        "count_auto": 1.429644977411617,
-        "count_light_commercial": 0.11336191200955621,
-        "count_heavy": 0.017788087187342733,
-        "count_other": 0.0017698027199010348,
-        "live_congestion_multiplier": 1.0,
-        "clearance_m": 7.743675878912001,
-        "emergency_gridlock_flag": false,
-        "confidence_band": "Medium",
-        "hotspot_probability": 0.6507936507936508,
-        "economic_loss_inr": 1314.0,
-        "geometry_wkt": ""
-      },
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            77.57508,
-            12.977500000000001
-          ],
-          [
-            77.57592000000001,
-            12.977500000000001
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "segment_id": "grid_13008_77570",
-        "target_hour": "2026-06-20 04:00:00",
-        "police_station": "Malleshwaram",
-        "junction_name": "No Junction",
-        "road_class": "secondary",
-        "road_width_m": 9.0,
-        "predicted_total": 2.44080668937929,
-        "traffic_interruption_0_100": 9.705015958150643,
-        "parking_risk_0_100": 41.86495306534057,
-        "eps": 17.72,
-        "priority_band": "Low",
-        "recommended_action": "Monitor",
-        "recommended_force_units": 0,
-        "map_matching_mode": "grid_fallback",
-        "road_name": "",
-        "osm_highway": "",
-        "count_two_wheeler": 0.3501703378709681,
-        "count_car": 1.8769027502395779,
-        "count_auto": 0.16452503018689196,
-        "count_light_commercial": 0.035992353422201,
-        "count_heavy": 0.012033206722217199,
-        "count_other": 0.001183010937433618,
-        "live_congestion_multiplier": 1.0,
-        "clearance_m": 7.955887373468779,
-        "emergency_gridlock_flag": false,
-        "confidence_band": "High",
-        "hotspot_probability": 0.7357142857142858,
-        "economic_loss_inr": 1077.0,
-        "geometry_wkt": ""
-      },
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            77.57007999999999,
-            13.0085
-          ],
-          [
-            77.57092,
-            13.0085
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "segment_id": "grid_12984_77560",
-        "target_hour": "2026-06-20 04:00:00",
-        "police_station": "Rajajinagar",
-        "junction_name": "BTP010 - Rajajinagar Entrance",
-        "road_class": "primary",
-        "road_width_m": 12.0,
-        "predicted_total": 4.142743430731986,
-        "traffic_interruption_0_100": 5.60774811116821,
-        "parking_risk_0_100": 60.17238425118367,
-        "eps": 17.53,
-        "priority_band": "Low",
-        "recommended_action": "Monitor",
-        "recommended_force_units": 0,
-        "map_matching_mode": "grid_fallback",
-        "road_name": "",
-        "osm_highway": "",
-        "count_two_wheeler": 3.2096568299441013,
-        "count_car": 0.6011281527858056,
-        "count_auto": 0.2878314484265307,
-        "count_light_commercial": 0.037092779180365666,
-        "count_heavy": 0.005898819943620175,
-        "count_other": 0.001135400451562932,
-        "live_congestion_multiplier": 1.0,
-        "clearance_m": 10.953285644492745,
-        "emergency_gridlock_flag": false,
-        "confidence_band": "Medium",
-        "hotspot_probability": 0.6507936507936508,
-        "economic_loss_inr": 1419.0,
-        "geometry_wkt": ""
-      },
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            77.56008,
-            12.9845
-          ],
-          [
-            77.56092000000001,
-            12.9845
+            13.012500000000001
           ]
         ]
       }
@@ -1373,28 +1091,28 @@
         "junction_name": "BTP146 - Domlur Water Tank",
         "road_class": "secondary",
         "road_width_m": 9.0,
-        "predicted_total": 2.2678426894056116,
-        "traffic_interruption_0_100": 8.650699479380663,
-        "parking_risk_0_100": 39.58694983736495,
-        "eps": 17.48,
+        "predicted_total": 2.1174951276875245,
+        "traffic_interruption_0_100": 7.785669451301425,
+        "parking_risk_0_100": 37.53441824295288,
+        "eps": 17.77,
         "priority_band": "Low",
         "recommended_action": "Monitor",
         "recommended_force_units": 0,
         "map_matching_mode": "grid_fallback",
         "road_name": "",
         "osm_highway": "",
-        "count_two_wheeler": 0.19029801573135846,
-        "count_car": 1.5134771122583275,
-        "count_auto": 0.4020461212353651,
-        "count_light_commercial": 0.12830032338958128,
-        "count_heavy": 0.031662121684583884,
-        "count_other": 0.0020589951063952473,
+        "count_two_wheeler": 0.17711785979375827,
+        "count_car": 1.5358302505919972,
+        "count_auto": 0.27695931358050613,
+        "count_light_commercial": 0.09434097042779983,
+        "count_heavy": 0.03063593785363608,
+        "count_other": 0.0026107954398264716,
         "live_congestion_multiplier": 1.0,
-        "clearance_m": 8.017042691410003,
+        "clearance_m": 8.06964573666162,
         "emergency_gridlock_flag": false,
         "confidence_band": "High",
-        "hotspot_probability": 0.7357142857142858,
-        "economic_loss_inr": 1010.0,
+        "hotspot_probability": 0.7699115044247787,
+        "economic_loss_inr": 958.0,
         "geometry_wkt": ""
       },
       "geometry": {
@@ -1414,34 +1132,269 @@
     {
       "type": "Feature",
       "properties": {
-        "segment_id": "grid_12978_77582",
+        "segment_id": "grid_12984_77560",
         "target_hour": "2026-06-20 04:00:00",
-        "police_station": "Upparpet",
-        "junction_name": "No Junction",
-        "road_class": "secondary",
-        "road_width_m": 9.0,
-        "predicted_total": 6.26200855396045,
-        "traffic_interruption_0_100": 17.065559020427134,
-        "parking_risk_0_100": 75.1312317373946,
-        "eps": 16.83,
+        "police_station": "Rajajinagar",
+        "junction_name": "BTP010 - Rajajinagar Entrance",
+        "road_class": "primary",
+        "road_width_m": 12.0,
+        "predicted_total": 3.588732353140958,
+        "traffic_interruption_0_100": 4.196131797144109,
+        "parking_risk_0_100": 54.95445416800819,
+        "eps": 17.56,
         "priority_band": "Low",
         "recommended_action": "Monitor",
         "recommended_force_units": 0,
         "map_matching_mode": "grid_fallback",
         "road_name": "",
         "osm_highway": "",
-        "count_two_wheeler": 5.544656418777525,
-        "count_car": 0.35023886636979135,
-        "count_auto": 0.29442304982530987,
-        "count_light_commercial": 0.05829535027248259,
-        "count_heavy": 0.012780695135988656,
-        "count_other": 0.001614173579351494,
+        "count_two_wheeler": 2.818160682600503,
+        "count_car": 0.5072912996240105,
+        "count_auto": 0.21655752283139232,
+        "count_light_commercial": 0.03881817641148259,
+        "count_heavy": 0.006056291376909408,
+        "count_other": 0.0018483802966602306,
         "live_congestion_multiplier": 1.0,
-        "clearance_m": 7.586423752830356,
+        "clearance_m": 11.097888279765785,
+        "emergency_gridlock_flag": false,
+        "confidence_band": "High",
+        "hotspot_probability": 0.6979166666666666,
+        "economic_loss_inr": 1238.0,
+        "geometry_wkt": ""
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            77.56008,
+            12.9845
+          ],
+          [
+            77.56092000000001,
+            12.9845
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": "grid_12963_77641",
+        "target_hour": "2026-06-20 04:00:00",
+        "police_station": "Jeevanbheemanagar",
+        "junction_name": "BTP148 - 17th Main, Doopanahalli Bus Stop",
+        "road_class": "primary",
+        "road_width_m": 12.0,
+        "predicted_total": 3.108944114259094,
+        "traffic_interruption_0_100": 5.183449781777338,
+        "parking_risk_0_100": 49.88633546296789,
+        "eps": 16.37,
+        "priority_band": "Low",
+        "recommended_action": "Monitor",
+        "recommended_force_units": 0,
+        "map_matching_mode": "grid_fallback",
+        "road_name": "",
+        "osm_highway": "",
+        "count_two_wheeler": 1.5714187340975456,
+        "count_car": 1.1676407280292718,
+        "count_auto": 0.30478287729394354,
+        "count_light_commercial": 0.048751656913702375,
+        "count_heavy": 0.008305840375687988,
+        "count_other": 0.008044277548942304,
+        "live_congestion_multiplier": 1.0,
+        "clearance_m": 10.994780441440732,
         "emergency_gridlock_flag": false,
         "confidence_band": "Medium",
-        "hotspot_probability": 0.5066666666666667,
-        "economic_loss_inr": 1487.0,
+        "hotspot_probability": 0.6153846153846154,
+        "economic_loss_inr": 1346.0,
+        "geometry_wkt": ""
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            77.64108,
+            12.9635
+          ],
+          [
+            77.64192000000001,
+            12.9635
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": "grid_12973_77579",
+        "target_hour": "2026-06-20 04:00:00",
+        "police_station": "Upparpet",
+        "junction_name": "BTP044 - Sagar Theatre Junction",
+        "road_class": "secondary",
+        "road_width_m": 9.0,
+        "predicted_total": 5.0842313977356435,
+        "traffic_interruption_0_100": 13.08965614189207,
+        "parking_risk_0_100": 67.69115646228406,
+        "eps": 16.23,
+        "priority_band": "Low",
+        "recommended_action": "Monitor",
+        "recommended_force_units": 0,
+        "map_matching_mode": "grid_fallback",
+        "road_name": "",
+        "osm_highway": "",
+        "count_two_wheeler": 4.242720016737658,
+        "count_car": 0.465599187418911,
+        "count_auto": 0.2487224210230505,
+        "count_light_commercial": 0.11853589320165867,
+        "count_heavy": 0.006755144668479811,
+        "count_other": 0.0018987346858857696,
+        "live_congestion_multiplier": 1.0,
+        "clearance_m": 7.776010714194733,
+        "emergency_gridlock_flag": false,
+        "confidence_band": "Medium",
+        "hotspot_probability": 0.5409836065573771,
+        "economic_loss_inr": 1257.0,
+        "geometry_wkt": ""
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            77.57907999999999,
+            12.9735
+          ],
+          [
+            77.57992,
+            12.9735
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": "grid_12951_77607",
+        "target_hour": "2026-06-20 04:00:00",
+        "police_station": "Ashok Nagar",
+        "junction_name": "BTP132 - Anepalya Junction",
+        "road_class": "primary",
+        "road_width_m": 12.0,
+        "predicted_total": 2.8621050198068776,
+        "traffic_interruption_0_100": 7.588411973742515,
+        "parking_risk_0_100": 47.0606537279744,
+        "eps": 16.17,
+        "priority_band": "Low",
+        "recommended_action": "Monitor",
+        "recommended_force_units": 0,
+        "map_matching_mode": "grid_fallback",
+        "road_name": "",
+        "osm_highway": "",
+        "count_two_wheeler": 0.39462719488855313,
+        "count_car": 2.2086741316906577,
+        "count_auto": 0.21463060015537377,
+        "count_light_commercial": 0.031165722212403272,
+        "count_heavy": 0.01207160817744199,
+        "count_other": 0.000935762682447348,
+        "live_congestion_multiplier": 1.0,
+        "clearance_m": 10.775988080557099,
+        "emergency_gridlock_flag": false,
+        "confidence_band": "Medium",
+        "hotspot_probability": 0.5617977528089888,
+        "economic_loss_inr": 1626.0,
+        "geometry_wkt": ""
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            77.60708,
+            12.951500000000001
+          ],
+          [
+            77.60792000000001,
+            12.951500000000001
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": "grid_13011_77554",
+        "target_hour": "2026-06-20 04:00:00",
+        "police_station": "Malleshwaram",
+        "junction_name": "No Junction",
+        "road_class": "primary",
+        "road_width_m": 12.0,
+        "predicted_total": 3.6624928362875253,
+        "traffic_interruption_0_100": 6.339928676081385,
+        "parking_risk_0_100": 55.68678723909524,
+        "eps": 15.89,
+        "priority_band": "Low",
+        "recommended_action": "Monitor",
+        "recommended_force_units": 0,
+        "map_matching_mode": "grid_fallback",
+        "road_name": "",
+        "osm_highway": "",
+        "count_two_wheeler": 1.7666903872906081,
+        "count_car": 0.7446543095743184,
+        "count_auto": 1.0333839904044648,
+        "count_light_commercial": 0.049715275608911036,
+        "count_heavy": 0.06451135379427113,
+        "count_other": 0.00353751961495152,
+        "live_congestion_multiplier": 1.0,
+        "clearance_m": 10.884902343354124,
+        "emergency_gridlock_flag": false,
+        "confidence_band": "Medium",
+        "hotspot_probability": 0.5409836065573771,
+        "economic_loss_inr": 1477.0,
+        "geometry_wkt": ""
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            77.55408,
+            13.0115
+          ],
+          [
+            77.55492000000001,
+            13.0115
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "segment_id": "grid_12978_77582",
+        "target_hour": "2026-06-20 04:00:00",
+        "police_station": "Upparpet",
+        "junction_name": "No Junction",
+        "road_class": "secondary",
+        "road_width_m": 9.0,
+        "predicted_total": 4.833967146811267,
+        "traffic_interruption_0_100": 11.060942257378903,
+        "parking_risk_0_100": 65.84341939672042,
+        "eps": 15.76,
+        "priority_band": "Low",
+        "recommended_action": "Monitor",
+        "recommended_force_units": 0,
+        "map_matching_mode": "grid_fallback",
+        "road_name": "",
+        "osm_highway": "",
+        "count_two_wheeler": 4.144273679509907,
+        "count_car": 0.33816518294692915,
+        "count_auto": 0.2933062009258235,
+        "count_light_commercial": 0.048748629654266025,
+        "count_heavy": 0.008436117962779812,
+        "count_other": 0.0010373358115608796,
+        "live_congestion_multiplier": 1.0,
+        "clearance_m": 7.8811856136598335,
+        "emergency_gridlock_flag": false,
+        "confidence_band": "Medium",
+        "hotspot_probability": 0.5409836065573771,
+        "economic_loss_inr": 1135.0,
         "geometry_wkt": ""
       },
       "geometry": {
@@ -1461,316 +1414,34 @@
     {
       "type": "Feature",
       "properties": {
-        "segment_id": "grid_12841_77645",
-        "target_hour": "2026-06-20 04:00:00",
-        "police_station": "Electronic City",
-        "junction_name": "No Junction",
-        "road_class": "secondary",
-        "road_width_m": 9.0,
-        "predicted_total": 4.056991343526889,
-        "traffic_interruption_0_100": 9.580241739738582,
-        "parking_risk_0_100": 59.406150942102954,
-        "eps": 16.34,
-        "priority_band": "Low",
-        "recommended_action": "Monitor",
-        "recommended_force_units": 0,
-        "map_matching_mode": "grid_fallback",
-        "road_name": "",
-        "osm_highway": "",
-        "count_two_wheeler": 3.2889228654916893,
-        "count_car": 0.4636442162622625,
-        "count_auto": 0.08691711950435696,
-        "count_light_commercial": 0.1401145541777532,
-        "count_heavy": 0.07677714843514795,
-        "count_other": 0.000615439655678594,
-        "live_congestion_multiplier": 1.0,
-        "clearance_m": 7.96297301136667,
-        "emergency_gridlock_flag": false,
-        "confidence_band": "Medium",
-        "hotspot_probability": 0.6111111111111113,
-        "economic_loss_inr": 1054.0,
-        "geometry_wkt": ""
-      },
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            77.64508,
-            12.8415
-          ],
-          [
-            77.64592,
-            12.8415
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "segment_id": "grid_12984_77603",
-        "target_hour": "2026-06-20 04:00:00",
-        "police_station": "Shivajinagar",
-        "junction_name": "BTP211 - Central Street Junction",
-        "road_class": "secondary",
-        "road_width_m": 9.0,
-        "predicted_total": 4.259192765693047,
-        "traffic_interruption_0_100": 16.38166263283877,
-        "parking_risk_0_100": 61.18980752745371,
-        "eps": 16.21,
-        "priority_band": "Low",
-        "recommended_action": "Monitor",
-        "recommended_force_units": 0,
-        "map_matching_mode": "grid_fallback",
-        "road_name": "",
-        "osm_highway": "",
-        "count_two_wheeler": 0.4125217261669196,
-        "count_car": 0.28884345413769813,
-        "count_auto": 3.533462478577434,
-        "count_light_commercial": 0.021253649751082196,
-        "count_heavy": 0.002452716040936632,
-        "count_other": 0.0006587410189771135,
-        "live_congestion_multiplier": 1.0,
-        "clearance_m": 7.6177916924960485,
-        "emergency_gridlock_flag": false,
-        "confidence_band": "Medium",
-        "hotspot_probability": 0.5035971223021583,
-        "economic_loss_inr": 1441.0,
-        "geometry_wkt": ""
-      },
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            77.60307999999999,
-            12.9845
-          ],
-          [
-            77.60392,
-            12.9845
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "segment_id": "grid_12997_77549",
-        "target_hour": "2026-06-20 04:00:00",
-        "police_station": "Vijayanagara",
-        "junction_name": "BTP027 - Modi Bridge Junction",
-        "road_class": "primary",
-        "road_width_m": 12.0,
-        "predicted_total": 4.893461366392137,
-        "traffic_interruption_0_100": 7.323791184184724,
-        "parking_risk_0_100": 66.29202936370922,
-        "eps": 16.01,
-        "priority_band": "Low",
-        "recommended_action": "Monitor",
-        "recommended_force_units": 0,
-        "map_matching_mode": "grid_fallback",
-        "road_name": "",
-        "osm_highway": "",
-        "count_two_wheeler": 4.00695803767115,
-        "count_car": 0.5599773933791016,
-        "count_auto": 0.2175847718713641,
-        "count_light_commercial": 0.09392831182683085,
-        "count_heavy": 0.013696351118926788,
-        "count_other": 0.0013165005247640356,
-        "live_congestion_multiplier": 1.0,
-        "clearance_m": 10.798367334475511,
-        "emergency_gridlock_flag": false,
-        "confidence_band": "Medium",
-        "hotspot_probability": 0.5066666666666667,
-        "economic_loss_inr": 1593.0,
-        "geometry_wkt": ""
-      },
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            77.54907999999999,
-            12.9975
-          ],
-          [
-            77.54992,
-            12.9975
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "segment_id": "grid_12970_77645",
-        "target_hour": "2026-06-20 04:00:00",
-        "police_station": "Jeevanbheemanagar",
-        "junction_name": "No Junction",
-        "road_class": "primary",
-        "road_width_m": 12.0,
-        "predicted_total": 2.350586084346816,
-        "traffic_interruption_0_100": 5.054884790935721,
-        "parking_risk_0_100": 40.68763959597038,
-        "eps": 15.95,
-        "priority_band": "Low",
-        "recommended_action": "Monitor",
-        "recommended_force_units": 0,
-        "map_matching_mode": "grid_fallback",
-        "road_name": "",
-        "osm_highway": "",
-        "count_two_wheeler": 0.33201872609249367,
-        "count_car": 1.6894087633117445,
-        "count_auto": 0.26566382613028716,
-        "count_light_commercial": 0.04919287510418313,
-        "count_heavy": 0.011707657545677435,
-        "count_other": 0.0025942361624303476,
-        "live_congestion_multiplier": 1.0,
-        "clearance_m": 11.00765820594933,
-        "emergency_gridlock_flag": false,
-        "confidence_band": "Medium",
-        "hotspot_probability": 0.6111111111111113,
-        "economic_loss_inr": 1322.0,
-        "geometry_wkt": ""
-      },
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            77.64508,
-            12.9705
-          ],
-          [
-            77.64592,
-            12.9705
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "segment_id": "grid_12968_77586",
-        "target_hour": "2026-06-20 04:00:00",
-        "police_station": "Halasuru Gate",
-        "junction_name": "BTP075 - Police Corner",
-        "road_class": "secondary",
-        "road_width_m": 9.0,
-        "predicted_total": 2.377308978947484,
-        "traffic_interruption_0_100": 9.455831132098535,
-        "parking_risk_0_100": 41.038817610409104,
-        "eps": 15.69,
-        "priority_band": "Low",
-        "recommended_action": "Monitor",
-        "recommended_force_units": 0,
-        "map_matching_mode": "grid_fallback",
-        "road_name": "",
-        "osm_highway": "",
-        "count_two_wheeler": 0.20566667574062267,
-        "count_car": 0.97073264043084,
-        "count_auto": 0.6615508983967094,
-        "count_light_commercial": 0.476535768707803,
-        "count_heavy": 0.050508131774862255,
-        "count_other": 0.012314863896647134,
-        "live_congestion_multiplier": 1.0,
-        "clearance_m": 7.970076705656742,
-        "emergency_gridlock_flag": false,
-        "confidence_band": "Medium",
-        "hotspot_probability": 0.6111111111111113,
-        "economic_loss_inr": 1039.0,
-        "geometry_wkt": ""
-      },
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            77.58608,
-            12.9685
-          ],
-          [
-            77.58692,
-            12.9685
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "segment_id": "grid_12925_77633",
-        "target_hour": "2026-06-20 04:00:00",
-        "police_station": "Adugodi",
-        "junction_name": "No Junction",
-        "road_class": "secondary",
-        "road_width_m": 9.0,
-        "predicted_total": 2.3937267201097794,
-        "traffic_interruption_0_100": 9.657605201610586,
-        "parking_risk_0_100": 41.25353888599732,
-        "eps": 15.65,
-        "priority_band": "Low",
-        "recommended_action": "Monitor",
-        "recommended_force_units": 0,
-        "map_matching_mode": "grid_fallback",
-        "road_name": "",
-        "osm_highway": "",
-        "count_two_wheeler": 0.17963139413021656,
-        "count_car": 1.827631826352824,
-        "count_auto": 0.3422857976869159,
-        "count_light_commercial": 0.03292621174909303,
-        "count_heavy": 0.010591410204249226,
-        "count_other": 0.0006600799864804964,
-        "live_congestion_multiplier": 1.0,
-        "clearance_m": 7.958575193026049,
-        "emergency_gridlock_flag": false,
-        "confidence_band": "Medium",
-        "hotspot_probability": 0.6111111111111113,
-        "economic_loss_inr": 1051.0,
-        "geometry_wkt": ""
-      },
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            77.63307999999999,
-            12.9255
-          ],
-          [
-            77.63392,
-            12.9255
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
         "segment_id": "grid_12938_77697",
         "target_hour": "2026-06-20 04:00:00",
         "police_station": "HAL Old Airport",
         "junction_name": "No Junction",
         "road_class": "primary",
         "road_width_m": 12.0,
-        "predicted_total": 3.151462719590364,
-        "traffic_interruption_0_100": 5.254750007801401,
-        "parking_risk_0_100": 50.357608443367695,
-        "eps": 15.38,
+        "predicted_total": 3.300950515099498,
+        "traffic_interruption_0_100": 5.714268502633568,
+        "parking_risk_0_100": 51.97961409609244,
+        "eps": 15.49,
         "priority_band": "Low",
         "recommended_action": "Monitor",
         "recommended_force_units": 0,
         "map_matching_mode": "grid_fallback",
         "road_name": "",
         "osm_highway": "",
-        "count_two_wheeler": 1.4931200185297533,
-        "count_car": 0.8232122542176276,
-        "count_auto": 0.6380785648831405,
-        "count_light_commercial": 0.16092935665495742,
-        "count_heavy": 0.03188713196647205,
-        "count_other": 0.004235393338413492,
+        "count_two_wheeler": 1.539779211572813,
+        "count_car": 0.7943475822909294,
+        "count_auto": 0.7450867927007571,
+        "count_light_commercial": 0.1660246706714426,
+        "count_heavy": 0.04315781700284374,
+        "count_other": 0.012554440860711917,
         "live_congestion_multiplier": 1.0,
-        "clearance_m": 10.987701814263103,
+        "clearance_m": 10.943095722372734,
         "emergency_gridlock_flag": false,
         "confidence_band": "Medium",
-        "hotspot_probability": 0.5483870967741935,
-        "economic_loss_inr": 1337.0,
+        "hotspot_probability": 0.5409836065573771,
+        "economic_loss_inr": 1396.0,
         "geometry_wkt": ""
       },
       "geometry": {
@@ -1790,93 +1461,46 @@
     {
       "type": "Feature",
       "properties": {
-        "segment_id": "grid_12996_77668",
+        "segment_id": "grid_12977_77575",
         "target_hour": "2026-06-20 04:00:00",
-        "police_station": "Mahadevapura",
-        "junction_name": "No Junction",
-        "road_class": "primary",
-        "road_width_m": 12.0,
-        "predicted_total": 1.9893971113259823,
-        "traffic_interruption_0_100": 3.1629244487525243,
-        "parking_risk_0_100": 35.730708274405224,
-        "eps": 15.15,
-        "priority_band": "Low",
-        "recommended_action": "Monitor",
-        "recommended_force_units": 0,
-        "map_matching_mode": "grid_fallback",
-        "road_name": "",
-        "osm_highway": "",
-        "count_two_wheeler": 0.3446343822940049,
-        "count_car": 0.9227941552556901,
-        "count_auto": 0.5936347659096464,
-        "count_light_commercial": 0.031078054585254023,
-        "count_heavy": 0.0964417314540307,
-        "count_other": 0.0008140218273562155,
-        "live_congestion_multiplier": 1.0,
-        "clearance_m": 11.218870933674475,
-        "emergency_gridlock_flag": false,
-        "confidence_band": "Medium",
-        "hotspot_probability": 0.6111111111111113,
-        "economic_loss_inr": 1051.0,
-        "geometry_wkt": ""
-      },
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            77.66807999999999,
-            12.996500000000001
-          ],
-          [
-            77.66892,
-            12.996500000000001
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "segment_id": "grid_12988_77576",
-        "target_hour": "2026-06-20 04:00:00",
-        "police_station": "Sheshadripuram",
-        "junction_name": "BTP054 - Shivananda Circle",
+        "police_station": "Upparpet",
+        "junction_name": "BTP040 - Elite Junction",
         "road_class": "secondary",
         "road_width_m": 9.0,
-        "predicted_total": 2.240749129804162,
-        "traffic_interruption_0_100": 7.086228459919052,
-        "parking_risk_0_100": 39.22211830217764,
-        "eps": 15.05,
+        "predicted_total": 3.5651798973558178,
+        "traffic_interruption_0_100": 9.596767794111404,
+        "parking_risk_0_100": 54.71807317361967,
+        "eps": 15.01,
         "priority_band": "Low",
         "recommended_action": "Monitor",
         "recommended_force_units": 0,
         "map_matching_mode": "grid_fallback",
         "road_name": "",
         "osm_highway": "",
-        "count_two_wheeler": 0.4708532740055409,
-        "count_car": 1.2863938502230186,
-        "count_auto": 0.39478821248015616,
-        "count_light_commercial": 0.06700007522475725,
-        "count_heavy": 0.020424896102610498,
-        "count_other": 0.0012888217680788391,
+        "count_two_wheeler": 1.9918786823975474,
+        "count_car": 0.6720704912163169,
+        "count_auto": 0.7940590173819958,
+        "count_light_commercial": 0.09487468127523582,
+        "count_heavy": 0.010830007763625454,
+        "count_other": 0.0014670173210964467,
         "live_congestion_multiplier": 1.0,
-        "clearance_m": 8.114072681226137,
+        "clearance_m": 7.962032319536453,
         "emergency_gridlock_flag": false,
         "confidence_band": "Medium",
-        "hotspot_probability": 0.6111111111111113,
-        "economic_loss_inr": 885.0,
+        "hotspot_probability": 0.5409836065573771,
+        "economic_loss_inr": 1040.0,
         "geometry_wkt": ""
       },
       "geometry": {
         "type": "LineString",
         "coordinates": [
           [
-            77.57607999999999,
-            12.9885
+            77.57508,
+            12.977500000000001
           ],
           [
-            77.57692,
-            12.9885
+            77.57592000000001,
+            12.977500000000001
           ]
         ]
       }
