@@ -1,0 +1,161 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "source_bottleneck": "osm_way_621789367",
+        "segment_id": "osm_way_766245128",
+        "eps_spillover": 60.76,
+        "eps": 60.76,
+        "is_ripple": true,
+        "distance_from_bottleneck_m": 17.4,
+        "decay_factor": 0.831,
+        "road_class": "primary",
+        "police_station": "Vijayanagara"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            77.5447396,
+            12.9742803
+          ],
+          [
+            77.5465796,
+            12.974274
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "source_bottleneck": "osm_way_621789367",
+        "segment_id": "osm_way_503151939",
+        "eps_spillover": 47.52,
+        "eps": 47.52,
+        "is_ripple": true,
+        "distance_from_bottleneck_m": 206.0,
+        "decay_factor": 0.65,
+        "road_class": "primary",
+        "police_station": "Vijayanagara"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            77.5466899,
+            12.9744259
+          ],
+          [
+            77.5470077,
+            12.9744304
+          ],
+          [
+            77.5473216,
+            12.9744387
+          ],
+          [
+            77.5477083,
+            12.9744634
+          ],
+          [
+            77.5478479,
+            12.9745465
+          ],
+          [
+            77.5480262,
+            12.9748171
+          ],
+          [
+            77.5481412,
+            12.9749654
+          ],
+          [
+            77.5482417,
+            12.975095
+          ],
+          [
+            77.5483006,
+            12.9751768
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "source_bottleneck": "osm_way_621789367",
+        "segment_id": "osm_way_1096483603",
+        "eps_spillover": 47.52,
+        "eps": 47.52,
+        "is_ripple": true,
+        "distance_from_bottleneck_m": 72.1,
+        "decay_factor": 0.65,
+        "road_class": "residential",
+        "police_station": "Vijayanagara"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            77.5450517,
+            12.9744316
+          ],
+          [
+            77.545058,
+            12.9744953
+          ],
+          [
+            77.5450935,
+            12.9748537
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "source_bottleneck": "osm_way_458439807",
+        "segment_id": "osm_way_1297586955",
+        "eps_spillover": 46.76,
+        "eps": 46.76,
+        "is_ripple": true,
+        "distance_from_bottleneck_m": 312.1,
+        "decay_factor": 0.65,
+        "road_class": "secondary",
+        "police_station": "Malleshwaram"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            77.5503272,
+            13.0017081
+          ],
+          [
+            77.5502707,
+            13.0021054
+          ],
+          [
+            77.550226,
+            13.002419
+          ],
+          [
+            77.5501431,
+            13.0030019
+          ],
+          [
+            77.5500267,
+            13.0037774
+          ],
+          [
+            77.5500211,
+            13.0038081
+          ]
+        ]
+      }
+    }
+  ]
+}

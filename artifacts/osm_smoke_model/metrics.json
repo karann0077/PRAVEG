@@ -1,0 +1,99 @@
+{
+  "total_mae": 2.966229156497319,
+  "total_rmse": 4.312419291759041,
+  "total_wape": 0.8853725503243874,
+  "hotspot_roc_auc": 0.783708386948607,
+  "hotspot_average_precision": 0.9137649988493022,
+  "top_1pct_violation_capture": 0.0201161637625726,
+  "top_5pct_violation_capture": 0.10072248193795155,
+  "top_10pct_violation_capture": 0.1855786938659867,
+  "by_target": {
+    "count_two_wheeler": {
+      "mae": 2.12861666775067,
+      "rmse": 3.392839332845211,
+      "wape": 1.3277073176289702
+    },
+    "count_car": {
+      "mae": 1.1501291415859798,
+      "rmse": 1.9517221587335742,
+      "wape": 1.1203523353313265
+    },
+    "count_auto": {
+      "mae": 0.8175387443597871,
+      "rmse": 1.571102006684047,
+      "wape": 1.3552746926562325
+    },
+    "count_light_commercial": {
+      "mae": 0.16797575269214837,
+      "rmse": 0.3493899348376068,
+      "wape": 1.8433589110539408
+    },
+    "count_heavy": {
+      "mae": 0.04629989526163528,
+      "rmse": 0.1664548328167909,
+      "wape": 2.1678639848059005
+    },
+    "count_other": {
+      "mae": 0.009879284227924336,
+      "rmse": 0.06876271233649299,
+      "wape": 2.0815651868236573
+    }
+  },
+  "train_rows": 20454,
+  "test_rows": 2107,
+  "cutoff_hour": "2024-03-25 23:00:00",
+  "feature_columns": [
+    "segment_id",
+    "police_station",
+    "junction_bucket",
+    "road_class",
+    "lat_center",
+    "lon_center",
+    "road_width_m",
+    "hour",
+    "day_of_week",
+    "month",
+    "day_of_year",
+    "is_weekend",
+    "is_peak",
+    "hour_sin",
+    "hour_cos",
+    "dow_sin",
+    "dow_cos",
+    "month_sin",
+    "month_cos",
+    "days_since_start",
+    "segment_total_events",
+    "segment_event_rate",
+    "segment_rank_pct",
+    "segment_hour_mean",
+    "segment_dow_hour_mean",
+    "city_hour_mean",
+    "city_dow_hour_mean",
+    "lag_1h_total",
+    "lag_2h_total",
+    "lag_3h_total",
+    "lag_24h_total",
+    "lag_168h_total",
+    "lag_1h_two_wheeler",
+    "lag_1h_car",
+    "lag_1h_auto",
+    "lag_1h_light_commercial",
+    "lag_1h_heavy",
+    "lag_1h_other"
+  ],
+  "target_columns": [
+    "count_two_wheeler",
+    "count_car",
+    "count_auto",
+    "count_light_commercial",
+    "count_heavy",
+    "count_other"
+  ],
+  "categorical_columns": [
+    "segment_id",
+    "police_station",
+    "junction_bucket",
+    "road_class"
+  ]
+}

@@ -66,5 +66,6 @@ diff*.txt
 # Machine Learning Training outputs
 catboost_info/
 
-# Artifacts & Workspaces
-/artifacts/
+# Keep the final OSM model and predictions
+!artifacts/parking_model_osm/
+!artifacts/predictions/
