@@ -30,6 +30,7 @@ import shap
 import uvicorn
 from fastapi import FastAPI, HTTPException, Query
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel
 
 from parking_engine.config import FEATURE_COLUMNS
@@ -126,6 +127,8 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+app.mount("/artifacts", StaticFiles(directory="artifacts"), name="artifacts")
 
 
 # ── /predict ─────────────────────────────────────────────────────────────────

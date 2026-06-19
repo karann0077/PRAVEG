@@ -5,89 +5,33 @@
       "type": "Feature",
       "properties": {
         "source_bottleneck": "osm_way_1329637596",
-        "segment_id": "osm_way_691961205",
-        "eps_spillover": 55.39,
-        "eps": 55.39,
+        "segment_id": "osm_way_1460426930",
+        "eps_spillover": 78.51,
+        "eps": 78.51,
         "is_ripple": true,
-        "distance_from_bottleneck_m": 529.9,
-        "decay_factor": 0.65,
-        "road_class": "secondary",
+        "distance_from_bottleneck_m": 6.1,
+        "decay_factor": 0.921,
+        "road_class": "residential",
         "police_station": "Chikkajala"
       },
       "geometry": {
         "type": "LineString",
         "coordinates": [
           [
-            77.6796151,
-            13.183401
+            77.6801441,
+            13.1842329
           ],
           [
-            77.679604,
-            13.1835106
+            77.6801154,
+            13.1842368
           ],
           [
-            77.6795877,
-            13.1836568
+            77.679848,
+            13.1842731
           ],
           [
-            77.679763,
-            13.1849192
-          ],
-          [
-            77.6797958,
-            13.185087
-          ],
-          [
-            77.6798553,
-            13.1854447
-          ],
-          [
-            77.6800105,
-            13.1863767
-          ],
-          [
-            77.6803303,
-            13.1877037
-          ],
-          [
-            77.6803591,
-            13.1878525
-          ],
-          [
-            77.6805181,
-            13.1893839
-          ],
-          [
-            77.6809545,
-            13.1929041
-          ],
-          [
-            77.6809547,
-            13.1929825
-          ],
-          [
-            77.6809588,
-            13.1943464
-          ],
-          [
-            77.6809591,
-            13.1944585
-          ],
-          [
-            77.6809426,
-            13.1945832
-          ],
-          [
-            77.6809336,
-            13.1946297
-          ],
-          [
-            77.6809284,
-            13.1946555
-          ],
-          [
-            77.680911,
-            13.194742
+            77.6797578,
+            13.1842836
           ]
         ]
       }
@@ -195,12 +139,142 @@
       "type": "Feature",
       "properties": {
         "source_bottleneck": "osm_way_1329637596",
-        "segment_id": "osm_way_1460426930",
-        "eps_spillover": 78.51,
-        "eps": 78.51,
+        "segment_id": "osm_way_691961205",
+        "eps_spillover": 55.39,
+        "eps": 55.39,
         "is_ripple": true,
-        "distance_from_bottleneck_m": 6.1,
-        "decay_factor": 0.921,
+        "distance_from_bottleneck_m": 529.9,
+        "decay_factor": 0.65,
+        "road_class": "secondary",
+        "police_station": "Chikkajala"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            77.6796151,
+            13.183401
+          ],
+          [
+            77.679604,
+            13.1835106
+          ],
+          [
+            77.6795877,
+            13.1836568
+          ],
+          [
+            77.679763,
+            13.1849192
+          ],
+          [
+            77.6797958,
+            13.185087
+          ],
+          [
+            77.6798553,
+            13.1854447
+          ],
+          [
+            77.6800105,
+            13.1863767
+          ],
+          [
+            77.6803303,
+            13.1877037
+          ],
+          [
+            77.6803591,
+            13.1878525
+          ],
+          [
+            77.6805181,
+            13.1893839
+          ],
+          [
+            77.6809545,
+            13.1929041
+          ],
+          [
+            77.6809547,
+            13.1929825
+          ],
+          [
+            77.6809588,
+            13.1943464
+          ],
+          [
+            77.6809591,
+            13.1944585
+          ],
+          [
+            77.6809426,
+            13.1945832
+          ],
+          [
+            77.6809336,
+            13.1946297
+          ],
+          [
+            77.6809284,
+            13.1946555
+          ],
+          [
+            77.680911,
+            13.194742
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "source_bottleneck": "osm_way_1219710436",
+        "segment_id": "osm_way_1163794399",
+        "eps_spillover": 52.58,
+        "eps": 52.58,
+        "is_ripple": true,
+        "distance_from_bottleneck_m": 132.0,
+        "decay_factor": 0.65,
+        "road_class": "secondary",
+        "police_station": "Chikkajala"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            77.6452094,
+            13.1899379
+          ],
+          [
+            77.6456975,
+            13.1905661
+          ],
+          [
+            77.6459082,
+            13.1908147
+          ],
+          [
+            77.6459447,
+            13.1908577
+          ],
+          [
+            77.645998,
+            13.1909207
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "source_bottleneck": "osm_way_1219710436",
+        "segment_id": "osm_way_1316342875",
+        "eps_spillover": 52.58,
+        "eps": 52.58,
+        "is_ripple": true,
+        "distance_from_bottleneck_m": 87.3,
+        "decay_factor": 0.65,
         "road_class": "residential",
         "police_station": "Chikkajala"
       },
@@ -208,20 +282,125 @@
         "type": "LineString",
         "coordinates": [
           [
-            77.6801441,
-            13.1842329
+            77.645402,
+            13.1911195
           ],
           [
-            77.6801154,
-            13.1842368
+            77.6455533,
+            13.1910465
           ],
           [
-            77.679848,
-            13.1842731
+            77.6459447,
+            13.1908577
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "source_bottleneck": "osm_way_1219710436",
+        "segment_id": "osm_way_1099974712",
+        "eps_spillover": 52.58,
+        "eps": 52.58,
+        "is_ripple": true,
+        "distance_from_bottleneck_m": 57.8,
+        "decay_factor": 0.65,
+        "road_class": "secondary",
+        "police_station": "Chikkajala"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            77.645998,
+            13.1909207
           ],
           [
-            77.6797578,
-            13.1842836
+            77.6459593,
+            13.1910253
+          ],
+          [
+            77.6459273,
+            13.1910854
+          ],
+          [
+            77.6458793,
+            13.1912106
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "source_bottleneck": "osm_way_1219710436",
+        "segment_id": "osm_way_1219710438",
+        "eps_spillover": 52.58,
+        "eps": 52.58,
+        "is_ripple": true,
+        "distance_from_bottleneck_m": 56.0,
+        "decay_factor": 0.65,
+        "road_class": "trunk",
+        "police_station": "Chikkajala"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            77.6461052,
+            13.190818
+          ],
+          [
+            77.6461674,
+            13.1908853
+          ],
+          [
+            77.646382,
+            13.1911086
+          ],
+          [
+            77.6466433,
+            13.191363
+          ],
+          [
+            77.6468547,
+            13.1915564
+          ],
+          [
+            77.647114,
+            13.1918211
+          ],
+          [
+            77.6476432,
+            13.1922694
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "source_bottleneck": "osm_way_1219710436",
+        "segment_id": "osm_way_1112263228",
+        "eps_spillover": 52.58,
+        "eps": 52.58,
+        "is_ripple": true,
+        "distance_from_bottleneck_m": 69.4,
+        "decay_factor": 0.65,
+        "road_class": "secondary",
+        "police_station": "Chikkajala"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            77.646814,
+            13.1917233
+          ],
+          [
+            77.6469276,
+            13.1917797
           ]
         ]
       }
@@ -332,6 +511,88 @@
           [
             77.6099998,
             12.9806703
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "source_bottleneck": "osm_way_172920297",
+        "segment_id": "osm_way_328758433",
+        "eps_spillover": 52.51,
+        "eps": 52.51,
+        "is_ripple": true,
+        "distance_from_bottleneck_m": 53.0,
+        "decay_factor": 0.65,
+        "road_class": "secondary",
+        "police_station": "Shivajinagar"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            77.6100976,
+            12.9809511
+          ],
+          [
+            77.6100545,
+            12.9808294
+          ],
+          [
+            77.6099998,
+            12.9806703
+          ],
+          [
+            77.6091138,
+            12.9781786
+          ],
+          [
+            77.6090912,
+            12.978115
+          ],
+          [
+            77.6090726,
+            12.9780565
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "source_bottleneck": "osm_way_172920297",
+        "segment_id": "osm_way_726104757",
+        "eps_spillover": 52.51,
+        "eps": 52.51,
+        "is_ripple": true,
+        "distance_from_bottleneck_m": 129.6,
+        "decay_factor": 0.65,
+        "road_class": "residential",
+        "police_station": "Shivajinagar"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            77.607969,
+            12.9805079
+          ],
+          [
+            77.6089744,
+            12.9801542
+          ],
+          [
+            77.6095238,
+            12.9799609
+          ],
+          [
+            77.6096116,
+            12.97993
+          ],
+          [
+            77.6096664,
+            12.9799097
           ]
         ]
       }

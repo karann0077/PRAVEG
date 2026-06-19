@@ -35,30 +35,37 @@ export async function GET(request: Request) {
     let rippleData: any = { type: "FeatureCollection", features: [] };
     let lastModified: Date | null = null;
 
+    const backendUrl = (process.env.BACKEND_URL || "http://localhost:8000").replace(/\/$/, "");
+
     // ── Load base predictions ─────────────────────────────────────────────
     try {
-      const file = await fs.readFile(geojsonPath, "utf8");
-      baseData = JSON.parse(file);
-      try {
-        lastModified = statSync(geojsonPath).mtime;
-      } catch {}
+      const fetchUrl = `${backendUrl}/artifacts/predictions/predictions_${hour}.geojson`;
+      const res = await fetch(fetchUrl, { cache: "no-store" });
+      if (!res.ok) {
+        throw new Error(`Failed to fetch ${fetchUrl}`);
+      }
+      baseData = await res.json();
+      lastModified = new Date();
     } catch {
       try {
-        const fb = await fs.readFile(
-          path.join(jsonDirectory, "predictions.geojson"),
-          "utf8"
-        );
-        baseData = JSON.parse(fb);
+        const fbUrl = `${backendUrl}/artifacts/predictions/predictions.geojson`;
+        const resFb = await fetch(fbUrl, { cache: "no-store" });
+        if (resFb.ok) {
+          baseData = await resFb.json();
+        }
       } catch {}
     }
 
     // ── Load ripples ──────────────────────────────────────────────────────
     try {
-      const file = await fs.readFile(ripplePath, "utf8");
-      const parsed = JSON.parse(file);
-      // Only include ripples with actual features (fixes the old empty-array bug)
-      if (parsed.features && parsed.features.length > 0) {
-        rippleData = parsed;
+      const rippleFetchUrl = `${backendUrl}/artifacts/predictions/ripples_${hour}.geojson`;
+      const resRip = await fetch(rippleFetchUrl, { cache: "no-store" });
+      if (resRip.ok) {
+        const parsed = await resRip.json();
+        // Only include ripples with actual features (fixes the old empty-array bug)
+        if (parsed.features && parsed.features.length > 0) {
+          rippleData = parsed;
+        }
       }
     } catch {}
 

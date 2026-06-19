@@ -5,6 +5,112 @@
       "type": "Feature",
       "properties": {
         "source_bottleneck": "osm_way_1259763900",
+        "segment_id": "osm_way_1282361004",
+        "eps_spillover": 53.85,
+        "eps": 53.85,
+        "is_ripple": true,
+        "distance_from_bottleneck_m": 104.1,
+        "decay_factor": 0.65,
+        "road_class": "trunk",
+        "police_station": "Byatarayanapura"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            77.5417109,
+            12.9529815
+          ],
+          [
+            77.5415857,
+            12.9528648
+          ],
+          [
+            77.5415283,
+            12.9528131
+          ],
+          [
+            77.5413464,
+            12.9526256
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "source_bottleneck": "osm_way_1259763900",
+        "segment_id": "osm_way_458681954",
+        "eps_spillover": 55.64,
+        "eps": 55.64,
+        "is_ripple": true,
+        "distance_from_bottleneck_m": 37.3,
+        "decay_factor": 0.672,
+        "road_class": "trunk",
+        "police_station": "Byatarayanapura"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            77.5416664,
+            12.9530561
+          ],
+          [
+            77.5418225,
+            12.953162
+          ],
+          [
+            77.5418904,
+            12.9532286
+          ],
+          [
+            77.5420998,
+            12.9534113
+          ],
+          [
+            77.5421367,
+            12.9534393
+          ],
+          [
+            77.5422747,
+            12.9535438
+          ],
+          [
+            77.5423247,
+            12.9535817
+          ],
+          [
+            77.5425121,
+            12.953672
+          ],
+          [
+            77.5426703,
+            12.9537233
+          ],
+          [
+            77.542881,
+            12.9537917
+          ],
+          [
+            77.5429061,
+            12.9537998
+          ],
+          [
+            77.5432022,
+            12.9539016
+          ],
+          [
+            77.5434953,
+            12.9540017
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "source_bottleneck": "osm_way_1259763900",
         "segment_id": "osm_way_23046218",
         "eps_spillover": 53.85,
         "eps": 53.85,
@@ -191,70 +297,26 @@
     {
       "type": "Feature",
       "properties": {
-        "source_bottleneck": "osm_way_1259763900",
-        "segment_id": "osm_way_458681954",
-        "eps_spillover": 55.64,
-        "eps": 55.64,
+        "source_bottleneck": "osm_way_1098069204",
+        "segment_id": "osm_way_1098069201",
+        "eps_spillover": 52.5,
+        "eps": 52.5,
         "is_ripple": true,
-        "distance_from_bottleneck_m": 37.3,
-        "decay_factor": 0.672,
-        "road_class": "trunk",
-        "police_station": "Byatarayanapura"
+        "distance_from_bottleneck_m": 258.8,
+        "decay_factor": 0.65,
+        "road_class": "secondary",
+        "police_station": "Vijayanagara"
       },
       "geometry": {
         "type": "LineString",
         "coordinates": [
           [
-            77.5416664,
-            12.9530561
+            77.5493044,
+            12.9862132
           ],
           [
-            77.5418225,
-            12.953162
-          ],
-          [
-            77.5418904,
-            12.9532286
-          ],
-          [
-            77.5420998,
-            12.9534113
-          ],
-          [
-            77.5421367,
-            12.9534393
-          ],
-          [
-            77.5422747,
-            12.9535438
-          ],
-          [
-            77.5423247,
-            12.9535817
-          ],
-          [
-            77.5425121,
-            12.953672
-          ],
-          [
-            77.5426703,
-            12.9537233
-          ],
-          [
-            77.542881,
-            12.9537917
-          ],
-          [
-            77.5429061,
-            12.9537998
-          ],
-          [
-            77.5432022,
-            12.9539016
-          ],
-          [
-            77.5434953,
-            12.9540017
+            77.5495104,
+            12.9869844
           ]
         ]
       }
@@ -262,34 +324,218 @@
     {
       "type": "Feature",
       "properties": {
-        "source_bottleneck": "osm_way_1259763900",
-        "segment_id": "osm_way_1282361004",
-        "eps_spillover": 53.85,
-        "eps": 53.85,
+        "source_bottleneck": "osm_way_1098069204",
+        "segment_id": "osm_way_1047549754",
+        "eps_spillover": 66.26,
+        "eps": 66.26,
         "is_ripple": true,
-        "distance_from_bottleneck_m": 104.1,
-        "decay_factor": 0.65,
-        "road_class": "trunk",
-        "police_station": "Byatarayanapura"
+        "distance_from_bottleneck_m": 18.7,
+        "decay_factor": 0.82,
+        "road_class": "primary",
+        "police_station": "Rajajinagar"
       },
       "geometry": {
         "type": "LineString",
         "coordinates": [
           [
-            77.5417109,
-            12.9529815
+            77.5509678,
+            12.9910273
           ],
           [
-            77.5415857,
-            12.9528648
+            77.5506818,
+            12.990109
           ],
           [
-            77.5415283,
-            12.9528131
+            77.5502948,
+            12.9888794
           ],
           [
-            77.5413464,
-            12.9526256
+            77.5496007,
+            12.9866561
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "source_bottleneck": "osm_way_1098069204",
+        "segment_id": "osm_way_763502464",
+        "eps_spillover": 52.5,
+        "eps": 52.5,
+        "is_ripple": true,
+        "distance_from_bottleneck_m": 175.5,
+        "decay_factor": 0.65,
+        "road_class": "secondary",
+        "police_station": "Rajajinagar"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            77.550014,
+            12.9877183
+          ],
+          [
+            77.5499566,
+            12.9875061
+          ],
+          [
+            77.5497682,
+            12.9868011
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "source_bottleneck": "osm_way_1098069204",
+        "segment_id": "osm_way_1069253450",
+        "eps_spillover": 52.5,
+        "eps": 52.5,
+        "is_ripple": true,
+        "distance_from_bottleneck_m": 268.7,
+        "decay_factor": 0.65,
+        "road_class": "secondary",
+        "police_station": "Vijayanagara"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            77.5456231,
+            12.9892486
+          ],
+          [
+            77.545916,
+            12.9891936
+          ],
+          [
+            77.546228,
+            12.9891433
+          ],
+          [
+            77.546862,
+            12.9889458
+          ],
+          [
+            77.5471307,
+            12.9888489
+          ],
+          [
+            77.5482561,
+            12.9884584
+          ],
+          [
+            77.5486117,
+            12.9883566
+          ],
+          [
+            77.5489146,
+            12.9882419
+          ],
+          [
+            77.5492507,
+            12.9881116
+          ],
+          [
+            77.5494384,
+            12.9880449
+          ],
+          [
+            77.5496295,
+            12.9879898
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "source_bottleneck": "osm_way_1098069204",
+        "segment_id": "osm_way_1047549748",
+        "eps_spillover": 70.43,
+        "eps": 70.43,
+        "is_ripple": true,
+        "distance_from_bottleneck_m": 12.3,
+        "decay_factor": 0.872,
+        "road_class": "primary",
+        "police_station": "Vijayanagara"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            77.5495248,
+            12.9866577
+          ],
+          [
+            77.5502251,
+            12.9888911
+          ],
+          [
+            77.5508941,
+            12.9910881
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "source_bottleneck": "osm_way_1098069204",
+        "segment_id": "osm_way_1054127607",
+        "eps_spillover": 52.5,
+        "eps": 52.5,
+        "is_ripple": true,
+        "distance_from_bottleneck_m": 88.2,
+        "decay_factor": 0.65,
+        "road_class": "secondary",
+        "police_station": "Rajajinagar"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            77.5510526,
+            12.9911439
+          ],
+          [
+            77.5510335,
+            12.9910126
+          ],
+          [
+            77.5509747,
+            12.9907778
+          ],
+          [
+            77.5507964,
+            12.9901695
+          ],
+          [
+            77.5507898,
+            12.9901497
+          ],
+          [
+            77.5507711,
+            12.9900958
+          ],
+          [
+            77.5506634,
+            12.9897558
+          ],
+          [
+            77.5500845,
+            12.9879583
+          ],
+          [
+            77.5500722,
+            12.9879141
+          ],
+          [
+            77.5500447,
+            12.9878261
           ]
         ]
       }

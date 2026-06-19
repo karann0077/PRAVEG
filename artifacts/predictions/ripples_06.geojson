@@ -5,6 +5,107 @@
       "type": "Feature",
       "properties": {
         "source_bottleneck": "osm_way_621789367",
+        "segment_id": "osm_way_621789365",
+        "eps_spillover": 47.52,
+        "eps": 47.52,
+        "is_ripple": true,
+        "distance_from_bottleneck_m": 455.0,
+        "decay_factor": 0.65,
+        "road_class": "secondary",
+        "police_station": "Vijayanagara"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            77.5383868,
+            12.9730451
+          ],
+          [
+            77.5384319,
+            12.9730762
+          ],
+          [
+            77.5388152,
+            12.9733407
+          ],
+          [
+            77.5421803,
+            12.97408
+          ],
+          [
+            77.5435595,
+            12.9743681
+          ],
+          [
+            77.5447827,
+            12.9744252
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "source_bottleneck": "osm_way_621789367",
+        "segment_id": "osm_way_1078493924",
+        "eps_spillover": 47.52,
+        "eps": 47.52,
+        "is_ripple": true,
+        "distance_from_bottleneck_m": 113.6,
+        "decay_factor": 0.65,
+        "road_class": "secondary",
+        "police_station": "Vijayanagara"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            77.5447293,
+            12.9739561
+          ],
+          [
+            77.5447317,
+            12.9740828
+          ],
+          [
+            77.5447325,
+            12.9741233
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "source_bottleneck": "osm_way_621789367",
+        "segment_id": "osm_way_172895630",
+        "eps_spillover": 47.52,
+        "eps": 47.52,
+        "is_ripple": true,
+        "distance_from_bottleneck_m": 42.2,
+        "decay_factor": 0.65,
+        "road_class": "primary",
+        "police_station": "Vijayanagara"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            77.5462012,
+            12.9741265
+          ],
+          [
+            77.5447325,
+            12.9741233
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "source_bottleneck": "osm_way_621789367",
         "segment_id": "osm_way_766245128",
         "eps_spillover": 60.76,
         "eps": 60.76,
@@ -24,6 +125,296 @@
           [
             77.5465796,
             12.974274
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "source_bottleneck": "osm_way_621789367",
+        "segment_id": "osm_way_1109951319",
+        "eps_spillover": 47.52,
+        "eps": 47.52,
+        "is_ripple": true,
+        "distance_from_bottleneck_m": 110.4,
+        "decay_factor": 0.65,
+        "road_class": "primary",
+        "police_station": "Vijayanagara"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            77.5446478,
+            12.9742774
+          ],
+          [
+            77.5447396,
+            12.9742803
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "source_bottleneck": "osm_way_621789367",
+        "segment_id": "osm_way_1119533588",
+        "eps_spillover": 47.52,
+        "eps": 47.52,
+        "is_ripple": true,
+        "distance_from_bottleneck_m": 110.2,
+        "decay_factor": 0.65,
+        "road_class": "primary",
+        "police_station": "Vijayanagara"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            77.5466899,
+            12.9744259
+          ],
+          [
+            77.5467185,
+            12.9743364
+          ],
+          [
+            77.5467387,
+            12.9742735
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "source_bottleneck": "osm_way_621789367",
+        "segment_id": "osm_way_621789363",
+        "eps_spillover": 47.52,
+        "eps": 47.52,
+        "is_ripple": true,
+        "distance_from_bottleneck_m": 102.1,
+        "decay_factor": 0.65,
+        "road_class": "secondary",
+        "police_station": "Vijayanagara"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            77.5447827,
+            12.9744252
+          ],
+          [
+            77.5447583,
+            12.9743431
+          ],
+          [
+            77.5447396,
+            12.9742803
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "source_bottleneck": "osm_way_621789367",
+        "segment_id": "osm_way_1183888770",
+        "eps_spillover": 47.52,
+        "eps": 47.52,
+        "is_ripple": true,
+        "distance_from_bottleneck_m": 100.9,
+        "decay_factor": 0.65,
+        "road_class": "primary",
+        "police_station": "Vijayanagara"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            77.5466016,
+            12.9744248
+          ],
+          [
+            77.5466623,
+            12.9744235
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "source_bottleneck": "osm_way_621789367",
+        "segment_id": "osm_way_1183888768",
+        "eps_spillover": 47.52,
+        "eps": 47.52,
+        "is_ripple": true,
+        "distance_from_bottleneck_m": 91.9,
+        "decay_factor": 0.65,
+        "road_class": "primary",
+        "police_station": "Vijayanagara"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            77.5464951,
+            12.9744271
+          ],
+          [
+            77.5466016,
+            12.9744248
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "source_bottleneck": "osm_way_621789367",
+        "segment_id": "osm_way_1078493925",
+        "eps_spillover": 47.52,
+        "eps": 47.52,
+        "is_ripple": true,
+        "distance_from_bottleneck_m": 92.8,
+        "decay_factor": 0.65,
+        "road_class": "primary",
+        "police_station": "Vijayanagara"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            77.5447827,
+            12.9744252
+          ],
+          [
+            77.5449062,
+            12.9744326
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "source_bottleneck": "osm_way_621789367",
+        "segment_id": "osm_way_1096678231",
+        "eps_spillover": 65.88,
+        "eps": 65.88,
+        "is_ripple": true,
+        "distance_from_bottleneck_m": 8.6,
+        "decay_factor": 0.901,
+        "road_class": "residential",
+        "police_station": "Vijayanagara"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            77.5456615,
+            12.9744272
+          ],
+          [
+            77.545665,
+            12.9744974
+          ],
+          [
+            77.5456686,
+            12.9745675
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "source_bottleneck": "osm_way_621789367",
+        "segment_id": "osm_way_1096483603",
+        "eps_spillover": 47.52,
+        "eps": 47.52,
+        "is_ripple": true,
+        "distance_from_bottleneck_m": 72.1,
+        "decay_factor": 0.65,
+        "road_class": "residential",
+        "police_station": "Vijayanagara"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            77.5450517,
+            12.9744316
+          ],
+          [
+            77.545058,
+            12.9744953
+          ],
+          [
+            77.5450935,
+            12.9748537
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "source_bottleneck": "osm_way_621789367",
+        "segment_id": "osm_way_1429939347",
+        "eps_spillover": 47.52,
+        "eps": 47.52,
+        "is_ripple": true,
+        "distance_from_bottleneck_m": 96.5,
+        "decay_factor": 0.65,
+        "road_class": "secondary",
+        "police_station": "Vijayanagara"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            77.5449544,
+            12.9750515
+          ],
+          [
+            77.5447827,
+            12.9744252
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "source_bottleneck": "osm_way_621789367",
+        "segment_id": "osm_way_1096483602",
+        "eps_spillover": 47.52,
+        "eps": 47.52,
+        "is_ripple": true,
+        "distance_from_bottleneck_m": 42.9,
+        "decay_factor": 0.65,
+        "road_class": "residential",
+        "police_station": "Vijayanagara"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            77.5458486,
+            12.9744259
+          ],
+          [
+            77.5458537,
+            12.9744879
+          ],
+          [
+            77.5459105,
+            12.9751183
           ]
         ]
       }
@@ -87,11 +478,11 @@
       "type": "Feature",
       "properties": {
         "source_bottleneck": "osm_way_621789367",
-        "segment_id": "osm_way_1096483603",
+        "segment_id": "osm_way_1096483601",
         "eps_spillover": 47.52,
         "eps": 47.52,
         "is_ripple": true,
-        "distance_from_bottleneck_m": 72.1,
+        "distance_from_bottleneck_m": 51.5,
         "decay_factor": 0.65,
         "road_class": "residential",
         "police_station": "Vijayanagara"
@@ -100,16 +491,110 @@
         "type": "LineString",
         "coordinates": [
           [
-            77.5450517,
-            12.9744316
+            77.5454083,
+            12.974429
           ],
           [
-            77.545058,
-            12.9744953
+            77.5454228,
+            12.9744858
           ],
           [
-            77.5450935,
-            12.9748537
+            77.5456086,
+            12.9752135
+          ],
+          [
+            77.5456263,
+            12.9752828
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "source_bottleneck": "osm_way_621789367",
+        "segment_id": "osm_way_1155999867",
+        "eps_spillover": 47.52,
+        "eps": 47.52,
+        "is_ripple": true,
+        "distance_from_bottleneck_m": 77.5,
+        "decay_factor": 0.65,
+        "road_class": "residential",
+        "police_station": "Vijayanagara"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            77.5450548,
+            12.975389
+          ],
+          [
+            77.5454219,
+            12.9753205
+          ],
+          [
+            77.5456263,
+            12.9752828
+          ],
+          [
+            77.5459236,
+            12.9752549
+          ],
+          [
+            77.5462079,
+            12.9751377
+          ],
+          [
+            77.5463266,
+            12.9749309
+          ],
+          [
+            77.5464934,
+            12.9745653
+          ],
+          [
+            77.5465034,
+            12.9744946
+          ],
+          [
+            77.5464951,
+            12.9744271
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "source_bottleneck": "osm_way_458439807",
+        "segment_id": "osm_way_695896420",
+        "eps_spillover": 46.76,
+        "eps": 46.76,
+        "is_ripple": true,
+        "distance_from_bottleneck_m": 213.7,
+        "decay_factor": 0.65,
+        "road_class": "secondary",
+        "police_station": "Malleshwaram"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            77.5510346,
+            12.9979266
+          ],
+          [
+            77.5510063,
+            12.9980898
+          ],
+          [
+            77.5509979,
+            12.9981386
+          ],
+          [
+            77.5509748,
+            12.9982716
           ]
         ]
       }
@@ -153,6 +638,509 @@
           [
             77.5500211,
             13.0038081
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "source_bottleneck": "osm_way_458439807",
+        "segment_id": "osm_way_335865352",
+        "eps_spillover": 46.76,
+        "eps": 46.76,
+        "is_ripple": true,
+        "distance_from_bottleneck_m": 64.6,
+        "decay_factor": 0.65,
+        "road_class": "residential",
+        "police_station": "Malleshwaram"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            77.5505582,
+            13.0004715
+          ],
+          [
+            77.5498977,
+            13.0003287
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "source_bottleneck": "osm_way_1460486509",
+        "segment_id": "osm_way_1356191558",
+        "eps_spillover": 45.92,
+        "eps": 45.92,
+        "is_ripple": true,
+        "distance_from_bottleneck_m": 46.7,
+        "decay_factor": 0.65,
+        "road_class": "residential",
+        "police_station": "Mahadevapura"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            77.6686281,
+            12.9961275
+          ],
+          [
+            77.668625,
+            12.9961465
+          ],
+          [
+            77.6686343,
+            12.9961481
+          ],
+          [
+            77.6689125,
+            12.9961998
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "source_bottleneck": "osm_way_1460486509",
+        "segment_id": "osm_way_1496006077",
+        "eps_spillover": 50.15,
+        "eps": 50.15,
+        "is_ripple": true,
+        "distance_from_bottleneck_m": 32.5,
+        "decay_factor": 0.71,
+        "road_class": "residential",
+        "police_station": "Mahadevapura"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            77.6692421,
+            12.9967435
+          ],
+          [
+            77.66936,
+            12.9964731
+          ],
+          [
+            77.6693623,
+            12.9964141
+          ],
+          [
+            77.6693908,
+            12.995691
+          ],
+          [
+            77.6690965,
+            12.99568
+          ],
+          [
+            77.6690726,
+            12.9962853
+          ],
+          [
+            77.6693623,
+            12.9964141
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "source_bottleneck": "osm_way_1460486509",
+        "segment_id": "osm_way_502730017",
+        "eps_spillover": 45.92,
+        "eps": 45.92,
+        "is_ripple": true,
+        "distance_from_bottleneck_m": 68.8,
+        "decay_factor": 0.65,
+        "road_class": "residential",
+        "police_station": "Mahadevapura"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            77.6690407,
+            12.9966583
+          ],
+          [
+            77.6689866,
+            12.9964782
+          ],
+          [
+            77.6689021,
+            12.9964134
+          ],
+          [
+            77.6687224,
+            12.9963411
+          ],
+          [
+            77.6685507,
+            12.9962932
+          ],
+          [
+            77.668285,
+            12.9963391
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "source_bottleneck": "osm_way_1460486509",
+        "segment_id": "osm_way_473787611",
+        "eps_spillover": 45.92,
+        "eps": 45.92,
+        "is_ripple": true,
+        "distance_from_bottleneck_m": 81.9,
+        "decay_factor": 0.65,
+        "road_class": "trunk",
+        "police_station": "Banaswadi"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            77.6690407,
+            12.9966583
+          ],
+          [
+            77.668285,
+            12.9963391
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "source_bottleneck": "osm_way_1460486509",
+        "segment_id": "osm_way_380724493",
+        "eps_spillover": 45.92,
+        "eps": 45.92,
+        "is_ripple": true,
+        "distance_from_bottleneck_m": 104.5,
+        "decay_factor": 0.65,
+        "road_class": "trunk",
+        "police_station": "Banaswadi"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            77.6675635,
+            12.9962255
+          ],
+          [
+            77.6685289,
+            12.9966426
+          ],
+          [
+            77.6686769,
+            12.9967065
+          ],
+          [
+            77.6689816,
+            12.9968382
+          ],
+          [
+            77.6692287,
+            12.996938
+          ],
+          [
+            77.6693888,
+            12.9970148
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "source_bottleneck": "osm_way_1460486509",
+        "segment_id": "osm_way_1316364187",
+        "eps_spillover": 45.92,
+        "eps": 45.92,
+        "is_ripple": true,
+        "distance_from_bottleneck_m": 418.6,
+        "decay_factor": 0.65,
+        "road_class": "secondary",
+        "police_station": "Mahadevapura"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            77.6750835,
+            12.9994656
+          ],
+          [
+            77.6750799,
+            12.9993809
+          ],
+          [
+            77.6750488,
+            12.9993581
+          ],
+          [
+            77.6747797,
+            12.9992318
+          ],
+          [
+            77.6746632,
+            12.9991771
+          ],
+          [
+            77.6746254,
+            12.9991581
+          ],
+          [
+            77.6737192,
+            12.9987033
+          ],
+          [
+            77.6727546,
+            12.9981814
+          ],
+          [
+            77.6722471,
+            12.9978776
+          ],
+          [
+            77.6717167,
+            12.9976297
+          ],
+          [
+            77.6713629,
+            12.9974274
+          ],
+          [
+            77.6706257,
+            12.9970999
+          ],
+          [
+            77.6696772,
+            12.9966967
+          ],
+          [
+            77.6693708,
+            12.9968004
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "source_bottleneck": "osm_way_27227897",
+        "segment_id": "osm_way_1194673416",
+        "eps_spillover": 45.81,
+        "eps": 45.81,
+        "is_ripple": true,
+        "distance_from_bottleneck_m": 157.5,
+        "decay_factor": 0.65,
+        "road_class": "primary",
+        "police_station": "Jeevanbheemanagar"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            77.6490664,
+            12.9597401
+          ],
+          [
+            77.6490101,
+            12.9597464
+          ],
+          [
+            77.6489326,
+            12.9597548
+          ],
+          [
+            77.648376,
+            12.9598167
+          ],
+          [
+            77.647712,
+            12.959899
+          ],
+          [
+            77.647508,
+            12.9599192
+          ],
+          [
+            77.6469981,
+            12.9599767
+          ],
+          [
+            77.6460198,
+            12.9600918
+          ],
+          [
+            77.6459264,
+            12.9601006
+          ],
+          [
+            77.6456051,
+            12.9601341
+          ],
+          [
+            77.6455901,
+            12.9601357
+          ],
+          [
+            77.6453353,
+            12.9601702
+          ],
+          [
+            77.6450009,
+            12.9602078
+          ],
+          [
+            77.6446928,
+            12.9602461
+          ],
+          [
+            77.6442193,
+            12.9602973
+          ],
+          [
+            77.644171,
+            12.9603026
+          ],
+          [
+            77.6437126,
+            12.9603533
+          ],
+          [
+            77.643669,
+            12.9603582
+          ],
+          [
+            77.6432835,
+            12.9604011
+          ],
+          [
+            77.643155,
+            12.9604154
+          ],
+          [
+            77.6429729,
+            12.9604298
+          ],
+          [
+            77.6427688,
+            12.9604459
+          ],
+          [
+            77.642685,
+            12.9604548
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "source_bottleneck": "osm_way_27227897",
+        "segment_id": "osm_way_28709481",
+        "eps_spillover": 45.81,
+        "eps": 45.81,
+        "is_ripple": true,
+        "distance_from_bottleneck_m": 165.6,
+        "decay_factor": 0.65,
+        "road_class": "primary",
+        "police_station": "Jeevanbheemanagar"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            77.6427035,
+            12.9606159
+          ],
+          [
+            77.6431981,
+            12.9605471
+          ],
+          [
+            77.643396,
+            12.9604945
+          ],
+          [
+            77.6435762,
+            12.9604628
+          ],
+          [
+            77.6438205,
+            12.9604349
+          ],
+          [
+            77.6438849,
+            12.9604273
+          ],
+          [
+            77.6443615,
+            12.9603719
+          ],
+          [
+            77.6447125,
+            12.9603311
+          ],
+          [
+            77.6451181,
+            12.9602839
+          ],
+          [
+            77.6451583,
+            12.9602792
+          ],
+          [
+            77.6456337,
+            12.9602239
+          ],
+          [
+            77.6460778,
+            12.9601808
+          ],
+          [
+            77.6467124,
+            12.9601051
+          ],
+          [
+            77.6470509,
+            12.9600647
+          ],
+          [
+            77.6472248,
+            12.9600451
+          ],
+          [
+            77.6475411,
+            12.9600094
+          ],
+          [
+            77.6477142,
+            12.959991
+          ],
+          [
+            77.6482258,
+            12.9599298
+          ],
+          [
+            77.6487035,
+            12.9598722
           ]
         ]
       }
