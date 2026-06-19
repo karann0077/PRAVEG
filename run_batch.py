@@ -22,7 +22,8 @@ from pathlib import Path
 
 import pandas as pd
 
-MODEL_PATH = "artifacts/parking_model/model.joblib"
+from parking_engine.config import MODEL_DIR
+MODEL_PATH = MODEL_DIR / "model.joblib"
 OUT_DIR = Path("artifacts/predictions")
 TOP_K = 2500
 
@@ -82,7 +83,7 @@ def recalibrate_from_batch() -> None:
     # A more accurate version reruns scoring.calibrate_scoring() on training counts
     interruption_p95 = max(0.5, count_p95 * 0.15)
 
-    cfg_path = Path("artifacts/parking_model/config.json")
+    cfg_path = MODEL_DIR / "config.json"
     if cfg_path.exists():
         cfg = json.loads(cfg_path.read_text())
         old_cal = cfg.get("calibration", {})

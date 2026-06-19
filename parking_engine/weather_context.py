@@ -138,11 +138,18 @@ def fetch_open_meteo_hourly_weather(
             headers={"User-Agent": "parking-enforcement-engine/0.1 weather-context"},
             timeout=timeout_seconds,
         )
-        response.raise_for_status()
-        payload = response.json()
-        if payload.get("error"):
-            reason = payload.get("reason", "Open-Meteo returned an error")
-            raise RuntimeError(str(reason))
+        try:
+            response.raise_for_status()
+            payload = response.json()
+            if payload.get("error"):
+                reason = payload.get("reason", "Open-Meteo returned an error")
+                raise RuntimeError(str(reason))
+        except requests.exceptions.HTTPError as exc:
+            if allow_missing and response.status_code == 400:
+                payload = {"hourly": {"time": [], "rain": []}}
+            else:
+                raise exc
+                
         payload["_request"] = params
         cache_path.parent.mkdir(parents=True, exist_ok=True)
         cache_path.write_text(json.dumps(payload), encoding="utf-8")

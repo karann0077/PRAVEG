@@ -637,6 +637,24 @@ def add_features(base_rows: pd.DataFrame, context: FeatureContext) -> pd.DataFra
     # ── FIX BUG-8: Historical distribution-based lag (works for future dates) ─
     frame = _add_lag_features_from_history(frame, context)
 
+    # ── Weather & Event Context Integration ─────────────────────────────────────
+    from parking_engine.weather_context import merge_weather_context
+    from parking_engine.event_context import add_event_context
+
+    # Weather: Fetches or looks up open-meteo hourly rain based on target_hour
+    frame = merge_weather_context(
+        frame,
+        segment_metadata=context.segment_metadata,
+        timezone=context.local_timezone,
+        allow_missing_weather=True,
+    )
+    
+    # Events: Distance to active venues
+    frame = add_event_context(
+        frame,
+        local_timezone=context.local_timezone,
+    )
+
     # ── V4: Dynamic Hawkes-style decay and Spatial Spillover ────────────────
     # Hawkes decay: exponentially decaying importance of recent lag events
     frame["hawkes_decay_intensity"] = (
@@ -723,64 +741,90 @@ def _inject_live_weather(frame: pd.DataFrame) -> pd.DataFrame:
 
 
 def _add_lag_features_from_history(frame: pd.DataFrame, context: FeatureContext) -> pd.DataFrame:
-    """FIX BUG-8: Build lag features using historical mean distributions.
+    """FIX BUG-8: Build lag features using true history with historical fallback.
 
-    Original approach: exact timestamp join on history_counts.
-    Problem: future target_hours (2026) never match training dates (2024).
-    Fix: use segment's average count at (hour, day_of_week) as a proxy for
-    the previous-hour and previous-day lag signals.
+    Uses true T-1, T-24, T-168 historical values when available (training).
+    Falls back to segment-hour average proxies when missing (inference).
     """
     stats = context.stats
+    history = context.history_counts.copy()
+    if not history.empty:
+        history["target_hour"] = pd.to_datetime(history["target_hour"])
+    frame_hour = pd.to_datetime(frame["target_hour"])
 
-    # lag_1h_total proxy: historical mean at (hour-1, same dow)
-    lag1_df = stats["segment_hour_lag"].copy()
-    lag1_df = lag1_df.rename(columns={"hist_lag_hour_mean": "lag_1h_total"})
-    # shift hour by -1 (i.e., if target is hour=10, lag_1h comes from hour=9 mean)
-    lag1_df["hour"] = (lag1_df["hour"] + 1) % 24  # hour+1 because join is on target hour
-    frame = frame.merge(lag1_df, on=["segment_id", "hour"], how="left")
+    merged = frame.copy()
 
-    # lag_24h_total proxy: same hour yesterday = same (hour, any_dow) historical mean
-    lag24_df = stats["segment_hour_lag"].copy()
-    lag24_df = lag24_df.rename(columns={"hist_lag_hour_mean": "lag_24h_total"})
-    frame = frame.merge(
-        lag24_df.rename(columns={"hour": "hour_alias"}),
-        left_on=["segment_id", "hour"],
-        right_on=["segment_id", "hour_alias"],
-        how="left",
-    ).drop(columns=["hour_alias"], errors="ignore")
+    def merge_true_lag(df, lag_hours, prefix):
+        if history.empty:
+            return df
+        lag_hist = history.copy()
+        lag_hist["target_hour"] = lag_hist["target_hour"] + pd.Timedelta(hours=lag_hours)
+        lag_hist = lag_hist.rename(columns={
+            "count_total": f"true_{prefix}_total",
+            "count_two_wheeler": f"true_{prefix}_two_wheeler",
+            "count_car": f"true_{prefix}_car",
+            "count_auto": f"true_{prefix}_auto",
+            "count_light_commercial": f"true_{prefix}_light_commercial",
+            "count_heavy": f"true_{prefix}_heavy",
+            "count_other": f"true_{prefix}_other",
+        })
+        cols = ["segment_id", "target_hour", f"true_{prefix}_total"]
+        if f"true_{prefix}_two_wheeler" in lag_hist.columns:
+            cols.extend([
+                f"true_{prefix}_two_wheeler", f"true_{prefix}_car", f"true_{prefix}_auto",
+                f"true_{prefix}_light_commercial", f"true_{prefix}_heavy", f"true_{prefix}_other"
+            ])
+        return df.merge(lag_hist[cols], on=["segment_id", "target_hour"], how="left")
 
-    # lag_168h_total proxy: same dow+hour last week
-    lag168_df = stats["segment_dow_lag"].copy()
-    lag168_df = lag168_df.rename(columns={"hist_lag_dow_hour_mean": "lag_168h_total"})
-    frame = frame.merge(lag168_df, on=["segment_id", "day_of_week", "hour"], how="left")
+    merged = merge_true_lag(merged, 1, "lag_1h")
+    merged = merge_true_lag(merged, 2, "lag_2h")
+    merged = merge_true_lag(merged, 3, "lag_3h")
+    merged = merge_true_lag(merged, 24, "lag_24h")
+    merged = merge_true_lag(merged, 168, "lag_168h")
 
-    # lag_2h and lag_3h: scale from lag_1h estimate
-    # lag_2h and lag_3h: use actual historical means at shifted hours
-    lag2_df = stats["segment_hour_lag"].copy()
-    lag2_df = lag2_df.rename(columns={"hist_lag_hour_mean": "lag_2h_total"})
-    lag2_df["hour"] = (lag2_df["hour"] + 2) % 24
-    frame = frame.merge(lag2_df, on=["segment_id", "hour"], how="left")
+    # Fallback 1: historical proxy
+    fb1 = stats["segment_hour_lag"].copy()
+    fb1["hour"] = (fb1["hour"] + 1) % 24
+    merged = merged.merge(fb1.rename(columns={"hist_lag_hour_mean": "fb_1"}), on=["segment_id", "hour"], how="left")
 
-    lag3_df = stats["segment_hour_lag"].copy()
-    lag3_df = lag3_df.rename(columns={"hist_lag_hour_mean": "lag_3h_total"})
-    lag3_df["hour"] = (lag3_df["hour"] + 3) % 24
-    frame = frame.merge(lag3_df, on=["segment_id", "hour"], how="left")
+    fb2 = stats["segment_hour_lag"].copy()
+    fb2["hour"] = (fb2["hour"] + 2) % 24
+    merged = merged.merge(fb2.rename(columns={"hist_lag_hour_mean": "fb_2"}), on=["segment_id", "hour"], how="left")
 
-    # Fill all lag columns
-    for col in ["lag_1h_total", "lag_2h_total", "lag_3h_total", "lag_24h_total", "lag_168h_total"]:
-        if col in frame.columns:
-            frame[col] = frame[col].fillna(0.0)
-        else:
-            frame[col] = 0.0
+    fb3 = stats["segment_hour_lag"].copy()
+    fb3["hour"] = (fb3["hour"] + 3) % 24
+    merged = merged.merge(fb3.rename(columns={"hist_lag_hour_mean": "fb_3"}), on=["segment_id", "hour"], how="left")
 
-    # Per-class lags from dow_hour_mean
-    dow_class_df = stats.get("segment_dow_lag")
-    for cls in ["two_wheeler", "car", "auto", "light_commercial", "heavy", "other"]:
-        col = f"lag_1h_{cls}"
-        if col not in frame.columns:
-            frame[col] = 0.0
+    fb24 = stats["segment_hour_lag"].copy()
+    merged = merged.merge(fb24.rename(columns={"hist_lag_hour_mean": "fb_24"}), on=["segment_id", "hour"], how="left")
 
-    return frame
+    fb168 = stats["segment_dow_lag"].copy()
+    merged = merged.merge(fb168.rename(columns={"hist_lag_dow_mean": "fb_168", "hist_lag_dow_hour_mean": "fb_168"}), on=["segment_id", "day_of_week", "hour"], how="left")
+
+    # Apply true lag if exists, else fallback, else 0
+    for hrs in [1, 2, 3, 24, 168]:
+        col = f"lag_{hrs}h_total"
+        true_col = f"true_{col}"
+        fb_col = f"fb_{hrs}"
+        
+        if true_col not in merged.columns:
+            merged[true_col] = np.nan
+            
+        merged[col] = merged[true_col].fillna(merged.get(fb_col, 0.0)).fillna(0.0)
+
+    # Sub-vehicle class fallbacks (only for lag_1h)
+    for vclass in ["two_wheeler", "car", "auto", "light_commercial", "heavy", "other"]:
+        col = f"lag_1h_{vclass}"
+        true_col = f"true_lag_1h_{vclass}"
+        if true_col not in merged.columns:
+            merged[true_col] = np.nan
+        merged[col] = merged[true_col].fillna(0.0)
+
+    # Cleanup
+    cols_to_drop = [c for c in merged.columns if c.startswith("true_") or c.startswith("fb_")]
+    merged = merged.drop(columns=cols_to_drop)
+
+    return merged
 
 def apply_category_levels(frame: pd.DataFrame, levels: dict[str, list[str]]) -> pd.DataFrame:
     frame = frame.copy()

@@ -2,7 +2,7 @@ import argparse
 import json
 import sys
 from pathlib import Path
-import pandas as pd
+from parking_engine.config import MODEL_DIR
 import numpy as np
 
 # We assume shap is installed, if not this will error but user can install it
@@ -73,7 +73,7 @@ def explain_segment(model_path: str, segment_id: str):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument("--model", default="artifacts/parking_model_osm/model.joblib")
+    parser.add_argument("--model", default=str(MODEL_DIR / "model.joblib"))
     parser.add_argument("--segment", required=True)
     args = parser.parse_args()
     explain_segment(args.model, args.segment)

@@ -33,7 +33,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel
 
-from parking_engine.config import FEATURE_COLUMNS
+from parking_engine.config import FEATURE_COLUMNS, MODEL_DIR
 from parking_engine.features import (
     FeatureContext,
     add_features,
@@ -84,11 +84,11 @@ def _get_db() -> sqlite3.Connection:
 async def lifespan(app: FastAPI):
     global model_bundle
 
-    model_path = "artifacts/parking_model_v3_ensemble/model.joblib"
-    if not Path(model_path).exists():
-        model_path = "artifacts/parking_model/model.joblib"
-
-    print(f"Loading model from {model_path}...")
+    model_path = MODEL_DIR / "model.joblib"
+    if not model_path.exists():
+        print(f"ERROR: Model bundle not found at {model_path}")
+        return
+    print(f"Loading bundle from {model_path}...")
     model_bundle = load_bundle(model_path)
     print("Model loaded. Context segments:", len(model_bundle["context"].selected_segments))
 
@@ -298,7 +298,7 @@ def health_endpoint():
 # ── /metrics  (existing — kept) ───────────────────────────────────────────────
 @app.get("/metrics")
 def metrics_endpoint():
-    metrics_path = Path("artifacts/parking_model_v3_ensemble/metrics.json")
+    metrics_path = MODEL_DIR / "metrics.json"
     if not metrics_path.exists():
         raise HTTPException(status_code=404, detail="Metrics not found.")
     return json.loads(metrics_path.read_text())

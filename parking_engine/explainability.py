@@ -17,7 +17,8 @@ from .features import FeatureContext, add_features, apply_category_levels
 from .modeling import load_bundle, predict_feature_frame
 
 
-DEFAULT_MODEL_PATH = Path("artifacts/parking_model_osm/model.joblib")
+from parking_engine.config import MODEL_DIR
+DEFAULT_MODEL_PATH = MODEL_DIR / "model.joblib"
 
 
 class ExplainabilityInputError(ValueError):

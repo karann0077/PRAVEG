@@ -17,6 +17,7 @@ from .features import (
     select_active_segments,
 )
 from .modeling import save_bundle, train_model
+from parking_engine.config import MODEL_DIR
 from .osm_roads import fetch_osm_roads_for_events, match_events_to_osm_roads
 from .scoring import calibrate_scoring
 
@@ -47,7 +48,7 @@ def parse_args() -> argparse.Namespace:
         default="dataset/jan to may police violation_anonymized791b166.csv",
         help="Path to the violation CSV.",
     )
-    parser.add_argument("--out", default="artifacts/parking_model", help="Artifact directory.")
+    parser.add_argument("--out", default=str(MODEL_DIR), help="Artifact directory.")
     parser.add_argument("--timezone", default="Asia/Kolkata", help="Local timezone for calendar features.")
     parser.add_argument("--grid-size-deg", type=float, default=0.001, help="Fallback grid size in degrees.")
     parser.add_argument("--min-segment-events", type=int, default=20, help="Minimum events per segment.")

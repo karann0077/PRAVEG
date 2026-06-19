@@ -5,6 +5,7 @@ from __future__ import annotations
 import argparse
 from pathlib import Path
 
+from parking_engine.config import MODEL_DIR
 import pandas as pd
 from dotenv import load_dotenv
 
@@ -18,7 +19,7 @@ from .mappls_api import enrich_with_live_traffic
 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--model", default="artifacts/parking_model/model.joblib", help="Trained model bundle.")
+    parser.add_argument("--model", default=str(MODEL_DIR / "model.joblib"), help="Trained model bundle.")
     parser.add_argument("--datetime", required=True, help="Future local datetime, e.g. '2026-06-18 09:00'.")
     parser.add_argument("--top-k", type=int, default=25, help="Number of ranked segments to print/export.")
     parser.add_argument("--lat", type=float, default=None, help="Optional latitude for a single-location query.")
