@@ -2,53 +2,7 @@
   from pandas.core.computation.check import NUMEXPR_INSTALLED
 /opt/anaconda3/lib/python3.12/site-packages/pandas/core/arrays/masked.py:56: UserWarning: Pandas requires version '1.4.2' or newer of 'bottleneck' (version '1.3.7' currently installed).
   from pandas.core import (
-INFO:     Started server process [63697]
+INFO:     Started server process [86897]
 INFO:     Waiting for application startup.
 INFO:     Application startup complete.
 INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
-Loading model from artifacts/parking_model_v3_ensemble/model.joblib...
-Model loaded. Context segments: 1671
-INFO:     127.0.0.1:64895 - "GET /explain?segment_id=osm_way_1329637596 HTTP/1.1" 200 OK
-INFO:     127.0.0.1:64906 - "GET /resolve_impact?segment_id=osm_way_1329637596 HTTP/1.1" 200 OK
-INFO:     127.0.0.1:64980 - "GET /nearest_station?segment_id=osm_way_1329637596 HTTP/1.1" 200 OK
-INFO:     127.0.0.1:64979 - "GET /explain?segment_id=osm_way_1329637596&target_hour=live HTTP/1.1" 200 OK
-INFO:     127.0.0.1:64984 - "GET /resolve_impact?segment_id=osm_way_1329637596 HTTP/1.1" 200 OK
-INFO:     127.0.0.1:65005 - "GET /nearest_station?segment_id=osm_way_172920297 HTTP/1.1" 200 OK
-INFO:     127.0.0.1:65006 - "GET /explain?segment_id=osm_way_172920297&target_hour=live HTTP/1.1" 200 OK
-INFO:     127.0.0.1:65020 - "GET /resolve_impact?segment_id=osm_way_172920297 HTTP/1.1" 200 OK
-INFO:     127.0.0.1:65026 - "GET /nearest_station?segment_id=osm_way_503306668 HTTP/1.1" 200 OK
-INFO:     127.0.0.1:65025 - "GET /explain?segment_id=osm_way_503306668&target_hour=live HTTP/1.1" 200 OK
-INFO:     127.0.0.1:65030 - "GET /resolve_impact?segment_id=osm_way_503306668 HTTP/1.1" 200 OK
-INFO:     127.0.0.1:65074 - "GET /nearest_station?segment_id=osm_way_1503260302 HTTP/1.1" 200 OK
-INFO:     127.0.0.1:65072 - "GET /explain?segment_id=osm_way_1503260302&target_hour=live HTTP/1.1" 200 OK
-INFO:     127.0.0.1:65072 - "GET /nearest_station?segment_id=osm_way_503306668 HTTP/1.1" 200 OK
-INFO:     127.0.0.1:65072 - "GET /nearest_station?segment_id=osm_way_1329637596 HTTP/1.1" 200 OK
-INFO:     127.0.0.1:65072 - "GET /nearest_station?segment_id=osm_way_172920297 HTTP/1.1" 200 OK
-INFO:     127.0.0.1:65200 - "GET /nearest_station?segment_id=osm_way_1329637596 HTTP/1.1" 200 OK
-INFO:     127.0.0.1:65205 - "GET /nearest_station?segment_id=osm_way_172920297 HTTP/1.1" 200 OK
-INFO:     127.0.0.1:65210 - "GET /nearest_station?segment_id=osm_way_1329637596 HTTP/1.1" 200 OK
-INFO:     127.0.0.1:65210 - "GET /nearest_station?segment_id=osm_way_172920297 HTTP/1.1" 200 OK
-INFO:     127.0.0.1:65210 - "GET /nearest_station?segment_id=osm_way_1329637596 HTTP/1.1" 200 OK
-INFO:     127.0.0.1:65226 - "GET /nearest_station?segment_id=osm_way_1219710436 HTTP/1.1" 200 OK
-INFO:     127.0.0.1:65225 - "GET /explain?segment_id=osm_way_1219710436&target_hour=live HTTP/1.1" 200 OK
-INFO:     127.0.0.1:65242 - "GET /nearest_station?segment_id=osm_way_1329637596 HTTP/1.1" 200 OK
-INFO:     127.0.0.1:65242 - "GET /nearest_station?segment_id=osm_way_172920297 HTTP/1.1" 200 OK
-INFO:     127.0.0.1:65242 - "GET /nearest_station?segment_id=osm_way_1219710436 HTTP/1.1" 200 OK
-INFO:     127.0.0.1:65242 - "GET /nearest_station?segment_id=osm_way_1503260302 HTTP/1.1" 200 OK
-INFO:     127.0.0.1:65242 - "GET /nearest_station?segment_id=osm_way_503306668 HTTP/1.1" 200 OK
-INFO:     127.0.0.1:65258 - "GET /nearest_station?segment_id=osm_way_1329637596 HTTP/1.1" 200 OK
-INFO:     127.0.0.1:65265 - "GET /nearest_station?segment_id=osm_way_172920297 HTTP/1.1" 200 OK
-INFO:     127.0.0.1:65287 - "GET /nearest_station?segment_id=osm_way_1329637596 HTTP/1.1" 200 OK
-INFO:     127.0.0.1:65325 - "GET /nearest_station?segment_id=osm_way_1329637596 HTTP/1.1" 200 OK
-INFO:     127.0.0.1:65412 - "GET /nearest_station?segment_id=osm_way_1329637596 HTTP/1.1" 200 OK
-INFO:     127.0.0.1:65417 - "GET /nearest_station?segment_id=osm_way_172920297 HTTP/1.1" 200 OK
-INFO:     127.0.0.1:65476 - "GET /nearest_station?segment_id=osm_way_1329637596 HTTP/1.1" 200 OK
-INFO:     127.0.0.1:49167 - "GET /nearest_station?segment_id=osm_way_172920297 HTTP/1.1" 200 OK
-INFO:     127.0.0.1:49167 - "GET /nearest_station?segment_id=osm_way_1219710436 HTTP/1.1" 200 OK
-INFO:     127.0.0.1:50399 - "GET /nearest_station?segment_id=osm_way_1329637596 HTTP/1.1" 200 OK
-INFO:     127.0.0.1:50467 - "GET /nearest_station?segment_id=osm_way_1219710436 HTTP/1.1" 200 OK
-INFO:     127.0.0.1:50482 - "GET /resolve_impact?segment_id=osm_way_1219710436 HTTP/1.1" 200 OK
-INFO:     Shutting down
-INFO:     Waiting for application shutdown.
-INFO:     Application shutdown complete.
-INFO:     Finished server process [63697]

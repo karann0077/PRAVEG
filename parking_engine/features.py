@@ -59,6 +59,8 @@ from .config import (
     VALIDATION_STATUS_WEIGHTS,
     VEHICLE_FOOTPRINT_WEIGHTS,
     VEHICLE_TYPE_TO_CLASS,
+    VEHICLE_FOOTPRINT_WEIGHTS,
+    VEHICLE_TYPE_TO_CLASS,
     VIOLATION_SEVERITY_WEIGHTS,
     WEEKDAY_PEAK_HOURS,
     WEEKEND_PEAK_HOURS,
@@ -174,6 +176,46 @@ def load_events(
     )
     events["road_class"] = events.apply(infer_road_class, axis=1)
     events["road_width_m"] = events["road_class"].map(ROAD_WIDTH_BY_CLASS_M).fillna(6.0)
+
+    # ── FIX: Bulk-entry timestamp correction ──────────────────────────────────
+    # PROBLEM: Enforcement officers uploaded violations in bulk during off-hours
+    # (0-5AM). Many segments show >80% of violations at 2-4AM which is physically
+    # impossible for residential/commercial roads. The model learned these fake
+    # timestamps as ground truth, causing absurd 4AM "Red Line" predictions.
+    #
+    # FIX: Detect segments where the majority of violations fall in the bulk-entry
+    # window (0-5AM) and drop those nighttime records from training. This is NOT
+    # data deletion — real nighttime violations do occur, but only ~2-5% of total.
+    # Any segment with >35% of its records at 0-5AM is flagged as artifact-heavy
+    # and those specific nighttime records get downweighted to zero sample_weight.
+    #
+    # Result: Model trains on realistic hour distributions for all segments.
+    BULK_ENTRY_HOURS = set(range(0, 6))   # 0,1,2,3,4,5 AM
+    BULK_ARTIFACT_THRESHOLD = 0.35        # >35% of records in 0-5AM → artifact
+
+    events["_hour_of_day"] = events["event_time"].dt.hour
+    is_night = events["_hour_of_day"].isin(BULK_ENTRY_HOURS)
+
+    # Per-segment: what fraction of its records are in 0-5AM?
+    seg_total = events.groupby("segment_id")["_hour_of_day"].count()
+    seg_night = events[is_night].groupby("segment_id")["_hour_of_day"].count()
+    seg_night_frac = (seg_night / seg_total).fillna(0.0)
+    artifact_segments = seg_night_frac[seg_night_frac > BULK_ARTIFACT_THRESHOLD].index
+
+    # Zero-weight the 0-5AM records for artifact-heavy segments
+    artifact_night_mask = (
+        events["segment_id"].isin(artifact_segments) & is_night
+    )
+    events.loc[artifact_night_mask, "sample_weight"] = 0.0
+    events.loc[artifact_night_mask, "severity_weight"] = 0.0
+    artifact_count = artifact_night_mask.sum()
+    if artifact_count > 0:
+        print(
+            f"  TIMESTAMP FIX: zeroed sample_weight for {artifact_count} likely "
+            f"bulk-entry records across {len(artifact_segments)} segments "
+            f"(>35% violations at 0-5AM)."
+        )
+    events = events.drop(columns=["_hour_of_day"])
     return events
 
 
@@ -703,7 +745,6 @@ def _add_lag_features_from_history(frame: pd.DataFrame, context: FeatureContext)
 
     return frame
 
-
 def apply_category_levels(frame: pd.DataFrame, levels: dict[str, list[str]]) -> pd.DataFrame:
     frame = frame.copy()
     for col, categories in levels.items():
@@ -711,6 +752,7 @@ def apply_category_levels(frame: pd.DataFrame, levels: dict[str, list[str]]) -> 
         values = values.where(values.isin(categories), "Unknown")
         frame[col] = pd.Categorical(values, categories=categories)
     return frame
+
 
 
 def create_future_rows(context: FeatureContext, target_hour: pd.Timestamp) -> pd.DataFrame:

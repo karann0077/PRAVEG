@@ -6,8 +6,8 @@
       "properties": {
         "source_bottleneck": "osm_way_1329637596",
         "segment_id": "osm_way_691961205",
-        "eps_spillover": 47.9,
-        "eps": 47.9,
+        "eps_spillover": 55.39,
+        "eps": 55.39,
         "is_ripple": true,
         "distance_from_bottleneck_m": 529.9,
         "decay_factor": 0.65,
@@ -97,8 +97,8 @@
       "properties": {
         "source_bottleneck": "osm_way_1329637596",
         "segment_id": "osm_way_616360044",
-        "eps_spillover": 47.9,
-        "eps": 47.9,
+        "eps_spillover": 55.39,
+        "eps": 55.39,
         "is_ripple": true,
         "distance_from_bottleneck_m": 521.1,
         "decay_factor": 0.65,
@@ -187,6 +187,151 @@
           [
             77.6797046,
             13.1835616
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "source_bottleneck": "osm_way_1329637596",
+        "segment_id": "osm_way_1460426930",
+        "eps_spillover": 78.51,
+        "eps": 78.51,
+        "is_ripple": true,
+        "distance_from_bottleneck_m": 6.1,
+        "decay_factor": 0.921,
+        "road_class": "residential",
+        "police_station": "Chikkajala"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            77.6801441,
+            13.1842329
+          ],
+          [
+            77.6801154,
+            13.1842368
+          ],
+          [
+            77.679848,
+            13.1842731
+          ],
+          [
+            77.6797578,
+            13.1842836
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "source_bottleneck": "osm_way_172920297",
+        "segment_id": "osm_way_542070644",
+        "eps_spillover": 69.7,
+        "eps": 69.7,
+        "is_ripple": true,
+        "distance_from_bottleneck_m": 13.4,
+        "decay_factor": 0.863,
+        "road_class": "secondary",
+        "police_station": "Shivajinagar"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            77.6087163,
+            12.9772748
+          ],
+          [
+            77.608759,
+            12.9773837
+          ],
+          [
+            77.6090526,
+            12.978201
+          ],
+          [
+            77.6090971,
+            12.9783248
+          ],
+          [
+            77.6096433,
+            12.9798455
+          ],
+          [
+            77.6096664,
+            12.9799097
+          ],
+          [
+            77.6098757,
+            12.9804923
+          ],
+          [
+            77.6100026,
+            12.9808458
+          ],
+          [
+            77.6100132,
+            12.9808752
+          ],
+          [
+            77.6100453,
+            12.9809645
+          ],
+          [
+            77.6100994,
+            12.981036
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "source_bottleneck": "osm_way_172920297",
+        "segment_id": "osm_way_172920299",
+        "eps_spillover": 52.51,
+        "eps": 52.51,
+        "is_ripple": true,
+        "distance_from_bottleneck_m": 46.2,
+        "decay_factor": 0.65,
+        "road_class": "residential",
+        "police_station": "Shivajinagar"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            77.6090912,
+            12.978115
+          ],
+          [
+            77.6091224,
+            12.9781259
+          ],
+          [
+            77.6092171,
+            12.978159
+          ],
+          [
+            77.6094346,
+            12.9787675
+          ],
+          [
+            77.6100589,
+            12.9805139
+          ],
+          [
+            77.6100205,
+            12.9806155
+          ],
+          [
+            77.6099998,
+            12.9806703
           ]
         ]
       }

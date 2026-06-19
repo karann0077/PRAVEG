@@ -7,7 +7,7 @@ import { HeatmapLayer, HexagonLayer } from "@deck.gl/aggregation-layers";
 import * as turf from '@turf/turf';
 import { useMapStore } from "@/store/useMapStore";
 import { motion } from "framer-motion";
-import Map from "react-map-gl/maplibre";
+import Map, { Marker } from "react-map-gl/maplibre";
 import "maplibre-gl/dist/maplibre-gl.css";
 
 // Map style URLs
@@ -149,7 +149,7 @@ export default function TacticalMap() {
     if (isBuildingRoute && patrolRouteGeometry) {
       tspPath.push({
         path: patrolRouteGeometry,
-        color: [255, 255, 255, 255]
+        color: [59, 130, 246, 255] // Vibrant Blue
       });
     } else if (geoData && geoData.features) {
       const hotspots = geoData.features
@@ -159,7 +159,7 @@ export default function TacticalMap() {
       if (hotspots.length > 0) {
         tspPath.push({
           path: [[77.585, 12.975], ...hotspots.map((c: any) => Array.isArray(c[0]) ? c[0] : c)],
-          color: [255, 255, 255, 255]
+          color: [59, 130, 246, 255] // Vibrant Blue
         });
       }
     }
@@ -225,7 +225,7 @@ export default function TacticalMap() {
           
           if (selectedEdge) {
             if (selectedEdge.properties?.segment_id === d.properties.segment_id) {
-              return isSimulatingResolution ? [16, 185, 129, 100] : [255, 255, 255, 100];
+              return isSimulatingResolution ? [16, 185, 129, 100] : [34, 211, 238, 100];
             }
             if (d.properties.is_ripple && d.properties.source_bottleneck === selectedEdge.properties?.segment_id) {
                return isSimulatingResolution ? [16, 185, 129, 80] : [255, 42, 95, 80];
@@ -281,47 +281,54 @@ export default function TacticalMap() {
           return true;
         },
         updateTriggers: { getLineColor: [geoData, selectedEdge, isSimulatingResolution, activeLayerMode] },
-      }),,
+      }),
     
-    // TSP Patrol Route - Outer Glow
+    // TSP Patrol Route - Outer Glow (wide, soft)
     (isPatrolRoute || isBuildingRoute) && new PathLayer({
       id: 'tsp-patrol-route-glow',
       data: tspPath,
       getPath: (d: any) => d.path,
-      getColor: [255, 255, 255, 60], // Outer 10px semi-transparent white
-      getWidth: 10,
+      getColor: [99, 180, 255, 90], // Wide electric blue glow
+      getWidth: 18,
       widthUnits: "pixels",
+      widthMinPixels: 12,
+      lineCapRounded: true,
+      lineJointRounded: true,
     }),
 
-    // TSP Patrol Route - Inner Core
+    // TSP Patrol Route - Middle Bright
+    (isPatrolRoute || isBuildingRoute) && new PathLayer({
+      id: 'tsp-patrol-route-mid',
+      data: tspPath,
+      getPath: (d: any) => d.path,
+      getColor: [147, 210, 255, 180], // Bright blue mid
+      getWidth: 8,
+      widthUnits: "pixels",
+      widthMinPixels: 6,
+      lineCapRounded: true,
+      lineJointRounded: true,
+    }),
+
+    // TSP Patrol Route - Inner Core with animated dash
     (isPatrolRoute || isBuildingRoute) && new PathLayer({
       id: 'tsp-patrol-route-core',
       data: tspPath,
       getPath: (d: any) => d.path,
-      getColor: [59, 130, 246, 255], // Inner 4px electric blue (#3b82f6)
-      getWidth: 4,
+      getColor: [255, 255, 255, 255], // White core
+      getWidth: 3,
       widthUnits: "pixels",
+      widthMinPixels: 2,
+      lineCapRounded: true,
+      lineJointRounded: true,
+      dashJustified: true,
+      dashGapPickable: true,
+      getDashArray: [12, 6],
+      dashOffset: dashOffset,
+      extensions: [new (require('@deck.gl/extensions').PathStyleExtension)({ dash: true })],
+      updateTriggers: { dashOffset: dashOffset }
     }),
 
-    // Station Name Label
-    (isPatrolRoute || isBuildingRoute) && nearestStation?.station_location && new TextLayer({
-      id: 'station-name-label',
-      data: [{
-        position: [nearestStation.station_location.lon, nearestStation.station_location.lat],
-        text: nearestStation.station_name
-      }],
-      getPosition: (d: any) => d.position,
-      getText: (d: any) => d.text,
-      getSize: 10,
-      getColor: [255, 255, 255],
-      getPixelOffset: [0, -20],
-      fontFamily: 'monospace',
-      fontWeight: 'bold',
-      background: true,
-      getBackgroundColor: [30, 58, 138, 200], // Dark police blue
-      getBorderWidth: 0,
-      padding: [4, 4]
-    }),
+
 
     !isTrafficBlockage && new ArcLayer({
       id: "dispatch-arc",
@@ -367,7 +374,39 @@ export default function TacticalMap() {
           mapStyle={currentStyle as any}
           reuseMaps
           attributionControl={false}
-        />
+        >
+          {isBuildingRoute && patrolRouteGeometry && patrolRouteGeometry.length > 0 && (
+            <>
+              {/* SOURCE MARKER (Police Station) */}
+              <Marker longitude={patrolRouteGeometry[0][0]} latitude={patrolRouteGeometry[0][1]} anchor="bottom">
+                <div className="flex flex-col items-center">
+                  <div className="relative flex items-center justify-center w-8 h-8 bg-rose-500 rounded-full shadow-[0_0_15px_rgba(244,63,94,0.6)] border-[3px] border-white">
+                    <div className="w-2.5 h-2.5 bg-white rounded-full" />
+                  </div>
+                  <div className="w-0 h-0 border-l-[6px] border-l-transparent border-r-[6px] border-r-transparent border-t-[8px] border-t-rose-500 -mt-0.5" />
+                  {nearestStation?.station_name && (
+                    <div className="absolute top-10 whitespace-nowrap px-2.5 py-1 bg-[#0B0F1A]/90 backdrop-blur-md text-white text-[10px] font-bold tracking-widest uppercase rounded border border-white/10 shadow-xl">
+                      {nearestStation.station_name} PS
+                    </div>
+                  )}
+                </div>
+              </Marker>
+              
+              {/* DESTINATION MARKER (Target Zone) */}
+              <Marker longitude={patrolRouteGeometry[patrolRouteGeometry.length - 1][0]} latitude={patrolRouteGeometry[patrolRouteGeometry.length - 1][1]} anchor="bottom">
+                <div className="flex flex-col items-center">
+                  <div className="relative flex items-center justify-center w-8 h-8 bg-blue-500 rounded-full shadow-[0_0_15px_rgba(59,130,246,0.6)] border-[3px] border-white">
+                    <div className="w-2.5 h-2.5 bg-white rounded-full" />
+                  </div>
+                  <div className="w-0 h-0 border-l-[6px] border-l-transparent border-r-[6px] border-r-transparent border-t-[8px] border-t-blue-500 -mt-0.5" />
+                  <div className="absolute top-10 whitespace-nowrap px-2.5 py-1 bg-[#0B0F1A]/90 backdrop-blur-md text-white text-[10px] font-bold tracking-widest uppercase rounded border border-white/10 shadow-xl">
+                    TARGET ZONE
+                  </div>
+                </div>
+              </Marker>
+            </>
+          )}
+        </Map>
       </DeckGL>
 
       {loading && (

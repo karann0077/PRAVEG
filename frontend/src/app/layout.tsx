@@ -18,8 +18,8 @@ const mono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "DRISHTI Command Center",
-  description: "Bengaluru AI Traffic Command System",
+  title: "PRAVEG Command Center",
+  description: "Predictive Routing and Violation Enforcement Grid",
 };
 
 export default function RootLayout({

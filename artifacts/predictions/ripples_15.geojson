@@ -6,8 +6,8 @@
       "properties": {
         "source_bottleneck": "osm_way_1259763900",
         "segment_id": "osm_way_23046218",
-        "eps_spillover": 51.14,
-        "eps": 51.14,
+        "eps_spillover": 53.85,
+        "eps": 53.85,
         "is_ripple": true,
         "distance_from_bottleneck_m": 855.0,
         "decay_factor": 0.65,
@@ -193,8 +193,8 @@
       "properties": {
         "source_bottleneck": "osm_way_1259763900",
         "segment_id": "osm_way_458681954",
-        "eps_spillover": 52.84,
-        "eps": 52.84,
+        "eps_spillover": 55.64,
+        "eps": 55.64,
         "is_ripple": true,
         "distance_from_bottleneck_m": 37.3,
         "decay_factor": 0.672,
@@ -264,8 +264,8 @@
       "properties": {
         "source_bottleneck": "osm_way_1259763900",
         "segment_id": "osm_way_1282361004",
-        "eps_spillover": 51.14,
-        "eps": 51.14,
+        "eps_spillover": 53.85,
+        "eps": 53.85,
         "is_ripple": true,
         "distance_from_bottleneck_m": 104.1,
         "decay_factor": 0.65,

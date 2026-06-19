@@ -114,10 +114,10 @@ export default function Home() {
           <ShieldAlert className="w-6 h-6 text-indigo-500 drop-shadow-[0_0_8px_rgba(99,102,241,0.8)]" />
           <div className="flex flex-col">
             <h1 className="text-white text-lg font-black tracking-widest uppercase font-heading leading-tight">
-              DRISHTI COMMAND
+              PRAVEG
             </h1>
-            <span className="text-[10px] text-zinc-400 font-mono uppercase tracking-[0.15em] leading-tight">
-              Traffic Intelligence Command
+            <span className="text-[10px] text-zinc-400 font-mono uppercase tracking-[0.05em] leading-tight">
+              Predictive Routing and Violation Enforcement Grid
             </span>
           </div>
         </div>
@@ -127,7 +127,6 @@ export default function Home() {
           <div className="text-zinc-300 font-mono text-sm font-medium tracking-widest bg-black/40 px-4 py-1.5 rounded-full border border-white/5">
             {time || "00:00:00"}
           </div>
-          <TimeMachine />
           <ZoneCommander />
         </div>
 
@@ -165,8 +164,15 @@ export default function Home() {
       {/* LAYER 4: RIGHT PANEL (z-30) */}
       <PhysicsInspector />
 
-      {/* LAYER 3: BOTTOM CENTER TOGGLES (z-40) */}
-      <BottomPillToggles />
+      {/* LAYER 3: BOTTOM CENTER COMPONENTS (z-40) */}
+      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-4 z-40 pointer-events-none">
+        <div className="pointer-events-auto">
+          <TimeMachine />
+        </div>
+        <div className="pointer-events-auto">
+          <BottomPillToggles />
+        </div>
+      </div>
       <HeatmapWeightToggle />
 
       {/* Map controls (z-20) */}

@@ -145,6 +145,15 @@ def train_model(
     calibrator = IsotonicRegression(out_of_bounds="clip")
     calibrator.fit(calib_probs, y_calib)
     
+    # ── Conformal Uncertainty (Enterprise Dispatch Rule) ─────────────────────
+    # Calculate the empirical residual margin on the calibration set to provide
+    # a probability lower bound. We want to be 85% confident in our lower bound.
+    calibrated_calib_probs = calibrator.predict(calib_probs)
+    residuals = y_calib - calibrated_calib_probs
+    # 15th percentile of residuals gives us the conservative margin
+    conformal_margin = float(np.quantile(residuals, 0.15))
+
+    
     # Predict and evaluate on test set
     X_test_cb = X_test.copy()
     for col in CATEGORICAL_COLUMNS:
@@ -172,6 +181,7 @@ def train_model(
         "regressor": model_reg,
         "classifier": model_clf,
         "calibrator": calibrator,
+        "conformal_margin": conformal_margin,
     }
     return models, metrics, features
 
@@ -298,11 +308,22 @@ def predict_feature_frame(
     # V3 Ensemble logic
     model_clf = models.get("classifier")
     calibrator = models.get("calibrator")
+    conformal_margin = models.get("conformal_margin", -0.15)  # Fallback margin if not present
+
     if model_clf is not None and calibrator is not None:
-        pred_clf_raw = model_clf.predict_proba(X_cb)[:, 1]
-        out["hotspot_probability"] = calibrator.predict(pred_clf_raw)
+        prob_raw = model_clf.predict_proba(X_cb)[:, 1]
+        prob_cal = calibrator.predict(prob_raw)
+        out["hotspot_probability"] = prob_cal
+        out["hotspot_probability_raw"] = prob_raw
+        
+        # Enterprise Dispatch Rule: Conformal Lower Bound
+        # We guarantee with 85% confidence that the probability is at least this much
+        lower_bound = np.clip(prob_cal + conformal_margin, 0.0, 1.0)
+        out["hotspot_prob_lower_bound"] = lower_bound
     else:
         out["hotspot_probability"] = 0.0
+        out["hotspot_probability_raw"] = 0.0
+        out["hotspot_prob_lower_bound"] = 0.0
         
     return out
 

@@ -3,7 +3,7 @@
 import React, { useMemo, useState, useEffect } from "react";
 import { useMapStore } from "@/store/useMapStore";
 import { motion, AnimatePresence } from "framer-motion";
-import { X, ShieldAlert, Crosshair, Brain, MapPin, ArrowRight, Route, AlertCircle, Timer } from "lucide-react";
+import { X, ShieldAlert, Crosshair, Brain, MapPin, ArrowRight, Route, AlertCircle, Timer, ChevronLeft, ChevronRight } from "lucide-react";
 
 const VEHICLE_WIDTHS: Record<string, number> = {
   heavy: 2.6,
@@ -84,6 +84,7 @@ export default function PhysicsInspector() {
   const [dispatchConfirm, setDispatchConfirm] = useState(false);
   const [loadingImpact, setLoadingImpact] = useState(false);
   const [actionState, setActionState] = useState<"Not sent" | "Team Sent" | "Cleared">("Not sent");
+  const [isCollapsed, setIsCollapsed] = useState(false);
 
   useEffect(() => {
     let timer: NodeJS.Timeout;
@@ -276,14 +277,32 @@ export default function PhysicsInspector() {
   return (
     <AnimatePresence>
       {selectedEdge && details && (
-        <motion.div
-          key="road-details"
-          initial={{ opacity: 0, x: 20 }}
-          animate={{ opacity: 1, x: 0 }}
-          exit={{ opacity: 0, x: 20 }}
-          transition={{ type: "spring", stiffness: 300, damping: 25 }}
-          className="absolute top-24 right-4 w-[420px] z-30 flex flex-col rounded-xl glass-panel overflow-hidden border border-white/10 bg-[#0B0F1A]/95 shadow-2xl"
-        >
+        <>
+          {/* Toggle Button */}
+          <motion.button
+            key="inspector-toggle"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1, x: isCollapsed ? 0 : -436 }}
+            exit={{ opacity: 0 }}
+            transition={{ type: "spring", stiffness: 300, damping: 25 }}
+            onClick={() => setIsCollapsed(!isCollapsed)}
+            className="absolute top-[200px] right-0 z-20 h-16 w-6 bg-[#0B0F1A] border-y border-l border-white/10 rounded-l-lg flex items-center justify-center hover:bg-white/5 transition-colors cursor-pointer shadow-[rgba(0,0,0,0.8)_-10px_0_20px]"
+          >
+            {isCollapsed ? (
+              <ChevronLeft className="w-4 h-4 text-zinc-500" />
+            ) : (
+              <ChevronRight className="w-4 h-4 text-zinc-500" />
+            )}
+          </motion.button>
+
+          <motion.div
+            key="road-details"
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: isCollapsed ? 450 : 0 }}
+            exit={{ opacity: 0, x: 20 }}
+            transition={{ type: "spring", stiffness: 300, damping: 25 }}
+            className="absolute top-24 right-4 w-[420px] z-30 flex flex-col rounded-xl glass-panel overflow-hidden border border-white/10 bg-[#0B0F1A]/95 shadow-2xl"
+          >
           {/* Header */}
           <div className="flex items-start justify-between px-5 py-5 border-b border-white/5 bg-black/40">
             <div className="flex-1 min-w-0 pr-4">
@@ -471,6 +490,7 @@ export default function PhysicsInspector() {
             
           </div>
         </motion.div>
+        </>
       )}
     </AnimatePresence>
   );

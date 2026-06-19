@@ -32,7 +32,10 @@ import numpy as np
 import pandas as pd
 from shapely import wkt
 
-from .config import PEAK_HOURS, TARGET_COLUMNS, TARGET_TO_CLASS, VEHICLE_CLASS_WIDTH_M, VEHICLE_FOOTPRINT_WEIGHTS, ROAD_VULNERABILITY
+from .config import (
+    PEAK_HOURS, TARGET_COLUMNS, TARGET_TO_CLASS, VEHICLE_CLASS_WIDTH_M,
+    VEHICLE_FOOTPRINT_WEIGHTS, ROAD_VULNERABILITY,
+)
 
 # ── NEW: occupancy rate ──────────────────────────────────────────────────────
 # The model predicts *violations per hour* (an arrival rate).
@@ -45,6 +48,20 @@ OCCUPANCY_RATE: float = 0.25
 # Gridlock only when concurrent vehicles genuinely choke the road.
 # Old threshold was 3.0 m (too aggressive). New: 1.5 m leaves one lane.
 GRIDLOCK_CLEARANCE_THRESHOLD_M: float = 1.5
+
+# ── Time-of-day credibility dampener ────────────────────────────────────────
+# Training data has a known artifact: enforcement officers entered violations
+# in bulk during off-hours (0-5AM), causing the ML model to see artificially
+# high violation counts at late night. This multiplier corrects EPS at inference
+# time by damping night predictions to realistic levels without retraining.
+# At true peak hours (8-20) the multiplier is 1.0 (no change).
+# Source: hour distribution analysis shows 2AM has 3x records vs 6PM in training data.
+NIGHT_EPS_DAMPENER: dict[int, float] = {
+    0: 0.40, 1: 0.30, 2: 0.25, 3: 0.25, 4: 0.30, 5: 0.45,
+    6: 0.70, 7: 0.88,
+    # Hours 8-20: no dampening (multiplier=1.0, handled as default)
+    21: 0.80, 22: 0.55, 23: 0.45,
+}
 
 
 def peak_multiplier(hour: int, day_of_week: int) -> float:
@@ -138,6 +155,8 @@ def score_predictions(
         1.0 - np.exp(-frame["interruption_raw"] / interruption_scale)
     )
 
+    # ── Time-of-day dampener application ─────────────────────────────────────
+    dampener = frame["hour"].map(NIGHT_EPS_DAMPENER).fillna(1.0).astype(float)
 
     # ── Live congestion bonus ────────────────────────────────────────────────
     if isinstance(live_congestion_multiplier, pd.Series):
@@ -148,47 +167,40 @@ def score_predictions(
     live_bonus = np.clip((frame["live_congestion_multiplier"] - 1.0) * 25.0, 0, 15)
 
     # ── V3: Enterprise Congestion Impact Score (CIS) ─────────────────────────
-    # The new EPS formula is the Congestion Impact Score (CIS):
-    # CIS = 0.4 * calibrated_hotspot_probability + 0.3 * normalized_severity + 0.3 * road_vulnerability_score
-
     # 1. Hotspot Probability Score (0-100)
     hotspot_prob = frame.get("hotspot_probability", pd.Series(0.0, index=frame.index))
-    hotspot_score = hotspot_prob * 100.0
+    hotspot_score = hotspot_prob * 100.0 * dampener
 
     # 2. Normalized Severity Score (0-100)
-    # severity_weighted_count proxy at inference time = count * footprint * default_severity
-    # Default severity is 1.2.
     severity_sum = np.zeros(len(frame), dtype=float)
     for target_col in TARGET_COLUMNS:
         cls = TARGET_TO_CLASS[target_col]
         severity_sum += frame[target_col].to_numpy(dtype=float) * VEHICLE_FOOTPRINT_WEIGHTS.get(cls, 1.0) * 1.2
     
-    # Scale severity_sum by p95 count so it ranges roughly 0-100
     norm_severity = (severity_sum / count_scale) * 50.0 
-    severity_score = np.clip(norm_severity, 0, 100)
+    severity_score = np.clip(norm_severity * dampener, 0, 100)
 
     # 3. Road Vulnerability Score (0-100)
     road_vuln_mult = frame["road_class"].map(ROAD_VULNERABILITY).fillna(0.9)
-    # Narrow roads (width < 7m) get a +0.5 boost to vulnerability
     road_vuln_mult = np.where(road_width < 7.0, road_vuln_mult + 0.5, road_vuln_mult)
-    # Scale from 0.7-2.5 range to 0-100
-    vuln_score = np.clip((road_vuln_mult - 0.7) / 1.8 * 100.0, 0, 100)
+    vuln_score = np.clip((road_vuln_mult - 0.7) / 1.8 * 100.0 * dampener, 0, 100)
 
-    # Base CIS (0-100)
+    # Base CIS (0-100) — weights sum to 1.0
+    # hotspot_score: primary signal from the trained classifier (0.55)
+    # severity_score: how many/heavy violations predicted at this road (0.35)
+    # vuln_score: road type tiebreaker only — no longer a floor (0.10)
     frame["eps_raw"] = (
-        0.40 * hotspot_score +
-        0.30 * severity_score +
-        0.30 * vuln_score +
+        0.55 * hotspot_score +
+        0.35 * severity_score +
+        0.10 * vuln_score +
         live_bonus
     ).clip(0, 100)
 
     # ── FIX BUG-3: graduated gridlock penalty (not a hard jump to 90) ────────
-    # Segments near true gridlock (clearance < 0 m) get eps boosted to min 85.
-    # Segments with clearance between 0-1.5 m get a graduated boost.
     clearance = frame["clearance_after_predicted_load_m"]
     gridlock_boost = np.where(
         clearance < 0,
-        np.maximum(frame["eps_raw"], 85.0),            # true blockage → min 85
+        np.maximum(frame["eps_raw"], 85.0),
         np.where(
             frame["emergency_gridlock_flag"],
             frame["eps_raw"] + (1.5 - clearance.clip(upper=1.5)) * 10,  # 0-15 point boost
@@ -196,6 +208,18 @@ def score_predictions(
         ),
     )
     frame["eps"] = gridlock_boost.clip(0, 100)
+    # Round final EPS for clean display.
+    frame["eps"] = frame["eps"].clip(0, 100).round(2)
+
+    # ── Enterprise Dispatch Rule (Conformal Uncertainty) ─────────────────────
+    prob_lb = frame.get("hotspot_prob_lower_bound", pd.Series(0.0, index=frame.index))
+    
+    # Enforce conservative dispatch: If we are not at least 85% confident that the
+    # probability is >= 0.35, cap EPS at Orange Line boundary (79)
+    eps_vals = frame["eps"].values
+    prob_lb_vals = prob_lb.values
+    cap_mask = (prob_lb_vals < 0.35) & (eps_vals >= 80)
+    frame["eps"] = np.where(cap_mask, 79.0, eps_vals)
 
     # ── Priority bands ───────────────────────────────────────────────────────
     frame["priority_band"] = np.select(
@@ -209,8 +233,8 @@ def score_predictions(
     prob_fallback = np.maximum(prob, frame["parking_risk_0_100"] / 100.0)
 
     frame["confidence_band"] = np.select(
-        [prob_fallback > 0.7, prob_fallback >= 0.4],
-        ["High", "Medium"],
+        [prob_lb > 0.6, prob_lb >= 0.35, prob_fallback > 0.4],
+        ["High", "Medium", "Medium"],  # Use prob_lb for High and Medium
         default="Low",
     )
 
