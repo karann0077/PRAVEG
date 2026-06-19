@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 import TacticalMap from "@/components/TacticalMap";
 import DispatchQueue from "@/components/DispatchQueue";
 import PhysicsInspector from "@/components/PhysicsInspector";
@@ -70,8 +71,18 @@ function MapControls() {
 }
 
 export default function Home() {
+  const router = useRouter();
+  const [isAuth, setIsAuth] = useState(false);
   const { geoData } = useMapStore();
   const [time, setTime] = useState("");
+
+  useEffect(() => {
+    if (!sessionStorage.getItem("praveg_auth")) {
+      router.push("/login");
+    } else {
+      setIsAuth(true);
+    }
+  }, [router]);
 
   const stats = React.useMemo(() => {
     let hotspots = 0;
@@ -102,8 +113,12 @@ export default function Home() {
     return () => clearInterval(id);
   }, []);
 
+  if (!isAuth) {
+    return <div className="h-screen w-screen bg-[#060910]" />;
+  }
+
   return (
-    <main className="relative w-[100vw] h-[100vh] overflow-hidden bg-background font-sans select-none">
+    <main className="relative w-screen h-screen overflow-hidden bg-[#060910] font-sans selection:bg-[#3b82f6]/30">
       {/* z-0 Base Map, z-10 DeckGL */}
       <TacticalMap />
 
