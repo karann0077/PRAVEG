@@ -81,6 +81,7 @@ export default function PhysicsInspector() {
     patrolRouteGeometry, setPatrolRouteGeometry
   } = useMapStore();
   const [shapData, setShapData] = useState<any>(null);
+  const [impactData, setImpactData] = useState<any>(null);
   const [dispatchConfirm, setDispatchConfirm] = useState(false);
   const [loadingImpact, setLoadingImpact] = useState(false);
   const [actionState, setActionState] = useState<"Not sent" | "Team Sent" | "Cleared">("Not sent");
@@ -97,6 +98,7 @@ export default function PhysicsInspector() {
   useEffect(() => {
     if (selectedEdge) {
       setShapData(null);
+      setImpactData(null);
       setIsSimulationActive(false);
       setIsBuildingRoute(false);
       setResolutionImpact(null);
@@ -107,6 +109,11 @@ export default function PhysicsInspector() {
       fetch(`/api/explain?segment_id=${p.segment_id}`)
         .then(r => r.json())
         .then(d => { if (d.data) setShapData(d.data); })
+        .catch(console.error);
+        
+      fetch(`/api/resolve_impact?segment_id=${p.segment_id}`)
+        .then(r => r.json())
+        .then(setImpactData)
         .catch(console.error);
 
       fetch(`/api/nearest_station?segment_id=${p.segment_id}`)
@@ -351,18 +358,49 @@ export default function PhysicsInspector() {
                 <p className="text-[10px] text-zinc-500 uppercase tracking-widest mb-1">Economic Loss</p>
                 <p className="text-rose-400 font-bold text-lg">{details.economicLossInr}</p>
               </div>
-              <div className="bg-black/40 border border-white/5 rounded-lg p-3">
-                <p className="text-[10px] text-zinc-500 uppercase tracking-widest mb-1">Live Traffic</p>
-                <p className={`font-bold text-sm ${details.trafficStatus.includes('Heavy') ? 'text-rose-400' : details.trafficStatus.includes('Slow') ? 'text-orange-400' : 'text-emerald-400'}`}>
-                  {details.trafficStatus}
-                </p>
-              </div>
               <div className="bg-black/40 border border-white/5 rounded-lg p-3 col-span-2">
-                <p className="text-[10px] text-zinc-500 uppercase tracking-widest mb-1">Road Width</p>
-                <div className="flex justify-between items-center">
-                  <p className="text-zinc-200 font-bold text-sm">{details.roadWidthM}m total</p>
-                  <p className="text-emerald-400 font-medium text-xs mt-0.5">{details.clearWidthM.toFixed(1)}m passable</p>
-                </div>
+                <p className="text-[10px] text-zinc-500 uppercase tracking-widest mb-2 flex items-center justify-between">
+                  Traffic Flow Recovery
+                  {impactData?.impact?.improvement?.speed_recovery_pct > 0 && (
+                    <span className="text-emerald-400 font-bold bg-emerald-500/10 px-1.5 py-0.5 rounded">
+                      +{impactData.impact.improvement.speed_recovery_pct}% Speed
+                    </span>
+                  )}
+                </p>
+                {impactData ? (
+                  <div className="flex flex-col gap-2">
+                    <div className="flex items-center justify-between text-xs font-mono">
+                      <span className="text-rose-400">Congested: {impactData.impact.before.speed_kmh} km/h</span>
+                      <span className="text-zinc-500">→</span>
+                      <span className="text-emerald-400">Cleared: {impactData.impact.after.speed_kmh} km/h</span>
+                    </div>
+                    {/* Visual Progress Bar */}
+                    <div className="relative w-full h-1.5 bg-rose-500/20 rounded-full overflow-hidden">
+                      <div 
+                        className="absolute left-0 top-0 bottom-0 bg-emerald-500 rounded-full transition-all duration-1000 ease-out"
+                        style={{ width: `${Math.min(100, (impactData.impact.before.speed_kmh / impactData.impact.after.speed_kmh) * 100)}%` }}
+                      />
+                      {/* Ghost bar showing recovery potential */}
+                      <div 
+                        className="absolute top-0 bottom-0 bg-emerald-400/30 rounded-full transition-all duration-1000 ease-out border-r border-emerald-400 animate-pulse"
+                        style={{ 
+                          left: `${Math.min(100, (impactData.impact.before.speed_kmh / impactData.impact.after.speed_kmh) * 100)}%`,
+                          width: `${Math.min(100, ((impactData.impact.after.speed_kmh - impactData.impact.before.speed_kmh) / impactData.impact.after.speed_kmh) * 100)}%` 
+                        }}
+                      />
+                    </div>
+                    {impactData.impact.improvement.cascade_segments_helped > 0 && (
+                      <p className="text-[9px] text-zinc-400 mt-0.5 leading-tight">
+                        * Clearing this unblocks <span className="text-white font-bold">{impactData.impact.improvement.cascade_segments_helped}</span> downstream segments. <span className="text-emerald-400 font-bold">+{impactData.impact.improvement.speed_recovery_kmh} km/h</span> flow restored.
+                      </p>
+                    )}
+                  </div>
+                ) : (
+                  <div className="flex flex-col gap-2 animate-pulse">
+                    <div className="h-3 bg-zinc-800/50 rounded w-full" />
+                    <div className="h-1.5 bg-zinc-800/50 rounded-full w-full mt-1" />
+                  </div>
+                )}
               </div>
             </div>
 
