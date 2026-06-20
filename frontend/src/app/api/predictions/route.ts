@@ -39,7 +39,9 @@ export async function GET(request: Request) {
 
     // ── Load base predictions ─────────────────────────────────────────────
     try {
-      const fetchUrl = `${backendUrl}/artifacts/predictions/predictions_${hour}.geojson`;
+      const fetchUrl = hour === "live" 
+        ? `${backendUrl}/artifacts/live/predictions_live.geojson`
+        : `${backendUrl}/artifacts/predictions/predictions_${hour}.geojson`;
       const res = await fetch(fetchUrl, { cache: "no-store" });
       if (!res.ok) {
         throw new Error(`Failed to fetch ${fetchUrl}`);
@@ -58,7 +60,9 @@ export async function GET(request: Request) {
 
     // ── Load ripples ──────────────────────────────────────────────────────
     try {
-      const rippleFetchUrl = `${backendUrl}/artifacts/predictions/ripples_${hour}.geojson`;
+      const rippleFetchUrl = hour === "live"
+        ? `${backendUrl}/artifacts/live/ripples_live.geojson`
+        : `${backendUrl}/artifacts/predictions/ripples_${hour}.geojson`;
       const resRip = await fetch(rippleFetchUrl, { cache: "no-store" });
       if (resRip.ok) {
         const parsed = await resRip.json();

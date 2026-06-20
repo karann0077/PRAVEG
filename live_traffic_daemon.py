@@ -199,6 +199,38 @@ def run_live_daemon(bundle: dict = None) -> None:
 
     while True:
         try:
+            # ── 0. Process Locking (Render Safe) ──────────────────────────────
+            import sqlite3
+            import os
+            import time
+            pid = str(os.getpid())
+            lock_acquired = False
+            try:
+                conn = sqlite3.connect("artifacts/feedback.sqlite", timeout=5)
+                conn.execute("PRAGMA journal_mode=WAL")
+                conn.execute("""
+                    CREATE TABLE IF NOT EXISTS daemon_lock (
+                        id INTEGER PRIMARY KEY CHECK (id = 1),
+                        locked_by TEXT,
+                        locked_at DATETIME DEFAULT CURRENT_TIMESTAMP
+                    )
+                """)
+                with conn:
+                    row = conn.execute("SELECT locked_by, (julianday('now') - julianday(locked_at)) * 24 * 60 AS age_mins FROM daemon_lock WHERE id = 1").fetchone()
+                    if row is None or row[1] > 4.5:
+                        conn.execute("INSERT OR REPLACE INTO daemon_lock (id, locked_by, locked_at) VALUES (1, ?, datetime('now'))", (pid,))
+                        lock_acquired = True
+                    elif row[0] == pid:
+                        conn.execute("UPDATE daemon_lock SET locked_at = datetime('now') WHERE id = 1")
+                        lock_acquired = True
+                conn.close()
+            except Exception as sql_err:
+                log.error("Lock error: %s", sql_err)
+            
+            if not lock_acquired:
+                time.sleep(60)
+                continue
+            # ──────────────────────────────────────────────────────────────────
             import pytz
             tz = pytz.timezone("Asia/Kolkata")
             now = datetime.now(tz)
@@ -240,6 +272,25 @@ def run_live_daemon(bundle: dict = None) -> None:
                     len(delta["escalated"]),
                     len(delta["deescalated"]),
                 )
+            
+            # ── 6. Push state to SQLite for FastAPI to serve ─────────────────
+            try:
+                conn = sqlite3.connect("artifacts/feedback.sqlite", timeout=10)
+                conn.execute("PRAGMA journal_mode=WAL")
+                with conn:
+                    conn.execute("CREATE TABLE IF NOT EXISTS live_state (key TEXT PRIMARY KEY, payload TEXT, updated_at DATETIME DEFAULT CURRENT_TIMESTAMP)")
+                    conn.execute("INSERT OR REPLACE INTO live_state (key, payload, updated_at) VALUES (?, ?, datetime('now'))", 
+                                 ("predictions_live.geojson", LIVE_GEO.read_text()))
+                    if LIVE_RIPPLES.exists():
+                        conn.execute("INSERT OR REPLACE INTO live_state (key, payload, updated_at) VALUES (?, ?, datetime('now'))", 
+                                     ("ripples_live.geojson", LIVE_RIPPLES.read_text()))
+                    conn.execute("INSERT OR REPLACE INTO live_state (key, payload, updated_at) VALUES (?, ?, datetime('now'))", 
+                                 ("live_delta.json", LIVE_DELTA.read_text()))
+                conn.close()
+                log.info("Live state pushed to SQLite successfully.")
+            except Exception as sql_err:
+                log.error("Failed to push state to SQLite: %s", sql_err)
+
             prev_geo = new_geo
 
         except Exception as exc:

@@ -75,6 +75,20 @@ def _get_db() -> sqlite3.Connection:
                 timestamp DATETIME DEFAULT CURRENT_TIMESTAMP
             )
         """)
+        conn.execute("""
+            CREATE TABLE IF NOT EXISTS live_state (
+                key TEXT PRIMARY KEY,
+                payload TEXT,
+                updated_at DATETIME DEFAULT CURRENT_TIMESTAMP
+            )
+        """)
+        conn.execute("""
+            CREATE TABLE IF NOT EXISTS daemon_lock (
+                id INTEGER PRIMARY KEY CHECK (id = 1),
+                locked_by TEXT,
+                locked_at DATETIME DEFAULT CURRENT_TIMESTAMP
+            )
+        """)
         conn.commit()
         _db_local.conn = conn
     return _db_local.conn
@@ -125,6 +139,16 @@ app.add_middleware(
 
 app.mount("/artifacts", StaticFiles(directory="artifacts"), name="artifacts")
 
+from fastapi.responses import Response
+
+@app.get("/artifacts/live/{key}")
+def get_live_artifact(key: str):
+    """Serve dynamically generated JSON from SQLite instead of ephemeral disk."""
+    db = _get_db()
+    row = db.execute("SELECT payload FROM live_state WHERE key = ?", (key,)).fetchone()
+    if row and row["payload"]:
+        return Response(content=row["payload"], media_type="application/json")
+    raise HTTPException(status_code=404, detail=f"Artifact {key} not found")
 
 # ── /predict ─────────────────────────────────────────────────────────────────
 @app.get("/predict")
