@@ -59,16 +59,16 @@ function BottomPillToggles() {
 }
 
 function HeatmapWeightToggle() {
-  const { heatmapWeight, setHeatmapWeight, activeLayerMode } = useMapStore();
+  const { heatmapWeightMode, setHeatmapWeightMode, activeLayerMode } = useMapStore();
   
   if (activeLayerMode !== "traffic_blockage") return null;
 
   return (
     <div className="flex items-center gap-2 bg-[#0B0F1A]/80 backdrop-blur-xl border border-white/10 p-1.5 rounded-full shadow-2xl ml-4">
       <button
-        onClick={() => setHeatmapWeight("eps")}
+        onClick={() => setHeatmapWeightMode("congestion_impact")}
         className={`px-3 py-1.5 rounded-full text-xs font-bold tracking-widest uppercase transition-all duration-300 ${
-          heatmapWeight === "eps" 
+          heatmapWeightMode === "congestion_impact" 
             ? "bg-[#eab308] text-white" 
             : "text-zinc-400 hover:text-white hover:bg-white/5"
         }`}
@@ -76,9 +76,9 @@ function HeatmapWeightToggle() {
         By EPS
       </button>
       <button
-        onClick={() => setHeatmapWeight("volume")}
+        onClick={() => setHeatmapWeightMode("violation_density")}
         className={`px-3 py-1.5 rounded-full text-xs font-bold tracking-widest uppercase transition-all duration-300 ${
-          heatmapWeight === "volume" 
+          heatmapWeightMode === "violation_density" 
             ? "bg-[#3b82f6] text-white" 
             : "text-zinc-400 hover:text-white hover:bg-white/5"
         }`}
