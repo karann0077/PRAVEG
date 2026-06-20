@@ -207,11 +207,34 @@ export default function DispatchQueue() {
                             <span className="text-zinc-600">|</span>
                             <ConfidenceBadge band={confidence_band} />
                           </div>
-                          <div className="flex items-center gap-1.5 mt-0.5 bg-white/5 px-2 py-1 rounded-md border border-white/5 w-max">
-                            <Activity className={`w-3.5 h-3.5 ${isCritical ? 'text-rose-400' : 'text-cyan-400'}`} />
-                            <span className="text-[9px] text-zinc-400 font-mono tracking-widest uppercase">
-                              Est. Load: <span className={`font-bold text-xs ${isCritical ? 'text-rose-400 drop-shadow-[0_0_5px_rgba(244,63,94,0.5)]' : 'text-cyan-400 drop-shadow-[0_0_5px_rgba(34,211,238,0.5)]'}`}>{Math.round(p.predicted_total || 0)}</span> veh
-                            </span>
+                          <div className="flex items-center gap-1.5 mt-0.5">
+                            <div className="flex items-center gap-1.5 bg-white/5 px-2 py-1 rounded-md border border-white/5 w-max">
+                              <Activity className={`w-3.5 h-3.5 ${isCritical ? 'text-rose-400' : 'text-cyan-400'}`} />
+                              <span className="text-[9px] text-zinc-400 font-mono tracking-widest uppercase">
+                                Est. Load: <span className={`font-bold text-xs ${isCritical ? 'text-rose-400 drop-shadow-[0_0_5px_rgba(244,63,94,0.5)]' : 'text-cyan-400 drop-shadow-[0_0_5px_rgba(34,211,238,0.5)]'}`}>{Math.round(p.predicted_total || 0)}</span> veh
+                              </span>
+                            </div>
+                            
+                            {/* NEW: Road Blockage Pill */}
+                            <div className="flex items-center gap-1.5 bg-rose-500/10 px-2 py-1 rounded-md border border-rose-500/20 w-max">
+                              <AlertTriangle className="w-3.5 h-3.5 text-rose-400" />
+                              <span className="text-[9px] text-zinc-400 font-mono tracking-widest uppercase">
+                                Blockage: <span className="font-bold text-xs text-rose-400 drop-shadow-[0_0_5px_rgba(244,63,94,0.5)]">
+                                  {(() => {
+                                    const VEHICLE_WIDTHS: Record<string, number> = { two_wheeler: 0.8, auto: 1.4, car: 1.9, light_commercial: 2.2, heavy: 2.6 };
+                                    const roadWidthM = parseFloat(p.road_width_m || 6.0);
+                                    let maxCount = 0;
+                                    let dominantVehicle = "car";
+                                    for (const [vClass, width] of Object.entries(VEHICLE_WIDTHS)) {
+                                      const val = parseFloat(p[`count_${vClass}`] ?? 0);
+                                      if (val > maxCount) { maxCount = val; dominantVehicle = vClass; }
+                                    }
+                                    const vehicleWidth = VEHICLE_WIDTHS[dominantVehicle] ?? 1.9;
+                                    return Math.round(Math.min(100, (vehicleWidth / roadWidthM) * 100));
+                                  })()}%
+                                </span>
+                              </span>
+                            </div>
                           </div>
                         </div>
 
