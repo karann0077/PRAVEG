@@ -8,31 +8,7 @@ import PhysicsInspector from "@/components/PhysicsInspector";
 import TimeMachine from "@/components/TimeMachine";
 import ZoneCommander from "@/components/ZoneCommander";
 import { useMapStore } from "@/store/useMapStore";
-import { ShieldAlert, Layers, Map as MapIcon, RotateCcw, Activity, AlignLeft, Hexagon, ArrowUpRight, Box } from "lucide-react";
-
-function BottomPillToggles() {
-  const { activeLayerMode, setActiveLayerMode } = useMapStore();
-  
-  return (
-    <div className="flex items-center gap-2 bg-[#0B0F1A]/80 backdrop-blur-xl border border-white/10 p-1.5 rounded-full shadow-2xl">
-      <button
-        onClick={() => setActiveLayerMode("action_roads")}
-        className={`px-4 py-2 rounded-full text-xs font-bold tracking-widest uppercase transition-all duration-300 ${
-          activeLayerMode === "action_roads" 
-            ? "bg-[#3b82f6] text-white shadow-[0_0_15px_rgba(59,130,246,0.5)]" 
-            : "text-zinc-400 hover:text-white hover:bg-white/5"
-        }`}
-      >
-        <div className="flex items-center gap-2">
-          <AlignLeft className="w-3.5 h-3.5" />
-          Road Intelligence
-        </div>
-      </button>
-    </div>
-  );
-}
-
-
+import { Layers, Map as MapIcon, RotateCcw, Box, ShieldAlert, ArrowUpRight } from "lucide-react";
 
 function MapControls() {
   const { mapStyle, setMapStyle, viewState, setViewState } = useMapStore();
@@ -184,12 +160,9 @@ export default function Home() {
       <PhysicsInspector />
 
       {/* LAYER 3: BOTTOM CENTER COMPONENTS (z-40) */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-4 z-40 pointer-events-none">
+      <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex flex-col items-center gap-4 z-40 pointer-events-none">
         <div className="pointer-events-auto">
           <TimeMachine />
-        </div>
-        <div className="flex items-center justify-center">
-          <BottomPillToggles />
         </div>
       </div>
 
