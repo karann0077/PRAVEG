@@ -192,9 +192,12 @@ export default function TacticalMap() {
         stroked: true,
         filled: false,
         lineWidthUnits: "pixels",
+        lineWidthMinPixels: 5,  // V5 FIX: was 0/unset — guarantees glow is always visible
         getLineWidth: (d: any) => {
           const eps = d.properties?.eps ?? 0;
-          return 2 + (eps / 15) + 6; // Glow is wider
+          // V5 FIX: formula ensures even low-EPS (eps=5) gives 7px glow
+          // Old formula: 2 + (eps/15) + 6 gave ~8.3 for eps=5 but min was 1px
+          return Math.max(7, 8 + (eps / 12));
         },
         getLineColor: (d: any) => {
           const eps = d.properties?.eps ?? 0;
@@ -225,10 +228,12 @@ export default function TacticalMap() {
         stroked: true,
         filled: false,
         lineWidthUnits: "pixels",
-        lineWidthMinPixels: 1,
+        lineWidthMinPixels: 3,  // V5 FIX: was 1px — roads were sub-pixel dots at city zoom
         getLineWidth: (d: any) => {
           const eps = d.properties?.eps ?? 0;
-          return 2 + (eps / 15);
+          // V5 FIX: Minimum 3px core, scales up to ~10px for Red Line (eps>=75)
+          // Old formula: 2 + (eps/15) gave 2.3px for eps=5 (invisible)
+          return Math.max(3, 3 + (eps / 12));
         },
         getLineColor: (d: any) => {
           const eps = d.properties?.eps ?? 0;

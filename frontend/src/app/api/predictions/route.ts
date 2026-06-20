@@ -92,7 +92,9 @@ export async function GET(request: Request) {
       }
     }
 
-    const mapFeatures = (baseData.features || []).slice(0, 25);
+    // V5 FIX: Raised cap from 25 → 2500. Old cap caused 99% of road segments
+    // to be silently dropped, making the map show only ~25 tiny dots.
+    const mapFeatures = (baseData.features || []).slice(0, 2500);
     const queueFeatures = uniqueFeatures.slice(0, 15);
     const rippleFeatures = rippleData.features || [];
 
