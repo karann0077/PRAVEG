@@ -28,12 +28,65 @@ function BottomPillToggles() {
           Road Intelligence
         </div>
       </button>
+      <button
+        onClick={() => setActiveLayerMode("traffic_blockage")}
+        className={`px-4 py-2 rounded-full text-xs font-bold tracking-widest uppercase transition-all duration-300 ${
+          activeLayerMode === "traffic_blockage" 
+            ? "bg-[#eab308] text-white shadow-[0_0_15px_rgba(234,179,8,0.5)]" 
+            : "text-zinc-400 hover:text-white hover:bg-white/5"
+        }`}
+      >
+        <div className="flex items-center gap-2">
+          <Activity className="w-3.5 h-3.5" />
+          Heat Density
+        </div>
+      </button>
+      <button
+        onClick={() => setShowRipples(!showRipples)}
+        className={`px-4 py-2 rounded-full text-xs font-bold tracking-widest uppercase transition-all duration-300 ${
+          showRipples 
+            ? "bg-purple-500 text-white shadow-[0_0_15px_rgba(168,85,247,0.5)]" 
+            : "text-zinc-400 hover:text-white hover:bg-white/5"
+        }`}
+      >
+        <div className="flex items-center gap-2">
+          <Hexagon className="w-3.5 h-3.5" />
+          Ripple Effect
+        </div>
+      </button>
     </div>
   );
 }
 
 function HeatmapWeightToggle() {
-  return null;
+  const { heatmapWeight, setHeatmapWeight, activeLayerMode } = useMapStore();
+  
+  if (activeLayerMode !== "traffic_blockage") return null;
+
+  return (
+    <div className="flex items-center gap-2 bg-[#0B0F1A]/80 backdrop-blur-xl border border-white/10 p-1.5 rounded-full shadow-2xl ml-4">
+      <button
+        onClick={() => setHeatmapWeight("eps")}
+        className={`px-3 py-1.5 rounded-full text-xs font-bold tracking-widest uppercase transition-all duration-300 ${
+          heatmapWeight === "eps" 
+            ? "bg-[#eab308] text-white" 
+            : "text-zinc-400 hover:text-white hover:bg-white/5"
+        }`}
+      >
+        By EPS
+      </button>
+      <button
+        onClick={() => setHeatmapWeight("volume")}
+        className={`px-3 py-1.5 rounded-full text-xs font-bold tracking-widest uppercase transition-all duration-300 ${
+          heatmapWeight === "volume" 
+            ? "bg-[#3b82f6] text-white" 
+            : "text-zinc-400 hover:text-white hover:bg-white/5"
+        }`}
+      >
+        By Volume
+      </button>
+    </div>
+  );
 }
 
 function MapControls() {
@@ -190,11 +243,11 @@ export default function Home() {
         <div className="pointer-events-auto">
           <TimeMachine />
         </div>
-        <div className="pointer-events-auto">
+        <div className="pointer-events-auto flex items-center">
           <BottomPillToggles />
+          <HeatmapWeightToggle />
         </div>
       </div>
-      <HeatmapWeightToggle />
 
       {/* Map controls (z-20) */}
       <MapControls />

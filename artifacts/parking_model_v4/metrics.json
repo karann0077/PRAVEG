@@ -1,57 +1,57 @@
 {
-  "total_mae": 1.0796599112794332,
-  "total_rmse": 2.598967898504627,
-  "total_wape": 0.8976258987435394,
-  "hotspot_roc_auc": 0.7134213085263029,
-  "hotspot_average_precision": 0.1459127840955577,
-  "hotspot_logloss": 0.7980197949767933,
-  "hotspot_brier": 0.053835694042247036,
-  "top_1pct_violation_capture": 0.027257945306725796,
-  "top_5pct_violation_capture": 0.1408130081300813,
-  "top_10pct_violation_capture": 0.26249815225424983,
-  "precision_at_10": 0.13804347826086955,
-  "ndcg_at_10": 0.35683838296184683,
-  "false_dispatch_rate_at_10": 0.24384057971014497,
-  "precision_at_25": 0.10956521739130434,
-  "ndcg_at_25": 0.45493979348871666,
-  "false_dispatch_rate_at_25": 0.30855072463768113,
-  "precision_at_50": 0.0777536231884058,
-  "ndcg_at_50": 0.5491155835101147,
-  "false_dispatch_rate_at_50": 0.42318840579710143,
+  "total_mae": 1.0464067997168187,
+  "total_rmse": 2.519813625969669,
+  "total_wape": 0.8918333261730913,
+  "hotspot_roc_auc": 0.7103960491939805,
+  "hotspot_average_precision": 0.14183986066232532,
+  "hotspot_logloss": 0.7331317324321497,
+  "hotspot_brier": 0.04797064923133824,
+  "top_1pct_violation_capture": 0.035129100229581406,
+  "top_5pct_violation_capture": 0.1494795106456584,
+  "top_10pct_violation_capture": 0.2726043337421769,
+  "precision_at_10": 0.1349019607843137,
+  "ndcg_at_10": 0.37853500764045184,
+  "false_dispatch_rate_at_10": 0.21607843137254903,
+  "precision_at_25": 0.09898039215686276,
+  "ndcg_at_25": 0.47220195490740535,
+  "false_dispatch_rate_at_25": 0.28627450980392155,
+  "precision_at_50": 0.07098039215686275,
+  "ndcg_at_50": 0.5615874547000888,
+  "false_dispatch_rate_at_50": 0.40141176470588236,
   "by_target": {
     "count_two_wheeler": {
-      "mae": 0.5996243436352741,
-      "rmse": 1.9960723743230198,
-      "wape": 1.0423189387879328
+      "mae": 0.5871963459200966,
+      "rmse": 1.909548094985122,
+      "wape": 1.0391159053437782
     },
     "count_car": {
-      "mae": 0.41572829038102116,
-      "rmse": 1.0821791132425744,
-      "wape": 1.0431041204581617
+      "mae": 0.39866156645173756,
+      "rmse": 1.0968886099849335,
+      "wape": 1.0370251920562572
     },
     "count_auto": {
-      "mae": 0.1836918445262233,
-      "rmse": 0.7011435305224415,
-      "wape": 1.1009765668726454
+      "mae": 0.17804695447932592,
+      "rmse": 0.6488420813496946,
+      "wape": 1.089181143654567
     },
     "count_light_commercial": {
-      "mae": 0.061603617930887054,
-      "rmse": 0.252046539302166,
-      "wape": 1.4806982422670134
+      "mae": 0.05978643255247453,
+      "rmse": 0.2524555208776229,
+      "wape": 1.4715824906194912
     },
     "count_heavy": {
-      "mae": 0.030210992628360658,
-      "rmse": 0.17360799884070405,
-      "wape": 1.7198249690177296
+      "mae": 0.02772330567579726,
+      "rmse": 0.17580483189468757,
+      "wape": 1.6368226226886835
     },
     "count_other": {
-      "mae": 0.0035499403914406925,
-      "rmse": 0.05991569067900735,
-      "wape": 1.2027882372059657
+      "mae": 0.003252682539464194,
+      "rmse": 0.05600283986104336,
+      "wape": 1.1753026242597289
     }
   },
-  "train_rows": 168253,
-  "test_rows": 28122,
+  "train_rows": 161540,
+  "test_rows": 27100,
   "cutoff_hour": "2024-03-18 23:00:00",
   "feature_columns": [
     "segment_id",
@@ -125,6 +125,15 @@
     "dist_to_market_m",
     "dist_to_restaurant_m",
     "dist_to_worship_m",
+    "dist_to_office_m",
+    "dist_to_mall_m",
+    "dist_to_airport_m",
+    "dist_to_railway_station_m",
+    "dist_to_hotel_m",
+    "dist_to_nightlife_m",
+    "dist_to_park_m",
+    "dist_to_stadium_m",
+    "dist_to_university_m",
     "poi_count_200m",
     "poi_count_500m",
     "poi_gravity_score",

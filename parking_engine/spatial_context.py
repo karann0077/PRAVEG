@@ -50,6 +50,14 @@ SPATIAL_CONTEXT_COLUMNS = [
     "dist_to_restaurant_m",
     "dist_to_worship_m",
     "dist_to_office_m",
+    "dist_to_mall_m",
+    "dist_to_airport_m",
+    "dist_to_railway_station_m",
+    "dist_to_hotel_m",
+    "dist_to_nightlife_m",
+    "dist_to_park_m",
+    "dist_to_stadium_m",
+    "dist_to_university_m",
     "poi_count_200m",
     "poi_count_500m",
     "poi_gravity_score",
@@ -58,14 +66,22 @@ SPATIAL_CONTEXT_COLUMNS = [
 # V3: POI gravity weights - higher weight = more parking impact
 POI_GRAVITY_WEIGHTS = {
     "metro": 3.0,
+    "railway_station": 3.0,
+    "airport": 4.0,
     "commercial": 2.5,
+    "mall": 3.5,
     "market": 2.5,
     "school": 2.0,
+    "university": 2.5,
     "hospital": 2.0,
     "restaurant": 1.5,
     "bus_stop": 1.2,
     "worship": 1.5,
     "office": 2.5,
+    "hotel": 2.0,
+    "nightlife": 2.5,
+    "park": 1.5,
+    "stadium": 3.0,
 }
 
 
@@ -225,7 +241,8 @@ def build_spatial_context_features(
     result = segments[["segment_id"]].copy()
     poi_types = [
         "metro", "commercial", "bus_stop", "school", 
-        "hospital", "market", "restaurant", "worship", "office"
+        "hospital", "market", "restaurant", "worship", "office",
+        "mall", "airport", "railway_station", "hotel", "nightlife", "park", "stadium", "university"
     ]
     for ptype in poi_types:
         result[f"dist_to_{ptype}_m"] = nearest_poi_distances_m(
@@ -401,7 +418,8 @@ def normalize_poi_dataframe(pois: pd.DataFrame | Iterable[dict[str, Any]] | None
     
     valid_types = [
         "metro", "commercial", "bus_stop", "school", 
-        "hospital", "market", "restaurant", "worship", "office"
+        "hospital", "market", "restaurant", "worship", "office",
+        "mall", "airport", "railway_station", "hotel", "nightlife", "park", "stadium", "university"
     ]
     frame = frame.loc[frame["poi_type"].isin(valid_types)].copy()
     if frame.empty:
@@ -464,6 +482,24 @@ def _fetch_context_pois_with_overpass(
       node["office"]{selector};
       way["office"]{selector};
       relation["office"]{selector};
+      node["shop"="mall"]{selector};
+      way["shop"="mall"]{selector};
+      relation["shop"="mall"]{selector};
+      node["aeroway"="aerodrome"]{selector};
+      way["aeroway"="aerodrome"]{selector};
+      relation["aeroway"="aerodrome"]{selector};
+      node["tourism"="hotel"]{selector};
+      way["tourism"="hotel"]{selector};
+      relation["tourism"="hotel"]{selector};
+      node["amenity"~"^(nightclub|bar|pub)$"]{selector};
+      way["amenity"~"^(nightclub|bar|pub)$"]{selector};
+      relation["amenity"~"^(nightclub|bar|pub)$"]{selector};
+      node["leisure"="park"]{selector};
+      way["leisure"="park"]{selector};
+      relation["leisure"="park"]{selector};
+      node["leisure"="stadium"]{selector};
+      way["leisure"="stadium"]{selector};
+      relation["leisure"="stadium"]{selector};
     );
     out tags center;
     """
@@ -659,14 +695,30 @@ def _poi_row_from_geojson_feature(feature: dict[str, Any]) -> dict[str, Any] | N
 
 
 def _poi_type_from_osm_tags(tags: dict[str, Any]) -> str | None:
+    if str(tags.get("aeroway", "")).lower() == "aerodrome":
+        return "airport"
+    if str(tags.get("shop", "")).lower() == "mall":
+        return "mall"
+    if str(tags.get("tourism", "")).lower() == "hotel":
+        return "hotel"
+    if str(tags.get("leisure", "")).lower() == "park":
+        return "park"
+    if str(tags.get("leisure", "")).lower() == "stadium":
+        return "stadium"
     if str(tags.get("railway", "")).lower() == "station":
-        return "metro"
+        if str(tags.get("station", "")).lower() == "subway" or str(tags.get("subway", "")).lower() == "yes":
+            return "metro"
+        return "railway_station"
     if str(tags.get("landuse", "")).lower() in {"commercial", "retail"}:
         return "commercial"
     if str(tags.get("highway", "")).lower() == "bus_stop":
         return "bus_stop"
     amenity = str(tags.get("amenity", "")).lower()
-    if amenity in {"school", "college", "university"}:
+    if amenity in {"nightclub", "bar", "pub"}:
+        return "nightlife"
+    if amenity in {"university", "college"}:
+        return "university"
+    if amenity in {"school"}:
         return "school"
     if amenity in {"hospital", "clinic"}:
         return "hospital"
@@ -683,13 +735,29 @@ def _poi_type_from_osm_tags(tags: dict[str, Any]) -> str | None:
 
 def _normalize_poi_type(value: Any) -> str | None:
     text = str(value).strip().lower()
-    if text in {"metro", "station", "railway_station", "railway=station"}:
+    if text in {"airport", "aeroway=aerodrome"}:
+        return "airport"
+    if text in {"mall", "shop=mall"}:
+        return "mall"
+    if text in {"hotel", "tourism=hotel"}:
+        return "hotel"
+    if text in {"park", "leisure=park"}:
+        return "park"
+    if text in {"stadium", "leisure=stadium"}:
+        return "stadium"
+    if text in {"nightlife", "nightclub", "bar", "pub"}:
+        return "nightlife"
+    if text in {"university", "college"}:
+        return "university"
+    if text in {"railway_station", "station"}:
+        return "railway_station"
+    if text in {"metro", "subway"}:
         return "metro"
     if text in {"commercial", "retail", "landuse_commercial", "landuse_retail"}:
         return "commercial"
     if text in {"bus_stop", "highway_bus_stop"}:
         return "bus_stop"
-    if text in {"school", "college", "university"}:
+    if text in {"school"}:
         return "school"
     if text in {"hospital", "clinic"}:
         return "hospital"
