@@ -137,9 +137,8 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-app.mount("/artifacts", StaticFiles(directory="artifacts"), name="artifacts")
-
 from fastapi.responses import Response
+from fastapi import HTTPException
 
 @app.get("/artifacts/live/{key}")
 def get_live_artifact(key: str):
@@ -149,6 +148,8 @@ def get_live_artifact(key: str):
     if row and row["payload"]:
         return Response(content=row["payload"], media_type="application/json")
     raise HTTPException(status_code=404, detail=f"Artifact {key} not found")
+
+app.mount("/artifacts", StaticFiles(directory="artifacts"), name="artifacts")
 
 # ── /predict ─────────────────────────────────────────────────────────────────
 @app.get("/predict")
