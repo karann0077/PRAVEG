@@ -40,10 +40,11 @@ load_dotenv()
 
 from parking_engine.predict import run_prediction
 
+import sys
 logging.basicConfig(
     level=logging.INFO,
     format="%(asctime)s [DAEMON] %(message)s",
-    datefmt="%H:%M:%S",
+    handlers=[logging.StreamHandler(sys.stdout)]
 )
 log = logging.getLogger("live_daemon")
 
@@ -246,6 +247,7 @@ def run_live_daemon(bundle: dict = None) -> None:
             traceback.print_exc()
             log.error("Daemon loop error: %s", exc)
 
+        sys.stdout.flush()
         time.sleep(LOOP_INTERVAL_S)
 
 
