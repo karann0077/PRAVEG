@@ -53,7 +53,7 @@ def fetch_live_congestion(
 
 def enrich_with_live_traffic(
     predictions: pd.DataFrame,
-    max_queries: int = 15,
+    max_queries: int = 8,
 ) -> pd.Series:
     """Find top risk segments and fetch their live congestion multiplier."""
     
