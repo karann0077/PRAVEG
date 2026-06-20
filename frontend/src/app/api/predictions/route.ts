@@ -92,9 +92,17 @@ export async function GET(request: Request) {
       }
     }
 
-    // V5 FIX: Raised cap from 25 → 2500. Old cap caused 99% of road segments
-    // to be silently dropped, making the map show only ~25 tiny dots.
-    const mapFeatures = (baseData.features || []).slice(0, 2500);
+    // ── Smart map filter: EPS≥50 always shown, fill rest up to 40 max ───────
+    // Rule: Show all high-impact segments (EPS≥50) first so no danger is hidden.
+    // Then fill remaining slots (up to 40 total) with next highest EPS segments.
+    // This prevents flooding the map with low-risk green roads.
+    const MAP_MAX = 40;
+    const EPS_THRESHOLD = 50;
+    const allSorted = (baseData.features || []) as any[];
+    const highImpact = allSorted.filter((f: any) => parseFloat(f.properties?.eps || 0) >= EPS_THRESHOLD);
+    const remaining = allSorted.filter((f: any) => parseFloat(f.properties?.eps || 0) < EPS_THRESHOLD);
+    const slotsLeft = Math.max(0, MAP_MAX - highImpact.length);
+    const mapFeatures = [...highImpact, ...remaining.slice(0, slotsLeft)];
     const queueFeatures = uniqueFeatures.slice(0, 15);
     const rippleFeatures = rippleData.features || [];
 
