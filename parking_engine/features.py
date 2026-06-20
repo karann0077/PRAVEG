@@ -421,7 +421,7 @@ def sample_zero_rows(
     zeros["count_total"] = 0
     zeros["severity_weighted_count"] = 0.0
     zeros["is_hotspot"] = 0
-    zeros["sample_weight"] = 1.0  # Zero rows are highly confident negatives
+    zeros["sample_weight"] = 0.3  # V4: Down-weight synthetic negative rows
     return zeros
 
 
@@ -442,6 +442,14 @@ def make_training_frame(
     )
     frame = pd.concat([counts, zeros], ignore_index=True)
     frame = frame.drop_duplicates(["segment_id", "target_hour"], keep="first")
+    
+    # ── V4: Reweight rare classes ───────────────────────────────────────────
+    # Heavy and light commercial vehicles are rare but high-impact.
+    # Give them a multiplier to prevent the model from ignoring them.
+    rare_multiplier = 1.0 + (frame.get("count_heavy", 0) > 0).astype(float) * 2.0 + (frame.get("count_light_commercial", 0) > 0).astype(float) * 1.0
+    if "sample_weight" in frame.columns:
+        frame["sample_weight"] = frame["sample_weight"] * rare_multiplier
+    
     return frame.sort_values(["target_hour", "segment_id"]).reset_index(drop=True)
 
 

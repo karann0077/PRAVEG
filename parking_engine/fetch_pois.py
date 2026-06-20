@@ -11,6 +11,8 @@ def fetch_bengaluru_pois():
       node["amenity"="school"](area.searchArea);
       node["railway"="station"](area.searchArea);
       node["shop"="mall"](area.searchArea);
+      node["office"](area.searchArea);
+      node["amenity"="marketplace"](area.searchArea);
     );
     out center 1000;
     """
@@ -28,6 +30,8 @@ def fetch_bengaluru_pois():
         elif "school" in tags.get("amenity", ""): poi_type = "school"
         elif "station" in tags.get("railway", ""): poi_type = "metro"
         elif "mall" in tags.get("shop", ""): poi_type = "mall"
+        elif "office" in tags: poi_type = "office"
+        elif "marketplace" in tags.get("amenity", ""): poi_type = "market"
         
         name = tags.get("name", "Unknown POI")
         features.append({

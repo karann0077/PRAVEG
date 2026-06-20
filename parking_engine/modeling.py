@@ -106,12 +106,17 @@ def train_model(
 
     # ── 1. Train Regressor Chain (Model A) ──────────────────────────────────
     model_reg = make_model(n_estimators=n_estimators, random_state=random_state)
+    
+    # V4: Apply log1p transform to count targets for training
+    y_train_reg_log = np.log1p(y_train_reg)
+    
     if sample_weight is not None:
-        model_reg.fit(X_train, y_train_reg, sample_weight=sample_weight)
+        model_reg.fit(X_train, y_train_reg_log, sample_weight=sample_weight)
     else:
-        model_reg.fit(X_train, y_train_reg)
+        model_reg.fit(X_train, y_train_reg_log)
         
-    pred_reg = np.clip(model_reg.predict(X_test), 0.0, None)
+    # V4: Apply expm1 to predictions to revert to count space
+    pred_reg = np.clip(np.expm1(model_reg.predict(X_test)), 0.0, None)
 
     # ── 2. Train CatBoost Classifier (Model B) & Isotonic Calibration ───────
     # We split train into sub-train and calibration (last 14 days of train set)
@@ -301,7 +306,8 @@ def predict_feature_frame(
     
     out = feature_frame.copy()
     if model_reg is not None:
-        predictions = np.clip(model_reg.predict(X), 0.0, None)
+        # V4: Apply expm1 to predictions to revert to count space
+        predictions = np.clip(np.expm1(model_reg.predict(X)), 0.0, None)
         for idx, col in enumerate(TARGET_COLUMNS):
             out[col] = predictions[:, idx]
             

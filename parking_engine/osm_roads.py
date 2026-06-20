@@ -117,20 +117,53 @@ def match_events_to_osm_roads(events: pd.DataFrame, roads: pd.DataFrame) -> pd.D
 
     for lon, lat in zip(matched["longitude"], matched["latitude"], strict=False):
         point = Point(float(lon), float(lat))
-        nearest = tree.nearest(point)
-        if isinstance(nearest, numbers.Integral):
-            idx = nearest
-            geom = geometries[idx]
+        
+        # ── V3: Topology-aware snapping ──────────────────────────────────────────
+        # Query all roads within ~200m (0.002 degrees)
+        buffer_deg = 0.002
+        candidate_indices = tree.query(point.buffer(buffer_deg))
+        
+        if len(candidate_indices) == 0:
+            # Fallback to nearest if none within buffer
+            idx = tree.nearest(point)
+            if isinstance(idx, numbers.Integral):
+                idx = int(idx)
+            else:
+                idx = geometries.index(idx)
+            best_idx = idx
+            best_dist = float(point.distance(geometries[best_idx]))
         else:
-            geom = nearest
-            idx = geometries.index(nearest)
-        record = road_records[int(idx)]
+            best_score = float('inf')
+            best_idx = candidate_indices[0]
+            best_dist = float('inf')
+            
+            for idx in candidate_indices:
+                geom = geometries[idx]
+                record = road_records[idx]
+                dist = point.distance(geom)
+                
+                # Penalize snapping to major highways/trunks unless very close
+                # A 0.0005 deg penalty is roughly ~50 meters.
+                penalty = 0.0
+                hw = str(record.get("osm_highway", ""))
+                if hw in ["motorway", "motorway_link", "trunk", "trunk_link"]:
+                    penalty = 0.0005
+                elif hw in ["primary", "primary_link"]:
+                    penalty = 0.0002
+                
+                score = dist + penalty
+                if score < best_score:
+                    best_score = score
+                    best_idx = idx
+                    best_dist = float(dist)
+
+        record = road_records[best_idx]
         segment_ids.append(record["segment_id"])
         road_classes.append(record["road_class"])
         road_widths.append(float(record["road_width_m"]))
         road_names.append(str(record.get("road_name", "")))
         osm_highways.append(str(record.get("osm_highway", "")))
-        nearest_distances.append(float(point.distance(geom)))
+        nearest_distances.append(best_dist)
 
     matched["segment_id"] = segment_ids
     matched["road_class"] = road_classes

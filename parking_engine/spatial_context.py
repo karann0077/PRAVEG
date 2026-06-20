@@ -49,6 +49,7 @@ SPATIAL_CONTEXT_COLUMNS = [
     "dist_to_market_m",
     "dist_to_restaurant_m",
     "dist_to_worship_m",
+    "dist_to_office_m",
     "poi_count_200m",
     "poi_count_500m",
     "poi_gravity_score",
@@ -64,6 +65,7 @@ POI_GRAVITY_WEIGHTS = {
     "restaurant": 1.5,
     "bus_stop": 1.2,
     "worship": 1.5,
+    "office": 2.5,
 }
 
 
@@ -223,7 +225,7 @@ def build_spatial_context_features(
     result = segments[["segment_id"]].copy()
     poi_types = [
         "metro", "commercial", "bus_stop", "school", 
-        "hospital", "market", "restaurant", "worship"
+        "hospital", "market", "restaurant", "worship", "office"
     ]
     for ptype in poi_types:
         result[f"dist_to_{ptype}_m"] = nearest_poi_distances_m(
@@ -399,7 +401,7 @@ def normalize_poi_dataframe(pois: pd.DataFrame | Iterable[dict[str, Any]] | None
     
     valid_types = [
         "metro", "commercial", "bus_stop", "school", 
-        "hospital", "market", "restaurant", "worship"
+        "hospital", "market", "restaurant", "worship", "office"
     ]
     frame = frame.loc[frame["poi_type"].isin(valid_types)].copy()
     if frame.empty:
@@ -459,6 +461,9 @@ def _fetch_context_pois_with_overpass(
       way["amenity"~"^(marketplace|restaurant|cafe|fast_food|food_court)$"]{selector};
       node["amenity"="place_of_worship"]{selector};
       way["amenity"="place_of_worship"]{selector};
+      node["office"]{selector};
+      way["office"]{selector};
+      relation["office"]{selector};
     );
     out tags center;
     """
@@ -671,6 +676,8 @@ def _poi_type_from_osm_tags(tags: dict[str, Any]) -> str | None:
         return "market"
     if amenity == "place_of_worship":
         return "worship"
+    if "office" in tags:
+        return "office"
     return None
 
 
@@ -692,6 +699,8 @@ def _normalize_poi_type(value: Any) -> str | None:
         return "market"
     if text in {"worship", "place_of_worship"}:
         return "worship"
+    if text in {"office"}:
+        return "office"
     return None
 
 

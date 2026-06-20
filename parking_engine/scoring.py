@@ -37,13 +37,17 @@ from .config import (
     VEHICLE_FOOTPRINT_WEIGHTS, ROAD_VULNERABILITY,
 )
 
-# ── NEW: occupancy rate ──────────────────────────────────────────────────────
-# The model predicts *violations per hour* (an arrival rate).
-# On average ~25 % of those violations are simultaneously on-road at any
-# moment (assuming ~15-minute average dwell time: 15/60 = 0.25).
-# This converts the Poisson arrival rate to an *expected concurrent count*
-# before the physical road-width check.
-OCCUPANCY_RATE: float = 0.25
+# V4: Use vehicle-specific dwell rates to compute expected concurrent vehicles.
+# Heavy vehicles and light commercial stay longer (loading/unloading), 
+# while bikes have a shorter dwell time.
+OCCUPANCY_RATES: dict[str, float] = {
+    "two_wheeler": 0.15,
+    "car": 0.30,
+    "auto": 0.20,
+    "light_commercial": 0.40,
+    "heavy": 0.50,
+    "other": 0.25
+}
 
 # Gridlock only when concurrent vehicles genuinely choke the road.
 # Old threshold was 3.0 m (too aggressive). New: 1.5 m leaves one lane.
@@ -84,10 +88,11 @@ def calibrate_scoring(counts: pd.DataFrame, segment_metadata: pd.DataFrame) -> d
     concurrent_width = np.zeros(len(tmp), dtype=float)
     for target_col in TARGET_COLUMNS:
         cls = TARGET_TO_CLASS[target_col]
+        occ_rate = OCCUPANCY_RATES.get(cls, 0.25)
         concurrent_width += (
             tmp[target_col].to_numpy(dtype=float)
-            * VEHICLE_CLASS_WIDTH_M[cls]
-            * OCCUPANCY_RATE
+            * VEHICLE_CLASS_WIDTH_M.get(cls, 1.9)
+            * occ_rate
         )
     tmp["raw_interruption"] = (concurrent_width / tmp["road_width_m"].to_numpy(dtype=float)) ** 2
 
@@ -119,13 +124,18 @@ def score_predictions(
     frame["predicted_total"] = frame[TARGET_COLUMNS].sum(axis=1)
 
     # ── Physical width using CONCURRENT (occupancy-corrected) count ─────────
-    total_width_rate = np.zeros(len(frame), dtype=float)
+    expected_parked_width_m = np.zeros(len(frame), dtype=float)
     for target_col in TARGET_COLUMNS:
         cls = TARGET_TO_CLASS[target_col]
-        total_width_rate += frame[target_col].to_numpy(dtype=float) * VEHICLE_CLASS_WIDTH_M[cls]
+        occ_rate = OCCUPANCY_RATES.get(cls, 0.25)
+        expected_parked_width_m += (
+            frame[target_col].to_numpy(dtype=float)
+            * VEHICLE_CLASS_WIDTH_M.get(cls, 1.9)
+            * occ_rate
+        )
 
     # expected_parked_width_m = rate-adjusted concurrent occupancy
-    frame["expected_parked_width_m"] = total_width_rate * OCCUPANCY_RATE
+    frame["expected_parked_width_m"] = expected_parked_width_m
 
     frame["peak_multiplier"] = [
         peak_multiplier(int(hour), int(dow))
