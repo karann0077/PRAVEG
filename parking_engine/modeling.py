@@ -42,7 +42,7 @@ def make_model(
         colsample_bytree=0.85,
         reg_alpha=0.08,
         reg_lambda=0.5,
-        min_child_samples=40,
+        min_child_samples=20,   # V5: reduced from 40 → 20 to handle sparser segments
         min_split_gain=0.01,
         random_state=random_state,
         n_jobs=-1,
@@ -58,13 +58,20 @@ def make_catboost_classifier(
     learning_rate: float = 0.05,
     random_state: int = 42,
 ) -> CatBoostClassifier:
-    """V3: CatBoost binary classifier for hotspot probabilities."""
+    """V5: CatBoost binary classifier for hotspot probabilities.
+    
+    class_weights={0:1, 1:3} forces the model to penalize missing a real
+    hotspot 3x more than a false positive. This directly fixes the root cause
+    of Precision@10=13% (the model was predicting 'not hotspot' for everything
+    because the majority class was always safer to predict).
+    """
     return CatBoostClassifier(
         iterations=n_iterations,
         learning_rate=learning_rate,
         depth=6,
         eval_metric="AUC",
         loss_function="Logloss",
+        class_weights={0: 1, 1: 3},  # V5: hotspot cases weighted 3x to fix class imbalance
         random_seed=random_state,
         verbose=False,
         thread_count=-1,

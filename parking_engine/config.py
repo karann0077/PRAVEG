@@ -15,7 +15,8 @@ from pathlib import Path
 
 # ── Canonical Model Path ─────────────────────────────────────────────────────
 # Used uniformly by train.py, server.py, run_batch.py, and live_traffic_daemon.py
-MODEL_DIR = Path("artifacts/parking_model_v4")
+# V5: Updated from v4 after accuracy fixes (min_segment_events=3, class_weights, threshold=2.0)
+MODEL_DIR = Path("artifacts/parking_model_v5")
 
 TARGET_COLUMNS = [
     "count_two_wheeler",
@@ -183,8 +184,12 @@ BENGALURU_FESTIVALS: set[str] = {
     "2024-03-24", "2024-03-25",   # Holi
 }
 
-# ── V3: Micro-window definitions (hour ranges for Bengaluru activity) ──────
+# ── V5: Micro-window definitions (hour ranges for Bengaluru activity) ──────
 # These are area-dependent interaction features: school_pickup × school_density etc.
+# REMOVED late_night_enforcement (hours 0-3): those records were bulk-entered
+# by officers off-shift and get zero sample_weight in load_events(). Including
+# a feature that flags those exact hours would teach the model the artifact
+# pattern rather than reality.
 MICRO_WINDOWS: dict[str, dict] = {
     "school_dropoff": {"hours": {7, 8, 9}, "weekdays_only": True},
     "school_pickup":  {"hours": {14, 15, 16}, "weekdays_only": True},
@@ -193,13 +198,15 @@ MICRO_WINDOWS: dict[str, dict] = {
     "office_commute_pm": {"hours": {17, 18, 19}, "weekdays_only": True},
     "shopping_evening": {"hours": {17, 18, 19, 20}, "weekdays_only": False},
     "nightlife_peak": {"hours": {21, 22, 23, 0}, "weekdays_only": False},
-    "late_night_enforcement": {"hours": {0, 1, 2, 3}, "weekdays_only": False},
 }
 
-# ── V3: Hotspot binary threshold ───────────────────────────────────────────
-# A cell-hour is considered a "hotspot" if severity_weighted_count exceeds this.
-# Tuned to roughly the 80th percentile of non-zero observations.
-HOTSPOT_SEVERITY_THRESHOLD: float = 3.0
+# ── V5: Hotspot binary threshold ───────────────────────────────────────────
+# A cell-hour is a "hotspot" if count_total >= 2 (at least 2 vehicles blocked
+# the road simultaneously). This gives a ~49% positive rate on positive-only
+# rows which, combined with synthetic zero rows at 0.5× ratio, yields a
+# balanced ~33% overall positive rate — much better for CatBoost precision.
+# Previous threshold was 3.0 (30% positive rate → caused class imbalance).
+HOTSPOT_SEVERITY_THRESHOLD: float = 2.0
 
 FEATURE_COLUMNS = [
     # ── Identity / static ──

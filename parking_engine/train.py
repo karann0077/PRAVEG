@@ -51,9 +51,11 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--out", default=str(MODEL_DIR), help="Artifact directory.")
     parser.add_argument("--timezone", default="Asia/Kolkata", help="Local timezone for calendar features.")
     parser.add_argument("--grid-size-deg", type=float, default=0.001, help="Fallback grid size in degrees.")
-    parser.add_argument("--min-segment-events", type=int, default=20, help="Minimum events per segment.")
+    parser.add_argument("--min-segment-events", type=int, default=3,
+        help="Minimum events per segment. V5: lowered from 20→3 to cover 98.6%% of data across 4,723 streets.")
     parser.add_argument("--max-segments", type=int, default=None, help="Optional cap on active segments.")
-    parser.add_argument("--zero-multiplier", type=float, default=1.5, help="Zero rows per positive row.")
+    parser.add_argument("--zero-multiplier", type=float, default=0.5,
+        help="Zero rows per positive row. V5: reduced from 1.5→0.5 to limit synthetic noise.")
     parser.add_argument("--test-days", type=int, default=21, help="Trailing days for temporal test split.")
     parser.add_argument("--n-estimators", type=int, default=350, help="LightGBM trees per output.")
     parser.add_argument("--random-state", type=int, default=42)
