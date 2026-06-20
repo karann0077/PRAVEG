@@ -1,4 +1,245 @@
 {
   "type": "FeatureCollection",
-  "features": []
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "source_bottleneck": "osm_way_502069020",
+        "segment_id": "osm_way_166584405",
+        "eps_spillover": 48.95,
+        "eps": 48.95,
+        "is_ripple": true,
+        "distance_from_bottleneck_m": 111.4,
+        "decay_factor": 0.65,
+        "road_class": "residential",
+        "police_station": "Byatarayanapura"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            77.5443993,
+            12.9519064
+          ],
+          [
+            77.5443055,
+            12.9518433
+          ],
+          [
+            77.5442244,
+            12.951832
+          ],
+          [
+            77.544083,
+            12.9518772
+          ],
+          [
+            77.5440426,
+            12.9519277
+          ],
+          [
+            77.543944,
+            12.9520511
+          ],
+          [
+            77.5438258,
+            12.9521098
+          ],
+          [
+            77.5435478,
+            12.9521821
+          ],
+          [
+            77.5432697,
+            12.9523311
+          ],
+          [
+            77.5431307,
+            12.9524327
+          ],
+          [
+            77.5428758,
+            12.9527669
+          ],
+          [
+            77.5428503,
+            12.9528844
+          ],
+          [
+            77.5429615,
+            12.9534241
+          ],
+          [
+            77.5429592,
+            12.9535641
+          ],
+          [
+            77.5429189,
+            12.9536716
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "source_bottleneck": "osm_way_502069020",
+        "segment_id": "osm_way_1107679682",
+        "eps_spillover": 48.95,
+        "eps": 48.95,
+        "is_ripple": true,
+        "distance_from_bottleneck_m": 43.5,
+        "decay_factor": 0.65,
+        "road_class": "residential",
+        "police_station": "Byatarayanapura"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            77.5442023,
+            12.9529608
+          ],
+          [
+            77.5441058,
+            12.9530649
+          ],
+          [
+            77.5440463,
+            12.9531023
+          ],
+          [
+            77.5439249,
+            12.9531344
+          ],
+          [
+            77.5438037,
+            12.9531371
+          ],
+          [
+            77.5435837,
+            12.9530966
+          ],
+          [
+            77.5433581,
+            12.9530977
+          ],
+          [
+            77.5432473,
+            12.9531438
+          ],
+          [
+            77.5431794,
+            12.9532008
+          ],
+          [
+            77.5431069,
+            12.9534619
+          ],
+          [
+            77.5430487,
+            12.9537065
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "source_bottleneck": "osm_way_502069020",
+        "segment_id": "osm_way_502069019",
+        "eps_spillover": 48.95,
+        "eps": 48.95,
+        "is_ripple": true,
+        "distance_from_bottleneck_m": 52.5,
+        "decay_factor": 0.65,
+        "road_class": "residential",
+        "police_station": "Byatarayanapura"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            77.5440384,
+            12.9537224
+          ],
+          [
+            77.5435042,
+            12.9534422
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "source_bottleneck": "osm_way_502069020",
+        "segment_id": "osm_way_1316081558",
+        "eps_spillover": 48.95,
+        "eps": 48.95,
+        "is_ripple": true,
+        "distance_from_bottleneck_m": 102.3,
+        "decay_factor": 0.65,
+        "road_class": "residential",
+        "police_station": "Byatarayanapura"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            77.5426703,
+            12.9537233
+          ],
+          [
+            77.5426439,
+            12.9538347
+          ],
+          [
+            77.5426342,
+            12.9538756
+          ],
+          [
+            77.5425503,
+            12.9542297
+          ],
+          [
+            77.5424699,
+            12.9545693
+          ],
+          [
+            77.5424843,
+            12.9546033
+          ],
+          [
+            77.5425356,
+            12.9546234
+          ],
+          [
+            77.542587,
+            12.9546294
+          ],
+          [
+            77.5426219,
+            12.9546254
+          ],
+          [
+            77.5426486,
+            12.9545933
+          ],
+          [
+            77.542842,
+            12.9539262
+          ],
+          [
+            77.5428503,
+            12.9538976
+          ],
+          [
+            77.542881,
+            12.9537917
+          ]
+        ]
+      }
+    }
+  ]
 }
