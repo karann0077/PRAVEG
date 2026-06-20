@@ -495,12 +495,22 @@ def write_geojson(predictions: pd.DataFrame, path: str | Path, grid_size_deg: fl
                 geometry = None
 
         if geometry is None:
+            if str(row.get("map_matching_mode", "")) == "osm_overpass_nearest_road":
+                import logging
+                logging.getLogger("scoring").warning(f"Skipping geometry for {properties['segment_id']} - missing WKT")
+                continue
+            
             geometry = {
-                "type": "LineString",
-                "coordinates": [[lon - half, lat], [lon + half, lat]],
+                "type": "Point",
+                "coordinates": [lon, lat],
             }
 
-        features.append({"type": "Feature", "properties": properties, "geometry": geometry})
+        feature = {
+            "type": "Feature",
+            "properties": properties,
+            "geometry": geometry,
+        }
+        features.append(feature)
 
     payload = {"type": "FeatureCollection", "features": features}
     path = Path(path)

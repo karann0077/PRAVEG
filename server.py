@@ -291,13 +291,14 @@ def live_delta_endpoint():
     Frontend can use this to highlight newly escalated segments with a flash
     animation without re-rendering the entire map.
     """
-    delta_path = Path("artifacts/predictions/live_delta.json")
-    if not delta_path.exists():
-        return {"timestamp": None, "escalated": [], "deescalated": [], "total_changed": 0}
-    try:
-        return json.loads(delta_path.read_text())
-    except Exception as exc:
-        raise HTTPException(status_code=500, detail=str(exc))
+    db = _get_db()
+    row = db.execute("SELECT payload FROM live_state WHERE key = ?", ("live_delta.json",)).fetchone()
+    if row and row["payload"]:
+        try:
+            return json.loads(row["payload"])
+        except Exception as exc:
+            raise HTTPException(status_code=500, detail=str(exc))
+    return {"timestamp": None, "escalated": [], "deescalated": [], "total_changed": 0}
 
 
 # ── /health  (NEW) ────────────────────────────────────────────────────────────
@@ -343,11 +344,11 @@ def resolve_impact_endpoint(
     row_dict = segment_row.iloc[0].to_dict()
 
     # Try to load latest prediction data for this segment
-    predictions_dir = Path("artifacts/predictions")
-    live_path = predictions_dir / "predictions_live.geojson"
-    if live_path.exists():
+    db = _get_db()
+    row_live = db.execute("SELECT payload FROM live_state WHERE key = ?", ("predictions_live.geojson",)).fetchone()
+    if row_live and row_live["payload"]:
         try:
-            geo = json.loads(live_path.read_text())
+            geo = json.loads(row_live["payload"])
             for feat in geo.get("features", []):
                 if str(feat.get("properties", {}).get("segment_id", "")) == str(segment_id):
                     row_dict.update(feat["properties"])
