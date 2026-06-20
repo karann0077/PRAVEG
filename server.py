@@ -101,13 +101,9 @@ async def lifespan(app: FastAPI):
     daemon_thread = threading.Thread(target=run_live_daemon, args=(model_bundle,), daemon=True)
     daemon_thread.start()
 
-    print("Starting run_batch.py in background thread...")
-    def run_batch_bg():
-        try:
-            run_all_batches(bundle=model_bundle)
-        except Exception as e:
-            print("Error running batch predictions:", e)
-    threading.Thread(target=run_batch_bg, daemon=True).start()
+    # Removed run_batch_bg thread. The hourly future predictions are already 
+    # saved as artifacts and don't need to be regenerated on every server boot.
+    # This prevents the 10-minute CPU lockup that was starving the live daemon.
 
     yield
 
