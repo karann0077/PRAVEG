@@ -312,9 +312,22 @@ def compute_resolution_impact(row: dict) -> dict:
     parking is resolved, not just zeroed-out values.
     """
     road_width = float(row.get("road_width_m", 6.0))
-    parked_width = float(row.get("expected_parked_width_m", 0.0))
-    eps = float(row.get("eps", 0.0))
     road_class = str(row.get("road_class", "unknown")).lower()
+    eps = float(row.get("eps", 0.0))
+
+    # ── FIX: expected_parked_width_m is NOT exported to GeoJSON.
+    # Derive it from clearance_m (which IS in the GeoJSON):
+    #   clearance_m = road_width - parked_width  →  parked_width = road_width - clearance_m
+    parked_width = float(row.get("expected_parked_width_m", 0.0))
+    if parked_width == 0.0:
+        clearance_m = float(row.get("clearance_m", road_width))
+        parked_width = max(0.0, road_width - clearance_m)
+
+    # If both are missing, fall back to traffic_interruption_0_100 to estimate blockage
+    if parked_width == 0.0:
+        interruption_pct = float(row.get("traffic_interruption_0_100", 0.0))
+        parked_width = road_width * (interruption_pct / 100.0) * 0.5  # conservative estimate
+
     live_mult = float(row.get("live_congestion_multiplier", 1.0))
 
     # Before enforcement
@@ -332,6 +345,7 @@ def compute_resolution_impact(row: dict) -> dict:
     clearance_after = road_width
     lanes_after = max(1, int(road_width / 3.0))
     speed_after = base_speed_kmh  # free-flow speed restored
+
 
     # Traffic volume and economic impact
     traffic_vol = ROAD_CLASS_TRAFFIC_VOLUME.get(road_class, 500)
