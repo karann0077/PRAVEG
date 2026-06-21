@@ -37,25 +37,54 @@ export async function GET(request: Request) {
 
     const backendUrl = (process.env.BACKEND_URL || "http://localhost:8000").replace(/\/$/, "");
 
-    // ── Load base predictions ─────────────────────────────────────────────
-    try {
-      const fetchUrl = hour === "live" 
-        ? `${backendUrl}/artifacts/live/predictions_live.geojson`
-        : `${backendUrl}/artifacts/predictions/predictions_${hour}.geojson`;
-      const res = await fetch(fetchUrl, { cache: "no-store" });
-      if (!res.ok) {
-        throw new Error(`Failed to fetch ${fetchUrl}`);
-      }
-      baseData = await res.json();
-      lastModified = new Date();
-    } catch {
+    // ── FAST PATH: Serve current-hour batch instantly while live loads ────
+    // For live mode: read the batch file for this clock-hour from local disk
+    // (sub-100ms), so the UI is never empty. Then try the live endpoint with
+    // a 4-second timeout. If live succeeds, it upgrades the response; if not,
+    // the batch data is returned and marked is_cached=true.
+    let isLive = false;
+    if (hour === "live") {
+      const clockHour = new Date().getHours().toString().padStart(2, "0");
+      const batchPath = path.join(jsonDirectory, `predictions_${clockHour}.geojson`);
       try {
-        const fbUrl = `${backendUrl}/artifacts/predictions/predictions.geojson`;
-        const resFb = await fetch(fbUrl, { cache: "no-store" });
-        if (resFb.ok) {
-          baseData = await resFb.json();
+        const batchRaw = await fs.readFile(batchPath, "utf-8");
+        baseData = JSON.parse(batchRaw);
+        lastModified = new Date();
+      } catch { /* no batch file yet, stay with empty */ }
+
+      // Now race the live fetch against a 4-second timeout
+      try {
+        const controller = new AbortController();
+        const timer = setTimeout(() => controller.abort(), 4000);
+        const liveUrl = `${backendUrl}/artifacts/live/predictions_live.geojson`;
+        const res = await fetch(liveUrl, { cache: "no-store", signal: controller.signal });
+        clearTimeout(timer);
+        if (res.ok) {
+          const liveData = await res.json();
+          if (liveData?.features?.length > 0) {
+            baseData = liveData;
+            isLive = true;
+            lastModified = new Date();
+          }
         }
-      } catch {}
+      } catch { /* timeout or error – use batch data already loaded */ }
+    } else {
+      // Non-live hourly fetch: direct backend call (no timeout needed)
+      try {
+        const fetchUrl = `${backendUrl}/artifacts/predictions/predictions_${hour}.geojson`;
+        const res = await fetch(fetchUrl, { cache: "no-store" });
+        if (!res.ok) throw new Error(`Failed: ${fetchUrl}`);
+        baseData = await res.json();
+        lastModified = new Date();
+        isLive = true;
+      } catch {
+        // Fallback to local disk
+        try {
+          const raw = await fs.readFile(path.join(jsonDirectory, `predictions_${hour}.geojson`), "utf-8");
+          baseData = JSON.parse(raw);
+          lastModified = new Date();
+        } catch {}
+      }
     }
 
     // ── Load ripples ──────────────────────────────────────────────────────
@@ -116,6 +145,8 @@ export async function GET(request: Request) {
       // FIX-NEW: metadata for frontend change detection
       _meta: {
         hour,
+        is_live: isLive,
+        is_cached: !isLive,
         map_count: mapFeatures.length,
         queue_count: queueFeatures.length,
         ripple_count: rippleFeatures.length,

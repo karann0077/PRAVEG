@@ -63,6 +63,8 @@ export default function TacticalMap() {
   }, []);
 
   useEffect(() => {
+    // On first mount: immediately set loading=true but DON'T block the map.
+    // The API now serves batch data instantly, so we only show a slim syncing badge.
     setLoading(true);
     const hourParam = targetHour || "live";
 
@@ -192,27 +194,25 @@ export default function TacticalMap() {
         stroked: true,
         filled: false,
         lineWidthUnits: "pixels",
-        lineWidthMinPixels: 5,  // V5 FIX: was 0/unset — guarantees glow is always visible
+        lineWidthMinPixels: 3,  // slim outer glow
+        lineWidthMaxPixels: 10,
         getLineWidth: (d: any) => {
           const eps = d.properties?.eps ?? 0;
-          // V5 FIX: formula ensures even low-EPS (eps=5) gives 7px glow
-          // Old formula: 2 + (eps/15) + 6 gave ~8.3 for eps=5 but min was 1px
-          return Math.max(7, 8 + (eps / 12));
+          // Professional: thin glow 4-8px (was 7-20px)
+          return Math.max(4, 4.5 + (eps / 30));
         },
         getLineColor: (d: any) => {
           const eps = d.properties?.eps ?? 0;
-          
           if (selectedEdge) {
             if (selectedEdge.properties?.segment_id === d.properties.segment_id) {
-              return isSimulatingResolution ? [16, 185, 129, 100] : [34, 211, 238, 100];
+              return isSimulatingResolution ? [16, 185, 129, 80] : [34, 211, 238, 80];
             }
-            return [30, 30, 30, 0]; 
+            return [30, 30, 30, 0];
           }
-          
-          if (eps >= 75) return [225, 29, 72, 120]; // Deep Red
-          if (eps >= 50) return [249, 115, 22, 100]; // Orange
-          if (eps >= 25) return [234, 179, 8, 80]; // Yellow
-          return [34, 197, 94, 60]; // Green glow
+          if (eps >= 75) return [220, 38, 38, 80];   // Red glow — subtle
+          if (eps >= 50) return [234, 88, 12, 70];   // Orange glow
+          if (eps >= 25) return [202, 138, 4, 55];   // Yellow glow
+          return [22, 163, 74, 40];                  // Green glow — very subtle
         },
         lineCapRounded: true,
         lineJointRounded: true,
@@ -228,27 +228,25 @@ export default function TacticalMap() {
         stroked: true,
         filled: false,
         lineWidthUnits: "pixels",
-        lineWidthMinPixels: 3,  // V5 FIX: was 1px — roads were sub-pixel dots at city zoom
+        lineWidthMinPixels: 2,  // professional thin lines
+        lineWidthMaxPixels: 6,
         getLineWidth: (d: any) => {
           const eps = d.properties?.eps ?? 0;
-          // V5 FIX: Minimum 3px core, scales up to ~10px for Red Line (eps>=75)
-          // Old formula: 2 + (eps/15) gave 2.3px for eps=5 (invisible)
-          return Math.max(3, 3 + (eps / 12));
+          // Professional: 2-5px range (was 3-10px)
+          return Math.max(2, 2 + (eps / 30));
         },
         getLineColor: (d: any) => {
           const eps = d.properties?.eps ?? 0;
-
           if (selectedEdge) {
             if (selectedEdge.properties?.segment_id === d.properties.segment_id) {
               return isSimulatingResolution ? [16, 185, 129, 255] : [255, 255, 255, 255];
             }
-            return [100, 100, 100, 50];
+            return [80, 80, 80, 40];
           }
-          
-          if (eps >= 75) return [225, 29, 72, 255]; // Deep Red
-          if (eps >= 50) return [249, 115, 22, 255]; // Orange
-          if (eps >= 25) return [234, 179, 8, 255]; // Yellow
-          return [34, 197, 94, 255]; // Green
+          if (eps >= 75) return [239, 68, 68, 255];   // Crisp red
+          if (eps >= 50) return [249, 115, 22, 255];  // Orange
+          if (eps >= 25) return [234, 179, 8, 255];   // Yellow
+          return [34, 197, 94, 200];                  // Green — slightly transparent
         },
         lineCapRounded: true,
         lineJointRounded: true,
@@ -405,11 +403,13 @@ export default function TacticalMap() {
       </DeckGL>
 
       {loading && (
-        <div className="absolute inset-0 flex items-center justify-center bg-[#0B0F1A]/80 backdrop-blur-sm z-50">
-          <div className="flex flex-col items-center gap-4">
-            <div className="w-10 h-10 border-4 border-[#3b82f6] border-t-transparent rounded-full animate-spin" />
-            <span className="text-zinc-400 font-mono text-xs tracking-widest uppercase">
-              Loading Spatial Intelligence...
+        // FIX: Non-blocking syncing badge instead of full-screen blocker.
+        // Batch data is shown immediately, this just signals live sync status.
+        <div className="absolute top-4 left-1/2 -translate-x-1/2 z-50 pointer-events-none">
+          <div className="flex items-center gap-2 bg-[#0B0F1A]/90 backdrop-blur-xl border border-blue-500/30 px-4 py-2 rounded-full shadow-2xl">
+            <div className="w-2 h-2 rounded-full bg-blue-400 animate-pulse" />
+            <span className="text-blue-300 font-mono text-[10px] tracking-widest uppercase">
+              Syncing live feed...
             </span>
           </div>
         </div>
