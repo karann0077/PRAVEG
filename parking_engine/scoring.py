@@ -514,9 +514,15 @@ def write_geojson(predictions: pd.DataFrame, path: str | Path, grid_size_deg: fl
                 logging.getLogger("scoring").warning(f"Skipping geometry for {properties['segment_id']} - missing WKT")
                 continue
             
+            # Create a synthetic ~150-meter diagonal LineString so the UI renders
+            # beautiful roads instead of dots, completely avoiding heavy OSM RAM usage.
+            offset = 0.0007  # approx 75 meters in degrees
             geometry = {
-                "type": "Point",
-                "coordinates": [lon, lat],
+                "type": "LineString",
+                "coordinates": [
+                    [lon - offset, lat - offset],
+                    [lon + offset, lat + offset]
+                ],
             }
 
         feature = {
