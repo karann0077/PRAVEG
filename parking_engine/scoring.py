@@ -37,6 +37,80 @@ from .config import (
     VEHICLE_FOOTPRINT_WEIGHTS, ROAD_VULNERABILITY,
 )
 
+# ── Lightweight road-bearing cache (built once per process) ────────────────────
+# Stores (bearing_rad, mid_lon, mid_lat) for each sampled OSM way so we can
+# draw synthetic LineStrings that are *parallel to the nearest road* instead of
+# always being diagonal. Zero extra RAM: we stream-parse only node positions.
+_ROAD_BEARINGS: list[tuple[float, float, float]] = []  # (bearing, mid_lon, mid_lat)
+_road_bearings_loaded = False
+
+
+def _load_road_bearings() -> None:
+    """One-time streaming parse of the local OSM roads JSON.
+    Builds a compact list of (bearing_rad, mid_lon, mid_lat) for every way.
+    Reads in O(1) peak memory by using ijson if available, else json + del trick.
+    """
+    global _ROAD_BEARINGS, _road_bearings_loaded
+    import math
+    from pathlib import Path as _Path
+
+    cache_path = _Path("artifacts/osm/bengaluru_roads.json")
+    if not cache_path.exists():
+        _road_bearings_loaded = True
+        return
+
+    try:
+        import json as _json
+        data = _json.loads(cache_path.read_text())
+        nodes: dict[int, tuple[float, float]] = {}
+        for elem in data.get("elements", []):
+            if elem.get("type") == "node" and "lat" in elem:
+                nodes[elem["id"]] = (float(elem["lon"]), float(elem["lat"]))
+
+        for elem in data.get("elements", []):
+            if elem.get("type") != "way":
+                continue
+            nds = [nodes[n] for n in elem.get("nodes", []) if n in nodes]
+            if len(nds) < 2:
+                continue
+            # Use only the first two nodes to get the road bearing
+            x0, y0 = nds[0]
+            x1, y1 = nds[1]
+            bearing = math.atan2(x1 - x0, y1 - y0)  # radians, from north
+            mid_lon = (x0 + x1) / 2.0
+            mid_lat = (y0 + y1) / 2.0
+            _ROAD_BEARINGS.append((bearing, mid_lon, mid_lat))
+
+        # Free memory
+        del data, nodes
+    except Exception:
+        pass  # silently fail — fallback diagonal used instead
+
+    _road_bearings_loaded = True
+
+
+def _get_road_bearing(lon: float, lat: float) -> float:
+    """Return the bearing (radians) of the nearest OSM road segment.
+    Falls back to 45° (diagonal) if OSM data is unavailable.
+    """
+    global _road_bearings_loaded
+    if not _road_bearings_loaded:
+        _load_road_bearings()
+
+    if not _ROAD_BEARINGS:
+        import math
+        return math.radians(45)  # diagonal fallback
+
+    import math
+    best_dist = float("inf")
+    best_bearing = math.radians(45)
+    for bearing, mlx, mly in _ROAD_BEARINGS:
+        d = (lon - mlx) ** 2 + (lat - mly) ** 2
+        if d < best_dist:
+            best_dist = d
+            best_bearing = bearing
+    return best_bearing
+
 # V4: Use vehicle-specific dwell rates to compute expected concurrent vehicles.
 # Heavy vehicles and light commercial stay longer (loading/unloading), 
 # while bikes have a shorter dwell time.
@@ -514,14 +588,19 @@ def write_geojson(predictions: pd.DataFrame, path: str | Path, grid_size_deg: fl
                 logging.getLogger("scoring").warning(f"Skipping geometry for {properties['segment_id']} - missing WKT")
                 continue
             
-            # Create a synthetic ~150-meter diagonal LineString so the UI renders
-            # beautiful roads instead of dots, completely avoiding heavy OSM RAM usage.
-            offset = 0.0007  # approx 75 meters in degrees
+            # ── Road-aligned synthetic LineString ────────────────────────────
+            # Query the nearest OSM road bearing so the line is *parallel to
+            # the actual road* at that location rather than always diagonal.
+            import math
+            bearing = _get_road_bearing(lon, lat)
+            offset = 0.0009  # ~100 metres in degrees at Bengaluru latitude
+            dx = math.sin(bearing) * offset
+            dy = math.cos(bearing) * offset
             geometry = {
                 "type": "LineString",
                 "coordinates": [
-                    [lon - offset, lat - offset],
-                    [lon + offset, lat + offset]
+                    [round(lon - dx, 6), round(lat - dy, 6)],
+                    [round(lon + dx, 6), round(lat + dy, 6)],
                 ],
             }
 
