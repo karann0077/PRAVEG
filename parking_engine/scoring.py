@@ -72,9 +72,9 @@ def _load_road_bearings() -> None:
     _road_bearings_loaded = True
 
 
-def _get_road_bearing(lon: float, lat: float) -> float:
-    """Return the bearing (radians) of the nearest OSM road segment.
-    Falls back to 45° (diagonal) if OSM data is unavailable.
+def _get_road_bearing(lon: float, lat: float) -> tuple[float, float, float]:
+    """Return the (bearing_radians, mid_lon, mid_lat) of the nearest OSM road segment.
+    Falls back to 45° (diagonal) and the original coordinates if OSM data is unavailable.
     """
     global _road_bearings_loaded
     if not _road_bearings_loaded:
@@ -82,17 +82,20 @@ def _get_road_bearing(lon: float, lat: float) -> float:
 
     if not _ROAD_BEARINGS:
         import math
-        return math.radians(45)  # diagonal fallback
+        return math.radians(45), lon, lat  # fallback
 
     import math
     best_dist = float("inf")
     best_bearing = math.radians(45)
+    best_lon, best_lat = lon, lat
     for bearing, mlx, mly in _ROAD_BEARINGS:
         d = (lon - mlx) ** 2 + (lat - mly) ** 2
         if d < best_dist:
             best_dist = d
             best_bearing = bearing
-    return best_bearing
+            best_lon = mlx
+            best_lat = mly
+    return best_bearing, best_lon, best_lat
 
 # V4: Use vehicle-specific dwell rates to compute expected concurrent vehicles.
 # Heavy vehicles and light commercial stay longer (loading/unloading), 
@@ -572,18 +575,18 @@ def write_geojson(predictions: pd.DataFrame, path: str | Path, grid_size_deg: fl
                 continue
             
             # ── Road-aligned synthetic LineString ────────────────────────────
-            # Query the nearest OSM road bearing so the line is *parallel to
-            # the actual road* at that location rather than always diagonal.
+            # Query the nearest OSM road bearing and exact center coordinate so
+            # the line physically snaps onto the road instead of floating on the grid.
             import math
-            bearing = _get_road_bearing(lon, lat)
+            bearing, snap_lon, snap_lat = _get_road_bearing(lon, lat)
             offset = 0.0009  # ~100 metres in degrees at Bengaluru latitude
             dx = math.sin(bearing) * offset
             dy = math.cos(bearing) * offset
             geometry = {
                 "type": "LineString",
                 "coordinates": [
-                    [round(lon - dx, 6), round(lat - dy, 6)],
-                    [round(lon + dx, 6), round(lat + dy, 6)],
+                    [round(snap_lon - dx, 6), round(snap_lat - dy, 6)],
+                    [round(snap_lon + dx, 6), round(snap_lat + dy, 6)],
                 ],
             }
 
