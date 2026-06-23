@@ -486,6 +486,7 @@ def write_geojson(predictions: pd.DataFrame, path: str | Path, grid_size_deg: fl
         lon = float(row.get("lon_center", row.get("lon_mean", 0.0)))
         lat = float(row.get("lat_center", row.get("lat_mean", 0.0)))
         geometry_wkt_val = str(row.get("geometry_wkt", "") or "")
+        tomtom_geom_str = str(row.get("tomtom_geometry", "") or "")
 
         properties = {
             "segment_id": str(row["segment_id"]),
@@ -522,7 +523,20 @@ def write_geojson(predictions: pd.DataFrame, path: str | Path, grid_size_deg: fl
 
         # ── Resolve geometry ─────────────────────────────────────────────────
         geometry = None
-        if geometry_wkt_val:
+        
+        if tomtom_geom_str and tomtom_geom_str != "nan":
+            try:
+                import json
+                coords = json.loads(tomtom_geom_str)
+                if coords:
+                    geometry = {
+                        "type": "LineString",
+                        "coordinates": coords,
+                    }
+            except Exception:
+                pass
+
+        if geometry is None and geometry_wkt_val and geometry_wkt_val != "nan":
             try:
                 shapely_geom = wkt.loads(geometry_wkt_val)
                 if shapely_geom.geom_type == "LineString":

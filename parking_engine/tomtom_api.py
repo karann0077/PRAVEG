@@ -16,14 +16,16 @@ def fetch_live_congestion(
     lat: float,
     lon: float,
     api_key: str,
-) -> float:
-    """Query TomTom Traffic Flow API for real-time congestion."""
+) -> tuple[float, list[list[float]]]:
+    """Query TomTom Traffic Flow API for real-time congestion and road geometry."""
     
     # TomTom takes point=lat,lon
     point = f"{lat},{lon}"
     
     url = f"https://api.tomtom.com/traffic/services/4/flowSegmentData/absolute/10/json?point={point}&key={api_key}"
     
+    multiplier = 1.0
+    geometry = []
     try:
         resp = requests.get(url, timeout=5)
         resp.raise_for_status()
@@ -31,29 +33,33 @@ def fetch_live_congestion(
         
         flow_data = data.get("flowSegmentData", {})
         
+        coords = flow_data.get("coordinates", {}).get("coordinate", [])
+        if coords:
+            geometry = [[c["longitude"], c["latitude"]] for c in coords]
+            
         # Prefer travel time ratio if available
         curr_time = flow_data.get("currentTravelTime", 0)
         free_time = flow_data.get("freeFlowTravelTime", 0)
         
         if curr_time > 0 and free_time > 0:
-            return float(curr_time / free_time)
+            multiplier = float(curr_time / free_time)
+        else:
+            # Fallback to speed ratio
+            curr_speed = flow_data.get("currentSpeed", 0)
+            free_speed = flow_data.get("freeFlowSpeed", 0)
             
-        # Fallback to speed ratio
-        curr_speed = flow_data.get("currentSpeed", 0)
-        free_speed = flow_data.get("freeFlowSpeed", 0)
-        
-        if curr_speed > 0 and free_speed > 0:
-            return float(free_speed / curr_speed)
-            
+            if curr_speed > 0 and free_speed > 0:
+                multiplier = float(free_speed / curr_speed)
+                
     except Exception as e:
         logger.warning(f"Failed to fetch live traffic for {lat},{lon}: {e}")
         
-    return 1.0
+    return multiplier, geometry
 
 
 def enrich_with_live_traffic(
     predictions: pd.DataFrame,
-    max_queries: int = 8,
+    max_queries: int = 15,
 ) -> pd.Series:
     """Find top risk segments and fetch their live congestion multiplier."""
     
@@ -64,6 +70,8 @@ def enrich_with_live_traffic(
     api_key = random.choice(keys) if keys else ""
 
     multipliers = pd.Series(1.0, index=predictions.index, dtype=float)
+    if "tomtom_geometry" not in predictions.columns:
+        predictions["tomtom_geometry"] = None
 
     if not api_key:
         logger.warning("No TomTom API key available. Bypassing live traffic queries to save time.")
@@ -82,7 +90,11 @@ def enrich_with_live_traffic(
             lon = float(row.get("lon_center", 77.5946))
             lat = float(row.get("lat_center", 12.9716))
             
-            multiplier = fetch_live_congestion(lat, lon, api_key)
+            multiplier, geometry = fetch_live_congestion(lat, lon, api_key)
             multipliers.loc[idx] = multiplier
+            
+            import json
+            if geometry:
+                predictions.at[idx, "tomtom_geometry"] = json.dumps(geometry)
 
     return multipliers
