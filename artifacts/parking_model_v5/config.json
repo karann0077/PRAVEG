@@ -1,12 +1,13 @@
 {
   "feature_columns": [
-    "segment_id",
+    "model_segment_id",
     "police_station",
     "junction_bucket",
     "road_class",
     "lat_center",
     "lon_center",
     "road_width_m",
+    "is_bulk_artifact_segment",
     "hour",
     "day_of_week",
     "month",
@@ -100,26 +101,26 @@
     "count_other"
   ],
   "categorical_columns": [
-    "segment_id",
+    "model_segment_id",
     "police_station",
     "junction_bucket",
     "road_class",
     "hour_bucket"
   ],
   "calibration": {
-    "count_p95": 1.6005414944962462,
-    "interruption_p95": 0.5
+    "count_p95": 8.0,
+    "interruption_p95": 0.08122499999999999
   },
   "training_summary": {
     "data_path": "dataset/jan to may police violation_anonymized791b166.csv",
     "raw_event_rows_after_filter": 248371,
-    "active_segments": 6421,
-    "positive_segment_hours": 96722,
-    "training_frame_rows": 145083,
+    "active_segments": 4723,
+    "positive_segment_hours": 92363,
+    "training_frame_rows": 138544,
     "start_hour": "2023-11-10 00:00:00",
     "end_hour": "2024-04-08 23:00:00",
     "cutoff_hour": "2024-03-18 23:00:00",
     "grid_size_deg": 0.001,
-    "map_matching_mode": "osm_overpass_nearest_road"
+    "map_matching_mode": "grid_fallback"
   }
 }

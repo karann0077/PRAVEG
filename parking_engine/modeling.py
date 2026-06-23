@@ -152,18 +152,116 @@ def train_model(
     
     model_rank.fit(train_pool)
 
-    # Conformal logic is removed since this is a ranker, not a probability.
-    # We will use a global sigmoid calibration for UI backwards compatibility.
-    conformal_margin = 0.0
+    # ── True Out-of-Fold Platt Scaling (fixes in-sample calibration leakage) ─
+    # PROBLEM: Fitting LogisticRegression on scores from a ranker that was already
+    # trained on those same examples is in-sample calibration — the LR is fitting
+    # to memorized scores, not genuine probability estimates. This causes the
+    # calibrated probabilities to be overconfident and poorly generalised.
+    #
+    # FIX: Two-phase approach:
+    #   Phase 1 — train a "calibration ranker" on [all train EXCEPT last 14 days],
+    #              get its predictions on the held-out 14 days (true OOF scores).
+    #   Phase 2 — fit LogisticRegression on those clean OOF (segment, label) pairs.
+    #   Final    — retrain the production ranker on ALL train data (more data = better
+    #              ranking). Use the OOF-fitted calibrator with this final ranker.
+    #
+    # Why this works: the calibration ranker and the production ranker share the same
+    # feature space and similar score distributions, so the LR mapping learned from
+    # OOF scores transfers reliably to the production ranker's outputs.
 
-    # Predict and evaluate on test set
+    from sklearn.linear_model import LogisticRegression
+
+    conformal_margin = 0.0
+    calib_cutoff = cutoff_hour - pd.Timedelta(days=14)
+
+    # ── Phase 1: True OOF calibration ───────────────────────────────────────
+    train_proper_mask = train_mask & (features["target_hour"] < calib_cutoff)
+    calib_mask = train_mask & (features["target_hour"] >= calib_cutoff)
+
+    # Fallback: if either window is empty (tiny dataset), skip OOF and use full set
+    use_oof = (train_proper_mask.sum() > 0) and (calib_mask.sum() > 0)
+
+    calibrator = LogisticRegression(random_state=random_state)
+
+    if use_oof:
+        print(f"  OOF Platt calibration: training calibration ranker on "
+              f"{train_proper_mask.sum()} rows, calibrating on "
+              f"{calib_mask.sum()} held-out rows...")
+
+        # Build calibration ranker training pool (train_proper_mask only)
+        ft_proper = features.loc[train_proper_mask].copy()
+        ft_proper = ft_proper.sort_values(by="target_hour").reset_index(drop=True)
+        X_proper_cb = ft_proper[FEATURE_COLUMNS].copy()
+        for col in CATEGORICAL_COLUMNS:
+            if hasattr(X_proper_cb[col], "cat"):
+                X_proper_cb[col] = X_proper_cb[col].cat.codes.astype(int)
+            else:
+                X_proper_cb[col] = X_proper_cb[col].astype(int)
+
+        y_proper_rank = pd.cut(
+            ft_proper["severity_weighted_count"],
+            bins=[-np.inf, 2.0, 10.0, 30.0, np.inf],
+            labels=[0, 1, 2, 3]
+        ).astype(float).fillna(0).to_numpy()
+
+        group_id_proper = ft_proper["target_hour"].astype("category").cat.codes.astype(int).to_numpy()
+
+        calib_ranker = make_catboost_ranker(n_iterations=n_estimators, random_state=random_state)
+        calib_pool = Pool(
+            data=X_proper_cb,
+            label=y_proper_rank,
+            group_id=group_id_proper,
+            cat_features=cat_features_idx
+        )
+        calib_ranker.fit(calib_pool)
+
+        # Get OOF scores on the held-out 14 days — zero leakage
+        X_calib_oof = features.loc[calib_mask, FEATURE_COLUMNS].copy()
+        for col in CATEGORICAL_COLUMNS:
+            if hasattr(X_calib_oof[col], "cat"):
+                X_calib_oof[col] = X_calib_oof[col].cat.codes.astype(int)
+            else:
+                X_calib_oof[col] = X_calib_oof[col].astype(int)
+
+        y_calib_clf = features.loc[calib_mask, "is_hotspot"].astype(int).to_numpy()
+        calib_scores_oof = calib_ranker.predict(X_calib_oof).reshape(-1, 1)
+
+        if len(np.unique(y_calib_clf)) > 1:
+            calibrator.fit(calib_scores_oof, y_calib_clf)
+            print(f"  OOF Platt calibrator fitted: coef={calibrator.coef_[0][0]:.4f}, "
+                  f"intercept={calibrator.intercept_[0]:.4f}")
+        else:
+            # Safety: calibration window is all-positive or all-negative
+            print("  WARNING: calibration window has only one class — using identity sigmoid fallback")
+            calibrator.classes_ = np.array([0, 1])
+            calibrator.coef_ = np.array([[1.0]])
+            calibrator.intercept_ = np.array([0.0])
+    else:
+        # Fallback for tiny datasets: keep in-sample (better than crashing)
+        print("  WARNING: insufficient data for OOF calibration — falling back to in-sample Platt scaling")
+        ft_all = features.loc[train_mask].copy()
+        X_calib_fb = ft_all[FEATURE_COLUMNS].copy()
+        for col in CATEGORICAL_COLUMNS:
+            if hasattr(X_calib_fb[col], "cat"):
+                X_calib_fb[col] = X_calib_fb[col].cat.codes.astype(int)
+            else:
+                X_calib_fb[col] = X_calib_fb[col].astype(int)
+        y_calib_clf = ft_all["is_hotspot"].astype(int).to_numpy()
+        fb_scores = model_rank.predict(X_calib_fb).reshape(-1, 1)
+        if len(np.unique(y_calib_clf)) > 1:
+            calibrator.fit(fb_scores, y_calib_clf)
+        else:
+            calibrator.classes_ = np.array([0, 1])
+            calibrator.coef_ = np.array([[1.0]])
+            calibrator.intercept_ = np.array([0.0])
+
+    # ── Predict and evaluate on test set ─────────────────────────────────────
     X_test_cb = X_test.copy()
     for col in CATEGORICAL_COLUMNS:
         X_test_cb[col] = X_test_cb[col].astype(int)
-        
-    pred_rank_raw = model_rank.predict(X_test_cb)
-    # Global Sigmoid Calibration for UI
-    pred_clf_calibrated = 1.0 / (1.0 + np.exp(-pred_rank_raw))
+
+    pred_rank_raw = model_rank.predict(X_test_cb).reshape(-1, 1)
+    pred_clf_calibrated = calibrator.predict_proba(pred_rank_raw)[:, 1]
 
     test_hours = features.loc[~train_mask, "target_hour"]
 
@@ -184,6 +282,7 @@ def train_model(
     models = {
         "regressor": model_reg,
         "classifier": model_rank,
+        "calibrator": calibrator,
         "conformal_margin": conformal_margin,
     }
     return models, metrics, features
@@ -322,11 +421,15 @@ def predict_feature_frame(
                 out["hotspot_prob_lower_bound"] = prob_cal
             else:
                 # It's the new Ranker
-                pred_rank_raw = model_clf.predict(X_cb)
-                # Global Sigmoid Calibration
-                prob_cal = 1.0 / (1.0 + np.exp(-pred_rank_raw))
+                pred_rank_raw = model_clf.predict(X_cb).reshape(-1, 1)
+                calibrator = models.get("calibrator")
+                if calibrator is not None:
+                    prob_cal = calibrator.predict_proba(pred_rank_raw)[:, 1]
+                else:
+                    prob_cal = 1.0 / (1.0 + np.exp(-pred_rank_raw.flatten()))
+                    
                 out["hotspot_probability"] = prob_cal
-                out["hotspot_probability_raw"] = pred_rank_raw
+                out["hotspot_probability_raw"] = pred_rank_raw.flatten()
                 out["hotspot_prob_lower_bound"] = prob_cal  # No conformal bound for ranker
         except Exception as e:
             print("Error in ranking prediction:", e)
