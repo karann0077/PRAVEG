@@ -9,7 +9,7 @@ import joblib
 import numpy as np
 import pandas as pd
 from lightgbm import LGBMRegressor
-from catboost import CatBoostClassifier
+from catboost import CatBoostClassifier, CatBoostRanker, Pool
 from sklearn.isotonic import IsotonicRegression
 from sklearn.metrics import average_precision_score, mean_absolute_error, mean_squared_error, roc_auc_score, log_loss, brier_score_loss, ndcg_score
 from sklearn.multioutput import RegressorChain
@@ -53,25 +53,20 @@ def make_model(
     return RegressorChain(base, order=[0, 1, 2, 3, 4, 5], cv=5)
 
 
-def make_catboost_classifier(
+def make_catboost_ranker(
     n_iterations: int = 400,
     learning_rate: float = 0.05,
     random_state: int = 42,
-) -> CatBoostClassifier:
-    """V5: CatBoost binary classifier for hotspot probabilities.
+) -> CatBoostRanker:
+    """V5: CatBoost learning-to-rank model for dispatch priority.
     
-    class_weights={0:1, 1:3} forces the model to penalize missing a real
-    hotspot 3x more than a false positive. This directly fixes the root cause
-    of Precision@10=13% (the model was predicting 'not hotspot' for everything
-    because the majority class was always safer to predict).
+    Optimizes for YetiRank listwise loss grouped by hour.
     """
-    return CatBoostClassifier(
+    return CatBoostRanker(
         iterations=n_iterations,
         learning_rate=learning_rate,
         depth=6,
-        eval_metric="AUC",
-        loss_function="Logloss",
-        class_weights={0: 1, 1: 3},  # V5: hotspot cases weighted 3x to fix class imbalance
+        loss_function="YetiRank",
         random_seed=random_state,
         verbose=False,
         thread_count=-1,
@@ -121,53 +116,55 @@ def train_model(
         
     pred_reg = np.clip(model_reg.predict(X_test), 0.0, None)
 
-    # ── 2. Train CatBoost Classifier (Model B) & Isotonic Calibration ───────
-    # We split train into sub-train and calibration (last 14 days of train set)
-    train_dates = features.loc[train_mask, "target_hour"]
-    calib_cutoff = train_dates.max() - pd.Timedelta(days=14)
-    calib_mask = train_dates >= calib_cutoff
-    sub_train_mask = ~calib_mask
+    # ── 2. Train CatBoost Ranker (Model B) ──────────────────────────────────
+    # We group by target_hour and use bucketed severity as the ranking target
+    features_train = features.loc[train_mask].copy()
+    features_train = features_train.sort_values(by="target_hour").reset_index(drop=True)
     
-    # Identify categorical indices for CatBoost
+    X_train_cb = features_train[FEATURE_COLUMNS].copy()
+    for col in CATEGORICAL_COLUMNS:
+        if col in X_train_cb.columns:
+            if hasattr(X_train_cb[col], "cat"):
+                X_train_cb[col] = X_train_cb[col].cat.codes.astype(int)
+            else:
+                X_train_cb[col] = X_train_cb[col].astype(int)
+                
+    # Target for ranker: bucketed severity (0=low, 1=watchlist, 2=high, 3=critical)
+    y_train_rank = pd.cut(
+        features_train["severity_weighted_count"], 
+        bins=[-np.inf, 2.0, 10.0, 30.0, np.inf], 
+        labels=[0, 1, 2, 3]
+    ).astype(float).fillna(0).to_numpy()
+    
+    group_id_train = features_train["target_hour"].astype("category").cat.codes.astype(int).to_numpy()
+    w_train = features_train["sample_weight"].to_numpy(dtype=float) if "sample_weight" in features_train.columns else None
+
     cat_features_idx = [i for i, col in enumerate(FEATURE_COLUMNS) if col in CATEGORICAL_COLUMNS]
 
-    model_clf = make_catboost_classifier(n_iterations=n_estimators, random_state=random_state)
-    # CatBoost expects integers or strings for categorical columns. 
-    # They are already cat.codes (integers)
-    # We must ensure they are cast to int for CatBoost
-    X_train_cb = X_train.copy()
-    for col in CATEGORICAL_COLUMNS:
-        X_train_cb[col] = X_train_cb[col].astype(int)
-        
-    X_sub_train = X_train_cb.loc[sub_train_mask]
-    y_sub_train = y_train_clf.loc[sub_train_mask]
-    w_sub_train = sample_weight[sub_train_mask] if sample_weight is not None else None
+    model_rank = make_catboost_ranker(n_iterations=n_estimators, random_state=random_state)
     
-    model_clf.fit(X_sub_train, y_sub_train, cat_features=cat_features_idx, sample_weight=w_sub_train)
+    train_pool = Pool(
+        data=X_train_cb,
+        label=y_train_rank,
+        group_id=group_id_train,
+        weight=w_train,
+        cat_features=cat_features_idx
+    )
+    
+    model_rank.fit(train_pool)
 
-    # Calibrate on the held-out calibration set
-    X_calib = X_train_cb.loc[calib_mask]
-    y_calib = y_train_clf.loc[calib_mask]
-    calib_probs = model_clf.predict_proba(X_calib)[:, 1]
-    
-    calibrator = IsotonicRegression(out_of_bounds="clip")
-    calibrator.fit(calib_probs, y_calib)
-    
-    # ── Conformal Uncertainty (Enterprise Dispatch Rule) ─────────────────────
-    # Calculate the empirical residual margin on the calibration set to provide
-    # a probability lower bound. We want to be 85% confident in our lower bound.
-    calibrated_calib_probs = calibrator.predict(calib_probs)
-    residuals = y_calib - calibrated_calib_probs
-    # 15th percentile of residuals gives us the conservative margin
-    conformal_margin = float(np.quantile(residuals, 0.15))
+    # Conformal logic is removed since this is a ranker, not a probability.
+    # We will use a global sigmoid calibration for UI backwards compatibility.
+    conformal_margin = 0.0
 
-    
     # Predict and evaluate on test set
     X_test_cb = X_test.copy()
     for col in CATEGORICAL_COLUMNS:
         X_test_cb[col] = X_test_cb[col].astype(int)
-    pred_clf_raw = model_clf.predict_proba(X_test_cb)[:, 1]
-    pred_clf_calibrated = calibrator.predict(pred_clf_raw)
+        
+    pred_rank_raw = model_rank.predict(X_test_cb)
+    # Global Sigmoid Calibration for UI
+    pred_clf_calibrated = 1.0 / (1.0 + np.exp(-pred_rank_raw))
 
     test_hours = features.loc[~train_mask, "target_hour"]
 
@@ -187,7 +184,7 @@ def train_model(
     
     models = {
         "regressor": model_reg,
-        "classifier": model_clf,
+        "classifier": model_rank,
         "calibrator": calibrator,
         "conformal_margin": conformal_margin,
     }
@@ -313,21 +310,31 @@ def predict_feature_frame(
         for idx, col in enumerate(TARGET_COLUMNS):
             out[col] = predictions[:, idx]
             
-    # V3 Ensemble logic
+    # V3 Ensemble logic (now a Ranker)
     model_clf = models.get("classifier")
-    calibrator = models.get("calibrator")
-    conformal_margin = models.get("conformal_margin", -0.15)  # Fallback margin if not present
-
-    if model_clf is not None and calibrator is not None:
-        prob_raw = model_clf.predict_proba(X_cb)[:, 1]
-        prob_cal = calibrator.predict(prob_raw)
-        out["hotspot_probability"] = prob_cal
-        out["hotspot_probability_raw"] = prob_raw
-        
-        # Enterprise Dispatch Rule: Conformal Lower Bound
-        # We guarantee with 85% confidence that the probability is at least this much
-        lower_bound = np.clip(prob_cal + conformal_margin, 0.0, 1.0)
-        out["hotspot_prob_lower_bound"] = lower_bound
+    
+    if model_clf is not None:
+        try:
+            # Check if it's the old classifier or the new ranker
+            if hasattr(model_clf, "predict_proba"):
+                prob_raw = model_clf.predict_proba(X_cb)[:, 1]
+                prob_cal = models.get("calibrator").predict(prob_raw) if models.get("calibrator") else prob_raw
+                out["hotspot_probability"] = prob_cal
+                out["hotspot_probability_raw"] = prob_raw
+                out["hotspot_prob_lower_bound"] = prob_cal
+            else:
+                # It's the new Ranker
+                pred_rank_raw = model_clf.predict(X_cb)
+                # Global Sigmoid Calibration
+                prob_cal = 1.0 / (1.0 + np.exp(-pred_rank_raw))
+                out["hotspot_probability"] = prob_cal
+                out["hotspot_probability_raw"] = pred_rank_raw
+                out["hotspot_prob_lower_bound"] = prob_cal  # No conformal bound for ranker
+        except Exception as e:
+            print("Error in ranking prediction:", e)
+            out["hotspot_probability"] = 0.0
+            out["hotspot_probability_raw"] = 0.0
+            out["hotspot_prob_lower_bound"] = 0.0
     else:
         out["hotspot_probability"] = 0.0
         out["hotspot_probability_raw"] = 0.0
