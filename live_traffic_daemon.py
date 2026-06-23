@@ -179,8 +179,12 @@ def process_live_ripples() -> int:
 # ── Main daemon loop ──────────────────────────────────────────────────────────
 
 def run_live_daemon(bundle: dict = None) -> None:
-    log.info("PRAVEG Live Traffic Daemon starting (Threaded Mode)...")
-    
+    import time
+    log.info("PRAVEG Live Traffic Daemon starting (Threaded Mode)... sleeping 15s to allow port binding")
+    # CRITICAL FIX for Render: Yield the Python GIL for 15 seconds so Uvicorn can 
+    # successfully bind to the port and pass Render's health check timeout before we 
+    # start crunching heavy Pandas/LightGBM CPU tasks on the 0.1 vCPU.
+    time.sleep(15)
     if bundle is None:
         from parking_engine.modeling import load_bundle
         bundle = load_bundle(MODEL_PATH)
