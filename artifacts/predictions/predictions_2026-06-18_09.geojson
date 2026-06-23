@@ -11,23 +11,43 @@
         "road_class": "primary",
         "road_width_m": 12.0,
         "predicted_total": 19.46373400821333,
-        "traffic_interruption_0_100": 99.98408190193871,
+        "traffic_interruption_0_100": 99.98408190193872,
+        "parking_risk_0_100": 85.72090206402126,
         "eps": 90.0,
         "priority_band": "Red Line",
         "recommended_action": "Immediate dispatch or tow readiness",
         "recommended_force_units": 3,
-        "map_matching_mode": "grid_fallback"
+        "map_matching_mode": "grid_fallback",
+        "road_name": "",
+        "osm_highway": "",
+        "count_two_wheeler": 1.3022277764959105,
+        "count_car": 13.837872751198372,
+        "count_auto": 3.201607509017886,
+        "count_light_commercial": 0.6648672019493125,
+        "count_heavy": 0.4567594695920962,
+        "count_other": 0.0003992999597499,
+        "live_congestion_multiplier": 1.0,
+        "clearance_m": -22.53351881644507,
+        "emergency_gridlock_flag": true,
+        "confidence_band": "Low",
+        "hotspot_probability": 0.0,
+        "economic_loss_inr": 0.0,
+        "geometry_wkt": ""
       },
       "geometry": {
         "type": "LineString",
         "coordinates": [
           [
-            77.69507999999999,
-            12.9395
+            77.81919096501484,
+            13.280438962407255
           ],
           [
-            77.69592,
-            12.9395
+            77.8192142,
+            13.2804331
+          ],
+          [
+            77.8200726,
+            13.2802582
           ]
         ]
       }
@@ -43,22 +63,42 @@
         "road_width_m": 12.0,
         "predicted_total": 14.674247967544408,
         "traffic_interruption_0_100": 65.60565132186764,
+        "parking_risk_0_100": 76.94816469075512,
         "eps": 90.0,
         "priority_band": "Red Line",
         "recommended_action": "Immediate dispatch or tow readiness",
         "recommended_force_units": 3,
-        "map_matching_mode": "grid_fallback"
+        "map_matching_mode": "grid_fallback",
+        "road_name": "",
+        "osm_highway": "",
+        "count_two_wheeler": 14.350024326376127,
+        "count_car": 0.210768143250373,
+        "count_auto": 0.0897634631770736,
+        "count_light_commercial": 0.0114927058882903,
+        "count_heavy": 0.0116416667449809,
+        "count_other": 0.0005576621075635,
+        "live_congestion_multiplier": 1.0,
+        "clearance_m": -0.0639088968089023,
+        "emergency_gridlock_flag": true,
+        "confidence_band": "Low",
+        "hotspot_probability": 0.0,
+        "economic_loss_inr": 0.0,
+        "geometry_wkt": ""
       },
       "geometry": {
         "type": "LineString",
         "coordinates": [
           [
-            77.52708,
-            12.9605
+            77.81919096501484,
+            13.280438962407255
           ],
           [
-            77.52792000000001,
-            12.9605
+            77.8192142,
+            13.2804331
+          ],
+          [
+            77.8200726,
+            13.2802582
           ]
         ]
       }
@@ -74,22 +114,42 @@
         "road_width_m": 9.0,
         "predicted_total": 14.09428907942191,
         "traffic_interruption_0_100": 92.13800728706347,
+        "parking_risk_0_100": 75.5717248735812,
         "eps": 90.0,
         "priority_band": "Red Line",
         "recommended_action": "Immediate dispatch or tow readiness",
         "recommended_force_units": 3,
-        "map_matching_mode": "grid_fallback"
+        "map_matching_mode": "grid_fallback",
+        "road_name": "",
+        "osm_highway": "",
+        "count_two_wheeler": 11.605003799516982,
+        "count_car": 2.2089145714285428,
+        "count_auto": 0.1772609126584347,
+        "count_light_commercial": 0.1008605771322108,
+        "count_heavy": 0.0019634134326585,
+        "count_other": 0.0002858052530799,
+        "live_congestion_multiplier": 1.0,
+        "clearance_m": -4.966733235359474,
+        "emergency_gridlock_flag": true,
+        "confidence_band": "Low",
+        "hotspot_probability": 0.0,
+        "economic_loss_inr": 0.0,
+        "geometry_wkt": ""
       },
       "geometry": {
         "type": "LineString",
         "coordinates": [
           [
-            77.57208,
-            12.9405
+            77.81919096501484,
+            13.280438962407255
           ],
           [
-            77.57292000000001,
-            12.9405
+            77.8192142,
+            13.2804331
+          ],
+          [
+            77.8200726,
+            13.2802582
           ]
         ]
       }
@@ -105,22 +165,42 @@
         "road_width_m": 12.0,
         "predicted_total": 13.571590095183838,
         "traffic_interruption_0_100": 71.35162332241161,
+        "parking_risk_0_100": 74.26090154568483,
         "eps": 90.0,
         "priority_band": "Red Line",
         "recommended_action": "Immediate dispatch or tow readiness",
         "recommended_force_units": 3,
-        "map_matching_mode": "grid_fallback"
+        "map_matching_mode": "grid_fallback",
+        "road_name": "",
+        "osm_highway": "",
+        "count_two_wheeler": 10.84385192074007,
+        "count_car": 0.7076901387780103,
+        "count_auto": 1.7893183073974437,
+        "count_light_commercial": 0.2276707839964752,
+        "count_heavy": 0.0028775824373905,
+        "count_other": 0.0001813618344479,
+        "live_congestion_multiplier": 1.0,
+        "clearance_m": -1.0562075356412546,
+        "emergency_gridlock_flag": true,
+        "confidence_band": "Low",
+        "hotspot_probability": 0.0,
+        "economic_loss_inr": 0.0,
+        "geometry_wkt": ""
       },
       "geometry": {
         "type": "LineString",
         "coordinates": [
           [
-            77.57607999999999,
-            12.964500000000001
+            77.81919096501484,
+            13.280438962407255
           ],
           [
-            77.57692,
-            12.964500000000001
+            77.8192142,
+            13.2804331
+          ],
+          [
+            77.8200726,
+            13.2802582
           ]
         ]
       }
@@ -136,22 +216,42 @@
         "road_width_m": 9.0,
         "predicted_total": 13.29312441626368,
         "traffic_interruption_0_100": 85.12583172642128,
+        "parking_risk_0_100": 73.53408326161745,
         "eps": 90.0,
         "priority_band": "Red Line",
         "recommended_action": "Immediate dispatch or tow readiness",
         "recommended_force_units": 3,
-        "map_matching_mode": "grid_fallback"
+        "map_matching_mode": "grid_fallback",
+        "road_name": "",
+        "osm_highway": "",
+        "count_two_wheeler": 11.981180419663811,
+        "count_car": 1.0754732365715804,
+        "count_auto": 0.1026054117815475,
+        "count_light_commercial": 0.0946333689384425,
+        "count_heavy": 0.0366252057094863,
+        "count_other": 0.0026067735988109,
+        "live_congestion_multiplier": 1.0,
+        "clearance_m": -3.0898262149520423,
+        "emergency_gridlock_flag": true,
+        "confidence_band": "Low",
+        "hotspot_probability": 0.0,
+        "economic_loss_inr": 0.0,
+        "geometry_wkt": ""
       },
       "geometry": {
         "type": "LineString",
         "coordinates": [
           [
-            77.69108,
-            12.9335
+            77.81919096501484,
+            13.280438962407255
           ],
           [
-            77.69192000000001,
-            12.9335
+            77.8192142,
+            13.2804331
+          ],
+          [
+            77.8200726,
+            13.2802582
           ]
         ]
       }
@@ -167,22 +267,42 @@
         "road_width_m": 9.0,
         "predicted_total": 12.83598737846058,
         "traffic_interruption_0_100": 80.45996609361524,
+        "parking_risk_0_100": 72.29614846417705,
         "eps": 90.0,
         "priority_band": "Red Line",
         "recommended_action": "Immediate dispatch or tow readiness",
         "recommended_force_units": 3,
-        "map_matching_mode": "grid_fallback"
+        "map_matching_mode": "grid_fallback",
+        "road_name": "",
+        "osm_highway": "",
+        "count_two_wheeler": 11.985372445359204,
+        "count_car": 0.7581648955472012,
+        "count_auto": 0.0621453068240948,
+        "count_light_commercial": 0.0119547429114263,
+        "count_heavy": 0.0181545870117191,
+        "count_other": 0.0001954008069344,
+        "live_congestion_multiplier": 1.0,
+        "clearance_m": -2.1908837838407056,
+        "emergency_gridlock_flag": true,
+        "confidence_band": "Low",
+        "hotspot_probability": 0.0,
+        "economic_loss_inr": 0.0,
+        "geometry_wkt": ""
       },
       "geometry": {
         "type": "LineString",
         "coordinates": [
           [
-            77.69008,
-            12.9335
+            77.81919096501484,
+            13.280438962407255
           ],
           [
-            77.69092,
-            12.9335
+            77.8192142,
+            13.2804331
+          ],
+          [
+            77.8200726,
+            13.2802582
           ]
         ]
       }
@@ -198,22 +318,42 @@
         "road_width_m": 12.0,
         "predicted_total": 12.72727628921994,
         "traffic_interruption_0_100": 62.07651621199708,
+        "parking_risk_0_100": 71.99333389366352,
         "eps": 90.0,
         "priority_band": "Red Line",
         "recommended_action": "Immediate dispatch or tow readiness",
         "recommended_force_units": 3,
-        "map_matching_mode": "grid_fallback"
+        "map_matching_mode": "grid_fallback",
+        "road_name": "",
+        "osm_highway": "",
+        "count_two_wheeler": 11.416586276398116,
+        "count_car": 0.733375157788336,
+        "count_auto": 0.3821166914560249,
+        "count_light_commercial": 0.1040735083279265,
+        "count_heavy": 0.0349475491980106,
+        "count_other": 0.056177106051524,
+        "live_congestion_multiplier": 1.0,
+        "clearance_m": 0.5013856124782787,
+        "emergency_gridlock_flag": true,
+        "confidence_band": "Low",
+        "hotspot_probability": 0.0,
+        "economic_loss_inr": 0.0,
+        "geometry_wkt": ""
       },
       "geometry": {
         "type": "LineString",
         "coordinates": [
           [
-            77.57607999999999,
-            12.977500000000001
+            77.81919096501484,
+            13.280438962407255
           ],
           [
-            77.57692,
-            12.977500000000001
+            77.8192142,
+            13.2804331
+          ],
+          [
+            77.8200726,
+            13.2802582
           ]
         ]
       }
@@ -227,24 +367,44 @@
         "junction_name": "No Junction",
         "road_class": "primary",
         "road_width_m": 12.0,
-        "predicted_total": 12.205358366633845,
+        "predicted_total": 12.205358366633844,
         "traffic_interruption_0_100": 60.17842461917916,
+        "parking_risk_0_100": 70.492798584775,
         "eps": 90.0,
         "priority_band": "Red Line",
         "recommended_action": "Immediate dispatch or tow readiness",
         "recommended_force_units": 3,
-        "map_matching_mode": "grid_fallback"
+        "map_matching_mode": "grid_fallback",
+        "road_name": "",
+        "osm_highway": "",
+        "count_two_wheeler": 10.755978192253036,
+        "count_car": 0.856995643876099,
+        "count_auto": 0.4670527190247736,
+        "count_light_commercial": 0.0245008682392967,
+        "count_heavy": 0.100577035607522,
+        "count_other": 0.0002539076331184,
+        "live_congestion_multiplier": 1.0,
+        "clearance_m": 0.7947172021654332,
+        "emergency_gridlock_flag": true,
+        "confidence_band": "Low",
+        "hotspot_probability": 0.0,
+        "economic_loss_inr": 0.0,
+        "geometry_wkt": ""
       },
       "geometry": {
         "type": "LineString",
         "coordinates": [
           [
-            77.69008,
-            12.9345
+            77.81919096501484,
+            13.280438962407255
           ],
           [
-            77.69092,
-            12.9345
+            77.8192142,
+            13.2804331
+          ],
+          [
+            77.8200726,
+            13.2802582
           ]
         ]
       }
@@ -258,24 +418,44 @@
         "junction_name": "BTP042 - Minsk Square Junction (CTO)",
         "road_class": "secondary",
         "road_width_m": 9.0,
-        "predicted_total": 11.971441033149393,
+        "predicted_total": 11.971441033149391,
         "traffic_interruption_0_100": 72.81047315756071,
+        "parking_risk_0_100": 69.79443790743467,
         "eps": 90.0,
         "priority_band": "Red Line",
         "recommended_action": "Immediate dispatch or tow readiness",
         "recommended_force_units": 3,
-        "map_matching_mode": "grid_fallback"
+        "map_matching_mode": "grid_fallback",
+        "road_name": "",
+        "osm_highway": "",
+        "count_two_wheeler": 11.57364086714521,
+        "count_car": 0.3439625887295535,
+        "count_auto": 0.0450828751789159,
+        "count_light_commercial": 0.0022850261448346,
+        "count_heavy": 0.0023664649022775,
+        "count_other": 0.0041032110486021,
+        "live_congestion_multiplier": 1.0,
+        "clearance_m": -0.9947621074241866,
+        "emergency_gridlock_flag": true,
+        "confidence_band": "Low",
+        "hotspot_probability": 0.0,
+        "economic_loss_inr": 0.0,
+        "geometry_wkt": ""
       },
       "geometry": {
         "type": "LineString",
         "coordinates": [
           [
-            77.59808,
-            12.9815
+            77.81919096501484,
+            13.280438962407255
           ],
           [
-            77.59892,
-            12.9815
+            77.8192142,
+            13.2804331
+          ],
+          [
+            77.8200726,
+            13.2802582
           ]
         ]
       }
@@ -289,24 +469,44 @@
         "junction_name": "BTP028 - Vijayanagar Bus Stand Junction",
         "road_class": "primary",
         "road_width_m": 12.0,
-        "predicted_total": 10.138299076267689,
+        "predicted_total": 10.138299076267687,
         "traffic_interruption_0_100": 86.52664020654825,
+        "parking_risk_0_100": 63.717327766602104,
         "eps": 90.0,
         "priority_band": "Red Line",
         "recommended_action": "Immediate dispatch or tow readiness",
         "recommended_force_units": 3,
-        "map_matching_mode": "grid_fallback"
+        "map_matching_mode": "grid_fallback",
+        "road_name": "",
+        "osm_highway": "",
+        "count_two_wheeler": 2.448333282787314,
+        "count_car": 7.419727380652264,
+        "count_auto": 0.1775008215310561,
+        "count_light_commercial": 0.0413772148777642,
+        "count_heavy": 0.0506291525988369,
+        "count_other": 0.0007312238204529,
+        "live_congestion_multiplier": 1.0,
+        "clearance_m": -4.532842515847321,
+        "emergency_gridlock_flag": true,
+        "confidence_band": "Low",
+        "hotspot_probability": 0.0,
+        "economic_loss_inr": 0.0,
+        "geometry_wkt": ""
       },
       "geometry": {
         "type": "LineString",
         "coordinates": [
           [
-            77.54008,
-            12.9735
+            77.81919096501484,
+            13.280438962407255
           ],
           [
-            77.54092000000001,
-            12.9735
+            77.8192142,
+            13.2804331
+          ],
+          [
+            77.8200726,
+            13.2802582
           ]
         ]
       }
@@ -322,22 +522,42 @@
         "road_width_m": 9.0,
         "predicted_total": 9.725497675013152,
         "traffic_interruption_0_100": 73.58758332631403,
+        "parking_risk_0_100": 62.18823042851327,
         "eps": 90.0,
         "priority_band": "Red Line",
         "recommended_action": "Immediate dispatch or tow readiness",
         "recommended_force_units": 3,
-        "map_matching_mode": "grid_fallback"
+        "map_matching_mode": "grid_fallback",
+        "road_name": "",
+        "osm_highway": "",
+        "count_two_wheeler": 7.69900388005145,
+        "count_car": 1.8158042044113625,
+        "count_auto": 0.0370149219912931,
+        "count_light_commercial": 0.0226946046118504,
+        "count_heavy": 0.1504408677235862,
+        "count_other": 0.0005391962236101,
+        "live_congestion_multiplier": 1.0,
+        "clearance_m": -1.105420302724001,
+        "emergency_gridlock_flag": true,
+        "confidence_band": "Low",
+        "hotspot_probability": 0.0,
+        "economic_loss_inr": 0.0,
+        "geometry_wkt": ""
       },
       "geometry": {
         "type": "LineString",
         "coordinates": [
           [
-            77.69108,
-            12.932500000000001
+            77.81919096501484,
+            13.280438962407255
           ],
           [
-            77.69192000000001,
-            12.932500000000001
+            77.8192142,
+            13.2804331
+          ],
+          [
+            77.8200726,
+            13.2802582
           ]
         ]
       }
@@ -353,22 +573,42 @@
         "road_width_m": 12.0,
         "predicted_total": 9.574850120896262,
         "traffic_interruption_0_100": 47.95108728045211,
+        "parking_risk_0_100": 61.614293109971015,
         "eps": 90.0,
         "priority_band": "Red Line",
         "recommended_action": "Immediate dispatch or tow readiness",
         "recommended_force_units": 3,
-        "map_matching_mode": "grid_fallback"
+        "map_matching_mode": "grid_fallback",
+        "road_name": "",
+        "osm_highway": "",
+        "count_two_wheeler": 7.607804689564645,
+        "count_car": 0.5761303147782739,
+        "count_auto": 1.1247030145183765,
+        "count_light_commercial": 0.0362539196876453,
+        "count_heavy": 0.2293009254301708,
+        "count_other": 0.0006572569171511,
+        "live_congestion_multiplier": 1.0,
+        "clearance_m": 2.5637092204012184,
+        "emergency_gridlock_flag": true,
+        "confidence_band": "Low",
+        "hotspot_probability": 0.0,
+        "economic_loss_inr": 0.0,
+        "geometry_wkt": ""
       },
       "geometry": {
         "type": "LineString",
         "coordinates": [
           [
-            77.67608,
-            12.9995
+            77.81919096501484,
+            13.280438962407255
           ],
           [
-            77.67692000000001,
-            12.9995
+            77.8192142,
+            13.2804331
+          ],
+          [
+            77.8200726,
+            13.2802582
           ]
         ]
       }
@@ -383,23 +623,43 @@
         "road_class": "secondary",
         "road_width_m": 9.0,
         "predicted_total": 9.208134877997702,
-        "traffic_interruption_0_100": 96.42904820013023,
+        "traffic_interruption_0_100": 96.42904820013024,
+        "parking_risk_0_100": 60.180501746667446,
         "eps": 90.0,
         "priority_band": "Red Line",
         "recommended_action": "Immediate dispatch or tow readiness",
         "recommended_force_units": 3,
-        "map_matching_mode": "grid_fallback"
+        "map_matching_mode": "grid_fallback",
+        "road_name": "",
+        "osm_highway": "",
+        "count_two_wheeler": 1.1547377414081528,
+        "count_car": 7.533467558524937,
+        "count_auto": 0.4926168273437169,
+        "count_light_commercial": 0.0182494625750733,
+        "count_heavy": 0.002043065261531,
+        "count_other": 0.0070202228842893,
+        "live_congestion_multiplier": 1.0,
+        "clearance_m": -6.987666269687907,
+        "emergency_gridlock_flag": true,
+        "confidence_band": "Low",
+        "hotspot_probability": 0.0,
+        "economic_loss_inr": 0.0,
+        "geometry_wkt": ""
       },
       "geometry": {
         "type": "LineString",
         "coordinates": [
           [
-            77.59808,
-            12.9885
+            77.81919096501484,
+            13.280438962407255
           ],
           [
-            77.59892,
-            12.9885
+            77.8192142,
+            13.2804331
+          ],
+          [
+            77.8200726,
+            13.2802582
           ]
         ]
       }
@@ -413,24 +673,44 @@
         "junction_name": "No Junction",
         "road_class": "secondary",
         "road_width_m": 9.0,
-        "predicted_total": 9.040374552012711,
+        "predicted_total": 9.040374552012713,
         "traffic_interruption_0_100": 53.845091591183106,
+        "parking_risk_0_100": 59.5068537746956,
         "eps": 90.0,
         "priority_band": "Red Line",
         "recommended_action": "Immediate dispatch or tow readiness",
         "recommended_force_units": 3,
-        "map_matching_mode": "grid_fallback"
+        "map_matching_mode": "grid_fallback",
+        "road_name": "",
+        "osm_highway": "",
+        "count_two_wheeler": 8.613755371891365,
+        "count_car": 0.2893754451596387,
+        "count_auto": 0.0770393589730708,
+        "count_light_commercial": 0.0128548775231541,
+        "count_heavy": 0.046854005273448,
+        "count_other": 0.0004954931920356,
+        "live_congestion_multiplier": 1.0,
+        "clearance_m": 1.2989991850422085,
+        "emergency_gridlock_flag": true,
+        "confidence_band": "Low",
+        "hotspot_probability": 0.0,
+        "economic_loss_inr": 0.0,
+        "geometry_wkt": ""
       },
       "geometry": {
         "type": "LineString",
         "coordinates": [
           [
-            77.67608,
-            12.8405
+            77.81919096501484,
+            13.280438962407255
           ],
           [
-            77.67692000000001,
-            12.8405
+            77.8192142,
+            13.2804331
+          ],
+          [
+            77.8200726,
+            13.2802582
           ]
         ]
       }
@@ -446,22 +726,42 @@
         "road_width_m": 12.0,
         "predicted_total": 8.890306413748318,
         "traffic_interruption_0_100": 83.70065857212052,
+        "parking_risk_0_100": 58.894598155179146,
         "eps": 90.0,
         "priority_band": "Red Line",
         "recommended_action": "Immediate dispatch or tow readiness",
         "recommended_force_units": 3,
-        "map_matching_mode": "grid_fallback"
+        "map_matching_mode": "grid_fallback",
+        "road_name": "",
+        "osm_highway": "",
+        "count_two_wheeler": 1.1127554931807535,
+        "count_car": 7.320474165426043,
+        "count_auto": 0.2005585286003102,
+        "count_light_commercial": 0.0514885084002338,
+        "count_heavy": 0.2001829874040928,
+        "count_other": 0.0048467307368857,
+        "live_congestion_multiplier": 1.0,
+        "clearance_m": -3.7279953738657774,
+        "emergency_gridlock_flag": true,
+        "confidence_band": "Low",
+        "hotspot_probability": 0.0,
+        "economic_loss_inr": 0.0,
+        "geometry_wkt": ""
       },
       "geometry": {
         "type": "LineString",
         "coordinates": [
           [
-            77.53908,
-            12.9735
+            77.81919096501484,
+            13.280438962407255
           ],
           [
-            77.53992000000001,
-            12.9735
+            77.8192142,
+            13.2804331
+          ],
+          [
+            77.8200726,
+            13.2802582
           ]
         ]
       }
@@ -477,22 +777,42 @@
         "road_width_m": 9.0,
         "predicted_total": 8.876915123586716,
         "traffic_interruption_0_100": 93.31845362881212,
+        "parking_risk_0_100": 58.839515845919955,
         "eps": 90.0,
         "priority_band": "Red Line",
         "recommended_action": "Immediate dispatch or tow readiness",
         "recommended_force_units": 3,
-        "map_matching_mode": "grid_fallback"
+        "map_matching_mode": "grid_fallback",
+        "road_name": "",
+        "osm_highway": "",
+        "count_two_wheeler": 2.1862387822175515,
+        "count_car": 6.425818789988334,
+        "count_auto": 0.1792662104871236,
+        "count_light_commercial": 0.081649522007299,
+        "count_heavy": 0.0032136127723719,
+        "count_other": 0.0007282061140377,
+        "live_congestion_multiplier": 1.0,
+        "clearance_m": -5.406552306875472,
+        "emergency_gridlock_flag": true,
+        "confidence_band": "Low",
+        "hotspot_probability": 0.0,
+        "economic_loss_inr": 0.0,
+        "geometry_wkt": ""
       },
       "geometry": {
         "type": "LineString",
         "coordinates": [
           [
-            77.59008,
-            13.0165
+            77.81919096501484,
+            13.280438962407255
           ],
           [
-            77.59092000000001,
-            13.0165
+            77.8192142,
+            13.2804331
+          ],
+          [
+            77.8200726,
+            13.2802582
           ]
         ]
       }
@@ -508,22 +828,42 @@
         "road_width_m": 9.0,
         "predicted_total": 8.541827111895067,
         "traffic_interruption_0_100": 56.69764440606573,
+        "parking_risk_0_100": 57.43690876493679,
         "eps": 90.0,
         "priority_band": "Red Line",
         "recommended_action": "Immediate dispatch or tow readiness",
         "recommended_force_units": 3,
-        "map_matching_mode": "grid_fallback"
+        "map_matching_mode": "grid_fallback",
+        "road_name": "",
+        "osm_highway": "",
+        "count_two_wheeler": 7.395515379297933,
+        "count_car": 0.923131553906193,
+        "count_auto": 0.1912126707550124,
+        "count_light_commercial": 0.0285840142702929,
+        "count_heavy": 0.0031262434915053,
+        "count_other": 0.0002572501741284,
+        "live_congestion_multiplier": 1.0,
+        "clearance_m": 0.9875797638524376,
+        "emergency_gridlock_flag": true,
+        "confidence_band": "Low",
+        "hotspot_probability": 0.0,
+        "economic_loss_inr": 0.0,
+        "geometry_wkt": ""
       },
       "geometry": {
         "type": "LineString",
         "coordinates": [
           [
-            77.61807999999999,
-            12.9875
+            77.81919096501484,
+            13.280438962407255
           ],
           [
-            77.61892,
-            12.9875
+            77.8192142,
+            13.2804331
+          ],
+          [
+            77.8200726,
+            13.2802582
           ]
         ]
       }
@@ -539,22 +879,42 @@
         "road_width_m": 9.0,
         "predicted_total": 8.169384644792755,
         "traffic_interruption_0_100": 47.35604698731791,
+        "parking_risk_0_100": 55.82178821483523,
         "eps": 90.0,
         "priority_band": "Red Line",
         "recommended_action": "Immediate dispatch or tow readiness",
         "recommended_force_units": 3,
-        "map_matching_mode": "grid_fallback"
+        "map_matching_mode": "grid_fallback",
+        "road_name": "",
+        "osm_highway": "",
+        "count_two_wheeler": 7.698632340054591,
+        "count_car": 0.3356697120664678,
+        "count_auto": 0.1027652217486514,
+        "count_light_commercial": 0.0300665505573284,
+        "count_heavy": 0.0019524253758087,
+        "count_other": 0.0002983949899082,
+        "live_congestion_multiplier": 1.0,
+        "clearance_m": 1.984654041842143,
+        "emergency_gridlock_flag": true,
+        "confidence_band": "Low",
+        "hotspot_probability": 0.0,
+        "economic_loss_inr": 0.0,
+        "geometry_wkt": ""
       },
       "geometry": {
         "type": "LineString",
         "coordinates": [
           [
-            77.58108,
-            12.9985
+            77.81919096501484,
+            13.280438962407255
           ],
           [
-            77.58192000000001,
-            12.9985
+            77.8192142,
+            13.2804331
+          ],
+          [
+            77.8200726,
+            13.2802582
           ]
         ]
       }
@@ -570,22 +930,42 @@
         "road_width_m": 9.0,
         "predicted_total": 8.029018235609046,
         "traffic_interruption_0_100": 46.59760724209501,
+        "parking_risk_0_100": 55.197301928077934,
         "eps": 90.0,
         "priority_band": "Red Line",
         "recommended_action": "Immediate dispatch or tow readiness",
         "recommended_force_units": 3,
-        "map_matching_mode": "grid_fallback"
+        "map_matching_mode": "grid_fallback",
+        "road_name": "",
+        "osm_highway": "",
+        "count_two_wheeler": 7.501328477655569,
+        "count_car": 0.3680874497434185,
+        "count_auto": 0.1458664094194786,
+        "count_light_commercial": 0.0115262777072086,
+        "count_heavy": 0.0019355896766966,
+        "count_other": 0.0002740314066736,
+        "live_congestion_multiplier": 1.0,
+        "clearance_m": 2.063294458617107,
+        "emergency_gridlock_flag": true,
+        "confidence_band": "Low",
+        "hotspot_probability": 0.0,
+        "economic_loss_inr": 0.0,
+        "geometry_wkt": ""
       },
       "geometry": {
         "type": "LineString",
         "coordinates": [
           [
-            77.60007999999999,
-            12.9085
+            77.81919096501484,
+            13.280438962407255
           ],
           [
-            77.60092,
-            12.9085
+            77.8192142,
+            13.2804331
+          ],
+          [
+            77.8200726,
+            13.2802582
           ]
         ]
       }
@@ -601,22 +981,42 @@
         "road_width_m": 9.0,
         "predicted_total": 7.8414745447332335,
         "traffic_interruption_0_100": 49.794680667055665,
+        "parking_risk_0_100": 54.349126959423266,
         "eps": 90.0,
         "priority_band": "Red Line",
         "recommended_action": "Immediate dispatch or tow readiness",
         "recommended_force_units": 3,
-        "map_matching_mode": "grid_fallback"
+        "map_matching_mode": "grid_fallback",
+        "road_name": "",
+        "osm_highway": "",
+        "count_two_wheeler": 6.754754669630297,
+        "count_car": 0.3862108060969049,
+        "count_auto": 0.5322822874056043,
+        "count_light_commercial": 0.1665248273044574,
+        "count_heavy": 0.0014010698843467,
+        "count_other": 0.000300884411622,
+        "live_congestion_multiplier": 1.0,
+        "clearance_m": 1.729978965462161,
+        "emergency_gridlock_flag": true,
+        "confidence_band": "Low",
+        "hotspot_probability": 0.0,
+        "economic_loss_inr": 0.0,
+        "geometry_wkt": ""
       },
       "geometry": {
         "type": "LineString",
         "coordinates": [
           [
-            77.58408,
-            12.964500000000001
+            77.81919096501484,
+            13.280438962407255
           ],
           [
-            77.58492000000001,
-            12.964500000000001
+            77.8192142,
+            13.2804331
+          ],
+          [
+            77.8200726,
+            13.2802582
           ]
         ]
       }
@@ -632,22 +1032,42 @@
         "road_width_m": 12.0,
         "predicted_total": 7.380287912789281,
         "traffic_interruption_0_100": 55.99097956097696,
+        "parking_risk_0_100": 52.19446658062332,
         "eps": 90.0,
         "priority_band": "Red Line",
         "recommended_action": "Immediate dispatch or tow readiness",
         "recommended_force_units": 3,
-        "map_matching_mode": "grid_fallback"
+        "map_matching_mode": "grid_fallback",
+        "road_name": "",
+        "osm_highway": "",
+        "count_two_wheeler": 3.0431945172206967,
+        "count_car": 3.863209245082856,
+        "count_auto": 0.324754581870251,
+        "count_light_commercial": 0.121451424483386,
+        "count_heavy": 0.0259640178844897,
+        "count_other": 0.0017141262476015,
+        "live_congestion_multiplier": 1.0,
+        "clearance_m": 1.4205888432657616,
+        "emergency_gridlock_flag": true,
+        "confidence_band": "Low",
+        "hotspot_probability": 0.0,
+        "economic_loss_inr": 0.0,
+        "geometry_wkt": ""
       },
       "geometry": {
         "type": "LineString",
         "coordinates": [
           [
-            77.51808,
-            13.0385
+            77.81919096501484,
+            13.280438962407255
           ],
           [
-            77.51892000000001,
-            13.0385
+            77.8192142,
+            13.2804331
+          ],
+          [
+            77.8200726,
+            13.2802582
           ]
         ]
       }
@@ -663,22 +1083,42 @@
         "road_width_m": 9.0,
         "predicted_total": 7.0302931155172015,
         "traffic_interruption_0_100": 48.6990648563729,
+        "parking_risk_0_100": 50.4916731590566,
         "eps": 90.0,
         "priority_band": "Red Line",
         "recommended_action": "Immediate dispatch or tow readiness",
         "recommended_force_units": 3,
-        "map_matching_mode": "grid_fallback"
+        "map_matching_mode": "grid_fallback",
+        "road_name": "",
+        "osm_highway": "",
+        "count_two_wheeler": 5.65923254327522,
+        "count_car": 1.127473220187129,
+        "count_auto": 0.0759882004868497,
+        "count_light_commercial": 0.0681591717362794,
+        "count_heavy": 0.0479410712941327,
+        "count_other": 0.0514989085375906,
+        "live_congestion_multiplier": 1.0,
+        "clearance_m": 1.84477055976308,
+        "emergency_gridlock_flag": true,
+        "confidence_band": "Low",
+        "hotspot_probability": 0.0,
+        "economic_loss_inr": 0.0,
+        "geometry_wkt": ""
       },
       "geometry": {
         "type": "LineString",
         "coordinates": [
           [
-            77.57108,
-            12.9605
+            77.81919096501484,
+            13.280438962407255
           ],
           [
-            77.57192,
-            12.9605
+            77.8192142,
+            13.2804331
+          ],
+          [
+            77.8200726,
+            13.2802582
           ]
         ]
       }
@@ -694,22 +1134,42 @@
         "road_width_m": 9.0,
         "predicted_total": 6.733242990121092,
         "traffic_interruption_0_100": 60.7075105933355,
+        "parking_risk_0_100": 48.99896702270446,
         "eps": 90.0,
         "priority_band": "Red Line",
         "recommended_action": "Immediate dispatch or tow readiness",
         "recommended_force_units": 3,
-        "map_matching_mode": "grid_fallback"
+        "map_matching_mode": "grid_fallback",
+        "road_name": "",
+        "osm_highway": "",
+        "count_two_wheeler": 2.1963646995171215,
+        "count_car": 0.6309628650651115,
+        "count_auto": 3.8398701640891058,
+        "count_light_commercial": 0.015005769082692,
+        "count_heavy": 0.0022207056849955,
+        "count_other": 0.0488187866820668,
+        "live_congestion_multiplier": 1.0,
+        "clearance_m": 0.5352177686707353,
+        "emergency_gridlock_flag": true,
+        "confidence_band": "Low",
+        "hotspot_probability": 0.0,
+        "economic_loss_inr": 0.0,
+        "geometry_wkt": ""
       },
       "geometry": {
         "type": "LineString",
         "coordinates": [
           [
-            77.63907999999999,
-            12.9785
+            77.81919096501484,
+            13.280438962407255
           ],
           [
-            77.63992,
-            12.9785
+            77.8192142,
+            13.2804331
+          ],
+          [
+            77.8200726,
+            13.2802582
           ]
         ]
       }
@@ -725,22 +1185,42 @@
         "road_width_m": 9.0,
         "predicted_total": 6.433383104994105,
         "traffic_interruption_0_100": 67.46480852012071,
+        "parking_risk_0_100": 47.446490690220045,
         "eps": 90.0,
         "priority_band": "Red Line",
         "recommended_action": "Immediate dispatch or tow readiness",
         "recommended_force_units": 3,
-        "map_matching_mode": "grid_fallback"
+        "map_matching_mode": "grid_fallback",
+        "road_name": "",
+        "osm_highway": "",
+        "count_two_wheeler": 2.7050984570449037,
+        "count_car": 3.4160251676555946,
+        "count_auto": 0.1035542530540084,
+        "count_light_commercial": 0.2042934000026397,
+        "count_heavy": 0.0039033725469024,
+        "count_other": 0.0005084546900557,
+        "live_congestion_multiplier": 1.0,
+        "clearance_m": -0.2804921909962861,
+        "emergency_gridlock_flag": true,
+        "confidence_band": "Low",
+        "hotspot_probability": 0.0,
+        "economic_loss_inr": 0.0,
+        "geometry_wkt": ""
       },
       "geometry": {
         "type": "LineString",
         "coordinates": [
           [
-            77.53708,
-            12.9865
+            77.81919096501484,
+            13.280438962407255
           ],
           [
-            77.53792000000001,
-            12.9865
+            77.8192142,
+            13.2804331
+          ],
+          [
+            77.8200726,
+            13.2802582
           ]
         ]
       }
@@ -756,22 +1236,42 @@
         "road_width_m": 9.0,
         "predicted_total": 6.01870053344721,
         "traffic_interruption_0_100": 41.71595626373883,
+        "parking_risk_0_100": 45.2213711915124,
         "eps": 90.0,
         "priority_band": "Red Line",
         "recommended_action": "Immediate dispatch or tow readiness",
         "recommended_force_units": 3,
-        "map_matching_mode": "grid_fallback"
+        "map_matching_mode": "grid_fallback",
+        "road_name": "",
+        "osm_highway": "",
+        "count_two_wheeler": 4.54533847677409,
+        "count_car": 1.427655541005028,
+        "count_auto": 0.0229949584241602,
+        "count_light_commercial": 0.0164237353731116,
+        "count_heavy": 0.0059987170132198,
+        "count_other": 0.0002891048576016,
+        "live_congestion_multiplier": 1.0,
+        "clearance_m": 2.5650701940553784,
+        "emergency_gridlock_flag": true,
+        "confidence_band": "Low",
+        "hotspot_probability": 0.0,
+        "economic_loss_inr": 0.0,
+        "geometry_wkt": ""
       },
       "geometry": {
         "type": "LineString",
         "coordinates": [
           [
-            77.60607999999999,
-            12.9705
+            77.81919096501484,
+            13.280438962407255
           ],
           [
-            77.60692,
-            12.9705
+            77.8192142,
+            13.2804331
+          ],
+          [
+            77.8200726,
+            13.2802582
           ]
         ]
       }

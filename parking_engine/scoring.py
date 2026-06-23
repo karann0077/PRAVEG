@@ -38,61 +38,36 @@ from .config import (
 )
 
 # ── Lightweight road-bearing cache (built once per process) ────────────────────
-# Stores (bearing_rad, mid_lon, mid_lat) for each sampled OSM way so we can
-# draw synthetic LineStrings that are *parallel to the nearest road* instead of
-# always being diagonal. Zero extra RAM: we stream-parse only node positions.
-_ROAD_BEARINGS_DF = None  # Pandas dataframe
-_road_bearings_loaded = False
+import json
+from pathlib import Path as _Path
 
+_SEGMENT_GEOMETRIES: dict[str, list[list[float]]] = {}
+_segment_geometries_loaded = False
 
-def _load_road_bearings() -> None:
-    """One-time load of the lightweight road_bearings.csv.
-    This CSV is pushed to GitHub, so Render has it and can align roads perfectly!
-    Uses Pandas to store 1 million segments in only 21MB of RAM.
-    """
-    global _ROAD_BEARINGS_DF, _road_bearings_loaded
-    from pathlib import Path as _Path
+def _load_segment_geometries() -> None:
+    """Load the precomputed 530KB JSON containing the exact curve coordinates of the roads."""
+    global _SEGMENT_GEOMETRIES, _segment_geometries_loaded
+    cache_path = _Path("artifacts/osm/segment_geometries.json")
+    if cache_path.exists():
+        try:
+            with open(cache_path, "r") as f:
+                _SEGMENT_GEOMETRIES.update(json.load(f))
+        except Exception:
+            pass
+    _segment_geometries_loaded = True
 
-    cache_path = _Path("artifacts/osm/road_bearings.csv")
-    if not cache_path.exists():
-        _road_bearings_loaded = True
-        return
-
-    try:
-        import pandas as pd
-        _ROAD_BEARINGS_DF = pd.read_csv(cache_path, header=None, names=["lon", "lat", "bearing"])
-    except Exception:
-        pass  # silently fail — fallback diagonal used instead
-
-    _road_bearings_loaded = True
-
-
-def _get_road_bearing(lon: float, lat: float) -> tuple[float, float, float]:
-    """Return the (bearing_radians, mid_lon, mid_lat) of the nearest OSM road segment.
-    Falls back to 45° (diagonal) and the original coordinates if OSM data is unavailable.
-    """
-    global _road_bearings_loaded, _ROAD_BEARINGS_DF
-    if not _road_bearings_loaded:
-        _load_road_bearings()
-
-    if _ROAD_BEARINGS_DF is None or _ROAD_BEARINGS_DF.empty:
-        import math
-        return math.radians(45), lon, lat  # fallback
-
-    import numpy as np
+def _get_exact_geometry(segment_id: str, lon: float, lat: float) -> list[list[float]]:
+    """Return the exact curving road coordinates, or a fallback straight line."""
+    global _SEGMENT_GEOMETRIES, _segment_geometries_loaded
+    if not _segment_geometries_loaded:
+        _load_segment_geometries()
     
-    # Extremely fast vectorized nearest-neighbor lookup across 1,000,000 segments
-    lons = _ROAD_BEARINGS_DF["lon"].values
-    lats = _ROAD_BEARINGS_DF["lat"].values
-    dists = (lons - lon)**2 + (lats - lat)**2
-    idx = np.argmin(dists)
-    
-    # Retrieve the properties of the nearest segment
-    best_lon = float(lons[idx])
-    best_lat = float(lats[idx])
-    best_bearing = float(_ROAD_BEARINGS_DF["bearing"].values[idx])
-    
-    return best_bearing, best_lon, best_lat
+    if segment_id in _SEGMENT_GEOMETRIES:
+        return _SEGMENT_GEOMETRIES[segment_id]
+        
+    # Fallback to horizontal line if geometry is missing
+    offset = 0.0009
+    return [[round(lon - offset, 6), round(lat, 6)], [round(lon + offset, 6), round(lat, 6)]]
 
 # V4: Use vehicle-specific dwell rates to compute expected concurrent vehicles.
 # Heavy vehicles and light commercial stay longer (loading/unloading), 
@@ -571,20 +546,14 @@ def write_geojson(predictions: pd.DataFrame, path: str | Path, grid_size_deg: fl
                 logging.getLogger("scoring").warning(f"Skipping geometry for {properties['segment_id']} - missing WKT")
                 continue
             
-            # ── Road-aligned synthetic LineString ────────────────────────────
-            # Query the nearest OSM road bearing and exact center coordinate so
-            # the line physically snaps onto the road instead of floating on the grid.
-            import math
-            bearing, snap_lon, snap_lat = _get_road_bearing(lon, lat)
-            offset = 0.0009  # ~100 metres in degrees at Bengaluru latitude
-            dx = math.sin(bearing) * offset
-            dy = math.cos(bearing) * offset
+            # ── Exact Curving Road LineString ────────────────────────────
+            # Instead of trying to mathematically draw a straight line using an angle,
+            # just inject the actual perfectly curving road geometry from OpenStreetMap!
+            segment_id = str(row.get("segment_id", ""))
+            coords = _get_exact_geometry(segment_id, lon, lat)
             geometry = {
                 "type": "LineString",
-                "coordinates": [
-                    [round(snap_lon - dx, 6), round(snap_lat - dy, 6)],
-                    [round(snap_lon + dx, 6), round(snap_lat + dy, 6)],
-                ],
+                "coordinates": coords,
             }
 
         feature = {
