@@ -202,12 +202,15 @@ def load_events(
     seg_night_frac = (seg_night / seg_total).fillna(0.0)
     artifact_segments = seg_night_frac[seg_night_frac > BULK_ARTIFACT_THRESHOLD].index
 
-    # Zero-weight the 0-5AM records for artifact-heavy segments
+    # Downweight the 0-5AM records for artifact-heavy segments (instead of hard-zero)
     artifact_night_mask = (
         events["segment_id"].isin(artifact_segments) & is_night
     )
-    events.loc[artifact_night_mask, "sample_weight"] = 0.0
-    events.loc[artifact_night_mask, "severity_weight"] = 0.0
+    events.loc[artifact_night_mask, "sample_weight"] *= 0.1
+    events.loc[artifact_night_mask, "severity_weight"] *= 0.1
+    
+    # ── NEW: Flag the segment so the model can learn ────────────────────────
+    events["is_bulk_artifact_segment"] = events["segment_id"].isin(artifact_segments).astype(int)
     artifact_count = artifact_night_mask.sum()
     if artifact_count > 0:
         print(
@@ -360,6 +363,7 @@ def build_segment_metadata(events: pd.DataFrame, selected_segments: Iterable[str
             "station_approval_rate": float(approval_rate),
             "segment_severity_mean": float(severity_mean),
             "segment_dominant_vehicle_footprint": float(dominant_footprint),
+            "is_bulk_artifact_segment": int(_mode(group.get("is_bulk_artifact_segment", pd.Series([0])), 0)),
         })
     meta = pd.DataFrame(rows)
     return meta.sort_values("event_count", ascending=False).reset_index(drop=True)

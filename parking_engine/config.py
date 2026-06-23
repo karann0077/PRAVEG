@@ -217,6 +217,7 @@ FEATURE_COLUMNS = [
     "lat_center",
     "lon_center",
     "road_width_m",
+    "is_bulk_artifact_segment",
     # ── Temporal ──
     "hour",
     "day_of_week",
