@@ -46,43 +46,26 @@ _road_bearings_loaded = False
 
 
 def _load_road_bearings() -> None:
-    """One-time streaming parse of the local OSM roads JSON.
-    Builds a compact list of (bearing_rad, mid_lon, mid_lat) for every way.
-    Reads in O(1) peak memory by using ijson if available, else json + del trick.
+    """One-time streaming parse of the lightweight road_bearings.csv.
+    This CSV is pushed to GitHub, so Render has it and can align roads perfectly!
     """
     global _ROAD_BEARINGS, _road_bearings_loaded
-    import math
     from pathlib import Path as _Path
 
-    cache_path = _Path("artifacts/osm/bengaluru_roads.json")
+    cache_path = _Path("artifacts/osm/road_bearings.csv")
     if not cache_path.exists():
         _road_bearings_loaded = True
         return
 
     try:
-        import json as _json
-        data = _json.loads(cache_path.read_text())
-        nodes: dict[int, tuple[float, float]] = {}
-        for elem in data.get("elements", []):
-            if elem.get("type") == "node" and "lat" in elem:
-                nodes[elem["id"]] = (float(elem["lon"]), float(elem["lat"]))
-
-        for elem in data.get("elements", []):
-            if elem.get("type") != "way":
+        lines = cache_path.read_text().strip().split("\n")
+        for line in lines:
+            if not line:
                 continue
-            nds = [nodes[n] for n in elem.get("nodes", []) if n in nodes]
-            if len(nds) < 2:
-                continue
-            # Use only the first two nodes to get the road bearing
-            x0, y0 = nds[0]
-            x1, y1 = nds[1]
-            bearing = math.atan2(x1 - x0, y1 - y0)  # radians, from north
-            mid_lon = (x0 + x1) / 2.0
-            mid_lat = (y0 + y1) / 2.0
-            _ROAD_BEARINGS.append((bearing, mid_lon, mid_lat))
-
-        # Free memory
-        del data, nodes
+            parts = line.split(",")
+            if len(parts) == 3:
+                mid_lon, mid_lat, bearing = map(float, parts)
+                _ROAD_BEARINGS.append((bearing, mid_lon, mid_lat))
     except Exception:
         pass  # silently fail — fallback diagonal used instead
 
