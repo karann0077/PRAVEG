@@ -1,4 +1,353 @@
 {
   "type": "FeatureCollection",
-  "features": []
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "source_bottleneck": "osm_way_133889539",
+        "segment_id": "osm_way_148210029",
+        "eps_spillover": 55.25,
+        "eps": 55.25,
+        "is_ripple": true,
+        "distance_from_bottleneck_m": 127.3,
+        "decay_factor": 0.65,
+        "road_class": "primary",
+        "police_station": "Madiwala"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            77.6179908,
+            12.9247095
+          ],
+          [
+            77.6174042,
+            12.9256504
+          ],
+          [
+            77.6171909,
+            12.925979
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "source_bottleneck": "osm_way_133889539",
+        "segment_id": "osm_way_133763760",
+        "eps_spillover": 55.25,
+        "eps": 55.25,
+        "is_ripple": true,
+        "distance_from_bottleneck_m": 118.4,
+        "decay_factor": 0.65,
+        "road_class": "primary",
+        "police_station": "Madiwala"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            77.6172816,
+            12.9260375
+          ],
+          [
+            77.6173844,
+            12.9258298
+          ],
+          [
+            77.6180631,
+            12.9247467
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "source_bottleneck": "osm_way_133889539",
+        "segment_id": "osm_way_172853381",
+        "eps_spillover": 55.25,
+        "eps": 55.25,
+        "is_ripple": true,
+        "distance_from_bottleneck_m": 110.5,
+        "decay_factor": 0.65,
+        "road_class": "primary",
+        "police_station": "Madiwala"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            77.6172816,
+            12.9260375
+          ],
+          [
+            77.6174456,
+            12.9258541
+          ],
+          [
+            77.6178168,
+            12.925288
+          ],
+          [
+            77.6181514,
+            12.9247789
+          ],
+          [
+            77.6181681,
+            12.9247475
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "source_bottleneck": "osm_way_133889539",
+        "segment_id": "osm_way_343961640",
+        "eps_spillover": 55.25,
+        "eps": 55.25,
+        "is_ripple": true,
+        "distance_from_bottleneck_m": 50.9,
+        "decay_factor": 0.65,
+        "road_class": "residential",
+        "police_station": "Madiwala"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            77.6187994,
+            12.9249368
+          ],
+          [
+            77.6184967,
+            12.9254475
+          ],
+          [
+            77.6181525,
+            12.9260153
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "source_bottleneck": "osm_way_133889539",
+        "segment_id": "osm_way_694302713",
+        "eps_spillover": 55.25,
+        "eps": 55.25,
+        "is_ripple": true,
+        "distance_from_bottleneck_m": 42.0,
+        "decay_factor": 0.65,
+        "road_class": "residential",
+        "police_station": "Madiwala"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            77.6184967,
+            12.9254475
+          ],
+          [
+            77.6191862,
+            12.9257755
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "source_bottleneck": "osm_way_133889539",
+        "segment_id": "osm_way_111814614",
+        "eps_spillover": 55.25,
+        "eps": 55.25,
+        "is_ripple": true,
+        "distance_from_bottleneck_m": 129.0,
+        "decay_factor": 0.65,
+        "road_class": "primary",
+        "police_station": "Madiwala"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            77.620899,
+            12.9272267
+          ],
+          [
+            77.6204316,
+            12.925982
+          ],
+          [
+            77.6203664,
+            12.9258085
+          ],
+          [
+            77.6203441,
+            12.9257492
+          ],
+          [
+            77.6201569,
+            12.9255148
+          ],
+          [
+            77.6201379,
+            12.9254909
+          ],
+          [
+            77.6200898,
+            12.9254422
+          ],
+          [
+            77.6200089,
+            12.9253882
+          ],
+          [
+            77.619846,
+            12.9252826
+          ],
+          [
+            77.6185737,
+            12.9247611
+          ],
+          [
+            77.6183237,
+            12.9246425
+          ],
+          [
+            77.618251,
+            12.9246054
+          ],
+          [
+            77.6180426,
+            12.9244848
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "source_bottleneck": "osm_way_133889539",
+        "segment_id": "osm_way_133763768",
+        "eps_spillover": 55.25,
+        "eps": 55.25,
+        "is_ripple": true,
+        "distance_from_bottleneck_m": 121.7,
+        "decay_factor": 0.65,
+        "road_class": "primary",
+        "police_station": "Madiwala"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            77.6179924,
+            12.9245641
+          ],
+          [
+            77.6182077,
+            12.9246842
+          ],
+          [
+            77.6187994,
+            12.9249368
+          ],
+          [
+            77.6196979,
+            12.9253587
+          ],
+          [
+            77.6197775,
+            12.9253911
+          ],
+          [
+            77.6199272,
+            12.9254987
+          ],
+          [
+            77.6199902,
+            12.9255403
+          ],
+          [
+            77.6200295,
+            12.9255663
+          ],
+          [
+            77.6200541,
+            12.9256006
+          ],
+          [
+            77.6201989,
+            12.9258029
+          ],
+          [
+            77.6202175,
+            12.9258503
+          ],
+          [
+            77.6207581,
+            12.927227
+          ],
+          [
+            77.6208361,
+            12.9274056
+          ],
+          [
+            77.6208578,
+            12.9274554
+          ],
+          [
+            77.6208789,
+            12.9275058
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "source_bottleneck": "osm_way_133889539",
+        "segment_id": "osm_way_172853383",
+        "eps_spillover": 55.25,
+        "eps": 55.25,
+        "is_ripple": true,
+        "distance_from_bottleneck_m": 277.8,
+        "decay_factor": 0.65,
+        "road_class": "primary",
+        "police_station": "Madiwala"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            77.6171909,
+            12.925979
+          ],
+          [
+            77.617103,
+            12.9261271
+          ],
+          [
+            77.616588,
+            12.9269951
+          ],
+          [
+            77.6160664,
+            12.9278594
+          ],
+          [
+            77.6156751,
+            12.9284946
+          ]
+        ]
+      }
+    }
+  ]
 }

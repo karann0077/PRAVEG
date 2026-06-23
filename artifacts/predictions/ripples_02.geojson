@@ -1,4 +1,40 @@
 {
   "type": "FeatureCollection",
-  "features": []
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "source_bottleneck": "osm_way_29878642",
+        "segment_id": "osm_way_29878689",
+        "eps_spillover": 55.25,
+        "eps": 55.25,
+        "is_ripple": true,
+        "distance_from_bottleneck_m": 43.9,
+        "decay_factor": 0.65,
+        "road_class": "residential",
+        "police_station": "HAL Old Airport"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            77.7120623,
+            12.9713125
+          ],
+          [
+            77.7120045,
+            12.9712948
+          ],
+          [
+            77.7119401,
+            12.9712752
+          ],
+          [
+            77.7110885,
+            12.9710177
+          ]
+        ]
+      }
+    }
+  ]
 }

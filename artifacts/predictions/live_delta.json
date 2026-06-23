@@ -1,6 +1,15 @@
 {
-  "timestamp": "2026-06-20T16:11:42.782006",
-  "escalated": [],
+  "timestamp": "2026-06-23T22:25:20.233263",
+  "escalated": [
+    {
+      "segment_id": "grid_12964_77576",
+      "old_eps": 45.5,
+      "new_eps": 60.5,
+      "old_band": "Watchlist",
+      "new_band": "Orange Line",
+      "road_name": ""
+    }
+  ],
   "deescalated": [],
-  "total_changed": 0
+  "total_changed": 1
 }
