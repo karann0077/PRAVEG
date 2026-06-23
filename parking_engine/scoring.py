@@ -41,15 +41,16 @@ from .config import (
 # Stores (bearing_rad, mid_lon, mid_lat) for each sampled OSM way so we can
 # draw synthetic LineStrings that are *parallel to the nearest road* instead of
 # always being diagonal. Zero extra RAM: we stream-parse only node positions.
-_ROAD_BEARINGS: list[tuple[float, float, float]] = []  # (bearing, mid_lon, mid_lat)
+_ROAD_BEARINGS_DF = None  # Pandas dataframe
 _road_bearings_loaded = False
 
 
 def _load_road_bearings() -> None:
-    """One-time streaming parse of the lightweight road_bearings.csv.
+    """One-time load of the lightweight road_bearings.csv.
     This CSV is pushed to GitHub, so Render has it and can align roads perfectly!
+    Uses Pandas to store 1 million segments in only 21MB of RAM.
     """
-    global _ROAD_BEARINGS, _road_bearings_loaded
+    global _ROAD_BEARINGS_DF, _road_bearings_loaded
     from pathlib import Path as _Path
 
     cache_path = _Path("artifacts/osm/road_bearings.csv")
@@ -58,14 +59,8 @@ def _load_road_bearings() -> None:
         return
 
     try:
-        lines = cache_path.read_text().strip().split("\n")
-        for line in lines:
-            if not line:
-                continue
-            parts = line.split(",")
-            if len(parts) == 3:
-                mid_lon, mid_lat, bearing = map(float, parts)
-                _ROAD_BEARINGS.append((bearing, mid_lon, mid_lat))
+        import pandas as pd
+        _ROAD_BEARINGS_DF = pd.read_csv(cache_path, header=None, names=["lon", "lat", "bearing"])
     except Exception:
         pass  # silently fail — fallback diagonal used instead
 
@@ -76,25 +71,27 @@ def _get_road_bearing(lon: float, lat: float) -> tuple[float, float, float]:
     """Return the (bearing_radians, mid_lon, mid_lat) of the nearest OSM road segment.
     Falls back to 45° (diagonal) and the original coordinates if OSM data is unavailable.
     """
-    global _road_bearings_loaded
+    global _road_bearings_loaded, _ROAD_BEARINGS_DF
     if not _road_bearings_loaded:
         _load_road_bearings()
 
-    if not _ROAD_BEARINGS:
+    if _ROAD_BEARINGS_DF is None or _ROAD_BEARINGS_DF.empty:
         import math
         return math.radians(45), lon, lat  # fallback
 
-    import math
-    best_dist = float("inf")
-    best_bearing = math.radians(45)
-    best_lon, best_lat = lon, lat
-    for bearing, mlx, mly in _ROAD_BEARINGS:
-        d = (lon - mlx) ** 2 + (lat - mly) ** 2
-        if d < best_dist:
-            best_dist = d
-            best_bearing = bearing
-            best_lon = mlx
-            best_lat = mly
+    import numpy as np
+    
+    # Extremely fast vectorized nearest-neighbor lookup across 1,000,000 segments
+    lons = _ROAD_BEARINGS_DF["lon"].values
+    lats = _ROAD_BEARINGS_DF["lat"].values
+    dists = (lons - lon)**2 + (lats - lat)**2
+    idx = np.argmin(dists)
+    
+    # Retrieve the properties of the nearest segment
+    best_lon = float(lons[idx])
+    best_lat = float(lats[idx])
+    best_bearing = float(_ROAD_BEARINGS_DF["bearing"].values[idx])
+    
     return best_bearing, best_lon, best_lat
 
 # V4: Use vehicle-specific dwell rates to compute expected concurrent vehicles.
