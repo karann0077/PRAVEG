@@ -79,112 +79,126 @@ def train_model(
     cutoff_hour: pd.Timestamp,
     n_estimators: int,
     random_state: int,
-) -> tuple[RegressorChain, dict[str, object], pd.DataFrame]:
+) -> tuple[dict[str, object], dict[str, object], pd.DataFrame]:
     """Build features, train the model, and return metrics."""
 
     features = add_features(training_rows, context)
-    train_mask = features["target_hour"] < cutoff_hour
-    if train_mask.sum() == 0 or (~train_mask).sum() == 0:
-        train_mask = np.arange(len(features)) < int(len(features) * 0.8)
+    time_train_mask = features["target_hour"] < cutoff_hour
+    if time_train_mask.sum() == 0 or (~time_train_mask).sum() == 0:
+        time_train_mask = np.arange(len(features)) < int(len(features) * 0.8)
 
-    X_train = features.loc[train_mask, FEATURE_COLUMNS].copy()
-    for col in CATEGORICAL_COLUMNS:
-        if col in X_train.columns and hasattr(X_train[col], "cat"):
-            X_train[col] = X_train[col].cat.codes
-    y_train_reg = features.loc[train_mask, TARGET_COLUMNS].astype(float)
-    y_train_clf = features.loc[train_mask, "is_hotspot"].astype(int)
-    
-    # V3: Extract sample weight if present
-    sample_weight = None
-    if "sample_weight" in features.columns:
-        sample_weight = features.loc[train_mask, "sample_weight"].to_numpy(dtype=float)
+    # ── 1. Create Spatial Holdout (20% of police stations) ──
+    unique_stations = features["police_station"].unique()
+    np.random.seed(random_state)
+    n_holdout = max(1, int(len(unique_stations) * 0.2))
+    test_stations = set(np.random.choice(unique_stations, n_holdout, replace=False))
+    space_test_mask = features["police_station"].isin(test_stations)
 
-    X_test = features.loc[~train_mask, FEATURE_COLUMNS].copy()
-    for col in CATEGORICAL_COLUMNS:
-        if col in X_test.columns and hasattr(X_test[col], "cat"):
-            X_test[col] = X_test[col].cat.codes
-    y_test_reg = features.loc[~train_mask, TARGET_COLUMNS].astype(float)
-    y_test_clf = features.loc[~train_mask, "is_hotspot"].astype(int)
+    # ── 2. Define Quadrants ──
+    quad_a_mask = time_train_mask & ~space_test_mask  # Train Space & Time
+    quad_b_mask = ~time_train_mask & ~space_test_mask # Temporal Holdout
+    quad_c_mask = time_train_mask & space_test_mask   # Spatial Holdout
+    quad_d_mask = ~time_train_mask & space_test_mask  # Spatiotemporal Holdout
 
-    # ── 1. Train Regressor Chain (Model A) ──────────────────────────────────
-    model_reg = make_model(n_estimators=n_estimators, random_state=random_state)
-    
-    if sample_weight is not None:
-        model_reg.fit(X_train, y_train_reg, sample_weight=sample_weight)
-    else:
-        model_reg.fit(X_train, y_train_reg)
-        
-    pred_reg = np.clip(model_reg.predict(X_test), 0.0, None)
-
-    # ── 2. Train CatBoost Ranker (Model B) ──────────────────────────────────
-    # We group by target_hour and use bucketed severity as the ranking target
-    features_train = features.loc[train_mask].copy()
-    features_train = features_train.sort_values(by="target_hour").reset_index(drop=True)
-    
-    X_train_cb = features_train[FEATURE_COLUMNS].copy()
-    for col in CATEGORICAL_COLUMNS:
-        if col in X_train_cb.columns:
-            if hasattr(X_train_cb[col], "cat"):
-                X_train_cb[col] = X_train_cb[col].cat.codes.astype(int)
-            else:
-                X_train_cb[col] = X_train_cb[col].astype(int)
+    def _fit_models(fit_mask):
+        X_train = features.loc[fit_mask, FEATURE_COLUMNS].copy()
+        for col in CATEGORICAL_COLUMNS:
+            if col in X_train.columns and hasattr(X_train[col], "cat"):
+                X_train[col] = X_train[col].cat.codes.astype(int)
+            elif col in X_train.columns:
+                X_train[col] = X_train[col].astype(int)
                 
-    # Target for ranker: bucketed severity (0=low, 1=watchlist, 2=high, 3=critical)
-    y_train_rank = pd.cut(
-        features_train["severity_weighted_count"], 
-        bins=[-np.inf, 2.0, 10.0, 30.0, np.inf], 
-        labels=[0, 1, 2, 3]
-    ).astype(float).fillna(0).to_numpy()
-    
-    group_id_train = features_train["target_hour"].astype("category").cat.codes.astype(int).to_numpy()
-    w_train = features_train["sample_weight"].to_numpy(dtype=float) if "sample_weight" in features_train.columns else None
-
-    cat_features_idx = [i for i, col in enumerate(FEATURE_COLUMNS) if col in CATEGORICAL_COLUMNS]
-
-    model_rank = make_catboost_ranker(n_iterations=n_estimators, random_state=random_state)
-    
-    train_pool = Pool(
-        data=X_train_cb,
-        label=y_train_rank,
-        group_id=group_id_train,
-        cat_features=cat_features_idx
-    )
-    
-    model_rank.fit(train_pool)
-
-    # Conformal logic is removed since this is a ranker, not a probability.
-    # We will use a global sigmoid calibration for UI backwards compatibility.
-    conformal_margin = 0.0
-
-    # Predict and evaluate on test set
-    X_test_cb = X_test.copy()
-    for col in CATEGORICAL_COLUMNS:
-        X_test_cb[col] = X_test_cb[col].astype(int)
+        y_train_reg = features.loc[fit_mask, TARGET_COLUMNS].astype(float)
         
-    pred_rank_raw = model_rank.predict(X_test_cb)
-    # Global Sigmoid Calibration for UI
-    pred_clf_calibrated = 1.0 / (1.0 + np.exp(-pred_rank_raw))
+        # Ranker target
+        features_fit = features.loc[fit_mask].copy()
+        features_fit = features_fit.sort_values(by="target_hour").reset_index(drop=True)
+        X_train_cb = features_fit[FEATURE_COLUMNS].copy()
+        for col in CATEGORICAL_COLUMNS:
+            if col in X_train_cb.columns:
+                if hasattr(X_train_cb[col], "cat"):
+                    X_train_cb[col] = X_train_cb[col].cat.codes.astype(int)
+                else:
+                    X_train_cb[col] = X_train_cb[col].astype(int)
+                    
+        y_train_rank = pd.cut(
+            features_fit["severity_weighted_count"], 
+            bins=[-np.inf, 2.0, 10.0, 30.0, np.inf], 
+            labels=[0, 1, 2, 3]
+        ).astype(float).fillna(0).to_numpy()
+        
+        group_id_train = features_fit["target_hour"].astype("category").cat.codes.astype(int).to_numpy()
+        cat_features_idx = [i for i, col in enumerate(FEATURE_COLUMNS) if col in CATEGORICAL_COLUMNS]
 
-    test_hours = features.loc[~train_mask, "target_hour"]
+        model_reg = make_model(n_estimators=n_estimators, random_state=random_state)
+        w_fit = features.loc[fit_mask, "sample_weight"].to_numpy(dtype=float) if "sample_weight" in features.columns else None
+        if w_fit is not None:
+            model_reg.fit(X_train, y_train_reg, sample_weight=w_fit)
+        else:
+            model_reg.fit(X_train, y_train_reg)
 
-    metrics = evaluate_predictions(
-        y_test_reg.to_numpy(dtype=float), 
-        pred_reg, 
-        y_test_clf.to_numpy(dtype=int), 
-        pred_clf_calibrated,
-        test_hours.to_numpy()
-    )
-    metrics["train_rows"] = int(len(X_train))
-    metrics["test_rows"] = int(len(X_test))
-    metrics["cutoff_hour"] = str(cutoff_hour)
-    metrics["feature_columns"] = FEATURE_COLUMNS
-    metrics["target_columns"] = TARGET_COLUMNS
-    metrics["categorical_columns"] = CATEGORICAL_COLUMNS
+        model_rank = make_catboost_ranker(n_iterations=n_estimators, random_state=random_state)
+        train_pool = Pool(
+            data=X_train_cb,
+            label=y_train_rank,
+            group_id=group_id_train,
+            cat_features=cat_features_idx
+        )
+        model_rank.fit(train_pool)
+        return model_reg, model_rank
+
+    # ── 3. Train Evaluation Model on Quadrant A ──
+    print(f"Training Evaluation Model (Holdout {len(test_stations)} stations)...")
+    eval_model_reg, eval_model_rank = _fit_models(quad_a_mask)
+
+    def _eval_on(eval_mask):
+        if eval_mask.sum() == 0:
+            return {}
+        X_eval = features.loc[eval_mask, FEATURE_COLUMNS].copy()
+        for col in CATEGORICAL_COLUMNS:
+            if hasattr(X_eval[col], "cat"):
+                X_eval[col] = X_eval[col].cat.codes.astype(int)
+            else:
+                X_eval[col] = X_eval[col].astype(int)
+                
+        y_eval_reg = features.loc[eval_mask, TARGET_COLUMNS].astype(float)
+        y_eval_clf = features.loc[eval_mask, "is_hotspot"].astype(int)
+        
+        pred_reg = np.clip(eval_model_reg.predict(X_eval), 0.0, None)
+        pred_rank_raw = eval_model_rank.predict(X_eval)
+        pred_clf_calibrated = 1.0 / (1.0 + np.exp(-pred_rank_raw))
+        
+        test_hours = features.loc[eval_mask, "target_hour"]
+        
+        return evaluate_predictions(
+            y_eval_reg.to_numpy(dtype=float),
+            pred_reg,
+            y_eval_clf.to_numpy(dtype=int),
+            pred_clf_calibrated,
+            test_hours.to_numpy()
+        )
+
+    print("Evaluating quadrants...")
+    metrics = {
+        "temporal_holdout": _eval_on(quad_b_mask),
+        "spatial_holdout": _eval_on(quad_c_mask),
+        "spatiotemporal_holdout": _eval_on(quad_d_mask),
+        "train_rows": int(quad_a_mask.sum()),
+        "cutoff_hour": str(cutoff_hour),
+        "test_stations_held_out": list(test_stations),
+        "feature_columns": FEATURE_COLUMNS,
+        "target_columns": TARGET_COLUMNS,
+        "categorical_columns": CATEGORICAL_COLUMNS,
+    }
+
+    # ── 4. Train Production Model on ALL Space ──
+    print("Training Production Model (100% stations)...")
+    prod_model_reg, prod_model_rank = _fit_models(time_train_mask)
     
     models = {
-        "regressor": model_reg,
-        "classifier": model_rank,
-        "conformal_margin": conformal_margin,
+        "regressor": prod_model_reg,
+        "classifier": prod_model_rank,
+        "conformal_margin": 0.0,
     }
     return models, metrics, features
 
