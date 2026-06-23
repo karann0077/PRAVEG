@@ -19,7 +19,7 @@ merge:
 
 train:
 	@echo "Training RegressorChain Model..."
-	python3 -m parking_engine.train --n-estimators 350
+	python3 -m parking_engine.train --n-estimators 350 --use-osm-roads
 	@echo "Model training complete."
 
 predict:

@@ -548,14 +548,10 @@ def write_geojson(predictions: pd.DataFrame, path: str | Path, grid_size_deg: fl
                 logging.getLogger("scoring").warning(f"Skipping geometry for {properties['segment_id']} - missing WKT")
                 continue
             
-            # ── Exact Curving Road LineString ────────────────────────────
-            # Instead of trying to mathematically draw a straight line using an angle,
-            # just inject the actual perfectly curving road geometry from OpenStreetMap!
-            segment_id = str(row.get("segment_id", ""))
-            coords = _get_exact_geometry(segment_id, lon, lat)
+            # ── Fallback for missing geometry (grid dots) ────────────────────────
             geometry = {
-                "type": "LineString",
-                "coordinates": coords,
+                "type": "Point",
+                "coordinates": [lon, lat],
             }
 
         feature = {
