@@ -285,7 +285,8 @@ def aggregate_hourly_counts(events: pd.DataFrame, selected_segments: Iterable[st
     if "sample_weight" in events.columns:
         weight_agg = (
             events.groupby(["segment_id", "event_hour"], observed=True)["sample_weight"]
-            .mean()
+            .sum()
+            .clip(upper=5.0)
             .reset_index()
             .rename(columns={"event_hour": "target_hour"})
         )
