@@ -81,28 +81,23 @@ def fetch_live_weather_bengaluru() -> dict:
         return {"rainfall_mm": 0.0, "is_raining": 0}
 
 
-# ── OSRM traffic signal (optional, works if OSRM is running locally) ─────────
+import random
+from parking_engine.tomtom_api import fetch_live_congestion
 
-def fetch_osrm_congestion(lat: float, lon: float) -> float:
-    """Query a local OSRM instance for a tiny round-trip route duration ratio.
-    Returns 1.0 (no congestion) if OSRM is not available.
-    """
-    osrm_host = os.environ.get("OSRM_HOST", "")
-    if not osrm_host:
+def fetch_real_congestion(lat: float, lon: float) -> float:
+    """Query the TomTom Live Traffic API for real-time congestion at this location."""
+    # Use TomTom key if present, otherwise fallback to Mappls key if they reused the var
+    api_key_str = os.environ.get("TOMTOM_API_KEY", os.environ.get("MAPPLS_REST_KEY", ""))
+    if not api_key_str:
         return 1.0
-    try:
-        coords = f"{lon},{lat};{lon+0.002},{lat+0.002}"
-        url = f"{osrm_host}/route/v1/driving/{coords}?overview=false"
-        resp = requests.get(url, timeout=3)
-        resp.raise_for_status()
-        routes = resp.json().get("routes", [])
-        if routes:
-            duration = float(routes[0].get("duration", 60))
-            # Compare against baseline (free-flow ~30 s for ~200 m)
-            return min(3.0, max(1.0, duration / 30.0))
-    except Exception:
-        pass
-    return 1.0
+    
+    # Split by comma and pick a random key to distribute API load
+    keys = [k.strip() for k in api_key_str.split(",") if k.strip()]
+    if not keys:
+        return 1.0
+        
+    api_key = random.choice(keys)
+    return fetch_live_congestion(lat, lon, api_key)
 
 
 # ── EPS delta tracker ────────────────────────────────────────────────────────
@@ -314,7 +309,7 @@ def _apply_live_congestion_to_geojson(geo_path: Path) -> None:
         data = json.loads(geo_path.read_text())
         features = data.get("features", [])
         changed = 0
-        for f in features[:30]:  # Only top-30 segments to limit API calls
+        for f in features[:15]:  # Only top-15 segments to limit API calls
             p = f["properties"]
             lat = float(p.get("lat_center", 12.9716) if "lat_center" in p else 12.9716)
             lon = float(p.get("lon_center", 77.5946) if "lon_center" in p else 77.5946)
@@ -327,7 +322,7 @@ def _apply_live_congestion_to_geojson(geo_path: Path) -> None:
             except Exception:
                 pass
 
-            multiplier = fetch_osrm_congestion(lat, lon)
+            multiplier = fetch_real_congestion(lat, lon)
             if multiplier > 1.05:
                 old_eps = float(p.get("eps", 0))
                 live_bonus = min(15.0, (multiplier - 1.0) * 25.0)
@@ -339,7 +334,7 @@ def _apply_live_congestion_to_geojson(geo_path: Path) -> None:
 
         if changed:
             geo_path.write_text(json.dumps(data, indent=2))
-            log.info("Applied OSRM congestion to %d segments", changed)
+            log.info("Applied TomTom congestion to %d segments", changed)
     except Exception as exc:
         log.warning("Live congestion apply failed: %s", exc)
 

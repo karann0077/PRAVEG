@@ -57,7 +57,11 @@ def enrich_with_live_traffic(
 ) -> pd.Series:
     """Find top risk segments and fetch their live congestion multiplier."""
     
-    api_key = os.environ.get("TOMTOM_API_KEY", DEFAULT_TOMTOM_KEY)
+    api_key_str = os.environ.get("TOMTOM_API_KEY", DEFAULT_TOMTOM_KEY)
+    
+    import random
+    keys = [k.strip() for k in api_key_str.split(",") if k.strip()]
+    api_key = random.choice(keys) if keys else ""
 
     multipliers = pd.Series(1.0, index=predictions.index, dtype=float)
 

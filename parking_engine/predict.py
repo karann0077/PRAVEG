@@ -80,7 +80,27 @@ def run_prediction(
     )
     top = scored.head(top_k).copy()
 
-
+    # ── Cosmetic Post-Processing for UI ──────────────────────────────────────
+    # Map the grid points to the nearest OSM road LineString solely for visual 
+    # rendering on the frontend, without affecting the ML precision metrics.
+    try:
+        from parking_engine.osm_roads import fetch_osm_roads_for_events, match_events_to_osm_roads
+        
+        # Prepare df for the mapper which expects 'latitude' and 'longitude'
+        snap_df = top.copy()
+        snap_df["latitude"] = snap_df["lat_center"]
+        snap_df["longitude"] = snap_df["lon_center"]
+        
+        roads = fetch_osm_roads_for_events(snap_df)
+        matched = match_events_to_osm_roads(snap_df, roads)
+        
+        # Bring over the beautiful LineString geometries
+        top["geometry_wkt"] = matched["geometry_wkt"]
+        top["road_name"] = matched["road_name"]
+        top["osm_highway"] = matched["osm_highway"]
+    except Exception as e:
+        import logging
+        logging.getLogger(__name__).warning(f"Cosmetic road snapping failed: {e}")
 
     out_csv.parent.mkdir(parents=True, exist_ok=True)
     top.to_csv(out_csv, index=False)
