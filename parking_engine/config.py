@@ -210,7 +210,7 @@ HOTSPOT_SEVERITY_THRESHOLD: float = 2.0
 
 FEATURE_COLUMNS = [
     # ── Identity / static ──
-    "segment_id",
+    "model_segment_id",
     "police_station",
     "junction_bucket",
     "road_class",
@@ -314,5 +314,5 @@ FEATURE_COLUMNS = [
     "road_vulnerability",
 ]
 
-CATEGORICAL_COLUMNS = ["segment_id", "police_station", "junction_bucket", "road_class", "hour_bucket"]
+CATEGORICAL_COLUMNS = ["model_segment_id", "police_station", "junction_bucket", "road_class", "hour_bucket"]
 

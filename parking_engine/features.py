@@ -527,6 +527,13 @@ def build_feature_context(
             levels = sorted(set(HOUR_BUCKET_MAP.values()))
             category_levels[col] = levels
             continue
+        if col == "model_segment_id":
+            levels = sorted(segment_metadata["segment_id"].fillna("Unknown").astype(str).unique().tolist())
+            levels.append("SPARSE_ROAD")
+            if "Unknown" not in levels:
+                levels.append("Unknown")
+            category_levels[col] = levels
+            continue
         levels = sorted(segment_metadata[col].fillna("Unknown").astype(str).unique().tolist())
         if "Unknown" not in levels:
             levels.append("Unknown")
@@ -572,6 +579,13 @@ def add_features(base_rows: pd.DataFrame, context: FeatureContext) -> pd.DataFra
     frame["road_width_m"] = frame["road_width_m"].fillna(6.0)
     frame["lat_center"] = frame["lat_center"].fillna(frame.get("lat_mean", 0.0)).fillna(0.0)
     frame["lon_center"] = frame["lon_center"].fillna(frame.get("lon_mean", 0.0)).fillna(0.0)
+
+    # ── TWO-TIER SPARSE SEGMENT POLICY ─────────────────────────────────────────
+    # We create a masked ID for the ML feature matrix. High-volume roads keep 
+    # their unique ID. Roads with < 10 historical events are grouped into 
+    # "SPARSE_ROAD" so the model is forced to learn a POI/road_class fallback prior.
+    frame["model_segment_id"] = frame["segment_id"].astype(str)
+    frame.loc[frame["segment_total_events"] < 10, "model_segment_id"] = "SPARSE_ROAD"
 
     frame["hour"] = frame["target_hour"].dt.hour
     frame["day_of_week"] = frame["target_hour"].dt.dayofweek

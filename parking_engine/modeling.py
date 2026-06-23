@@ -147,7 +147,6 @@ def train_model(
         data=X_train_cb,
         label=y_train_rank,
         group_id=group_id_train,
-        weight=w_train,
         cat_features=cat_features_idx
     )
     
@@ -185,7 +184,6 @@ def train_model(
     models = {
         "regressor": model_reg,
         "classifier": model_rank,
-        "calibrator": calibrator,
         "conformal_margin": conformal_margin,
     }
     return models, metrics, features
