@@ -114,9 +114,15 @@ export async function GET(request: Request) {
     const seen = new Set();
     const uniqueFeatures = [];
     for (const f of baseData.features || []) {
-      const segId = f.properties.segment_id;
-      if (!seen.has(segId)) {
-        seen.add(segId);
+      const p = f.properties || {};
+      // Group by a road identity key so the same road doesn't flood the queue
+      const roadName = (p.road_name || "").toLowerCase().trim();
+      const policeStation = (p.police_station || "").toLowerCase().trim();
+      const junctionName = (p.junction_name !== "No Junction" ? p.junction_name : "").toLowerCase().trim();
+      const roadKey = `${roadName}|${policeStation}|${junctionName}`;
+      
+      if (!seen.has(roadKey)) {
+        seen.add(roadKey);
         uniqueFeatures.push(f);
       }
     }
