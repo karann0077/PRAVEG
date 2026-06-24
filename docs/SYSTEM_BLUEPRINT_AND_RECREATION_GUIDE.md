@@ -1,7 +1,6 @@
 # PRAVEG Enterprise Blueprint & Recreation Guide
 
-This document is the absolute "Ground Truth" architectural blueprint of the PRAVEG Parking Intelligence Engine. It is written for senior engineers and contains every algorithm, mathematical formula, structural pipeline, and code component required to physically rebuild the system from scratch.
-
+This document is the absolute "Ground Truth" architectural blueprint of the PRAVEG Parking Intelligence Engine. 
 ---
 
 ## 1. THE MACHINE LEARNING PIPELINE (Model & Feature Engineering)
