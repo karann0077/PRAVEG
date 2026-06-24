@@ -108,15 +108,15 @@
     "hour_bucket"
   ],
   "calibration": {
-    "count_p95": 1.9618113917887587,
+    "count_p95": 2.1610835833335424,
     "interruption_p95": 0.5
   },
   "training_summary": {
     "data_path": "dataset/jan to may police violation_anonymized791b166.csv",
     "raw_event_rows_after_filter": 248371,
-    "active_segments": 6421,
-    "positive_segment_hours": 96722,
-    "training_frame_rows": 145083,
+    "active_segments": 1718,
+    "positive_segment_hours": 75456,
+    "training_frame_rows": 169776,
     "start_hour": "2023-11-10 00:00:00",
     "end_hour": "2024-04-08 23:00:00",
     "cutoff_hour": "2024-03-18 23:00:00",

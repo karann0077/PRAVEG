@@ -4,705 +4,38 @@
     {
       "type": "Feature",
       "properties": {
-        "source_bottleneck": "osm_way_1039251546",
-        "segment_id": "osm_way_546786351",
-        "eps_spillover": 58.13,
-        "eps": 58.13,
+        "source_bottleneck": "osm_way_23542229",
+        "segment_id": "osm_way_332775566",
+        "eps_spillover": 52.5,
+        "eps": 52.5,
         "is_ripple": true,
-        "distance_from_bottleneck_m": 225.7,
-        "decay_factor": 0.65,
-        "road_class": "residential",
-        "police_station": "Hennuru"
-      },
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            77.6300391,
-            13.0498198
-          ],
-          [
-            77.6297112,
-            13.0498431
-          ],
-          [
-            77.6294973,
-            13.0498584
-          ],
-          [
-            77.6292673,
-            13.0498748
-          ],
-          [
-            77.6290589,
-            13.0498897
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "source_bottleneck": "osm_way_1039251546",
-        "segment_id": "osm_way_631844664",
-        "eps_spillover": 58.13,
-        "eps": 58.13,
-        "is_ripple": true,
-        "distance_from_bottleneck_m": 122.2,
-        "decay_factor": 0.65,
-        "road_class": "residential",
-        "police_station": "Hennuru"
-      },
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            77.6304879,
-            13.0504731
-          ],
-          [
-            77.6303934,
-            13.0504874
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "source_bottleneck": "osm_way_1039251546",
-        "segment_id": "osm_way_1102834352",
-        "eps_spillover": 58.13,
-        "eps": 58.13,
-        "is_ripple": true,
-        "distance_from_bottleneck_m": 77.6,
-        "decay_factor": 0.65,
-        "road_class": "residential",
-        "police_station": "Hennuru"
-      },
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            77.6306338,
-            13.0508921
-          ],
-          [
-            77.6301713,
-            13.0509341
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "source_bottleneck": "osm_way_1039251546",
-        "segment_id": "osm_way_33834052",
-        "eps_spillover": 58.15,
-        "eps": 58.15,
-        "is_ripple": true,
-        "distance_from_bottleneck_m": 40.0,
-        "decay_factor": 0.65,
-        "road_class": "primary",
-        "police_station": "Hennuru"
-      },
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            77.6329353,
-            13.0561615
-          ],
-          [
-            77.6329047,
-            13.0561097
-          ],
-          [
-            77.6328788,
-            13.0560826
-          ],
-          [
-            77.632771,
-            13.0560344
-          ],
-          [
-            77.6324644,
-            13.0559175
-          ],
-          [
-            77.6324331,
-            13.0558866
-          ],
-          [
-            77.6323971,
-            13.0558367
-          ],
-          [
-            77.6323576,
-            13.0557855
-          ],
-          [
-            77.6323409,
-            13.0557639
-          ],
-          [
-            77.6322956,
-            13.0556757
-          ],
-          [
-            77.632221,
-            13.0555329
-          ],
-          [
-            77.6321456,
-            13.055346
-          ],
-          [
-            77.6320727,
-            13.055066
-          ],
-          [
-            77.6320443,
-            13.0548491
-          ],
-          [
-            77.6319467,
-            13.0542743
-          ],
-          [
-            77.6319307,
-            13.0542183
-          ],
-          [
-            77.6318595,
-            13.0539699
-          ],
-          [
-            77.6317693,
-            13.053739
-          ],
-          [
-            77.6316629,
-            13.0534665
-          ],
-          [
-            77.6315644,
-            13.0532145
-          ],
-          [
-            77.6315208,
-            13.0531241
-          ],
-          [
-            77.6314435,
-            13.0529196
-          ],
-          [
-            77.6313576,
-            13.0527085
-          ],
-          [
-            77.6313092,
-            13.0526001
-          ],
-          [
-            77.6312126,
-            13.0523841
-          ],
-          [
-            77.6311729,
-            13.0522475
-          ],
-          [
-            77.6311366,
-            13.052077
-          ],
-          [
-            77.6310515,
-            13.0515923
-          ],
-          [
-            77.630977,
-            13.0513518
-          ],
-          [
-            77.6308963,
-            13.05115
-          ],
-          [
-            77.6306123,
-            13.0506799
-          ],
-          [
-            77.6305027,
-            13.0504979
-          ],
-          [
-            77.6304879,
-            13.0504731
-          ],
-          [
-            77.6298764,
-            13.0492808
-          ],
-          [
-            77.629697,
-            13.0490136
-          ],
-          [
-            77.6292973,
-            13.0484182
-          ],
-          [
-            77.6291741,
-            13.0482339
-          ],
-          [
-            77.628676,
-            13.0474772
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "source_bottleneck": "osm_way_358326661",
-        "segment_id": "osm_way_36897684",
-        "eps_spillover": 57.52,
-        "eps": 57.52,
-        "is_ripple": true,
-        "distance_from_bottleneck_m": 132.4,
-        "decay_factor": 0.65,
-        "road_class": "primary",
-        "police_station": "City Market"
-      },
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            77.5768931,
-            12.9642064
-          ],
-          [
-            77.5769452,
-            12.9643175
-          ],
-          [
-            77.5770909,
-            12.9643978
-          ],
-          [
-            77.5773326,
-            12.9644269
-          ],
-          [
-            77.577442,
-            12.9644504
-          ],
-          [
-            77.5775352,
-            12.9644621
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "source_bottleneck": "osm_way_358326661",
-        "segment_id": "osm_way_688824224",
-        "eps_spillover": 57.52,
-        "eps": 57.52,
-        "is_ripple": true,
-        "distance_from_bottleneck_m": 150.5,
-        "decay_factor": 0.65,
-        "road_class": "primary",
-        "police_station": "City Market"
-      },
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            77.5774654,
-            12.963912
-          ],
-          [
-            77.5773816,
-            12.9639364
-          ],
-          [
-            77.5768287,
-            12.9640775
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "source_bottleneck": "osm_way_367491275",
-        "segment_id": "osm_way_1108447557",
-        "eps_spillover": 54.66,
-        "eps": 54.66,
-        "is_ripple": true,
-        "distance_from_bottleneck_m": 85.7,
-        "decay_factor": 0.65,
-        "road_class": "residential",
-        "police_station": "Shivajinagar"
-      },
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            77.603396,
-            12.9821676
-          ],
-          [
-            77.6033444,
-            12.9822216
-          ],
-          [
-            77.6033114,
-            12.982256
-          ],
-          [
-            77.603243,
-            12.9825881
-          ],
-          [
-            77.6031454,
-            12.9827655
-          ],
-          [
-            77.6030934,
-            12.9828415
-          ],
-          [
-            77.6030644,
-            12.9828647
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "source_bottleneck": "osm_way_367491275",
-        "segment_id": "osm_way_1350961423",
-        "eps_spillover": 54.66,
-        "eps": 54.66,
-        "is_ripple": true,
-        "distance_from_bottleneck_m": 42.2,
-        "decay_factor": 0.65,
-        "road_class": "residential",
-        "police_station": "Shivajinagar"
-      },
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            77.603518,
-            12.9830458
-          ],
-          [
-            77.6036645,
-            12.9828455
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "source_bottleneck": "osm_way_367491275",
-        "segment_id": "osm_way_26283729",
-        "eps_spillover": 76.97,
-        "eps": 76.97,
-        "is_ripple": true,
-        "distance_from_bottleneck_m": 6.9,
-        "decay_factor": 0.915,
-        "road_class": "secondary",
-        "police_station": "Shivajinagar"
-      },
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            77.603396,
-            12.9821676
-          ],
-          [
-            77.6034012,
-            12.982258
-          ],
-          [
-            77.6033815,
-            12.9824258
-          ],
-          [
-            77.6032847,
-            12.9826128
-          ],
-          [
-            77.6031935,
-            12.9828013
-          ],
-          [
-            77.6031793,
-            12.9828984
-          ],
-          [
-            77.6033263,
-            12.9833275
-          ],
-          [
-            77.6033633,
-            12.9834355
-          ],
-          [
-            77.6035105,
-            12.9838652
-          ],
-          [
-            77.6035241,
-            12.9839048
-          ],
-          [
-            77.6035569,
-            12.9839629
-          ],
-          [
-            77.603601,
-            12.984062
-          ],
-          [
-            77.6037071,
-            12.9841172
-          ],
-          [
-            77.603803,
-            12.984121
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "source_bottleneck": "osm_way_367491275",
-        "segment_id": "osm_way_1050816539",
-        "eps_spillover": 57.05,
-        "eps": 57.05,
-        "is_ripple": true,
-        "distance_from_bottleneck_m": 36.5,
-        "decay_factor": 0.678,
-        "road_class": "residential",
-        "police_station": "Shivajinagar"
-      },
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            77.6033426,
-            12.9826251
-          ],
-          [
-            77.6033982,
-            12.9826619
-          ],
-          [
-            77.6034543,
-            12.9826988
-          ],
-          [
-            77.6036645,
-            12.9828455
-          ],
-          [
-            77.6038373,
-            12.9829543
-          ],
-          [
-            77.6038627,
-            12.9833576
-          ],
-          [
-            77.6038841,
-            12.9834875
-          ],
-          [
-            77.6037304,
-            12.9837515
-          ],
-          [
-            77.603625,
-            12.9839246
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "source_bottleneck": "osm_way_367491275",
-        "segment_id": "osm_way_1343714138",
-        "eps_spillover": 66.65,
-        "eps": 66.65,
-        "is_ripple": true,
-        "distance_from_bottleneck_m": 22.2,
-        "decay_factor": 0.792,
-        "road_class": "residential",
-        "police_station": "Shivajinagar"
-      },
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            77.603682,
-            12.9835613
-          ],
-          [
-            77.6036147,
-            12.9833532
-          ],
-          [
-            77.603518,
-            12.9830458
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "source_bottleneck": "osm_way_367491275",
-        "segment_id": "osm_way_391160963",
-        "eps_spillover": 65.09,
-        "eps": 65.09,
-        "is_ripple": true,
-        "distance_from_bottleneck_m": 24.5,
-        "decay_factor": 0.774,
-        "road_class": "residential",
-        "police_station": "Shivajinagar"
-      },
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            77.6030703,
-            12.9829565
-          ],
-          [
-            77.6031071,
-            12.9830792
-          ],
-          [
-            77.6031693,
-            12.9832866
-          ],
-          [
-            77.6032283,
-            12.9834832
-          ],
-          [
-            77.6032885,
-            12.9836838
-          ],
-          [
-            77.6033226,
-            12.9837975
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "source_bottleneck": "osm_way_367491275",
-        "segment_id": "osm_way_138980163",
-        "eps_spillover": 54.66,
-        "eps": 54.66,
-        "is_ripple": true,
-        "distance_from_bottleneck_m": 62.9,
-        "decay_factor": 0.65,
-        "road_class": "residential",
-        "police_station": "Shivajinagar"
-      },
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            77.6030644,
-            12.9828647
-          ],
-          [
-            77.6029309,
-            12.9829059
-          ],
-          [
-            77.6028216,
-            12.9829449
-          ],
-          [
-            77.6026979,
-            12.9829813
-          ],
-          [
-            77.6026959,
-            12.9831876
-          ],
-          [
-            77.6028941,
-            12.9838956
-          ],
-          [
-            77.6030154,
-            12.9839916
-          ],
-          [
-            77.6030674,
-            12.9841088
-          ],
-          [
-            77.6030155,
-            12.9842465
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "source_bottleneck": "osm_way_367491275",
-        "segment_id": "osm_way_138980157",
-        "eps_spillover": 54.66,
-        "eps": 54.66,
-        "is_ripple": true,
-        "distance_from_bottleneck_m": 66.8,
+        "distance_from_bottleneck_m": 549.2,
         "decay_factor": 0.65,
         "road_class": "secondary",
-        "police_station": "Shivajinagar"
+        "police_station": "Adugodi"
       },
       "geometry": {
         "type": "LineString",
         "coordinates": [
           [
-            77.6036871,
-            12.9840004
+            77.6152125,
+            12.9357875
           ],
           [
-            77.6036321,
-            12.9839396
+            77.6136581,
+            12.9349827
           ],
           [
-            77.603625,
-            12.9839246
+            77.613321,
+            12.9348289
           ],
           [
-            77.6035224,
-            12.9836757
+            77.6131575,
+            12.9347475
+          ],
+          [
+            77.612853,
+            12.9345895
           ]
         ]
       }
@@ -710,26 +43,38 @@
     {
       "type": "Feature",
       "properties": {
-        "source_bottleneck": "osm_way_367491275",
-        "segment_id": "osm_way_1036470504",
-        "eps_spillover": 54.66,
-        "eps": 54.66,
+        "source_bottleneck": "osm_way_23542229",
+        "segment_id": "osm_way_332782351",
+        "eps_spillover": 52.5,
+        "eps": 52.5,
         "is_ripple": true,
-        "distance_from_bottleneck_m": 77.3,
+        "distance_from_bottleneck_m": 245.7,
         "decay_factor": 0.65,
         "road_class": "residential",
-        "police_station": "Shivajinagar"
+        "police_station": "Adugodi"
       },
       "geometry": {
         "type": "LineString",
         "coordinates": [
           [
-            77.603625,
-            12.9839246
+            77.6172464,
+            12.9362932
           ],
           [
-            77.6035569,
-            12.9839629
+            77.6172376,
+            12.9362593
+          ],
+          [
+            77.6171828,
+            12.9357818
+          ],
+          [
+            77.6169766,
+            12.9347036
+          ],
+          [
+            77.6168851,
+            12.9341301
           ]
         ]
       }
@@ -737,531 +82,30 @@
     {
       "type": "Feature",
       "properties": {
-        "source_bottleneck": "osm_way_367491275",
-        "segment_id": "osm_way_391160966",
-        "eps_spillover": 54.66,
-        "eps": 54.66,
+        "source_bottleneck": "osm_way_23542229",
+        "segment_id": "osm_way_332775565",
+        "eps_spillover": 52.5,
+        "eps": 52.5,
         "is_ripple": true,
-        "distance_from_bottleneck_m": 80.8,
-        "decay_factor": 0.65,
-        "road_class": "residential",
-        "police_station": "Shivajinagar"
-      },
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            77.6033226,
-            12.9837975
-          ],
-          [
-            77.6033455,
-            12.9839073
-          ],
-          [
-            77.6032173,
-            12.9841869
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "source_bottleneck": "osm_way_367491275",
-        "segment_id": "osm_way_391160970",
-        "eps_spillover": 54.66,
-        "eps": 54.66,
-        "is_ripple": true,
-        "distance_from_bottleneck_m": 87.1,
-        "decay_factor": 0.65,
-        "road_class": "residential",
-        "police_station": "Shivajinagar"
-      },
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            77.6032043,
-            12.983834
-          ],
-          [
-            77.6032242,
-            12.9839383
-          ],
-          [
-            77.6032261,
-            12.9839482
-          ],
-          [
-            77.6031134,
-            12.9842197
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "source_bottleneck": "osm_way_1050816539",
-        "segment_id": "osm_way_400483220",
-        "eps_spillover": 54.04,
-        "eps": 54.04,
-        "is_ripple": true,
-        "distance_from_bottleneck_m": 157.9,
-        "decay_factor": 0.65,
-        "road_class": "residential",
-        "police_station": "Shivajinagar"
-      },
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            77.6035471,
-            12.9840772
-          ],
-          [
-            77.603585,
-            12.984385
-          ],
-          [
-            77.6036032,
-            12.984585
-          ],
-          [
-            77.6036157,
-            12.9846607
-          ],
-          [
-            77.6036738,
-            12.985046
-          ],
-          [
-            77.6036991,
-            12.9851851
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "source_bottleneck": "osm_way_1050816539",
-        "segment_id": "osm_way_1350961417",
-        "eps_spillover": 54.04,
-        "eps": 54.04,
-        "is_ripple": true,
-        "distance_from_bottleneck_m": 118.1,
-        "decay_factor": 0.65,
-        "road_class": "residential",
-        "police_station": "Shivajinagar"
-      },
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            77.6043666,
-            12.9822397
-          ],
-          [
-            77.6043058,
-            12.9820395
-          ],
-          [
-            77.6035924,
-            12.9822637
-          ],
-          [
-            77.6035508,
-            12.9824283
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "source_bottleneck": "osm_way_1050816539",
-        "segment_id": "osm_way_1108447557",
-        "eps_spillover": 54.04,
-        "eps": 54.04,
-        "is_ripple": true,
-        "distance_from_bottleneck_m": 93.8,
-        "decay_factor": 0.65,
-        "road_class": "residential",
-        "police_station": "Shivajinagar"
-      },
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            77.603396,
-            12.9821676
-          ],
-          [
-            77.6033444,
-            12.9822216
-          ],
-          [
-            77.6033114,
-            12.982256
-          ],
-          [
-            77.603243,
-            12.9825881
-          ],
-          [
-            77.6031454,
-            12.9827655
-          ],
-          [
-            77.6030934,
-            12.9828415
-          ],
-          [
-            77.6030644,
-            12.9828647
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "source_bottleneck": "osm_way_1050816539",
-        "segment_id": "osm_way_1350961423",
-        "eps_spillover": 58.37,
-        "eps": 58.37,
-        "is_ripple": true,
-        "distance_from_bottleneck_m": 33.5,
-        "decay_factor": 0.702,
-        "road_class": "residential",
-        "police_station": "Shivajinagar"
-      },
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            77.603518,
-            12.9830458
-          ],
-          [
-            77.6036645,
-            12.9828455
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "source_bottleneck": "osm_way_1050816539",
-        "segment_id": "osm_way_26283729",
-        "eps_spillover": 56.1,
-        "eps": 56.1,
-        "is_ripple": true,
-        "distance_from_bottleneck_m": 36.9,
-        "decay_factor": 0.675,
-        "road_class": "secondary",
-        "police_station": "Shivajinagar"
-      },
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            77.603396,
-            12.9821676
-          ],
-          [
-            77.6034012,
-            12.982258
-          ],
-          [
-            77.6033815,
-            12.9824258
-          ],
-          [
-            77.6032847,
-            12.9826128
-          ],
-          [
-            77.6031935,
-            12.9828013
-          ],
-          [
-            77.6031793,
-            12.9828984
-          ],
-          [
-            77.6033263,
-            12.9833275
-          ],
-          [
-            77.6033633,
-            12.9834355
-          ],
-          [
-            77.6035105,
-            12.9838652
-          ],
-          [
-            77.6035241,
-            12.9839048
-          ],
-          [
-            77.6035569,
-            12.9839629
-          ],
-          [
-            77.603601,
-            12.984062
-          ],
-          [
-            77.6037071,
-            12.9841172
-          ],
-          [
-            77.603803,
-            12.984121
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "source_bottleneck": "osm_way_1050816539",
-        "segment_id": "osm_way_1350961426",
-        "eps_spillover": 54.04,
-        "eps": 54.04,
-        "is_ripple": true,
-        "distance_from_bottleneck_m": 64.1,
-        "decay_factor": 0.65,
-        "road_class": "residential",
-        "police_station": "Shivajinagar"
-      },
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            77.6038841,
-            12.9834875
-          ],
-          [
-            77.6043306,
-            12.9837475
-          ],
-          [
-            77.6043619,
-            12.9837527
-          ],
-          [
-            77.6043937,
-            12.9837515
-          ],
-          [
-            77.6044208,
-            12.9837451
-          ],
-          [
-            77.6044463,
-            12.983734
-          ],
-          [
-            77.6044692,
-            12.9837185
-          ],
-          [
-            77.6044889,
-            12.9836992
-          ],
-          [
-            77.604641,
-            12.9834064
-          ],
-          [
-            77.6046583,
-            12.9833559
-          ],
-          [
-            77.6045251,
-            12.982838
-          ],
-          [
-            77.6042274,
-            12.9825766
-          ],
-          [
-            77.6042021,
-            12.9825636
-          ],
-          [
-            77.604174,
-            12.9825582
-          ],
-          [
-            77.6041456,
-            12.982561
-          ],
-          [
-            77.6041252,
-            12.9825683
-          ],
-          [
-            77.6041071,
-            12.9825798
-          ],
-          [
-            77.6040919,
-            12.9825949
-          ],
-          [
-            77.6038373,
-            12.9829543
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "source_bottleneck": "osm_way_1050816539",
-        "segment_id": "osm_way_367491275",
-        "eps_spillover": 56.39,
-        "eps": 56.39,
-        "is_ripple": true,
-        "distance_from_bottleneck_m": 36.5,
-        "decay_factor": 0.678,
-        "road_class": "secondary",
-        "police_station": "Shivajinagar"
-      },
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            77.6035224,
-            12.9836757
-          ],
-          [
-            77.6034393,
-            12.9834102
-          ],
-          [
-            77.6034051,
-            12.9833012
-          ],
-          [
-            77.6032713,
-            12.9828738
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "source_bottleneck": "osm_way_1050816539",
-        "segment_id": "osm_way_1343714138",
-        "eps_spillover": 69.34,
-        "eps": 69.34,
-        "is_ripple": true,
-        "distance_from_bottleneck_m": 17.0,
-        "decay_factor": 0.834,
-        "road_class": "residential",
-        "police_station": "Shivajinagar"
-      },
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            77.603682,
-            12.9835613
-          ],
-          [
-            77.6036147,
-            12.9833532
-          ],
-          [
-            77.603518,
-            12.9830458
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "source_bottleneck": "osm_way_1050816539",
-        "segment_id": "osm_way_391160963",
-        "eps_spillover": 54.04,
-        "eps": 54.04,
-        "is_ripple": true,
-        "distance_from_bottleneck_m": 60.3,
-        "decay_factor": 0.65,
-        "road_class": "residential",
-        "police_station": "Shivajinagar"
-      },
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            77.6030703,
-            12.9829565
-          ],
-          [
-            77.6031071,
-            12.9830792
-          ],
-          [
-            77.6031693,
-            12.9832866
-          ],
-          [
-            77.6032283,
-            12.9834832
-          ],
-          [
-            77.6032885,
-            12.9836838
-          ],
-          [
-            77.6033226,
-            12.9837975
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "source_bottleneck": "osm_way_1050816539",
-        "segment_id": "osm_way_138980157",
-        "eps_spillover": 54.04,
-        "eps": 54.04,
-        "is_ripple": true,
-        "distance_from_bottleneck_m": 71.3,
+        "distance_from_bottleneck_m": 441.1,
         "decay_factor": 0.65,
         "road_class": "secondary",
-        "police_station": "Shivajinagar"
+        "police_station": "Adugodi"
       },
       "geometry": {
         "type": "LineString",
         "coordinates": [
           [
-            77.6036871,
-            12.9840004
+            77.6152742,
+            12.9359065
           ],
           [
-            77.6036321,
-            12.9839396
+            77.6154589,
+            12.9360055
           ],
           [
-            77.603625,
-            12.9839246
-          ],
-          [
-            77.6035224,
-            12.9836757
+            77.6156251,
+            12.9360828
           ]
         ]
       }
@@ -1269,88 +113,66 @@
     {
       "type": "Feature",
       "properties": {
-        "source_bottleneck": "osm_way_1050816539",
-        "segment_id": "osm_way_1036470504",
-        "eps_spillover": 54.04,
-        "eps": 54.04,
+        "source_bottleneck": "osm_way_23542229",
+        "segment_id": "osm_way_332782352",
+        "eps_spillover": 52.5,
+        "eps": 52.5,
         "is_ripple": true,
-        "distance_from_bottleneck_m": 82.3,
-        "decay_factor": 0.65,
-        "road_class": "residential",
-        "police_station": "Shivajinagar"
-      },
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            77.603625,
-            12.9839246
-          ],
-          [
-            77.6035569,
-            12.9839629
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "source_bottleneck": "osm_way_1050816539",
-        "segment_id": "osm_way_391160966",
-        "eps_spillover": 54.04,
-        "eps": 54.04,
-        "is_ripple": true,
-        "distance_from_bottleneck_m": 98.5,
-        "decay_factor": 0.65,
-        "road_class": "residential",
-        "police_station": "Shivajinagar"
-      },
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            77.6033226,
-            12.9837975
-          ],
-          [
-            77.6033455,
-            12.9839073
-          ],
-          [
-            77.6032173,
-            12.9841869
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "source_bottleneck": "osm_way_1050816539",
-        "segment_id": "osm_way_1108447555",
-        "eps_spillover": 54.04,
-        "eps": 54.04,
-        "is_ripple": true,
-        "distance_from_bottleneck_m": 92.8,
+        "distance_from_bottleneck_m": 380.4,
         "decay_factor": 0.65,
         "road_class": "secondary",
-        "police_station": "Shivajinagar"
+        "police_station": "Adugodi"
       },
       "geometry": {
         "type": "LineString",
         "coordinates": [
           [
-            77.6038164,
-            12.9840891
+            77.6172464,
+            12.9362932
           ],
           [
-            77.6037415,
-            12.9840538
+            77.6167973,
+            12.9362825
           ],
           [
-            77.6036871,
-            12.9840004
+            77.6164389,
+            12.9362837
+          ],
+          [
+            77.616364,
+            12.9362782
+          ],
+          [
+            77.6163169,
+            12.9362737
+          ],
+          [
+            77.6162643,
+            12.9362644
+          ],
+          [
+            77.6162137,
+            12.9362477
+          ],
+          [
+            77.615861,
+            12.9360934
+          ],
+          [
+            77.6156626,
+            12.9360087
+          ],
+          [
+            77.6155118,
+            12.9359379
+          ],
+          [
+            77.6153569,
+            12.9358648
+          ],
+          [
+            77.6153192,
+            12.9358402
           ]
         ]
       }
@@ -1358,453 +180,26 @@
     {
       "type": "Feature",
       "properties": {
-        "source_bottleneck": "osm_way_1050816539",
-        "segment_id": "osm_way_1512910803",
-        "eps_spillover": 54.04,
-        "eps": 54.04,
+        "source_bottleneck": "osm_way_23542229",
+        "segment_id": "osm_way_1197001100",
+        "eps_spillover": 52.5,
+        "eps": 52.5,
         "is_ripple": true,
-        "distance_from_bottleneck_m": 112.5,
+        "distance_from_bottleneck_m": 487.7,
         "decay_factor": 0.65,
-        "road_class": "residential",
-        "police_station": "Shivajinagar"
+        "road_class": "secondary",
+        "police_station": "Adugodi"
       },
       "geometry": {
         "type": "LineString",
         "coordinates": [
           [
-            77.6037954,
-            12.9843293
+            77.6152534,
+            12.9359344
           ],
           [
-            77.603803,
-            12.984121
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "source_bottleneck": "osm_way_1304379337",
-        "segment_id": "osm_way_36954621",
-        "eps_spillover": 53.2,
-        "eps": 53.2,
-        "is_ripple": true,
-        "distance_from_bottleneck_m": 142.1,
-        "decay_factor": 0.65,
-        "road_class": "residential",
-        "police_station": "Upparpet"
-      },
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            77.5750959,
-            12.9789184
-          ],
-          [
-            77.5750145,
-            12.9789032
-          ],
-          [
-            77.5746243,
-            12.9788126
-          ],
-          [
-            77.5742535,
-            12.9787443
-          ],
-          [
-            77.5741308,
-            12.9787274
-          ],
-          [
-            77.5733661,
-            12.9786228
-          ],
-          [
-            77.5732778,
-            12.9785769
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "source_bottleneck": "osm_way_1304379337",
-        "segment_id": "osm_way_1095883220",
-        "eps_spillover": 53.2,
-        "eps": 53.2,
-        "is_ripple": true,
-        "distance_from_bottleneck_m": 114.6,
-        "decay_factor": 0.65,
-        "road_class": "residential",
-        "police_station": "Upparpet"
-      },
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            77.5751065,
-            12.9788837
-          ],
-          [
-            77.5751756,
-            12.9788918
-          ],
-          [
-            77.5757303,
-            12.97896
-          ],
-          [
-            77.5757187,
-            12.9790569
-          ],
-          [
-            77.575716,
-            12.9790791
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "source_bottleneck": "osm_way_1304379337",
-        "segment_id": "osm_way_1095794753",
-        "eps_spillover": 53.2,
-        "eps": 53.2,
-        "is_ripple": true,
-        "distance_from_bottleneck_m": 46.1,
-        "decay_factor": 0.65,
-        "road_class": "residential",
-        "police_station": "Upparpet"
-      },
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            77.5749618,
-            12.9794576
-          ],
-          [
-            77.5749093,
-            12.9794504
-          ],
-          [
-            77.5749052,
-            12.9794499
-          ],
-          [
-            77.5747391,
-            12.97943
-          ],
-          [
-            77.5745232,
-            12.979404
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "source_bottleneck": "osm_way_1304379337",
-        "segment_id": "osm_way_142571618",
-        "eps_spillover": 53.2,
-        "eps": 53.2,
-        "is_ripple": true,
-        "distance_from_bottleneck_m": 176.3,
-        "decay_factor": 0.65,
-        "road_class": "primary",
-        "police_station": "Upparpet"
-      },
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            77.5734094,
-            12.9784867
-          ],
-          [
-            77.5733661,
-            12.9786228
-          ],
-          [
-            77.573267,
-            12.9787401
-          ],
-          [
-            77.5732145,
-            12.9788023
-          ],
-          [
-            77.572843,
-            12.9792746
-          ],
-          [
-            77.5726399,
-            12.9795112
-          ],
-          [
-            77.5725802,
-            12.9795807
-          ],
-          [
-            77.5724957,
-            12.9797073
-          ],
-          [
-            77.5724821,
-            12.9797911
-          ],
-          [
-            77.5724564,
-            12.979903
-          ],
-          [
-            77.5724836,
-            12.9800148
-          ],
-          [
-            77.5725606,
-            12.9801207
-          ],
-          [
-            77.5726572,
-            12.9801929
-          ],
-          [
-            77.572831,
-            12.9802689
-          ],
-          [
-            77.5733229,
-            12.9804006
-          ],
-          [
-            77.5736796,
-            12.9804712
-          ],
-          [
-            77.5737669,
-            12.9804841
-          ],
-          [
-            77.5742867,
-            12.980561
-          ],
-          [
-            77.574376,
-            12.9805742
-          ],
-          [
-            77.5744923,
-            12.9805914
-          ],
-          [
-            77.5746095,
-            12.9806055
-          ],
-          [
-            77.5746506,
-            12.980609
-          ],
-          [
-            77.5747298,
-            12.9806157
-          ],
-          [
-            77.5747755,
-            12.9806213
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "source_bottleneck": "osm_way_1304379337",
-        "segment_id": "osm_way_1095794744",
-        "eps_spillover": 53.2,
-        "eps": 53.2,
-        "is_ripple": true,
-        "distance_from_bottleneck_m": 87.3,
-        "decay_factor": 0.65,
-        "road_class": "residential",
-        "police_station": "Upparpet"
-      },
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            77.5743859,
-            12.9804877
-          ],
-          [
-            77.5746612,
-            12.9805196
-          ],
-          [
-            77.5746661,
-            12.98052
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "source_bottleneck": "osm_way_1304379337",
-        "segment_id": "osm_way_1378473538",
-        "eps_spillover": 53.2,
-        "eps": 53.2,
-        "is_ripple": true,
-        "distance_from_bottleneck_m": 81.4,
-        "decay_factor": 0.65,
-        "road_class": "residential",
-        "police_station": "Upparpet"
-      },
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            77.5752289,
-            12.9806257
-          ],
-          [
-            77.5752294,
-            12.9806024
-          ],
-          [
-            77.5752334,
-            12.9804086
-          ],
-          [
-            77.5751211,
-            12.9804149
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "source_bottleneck": "osm_way_23058421",
-        "segment_id": "osm_way_212996231",
-        "eps_spillover": 51.24,
-        "eps": 51.24,
-        "is_ripple": true,
-        "distance_from_bottleneck_m": 242.1,
-        "decay_factor": 0.65,
-        "road_class": "residential",
-        "police_station": "Wilson Garden"
-      },
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            77.5840185,
-            12.9378953
-          ],
-          [
-            77.5827568,
-            12.9379268
-          ],
-          [
-            77.5818485,
-            12.9379452
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "source_bottleneck": "osm_way_23058421",
-        "segment_id": "osm_way_23091301",
-        "eps_spillover": 51.24,
-        "eps": 51.24,
-        "is_ripple": true,
-        "distance_from_bottleneck_m": 195.6,
-        "decay_factor": 0.65,
-        "road_class": "residential",
-        "police_station": "Wilson Garden"
-      },
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            77.5804976,
-            12.939877
-          ],
-          [
-            77.5818787,
-            12.9398536
-          ],
-          [
-            77.5828199,
-            12.9398376
-          ],
-          [
-            77.5839779,
-            12.9398179
-          ],
-          [
-            77.5840564,
-            12.9398169
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "source_bottleneck": "osm_way_23058421",
-        "segment_id": "osm_way_23091276",
-        "eps_spillover": 51.24,
-        "eps": 51.24,
-        "is_ripple": true,
-        "distance_from_bottleneck_m": 210.6,
-        "decay_factor": 0.65,
-        "road_class": "residential",
-        "police_station": "Wilson Garden"
-      },
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            77.5819068,
-            12.9416233
-          ],
-          [
-            77.5827402,
-            12.9416135
-          ],
-          [
-            77.5831396,
-            12.9416088
-          ],
-          [
-            77.5840116,
-            12.9415922
-          ],
-          [
-            77.5840838,
-            12.9415908
-          ],
-          [
-            77.5845805,
-            12.941592
-          ],
-          [
-            77.5850823,
-            12.9415861
-          ],
-          [
-            77.5851353,
-            12.9415854
+            77.6148855,
+            12.9364563
           ]
         ]
       }

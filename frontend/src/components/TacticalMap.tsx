@@ -319,7 +319,7 @@ export default function TacticalMap() {
       visible: isSimulatingResolution,
     }),
     ].filter(Boolean);
-  }, [geoData, poiData, selectedEdge, setSelectedEdge, activeLayerMode, dashOffset, isSimulatingResolution, heatmapPoints, isActionRoads, isTrafficBlockage, isPatrolRoute, isAllPredictions, isBuildingRoute, nearestStation, patrolRouteGeometry]);
+  }, [geoData, poiData, selectedEdge, setSelectedEdge, activeLayerMode, dashOffset, isSimulatingResolution, isActionRoads, isTrafficBlockage, isPatrolRoute, isAllPredictions, isBuildingRoute, nearestStation, patrolRouteGeometry]);
 
   return (
     <motion.div 

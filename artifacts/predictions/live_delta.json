@@ -1,15 +1,23 @@
 {
-  "timestamp": "2026-06-23T22:25:20.233263",
-  "escalated": [
+  "timestamp": "2026-06-23T23:06:54.692276",
+  "escalated": [],
+  "deescalated": [
     {
       "segment_id": "grid_12964_77576",
-      "old_eps": 45.5,
-      "new_eps": 60.5,
+      "old_eps": 54.7,
+      "new_eps": 29.1,
       "old_band": "Watchlist",
-      "new_band": "Orange Line",
+      "new_band": "Low",
       "road_name": ""
+    },
+    {
+      "segment_id": "grid_12963_77576",
+      "old_eps": 74.3,
+      "new_eps": 33.4,
+      "old_band": "Orange Line",
+      "new_band": "Low",
+      "road_name": "Krishna Rajendra Road"
     }
   ],
-  "deescalated": [],
-  "total_changed": 1
+  "total_changed": 2
 }
