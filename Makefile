@@ -18,8 +18,15 @@ merge:
 	@echo "Feature engineering complete."
 
 train:
-	@echo "Training RegressorChain Model..."
-	python3 -m parking_engine.train --n-estimators 350 --use-osm-roads
+	@echo "Training parking model with full OSM road alignment..."
+	python3 -m parking_engine.train \
+		--data "dataset/jan to may police violation_anonymized791b166.csv" \
+		--out artifacts/parking_model_v5 \
+		--min-segment-events 20 \
+		--zero-multiplier 1.25 \
+		--test-days 21 \
+		--n-estimators 300 \
+		--use-osm-roads
 	@echo "Model training complete."
 
 predict:

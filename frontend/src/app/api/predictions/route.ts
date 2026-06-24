@@ -44,13 +44,12 @@ export async function GET(request: Request) {
     // the batch data is returned and marked is_cached=true.
     let isLive = false;
     if (hour === "live") {
-      const clockHour = new Date().getHours().toString().padStart(2, "0");
-      const batchPath = path.join(jsonDirectory, `predictions_${clockHour}.geojson`);
+      const batchPath = path.join(jsonDirectory, `predictions_live.geojson`);
       try {
         const batchRaw = await fs.readFile(batchPath, "utf-8");
         baseData = JSON.parse(batchRaw);
         lastModified = new Date();
-      } catch { /* no batch file yet, stay with empty */ }
+      } catch { /* no live file yet, stay with empty */ }
 
       // Now race the live fetch against a 4-second timeout
       try {
@@ -99,8 +98,20 @@ export async function GET(request: Request) {
         if (parsed.features && parsed.features.length > 0) {
           rippleData = parsed;
         }
+      } else {
+        throw new Error("Fallback to disk");
       }
-    } catch {}
+    } catch {
+      // Fallback to local disk
+      try {
+        const fallbackName = hour === "live" ? "ripples_live.geojson" : `ripples_${hour}.geojson`;
+        const raw = await fs.readFile(path.join(jsonDirectory, fallbackName), "utf-8");
+        const parsed = JSON.parse(raw);
+        if (parsed.features && parsed.features.length > 0) {
+          rippleData = parsed;
+        }
+      } catch {}
+    }
 
     // ── Sort by EPS descending ────────────────────────────────────────────
     if (baseData.features?.length > 0) {
@@ -115,17 +126,22 @@ export async function GET(request: Request) {
     const uniqueFeatures = [];
     for (const f of baseData.features || []) {
       const p = f.properties || {};
-      // Group by a road identity key so the same road doesn't flood the queue
-      const roadName = (p.road_name || "").toLowerCase().trim();
-      const policeStation = (p.police_station || "").toLowerCase().trim();
-      const junctionName = (p.junction_name !== "No Junction" ? p.junction_name : "").toLowerCase().trim();
-      const roadKey = `${roadName}|${policeStation}|${junctionName}`;
+      const rName = (p.road_name || "").toLowerCase().trim();
+      const jName = (p.junction_name !== "No Junction" ? p.junction_name : "").toLowerCase().trim();
+      const pStation = (p.police_station || "").toLowerCase().trim();
+      
+      // If road_name is blank, try junction_name. If both are blank, fallback to exact segment_id to prevent false collapsing.
+      const primaryEntity = rName || jName || p.segment_id;
+      const roadKey = `${primaryEntity}|${pStation}`;
       
       if (!seen.has(roadKey)) {
         seen.add(roadKey);
         uniqueFeatures.push(f);
       }
     }
+    
+    // CRITICAL FIX: Actually use the deduplicated list for the UI map max filter
+    baseData.features = uniqueFeatures;
 
     // ── Smart map filter: EPS≥50 always shown, fill rest up to 40 max ───────
     // Rule: Show all high-impact segments (EPS≥50) first so no danger is hidden.

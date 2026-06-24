@@ -99,8 +99,17 @@ export default function TacticalMap() {
       const estVehicles = f.properties?.predicted_total || Math.floor(eps / 2);
       const weight = heatmapWeightMode === 'violation_density' ? estVehicles : econLoss;
       
-        let coord = f.geometry.coordinates[0];
-        while (Array.isArray(coord) && Array.isArray(coord[0])) coord = coord[0];
+        let coords = f.geometry.coordinates;
+        let coord = coords[0];
+        if (f.geometry.type === "LineString" && coords.length > 0) {
+          coord = coords[Math.floor(coords.length / 2)];
+        } else if (f.geometry.type === "MultiLineString" && coords.length > 0) {
+          let line = coords[Math.floor(coords.length / 2)];
+          if (line.length > 0) coord = line[Math.floor(line.length / 2)];
+        } else {
+          while (Array.isArray(coord) && Array.isArray(coord[0])) coord = coord[0];
+        }
+        
         if (Array.isArray(coord)) {
            points.push({
              position: coord,
