@@ -88,9 +88,9 @@ export default function DispatchQueue() {
           actual_accuracy: accuracy,
         })
       });
-      setActionStates(prev => ({ ...prev, [feature.properties.segment_id]: "Cleared" }));
+      setActionStates(prev => ({ ...prev, [feature.properties.road_key || feature.properties.segment_id]: "Cleared" }));
       setTimeout(() => {
-        setQueue((q) => q.filter((f) => f.properties.segment_id !== feature.properties.segment_id));
+        setQueue((q) => q.filter((f) => (f.properties.road_key || f.properties.segment_id) !== (feature.properties.road_key || feature.properties.segment_id)));
       }, 2000);
     } catch (e) {
       console.error("Feedback failed", e);
@@ -154,16 +154,17 @@ export default function DispatchQueue() {
             <AnimatePresence>
               {queue.map((feature, idx) => {
                 const p = feature.properties;
+                const roadKey = p.road_key || p.segment_id;
                 const priority_score: number = p.eps ?? 0;
                 const confidence_band = p.confidence_band || "Low";
-                const actionStatus = actionStates[p.segment_id] || "Not sent";
+                const actionStatus = actionStates[roadKey] || "Not sent";
                 const isCritical = priority_score >= 80;
-                const isSelected = selectedEdge?.properties?.segment_id === p.segment_id;
+                const isSelected = (selectedEdge?.properties?.road_key || selectedEdge?.properties?.segment_id) === roadKey;
 
                 return (
                   <motion.div
                     layout
-                    key={p.segment_id}
+                    key={roadKey}
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, scale: 0.95 }}
@@ -257,7 +258,7 @@ export default function DispatchQueue() {
                          ) : (
                            <>
                              <button 
-                               onClick={(e) => { e.stopPropagation(); setActionStates(prev => ({ ...prev, [p.segment_id]: "Team dispatched" })); }}
+                               onClick={(e) => { e.stopPropagation(); setActionStates(prev => ({ ...prev, [roadKey]: "Team dispatched" })); }}
                                className="flex-1 py-1.5 bg-blue-500 hover:bg-blue-400 text-white rounded text-[10px] font-bold tracking-widest uppercase transition-colors"
                              >
                                Dispatch

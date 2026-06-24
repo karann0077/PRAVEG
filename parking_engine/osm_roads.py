@@ -109,6 +109,7 @@ def match_events_to_osm_roads(events: pd.DataFrame, roads: pd.DataFrame) -> pd.D
     road_records = roads.reset_index(drop=True).to_dict("records")
 
     segment_ids: list[str] = []
+    road_keys: list[str] = []
     road_classes: list[str] = []
     road_widths: list[float] = []
     road_names: list[str] = []
@@ -161,11 +162,24 @@ def match_events_to_osm_roads(events: pd.DataFrame, roads: pd.DataFrame) -> pd.D
         segment_ids.append(record["segment_id"])
         road_classes.append(record["road_class"])
         road_widths.append(float(record["road_width_m"]))
+        
+        # ── V5 Canonical Road Key ──────────────────────────────────────────────
+        r_name = str(record.get("road_name", "")).strip().lower().replace(" ", "_")
+        p_station = str(matched["police_station"].iloc[len(segment_ids)-1]).strip().lower().replace(" ", "_")
+        j_name = str(matched["junction_name"].iloc[len(segment_ids)-1]).strip().lower().replace(" ", "_")
+        r_class = record["road_class"]
+        way_id = record.get("osm_way_id", "")
+        
+        key_parts = [p_station, j_name, r_name, r_class, str(way_id)]
+        canonical_key = "rk_" + "_".join([p for p in key_parts if p and p != "unknown"])
+        
         road_names.append(str(record.get("road_name", "")))
         osm_highways.append(str(record.get("osm_highway", "")))
         nearest_distances.append(best_dist)
+        road_keys.append(canonical_key)
 
     matched["segment_id"] = segment_ids
+    matched["road_key"] = road_keys
     matched["road_class"] = road_classes
     matched["road_width_m"] = road_widths
     matched["road_name"] = road_names

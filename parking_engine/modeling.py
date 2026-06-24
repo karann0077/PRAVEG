@@ -9,7 +9,7 @@ import joblib
 import numpy as np
 import pandas as pd
 from lightgbm import LGBMRegressor
-from catboost import CatBoostClassifier, CatBoostRanker, Pool
+from catboost import CatBoostRanker, Pool
 from sklearn.isotonic import IsotonicRegression
 from sklearn.metrics import average_precision_score, mean_absolute_error, mean_squared_error, roc_auc_score, log_loss, brier_score_loss, ndcg_score
 from sklearn.multioutput import RegressorChain
@@ -407,39 +407,28 @@ def predict_feature_frame(
         for idx, col in enumerate(TARGET_COLUMNS):
             out[col] = predictions[:, idx]
             
-    # V3 Ensemble logic (now a Ranker)
-    model_clf = models.get("classifier")
+    # V5 Learning-to-Rank logic
+    model_rank = models.get("ranker") or models.get("classifier") # Fallback to classifier for legacy compatibility
     
-    if model_clf is not None:
+    if model_rank is not None:
         try:
-            # Check if it's the old classifier or the new ranker
-            if hasattr(model_clf, "predict_proba"):
-                prob_raw = model_clf.predict_proba(X_cb)[:, 1]
-                prob_cal = models.get("calibrator").predict(prob_raw) if models.get("calibrator") else prob_raw
-                out["hotspot_probability"] = prob_cal
-                out["hotspot_probability_raw"] = prob_raw
-                out["hotspot_prob_lower_bound"] = prob_cal
+            # Ranker inference
+            pred_rank_raw = model_rank.predict(X_cb).reshape(-1, 1)
+            calibrator = models.get("calibrator")
+            if calibrator is not None:
+                prob_cal = calibrator.predict_proba(pred_rank_raw)[:, 1]
             else:
-                # It's the new Ranker
-                pred_rank_raw = model_clf.predict(X_cb).reshape(-1, 1)
-                calibrator = models.get("calibrator")
-                if calibrator is not None:
-                    prob_cal = calibrator.predict_proba(pred_rank_raw)[:, 1]
-                else:
-                    prob_cal = 1.0 / (1.0 + np.exp(-pred_rank_raw.flatten()))
-                    
-                out["hotspot_probability"] = prob_cal
-                out["hotspot_probability_raw"] = pred_rank_raw.flatten()
-                out["hotspot_prob_lower_bound"] = prob_cal  # No conformal bound for ranker
+                prob_cal = 1.0 / (1.0 + np.exp(-pred_rank_raw.flatten()))
+                
+            out["priority_score_calibrated"] = prob_cal
+            out["priority_score_raw"] = pred_rank_raw.flatten()
         except Exception as e:
             print("Error in ranking prediction:", e)
-            out["hotspot_probability"] = 0.0
-            out["hotspot_probability_raw"] = 0.0
-            out["hotspot_prob_lower_bound"] = 0.0
+            out["priority_score_calibrated"] = 0.0
+            out["priority_score_raw"] = 0.0
     else:
-        out["hotspot_probability"] = 0.0
-        out["hotspot_probability_raw"] = 0.0
-        out["hotspot_prob_lower_bound"] = 0.0
+        out["priority_score_calibrated"] = 0.0
+        out["priority_score_raw"] = 0.0
         
     return out
 

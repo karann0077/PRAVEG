@@ -126,13 +126,7 @@ export async function GET(request: Request) {
     const uniqueFeatures = [];
     for (const f of baseData.features || []) {
       const p = f.properties || {};
-      const rName = (p.road_name || "").toLowerCase().trim();
-      const jName = (p.junction_name !== "No Junction" ? p.junction_name : "").toLowerCase().trim();
-      const pStation = (p.police_station || "").toLowerCase().trim();
-      
-      // If road_name is blank, try junction_name. If both are blank, fallback to exact segment_id to prevent false collapsing.
-      const primaryEntity = rName || jName || p.segment_id;
-      const roadKey = `${primaryEntity}|${pStation}`;
+      const roadKey = p.road_key || p.segment_id; // Fallback to segment_id if road_key is missing
       
       if (!seen.has(roadKey)) {
         seen.add(roadKey);

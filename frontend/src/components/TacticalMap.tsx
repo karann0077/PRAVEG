@@ -3,8 +3,6 @@
 import React, { useEffect, useState, useMemo } from "react";
 import DeckGL from "@deck.gl/react";
 import { GeoJsonLayer, ArcLayer, PathLayer, TextLayer } from "@deck.gl/layers";
-import { HeatmapLayer, HexagonLayer } from "@deck.gl/aggregation-layers";
-import * as turf from '@turf/turf';
 import { useMapStore } from "@/store/useMapStore";
 import { motion } from "framer-motion";
 import Map, { Marker } from "react-map-gl/maplibre";
@@ -89,40 +87,7 @@ export default function TacticalMap() {
   const isPatrolRoute = activeLayerMode === "patrol_route";
   const isAllPredictions = activeLayerMode === "all_predictions";
 
-  // --- TURF.JS GEOMETRY CHUNKING (HEATMAP INTERPOLATION) ---
-  const heatmapPoints = useMemo(() => {
-    if (!isTrafficBlockage || !geoData || !geoData.mapFeatures) return [];
-    const points: any[] = [];
-    geoData.mapFeatures.forEach((f: any) => {
-      const eps = f.properties?.eps ?? 0;
-      const econLoss = f.properties?.economic_loss || (eps * 15000); // Derive economic bleed if missing
-      const estVehicles = f.properties?.predicted_total || Math.floor(eps / 2);
-      const weight = heatmapWeightMode === 'violation_density' ? estVehicles : econLoss;
-      
-        let coords = f.geometry.coordinates;
-        let coord = coords[0];
-        if (f.geometry.type === "LineString" && coords.length > 0) {
-          coord = coords[Math.floor(coords.length / 2)];
-        } else if (f.geometry.type === "MultiLineString" && coords.length > 0) {
-          let line = coords[Math.floor(coords.length / 2)];
-          if (line.length > 0) coord = line[Math.floor(line.length / 2)];
-        } else {
-          while (Array.isArray(coord) && Array.isArray(coord[0])) coord = coord[0];
-        }
-        
-        if (Array.isArray(coord)) {
-           points.push({
-             position: coord,
-             eps: eps,
-             economic_loss: econLoss,
-             vehicles: estVehicles,
-             weight: weight,
-             segment_id: f.properties?.segment_id
-           });
-        }
-    });
-    return points;
-  }, [geoData, isTrafficBlockage, heatmapWeightMode]);
+
 
   const layers = useMemo(() => {
     let dispatchRouteData = [];
@@ -149,54 +114,63 @@ export default function TacticalMap() {
     }
 
     return [
-      isTrafficBlockage && new HeatmapLayer({
-        id: 'heatmap-layer',
-        data: heatmapPoints,
-        getPosition: (d: any) => d.position,
-        getWeight: (d: any) => d.weight,
-        radiusPixels: 20,
-        intensity: 2,
-        threshold: 0.05,
-        colorRange: [
-          [34, 197, 94, 50],
-          [6, 182, 212, 100],
-          [168, 85, 247, 150],
-          [236, 72, 153, 200],
-          [239, 68, 68, 255]
-        ]
+      isTrafficBlockage && new GeoJsonLayer({
+        id: "blockage-glow",
+        data: geoData?.mapFeatures || [],
+        pickable: false,
+        stroked: true,
+        filled: false,
+        lineWidthUnits: "pixels",
+        lineWidthMinPixels: 5,
+        lineWidthMaxPixels: 20,
+        getLineWidth: (d: any) => {
+          const eps = d.properties?.eps ?? 0;
+          return Math.max(5, 5 + (eps / 10)); // Thicker glow for blockage mode
+        },
+        getLineColor: (d: any) => {
+          const eps = d.properties?.eps ?? 0;
+          if (eps >= 75) return [255, 0, 0, 100];      // Intense red
+          if (eps >= 50) return [255, 100, 0, 80];     // Bright orange
+          if (eps >= 25) return [255, 200, 0, 60];     // Bright yellow
+          return [0, 200, 100, 30];                    // Cool green
+        },
+        lineCapRounded: true,
+        lineJointRounded: true,
+        updateTriggers: { getLineColor: [geoData, activeLayerMode], getLineWidth: [geoData] },
       }),
 
-      isTrafficBlockage && new HexagonLayer({
-        id: 'heatmap-picker-layer',
-        data: heatmapPoints,
-        getPosition: (d: any) => d.position,
-        radius: 200,
-        opacity: 0,
+      isTrafficBlockage && new GeoJsonLayer({
+        id: "blockage-core",
+        data: geoData?.mapFeatures || [],
         pickable: true,
+        autoHighlight: true,
+        highlightColor: [255, 255, 255, 200],
+        stroked: true,
+        filled: false,
+        lineWidthUnits: "pixels",
+        lineWidthMinPixels: 2,
+        lineWidthMaxPixels: 12,
+        getLineWidth: (d: any) => {
+          const eps = d.properties?.eps ?? 0;
+          return Math.max(2, 2 + (eps / 15)); // Thicker core for blockage mode
+        },
+        getLineColor: (d: any) => {
+          const eps = d.properties?.eps ?? 0;
+          if (eps >= 75) return [255, 50, 50, 255];   // Crimson red
+          if (eps >= 50) return [255, 150, 50, 255];  // Orange
+          if (eps >= 25) return [255, 220, 50, 255];  // Yellow
+          return [50, 220, 150, 200];                 // Mint green
+        },
+        lineCapRounded: true,
+        lineJointRounded: true,
         onClick: (info: any) => {
-           if (info.object && info.object.points) {
-              const pts = info.object.points;
-              const totalLoss = pts.reduce((sum: number, p: any) => sum + p.source.economic_loss, 0);
-              const totalVeh = pts.reduce((sum: number, p: any) => sum + p.source.vehicles, 0);
-              const uniqueSegments = new Set(pts.map((p: any) => p.source.segment_id)).size;
-              
-              const hexCenter = info.coordinate;
-              const stagingArea = [hexCenter[0] + 0.005, hexCenter[1] + 0.005];
-
-              setSelectedHeatmapZone({
-                totalSegments: uniqueSegments,
-                totalVehicles: totalVeh,
-                totalEconomicLoss: totalLoss,
-                stagingArea: stagingArea
-              });
-           } else {
-              setSelectedHeatmapZone(null);
-           }
-           return true;
-        }
+          setSelectedEdge(info.object ? info.object : null);
+          return true;
+        },
+        updateTriggers: { getLineColor: [geoData, activeLayerMode], getLineWidth: [geoData] },
       }),
 
-      !isTrafficBlockage && new GeoJsonLayer({
+      isActionRoads && new GeoJsonLayer({
         id: "traffic-glow",
         data: geoData?.mapFeatures || [],
         pickable: false,
@@ -228,7 +202,7 @@ export default function TacticalMap() {
         updateTriggers: { getLineColor: [geoData, selectedEdge, isSimulatingResolution, activeLayerMode], getLineWidth: [geoData] },
       }),
 
-      !isTrafficBlockage && new GeoJsonLayer({
+      isActionRoads && new GeoJsonLayer({
         id: "traffic-core",
         data: geoData?.mapFeatures || [],
         pickable: true,

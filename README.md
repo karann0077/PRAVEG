@@ -14,14 +14,14 @@ Instead of merely reacting to public complaints, PRAVEG uses machine learning to
    The system starts with historical police violation records. Instead of treating these as arbitrary GPS coordinates, PRAVEG uses the OpenStreetMap (OSM) Overpass API to snap every violation to its exact, physical road segment (e.g., "Subedar Chatram Road"). 
 2. **Feature Engineering**
    The ML engine extracts over 140 features for every road segment. This includes time-of-day cyclical patterns, day-of-week trends, weather patterns (Open-Meteo API), and proximity to Points of Interest (POIs like metro stations, malls, and schools). It also uses **Hawkes Processes** to calculate "spillovers" (how a bottleneck on one street quickly causes parking violations on an adjacent street).
-3. **Multi-Target Prediction**
-   A sophisticated **CatBoost Regressor Chain** predicts the exact volume of violations that will occur in the next hour, split by vehicle type (two-wheelers, cars, heavy vehicles, etc.).
+3. **Learning-to-Rank Architecture**
+   A sophisticated **hybrid ML pipeline** takes these features. A `LGBMRegressor` chain predicts the exact physical volume of violations (split by vehicle type), while a `CatBoostRanker` (trained with YetiRank) establishes the exact prioritization hierarchy (Dispatch Priority Score) for which roads require attention first.
 4. **Physical Interruption Scoring**
    The system calculates the total physical footprint of the predicted illegally parked vehicles (e.g., a car is 1.9m wide). It compares this against the known width of the street to determine the **Traffic Interruption Score**. 3 illegally parked cars on a narrow 6m residential street creates a massive interruption, whereas 3 cars on a 15m highway creates minimal interruption.
 5. **Live Congestion Integration**
-   A background daemon constantly polls the **TomTom Routing API**. If PRAVEG predicts a high parking risk, and TomTom reports that traffic speeds on that exact street are dropping in real-time, the threat is instantly escalated.
+   A background daemon constantly polls the **TomTom Routing API**. If PRAVEG flags a high dispatch priority, and TomTom reports that traffic speeds on that exact street are dropping in real-time, the threat is instantly escalated.
 6. **Actionable UI**
-   All this data feeds into a stunning Next.js / Deck.gl interactive map. Sector commanders see glowing red/orange lines over the exact streets at risk, allowing them to dispatch towing units efficiently.
+   All this data feeds into a stunning Next.js / Deck.gl interactive map. Sector commanders see road-aligned polygons glowing red or orange to indicate congestion bottlenecks, allowing them to dispatch towing units efficiently.
 
 ---
 

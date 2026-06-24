@@ -209,9 +209,9 @@ def score_predictions(
     live_bonus = np.clip((frame["live_congestion_multiplier"] - 1.0) * 25.0, 0, 15)
 
     # ── V3: Enterprise Congestion Impact Score (CIS) ─────────────────────────
-    # 1. Hotspot Probability Score (0-100)
-    hotspot_prob = frame.get("hotspot_probability", pd.Series(0.0, index=frame.index))
-    hotspot_score = hotspot_prob * 100.0 * dampener
+    # 1. Dispatch Priority Score (0-100)
+    priority_score_cal = frame.get("priority_score_calibrated", pd.Series(0.0, index=frame.index))
+    hotspot_score = priority_score_cal * 100.0 * dampener
 
     # 2. Normalized Severity Score (0-100)
     severity_sum = np.zeros(len(frame), dtype=float)
@@ -228,7 +228,7 @@ def score_predictions(
     vuln_score = np.clip((road_vuln_mult - 0.7) / 1.8 * 100.0 * dampener, 0, 100)
 
     # Base CIS (0-100) — weights sum to 1.0
-    # hotspot_score: primary signal from the trained classifier (0.55)
+    # hotspot_score: primary signal from the trained ranker (0.55)
     # severity_score: how many/heavy violations predicted at this road (0.35)
     # vuln_score: road type tiebreaker only — no longer a floor (0.10)
     frame["eps_raw"] = (
@@ -253,14 +253,11 @@ def score_predictions(
     # Round final EPS for clean display.
     frame["eps"] = frame["eps"].clip(0, 100).round(2)
 
-    # ── Enterprise Dispatch Rule (Conformal Uncertainty) ─────────────────────
-    prob_lb = frame.get("hotspot_prob_lower_bound", pd.Series(0.0, index=frame.index))
-    
-    # Enforce conservative dispatch: If we are not at least 85% confident that the
-    # probability is >= 0.35, cap EPS at Orange Line boundary (79)
+    # ── Enterprise Dispatch Rule ─────────────────────────────────────────────
+    # Enforce conservative dispatch: If the priority score is low (<0.35), cap EPS at Orange Line boundary (79)
     eps_vals = frame["eps"].values
-    prob_lb_vals = prob_lb.values
-    cap_mask = (prob_lb_vals < 0.35) & (eps_vals >= 80)
+    prob_vals = priority_score_cal.values
+    cap_mask = (prob_vals < 0.35) & (eps_vals >= 80)
     frame["eps"] = np.where(cap_mask, 79.0, eps_vals)
 
     # ── Priority bands ───────────────────────────────────────────────────────
@@ -271,12 +268,11 @@ def score_predictions(
     )
     
     # ── Confidence Band ──────────────────────────────────────────────────────
-    prob = frame.get("hotspot_probability", pd.Series(0.0, index=frame.index))
-    prob_fallback = np.maximum(prob, frame["parking_risk_0_100"] / 100.0)
+    prob_fallback = np.maximum(priority_score_cal, frame["parking_risk_0_100"] / 100.0)
 
     frame["confidence_band"] = np.select(
-        [prob_lb > 0.6, prob_lb >= 0.35, prob_fallback > 0.4],
-        ["High", "Medium", "Medium"],  # Use prob_lb for High and Medium
+        [priority_score_cal > 0.6, priority_score_cal >= 0.35, prob_fallback > 0.4],
+        ["High", "Medium", "Medium"],  
         default="Low",
     )
 
