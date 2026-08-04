@@ -1,6 +1,6 @@
 # PRAVEG - AI-Powered Traffic & Parking Enforcement Intelligence
 
-![Praveg Engine](https://img.shields.io/badge/PRAVEG-Intelligence_Engine-blue?style=for-the-badge) ![Version](https://img.shields.io/badge/version-v5.0-green) ![License](https://img.shields.io/badge/license-MIT-lightgrey)
+![Praveg Engine](https://img.shields.io/badge/PRAVEG-Intelligence_Engine-blue?style=for-the-badge) ![Version](https://img.shields.io/badge/version-v5.0-green) 
 
 **PRAVEG** is a state-of-the-art predictive enforcement and spatial-intelligence system built for the Bengaluru Traffic Police. It solves one of the city's most crippling problems: **illegal parking leading to cascading traffic gridlocks**. 
 
