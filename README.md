@@ -12,6 +12,23 @@
   <img src="https://img.shields.io/badge/Status-Research%20Prototype-purple" alt="Status" />
 </p>
 
+## Product Preview
+
+<p align="center">
+  <img src="docs/dashboard.png" alt="PRAVEG Tactical Dashboard" width="100%" />
+</p>
+
+<p align="center">
+  <img src="docs/dashboard2.png" alt="PRAVEG Dashboard View 2" width="49%" />
+  <img src="docs/dashboard3.png" alt="PRAVEG Dashboard View 3" width="49%" />
+</p>
+
+<p align="center">
+  <em>PRAVEG combines predictive risk, physical road impact, prioritization, and geospatial intelligence in a single tactical interface.</em>
+</p>
+
+---
+
 ## Overview
 
 **PRAVEG** is a research-oriented traffic and parking enforcement intelligence system designed around a simple operational question:
@@ -402,33 +419,33 @@ PRAVEG/
 │   ├── modeling.py            # LightGBM + CatBoost training
 │   ├── train.py               # Training entry point
 │   ├── predict.py             # Inference / prediction pipeline
-│   ├── scoring.py              # Physical impact + EPS scoring
-│   ├── kinematics.py           # Spatial ripple/spillover generation
-│   ├── osm_roads.py             # OSM road retrieval + matching
-│   ├── road_graph.py            # Optional OSMnx road graph utilities
-│   ├── spatial_context.py       # POIs and spatial features
-│   ├── parking_supply.py        # Legal parking / supply features
-│   ├── weather_context.py       # Weather features
-│   ├── event_context.py         # Event features
-│   ├── tomtom_api.py            # Live traffic integration
-│   ├── explainability.py        # Main SHAP/explanation pipeline
-│   └── explain.py               # Legacy explanation helper
+│   ├── scoring.py             # Physical impact + EPS scoring
+│   ├── kinematics.py          # Spatial ripple/spillover generation
+│   ├── osm_roads.py           # OSM road retrieval + matching
+│   ├── road_graph.py          # Optional OSMnx road graph utilities
+│   ├── spatial_context.py     # POIs and spatial features
+│   ├── parking_supply.py      # Legal parking / supply features
+│   ├── weather_context.py     # Weather features
+│   ├── event_context.py       # Event features
+│   ├── tomtom_api.py          # Live traffic integration
+│   ├── explainability.py      # Main SHAP/explanation pipeline
+│   └── explain.py             # Legacy explanation helper
 │
-├── server.py                    # FastAPI backend
-├── live_traffic_daemon.py       # Continuous live-state updater
-├── run_batch.py                 # 24-hour batch prediction workflow
-├── generate_all_ripples.py      # Future ripple generation
+├── server.py                  # FastAPI backend
+├── live_traffic_daemon.py     # Continuous live-state updater
+├── run_batch.py               # 24-hour batch prediction workflow
+├── generate_all_ripples.py    # Future ripple generation
 │
 ├── frontend/
-│   ├── src/app/                 # Next.js application
-│   ├── package.json             # Frontend dependencies/scripts
+│   ├── src/app/               # Next.js application
+│   ├── package.json            # Frontend dependencies/scripts
 │   └── ...
 │
-├── artifacts/                   # Packaged model + evaluation artifacts
-├── dataset/                     # Local/private datasets where applicable
-├── docs/                        # Additional documentation
-├── Makefile                     # Training / prediction commands
-├── requirements.txt             # Python dependencies
+├── artifacts/                 # Packaged model + evaluation artifacts
+├── dataset/                   # Local/private datasets where applicable
+├── docs/                      # Documentation + product screenshots
+├── Makefile                   # Training / prediction commands
+├── requirements.txt           # Python dependencies
 └── README.md
 ```
 
@@ -497,109 +514,41 @@ External integrations may require API keys or configuration for services such as
 
 ## Technology stack
 
-### Machine Learning
-
-- LightGBM
-- CatBoost
-- scikit-learn
-- SHAP
-- Pandas
-- NumPy
-
-### Geospatial
-
-- OpenStreetMap
-- Overpass API
-- Shapely
-- OSMnx
-- Turf.js
-- Haversine distance calculations
-
-### Backend
-
-- FastAPI
-- Uvicorn
-- SQLite / SQLite WAL
-
-### Frontend
-
-- Next.js **16.2.9**
-- React **19.2.4**
-- Deck.gl **9.3.4**
-- MapLibre GL
-- react-map-gl
-- Zustand
-- Recharts
-- Tailwind CSS
-- Framer Motion
-
-### External data/services
-
-- TomTom Traffic API
-- Open-Meteo
-- OpenStreetMap / Overpass
-- OSRM for route visualization
+| Layer | Technologies |
+|---|---|
+| ML | LightGBM, CatBoost, scikit-learn, SHAP, Pandas, NumPy |
+| Geospatial | OpenStreetMap, Overpass API, Shapely, OSMnx |
+| Backend | FastAPI, Uvicorn, SQLite/WAL |
+| Frontend | Next.js 16, React 19, MapLibre, Deck.gl, Zustand, Recharts, Tailwind CSS |
+| External data | TomTom Traffic API, Open-Meteo, OSM |
 
 ---
 
-## What I learned building PRAVEG
+## Documentation
 
-This project was intentionally designed as more than a notebook model. The difficult part was integrating several layers that have to agree with each other:
+Additional technical documentation is available in `docs/`:
 
-```text
-Messy records
-→ spatial representation
-→ time-aware features
-→ ML predictions
-→ ranking
-→ physical interpretation
-→ live enrichment
-→ explainability
-→ API
-→ interactive UI
-```
-
-The project exposed several engineering realities that are easy to miss in isolated ML experiments:
-
-- prediction quality and operational usefulness are different objectives
-- sparse event data makes naive regression metrics misleading
-- ranking is often more relevant than classification when enforcement capacity is limited
-- geospatial feature quality can matter as much as model choice
-- live systems need a clear source of truth between cached artifacts, background workers and APIs
-- explainability must use the same reconstructed feature row as the prediction path
-- prototype authentication, API keys, routing and frontend state should be hardened before production deployment
+- `FULL_SYSTEM_ARCHITECTURE.md` — end-to-end architecture
+- `ML_ENGINE_ARCHITECTURE.md` — machine-learning pipeline
+- `BACKEND_ARCHITECTURE.md` — FastAPI/backend design
+- `FRONTEND_ARCHITECTURE.md` — dashboard architecture
+- `RESEARCH_NOTES.md` — modelling and research notes
 
 ---
 
 ## Current limitations and next steps
 
-PRAVEG is a **research / hackathon prototype**, not a production police-deployment system.
+PRAVEG is a **research prototype**, not a production traffic-control system. The next engineering steps would include centralizing EPS thresholds, strengthening test coverage, hardening authentication and CORS, unifying model-artifact sources, replacing heuristic route ETA calculations with road-network routing, and improving forecasting performance on sparse/zero-heavy targets.
 
-Important next steps would include:
-
-1. **Improve temporal generalization** with longer historical data and rolling validation across multiple time windows.
-2. **Handle zero-heavy counts more explicitly** with zero-inflated or hurdle-style approaches where appropriate.
-3. **Unify EPS thresholds** across backend, daemon and frontend through a single configuration source.
-4. **Strengthen live-data reliability** with retries, monitoring, API failure handling and explicit data freshness metadata.
-5. **Replace prototype authentication** with real server-side authentication and authorization.
-6. **Centralize route computation** rather than mixing heuristic ETA and frontend routing services.
-7. **Build a true network-flow spillover model** in place of the current spatial/time-decay heuristic.
-8. **Add automated tests and CI** for the feature pipeline, scoring logic, API contracts and frontend behaviour.
-9. **Validate economic-loss estimates** against measured traffic delay/cost data rather than treating them as direct observations.
-10. **Retrain and validate on current Bengaluru data** before using the system for real operational decisions.
+These limitations are intentionally documented because a reliable decision-support system should make its assumptions and uncertainties visible rather than hide them behind a polished interface.
 
 ---
 
-## Project positioning
+<p align="center">
+  <strong>PRAVEG</strong><br/>
+  Predictive parking intelligence → physical road impact → actionable enforcement priority
+</p>
 
-PRAVEG demonstrates the ability to work across the full applied-ML stack:
-
-**Data engineering → geospatial systems → feature engineering → forecasting → learning-to-rank → explainability → real-time enrichment → backend APIs → visualization.**
-
-That end-to-end integration is the main contribution of the project.
-
----
-
-## Acknowledgement
-
-Developed as a project for the **Bengaluru Traffic Police Hackathon**.
+<p align="center">
+  Developed for the Bengaluru Traffic Police Hackathon.
+</p>
